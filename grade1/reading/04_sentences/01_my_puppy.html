@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sentences &amp; Stories: My Puppy</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #80cbc4;
+    --accent-bg: #e0f2f1;
+    --heading-color: #00796b;
+    --title-color: #00695c;
+    --col-bg: #f1f8f7;
+    --col-heading: #00695c;
+    --word-bg: #fff;
+  }
+  /* Story / reading text */
+  .story { background: #fff; border: 1.5px dashed var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 18px; line-height: 1.7; }
+  .story p { margin-bottom: 8px; }
+  .story .title { display:block; text-align:center; font-size: 20px; color: var(--title-color); font-weight: bold; margin-bottom: 8px; }
+
+  /* Numbered sentence list for "read these sentences" */
+  .sent-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .sent-list li { font-size: 17px; background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #b2dfdb; }
+  .sent-list li::before { content: counter(sent) ". "; counter-increment: sent; font-weight: bold; color: var(--title-color); margin-right: 4px; }
+  .sent-list { counter-reset: sent; }
+
+  /* Comprehension Q&A */
+  .q-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .q-list li { font-size: 14px; }
+  .q-list .q { font-weight: bold; display: block; margin-bottom: 4px; color: #333; }
+  .answer-line { display: block; border-bottom: 2px solid #333; height: 22px; }
+
+  /* Cloze (pick the word) */
+  .cloze-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .cloze-list li { font-size: 15px; line-height: 1.8; }
+  .cloze-blank { display: inline-block; border-bottom: 2px solid #333; min-width: 80px; height: 18px; margin: 0 4px; }
+  .choices { display: inline-flex; gap: 6px; margin-left: 6px; }
+  .choice { background: #fff; border: 1.5px solid #80cbc4; border-radius: 6px; padding: 1px 10px; font-size: 13px; font-weight: bold; color: #00695c; }
+
+  /* Drawing area */
+  .draw-box { height: 300px; }
+
+  /* True / False */
+  .tf-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tf-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #b2dfdb; }
+  .tf-list .sent { flex: 1; }
+  .tf-boxes { display: flex; gap: 8px; flex-shrink: 0; }
+  .tf-box { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: bold; color: var(--title-color); }
+  .tf-circle { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--title-color); border-radius: 50%; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🐶 Sentences &amp; Stories: My Puppy</h1><p>Read · Answer · Build · Draw</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Read the Story 📖</div>
+    <div class="exercise-instruction">Read it out loud. Then read it again!</div>
+    <div class="story">
+      <span class="title">My Pup Max</span>
+      <p>I have a pup. His name is Max.</p>
+      <p>Max is big and funny. He can run and jump.</p>
+      <p>Max likes to dig in the mud.</p>
+      <p>On a sunny day, Max naps on the rug.</p>
+      <p>I am lucky to have Max.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Reading Comprehension 🤔</div>
+    <div class="exercise-instruction">Look back at the story. Write your answer on the line.</div>
+    <ul class="q-list">
+      <li><span class="q">What is the pup's name?</span><span class="answer-line"></span></li>
+      <li><span class="q">Is Max big or small?</span><span class="answer-line"></span></li>
+      <li><span class="q">Where does Max like to dig?</span><span class="answer-line"></span></li>
+      <li><span class="q">What does Max do on a sunny day?</span><span class="answer-line"></span></li>
+      <li><span class="q">Who feels lucky?</span><span class="answer-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) True or False? ✅ ❌</div>
+    <div class="exercise-instruction">Read each sentence. Circle <strong>T</strong> for true or <strong>F</strong> for false.</div>
+    <ul class="tf-list">
+      <li><span class="sent">Max is a cat.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">Max can run and jump.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">Max likes to dig in the mud.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">Max naps on a hill.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">Max is big and funny.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🐶 Sentences &amp; Stories: My Puppy</h1><p>Keep going — you are doing great!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Pick the Word ✏️</div>
+    <div class="exercise-instruction">Pick the word that fits. Write it on the line.</div>
+    <ul class="cloze-list">
+      <li>My pup can <span class="cloze-blank"></span> very fast.
+        <span class="choices"><span class="choice">run</span><span class="choice">cup</span></span>
+      </li>
+      <li>Max naps on the soft <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">rug</span><span class="choice">leg</span></span>
+      </li>
+      <li>It is a <span class="cloze-blank"></span> day to play.
+        <span class="choices"><span class="choice">sunny</span><span class="choice">muddy</span></span>
+      </li>
+      <li>I am so <span class="cloze-blank"></span> to have a pup.
+        <span class="choices"><span class="choice">lucky</span><span class="choice">tricky</span></span>
+      </li>
+      <li>The pup likes to dig in the <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">mud</span><span class="choice">map</span></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Build a Sentence ✍️</div>
+    <div class="exercise-instruction">Put the words in order to make a sentence.</div>
+    <ul class="build-list">
+      <li>
+        <div class="word-bank"><span class="bank-word">pup</span><span class="bank-word">a</span><span class="bank-word">big</span><span class="bank-word">have</span><span class="bank-word">I</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+      <li>
+        <div class="word-bank"><span class="bank-word">in</span><span class="bank-word">naps</span><span class="bank-word">sun</span><span class="bank-word">Max</span><span class="bank-word">the</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+      <li>
+        <div class="word-bank"><span class="bank-word">jump</span><span class="bank-word">My</span><span class="bank-word">can</span><span class="bank-word">run</span><span class="bank-word">and</span><span class="bank-word">pup</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Read and Draw 🎨</div>
+    <div class="exercise-instruction">Read the sentence, then draw a picture of it.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:17px;"><strong>"A funny pup naps on the rug in the sun."</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> 1. Max · 2. big · 3. in the mud · 4. naps on the rug · 5. I (the kid) ·
+    <strong>Ex.3:</strong> F, T, T, F, T ·
+    <strong>Ex.4:</strong> run, rug, sunny, lucky, mud ·
+    <strong>Ex.5:</strong> I have a big pup. / Max naps in the sun. / My pup can run and jump.
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Proof by Trying All Cases — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffcc80;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 16px 18px; background: #fff3e0; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #bf360c; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .case-proof { background: #fff; border: 2.5px solid #ffcc80; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+    .case-title { font-size: 15px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .case-subtitle { font-size: 12px; color: #888; text-align: center; margin-bottom: 10px; font-style: italic; }
+    .case-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 8px 0; }
+    .case-table th { background: #e65100; color: #fff; padding: 6px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; text-align: center; }
+    .case-table td { border: 1.5px solid #ffcc80; padding: 7px 10px; text-align: center; }
+    .case-table tr:nth-child(even) td { background: #fff8f0; }
+    .case-table .check { color: #2e7d32; font-weight: bold; }
+    .case-table .cross { color: #c62828; font-weight: bold; }
+    .case-verdict { font-size: 14px; font-weight: bold; color: #2e7d32; margin-top: 8px; padding: 8px 12px; background: #e8f5e9; border: 2px solid #81c784; border-radius: 8px; text-align: center; }
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 8px; line-height: 1.5; }
+    .claim-card { background: #fff; border: 2px solid #ffcc80; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
+    .claim-hint { font-size: 11px; color: #888; font-style: italic; margin-bottom: 6px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2; }
+    .verdict-row { display: flex; gap: 12px; margin-top: 8px; }
+    .verdict-option { flex: 1; border: 2px solid #ccc; border-radius: 8px; padding: 6px; text-align: center; font-size: 12px; font-weight: bold; color: #555; }
+    .mini-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 6px 0; }
+    .mini-table th { background: #ffcc80; color: #bf360c; padding: 4px 8px; font-size: 10px; text-transform: uppercase; }
+    .mini-table td { border: 1px solid #ffe0b2; padding: 4px 6px; text-align: center; height: 24px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📋 Proof by Trying All Cases</h1>
+    <p>Lesson 5 — When you CAN check every possibility, that IS a proof!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 Check Every Case!</div>
+    <div class="concept-text">
+      Sometimes a claim is about a <strong>small, finite</strong> set of things. When there are only a few cases to check, you can prove the claim by <strong>checking every single one</strong>.<br><br>
+      This is called <strong>proof by exhaustion</strong> (or proof by cases) — you "exhaust" all the possibilities!<br><br>
+      ⚠️ This only works when the number of cases is <strong>small enough to check</strong>.
+    </div>
+  </div>
+
+  <!-- Worked Example 1 -->
+  <div class="case-proof">
+    <div class="case-title">Example: Every single-digit prime &gt; 2 is odd</div>
+    <div class="case-subtitle">Single-digit primes: 2, 3, 5, 7 — only 4 cases to check!</div>
+    <table class="case-table">
+      <tr><th>Prime</th><th>Is it &gt; 2?</th><th>Even or Odd?</th><th>Claim holds?</th></tr>
+      <tr><td>2</td><td>No (skip)</td><td>Even</td><td>—</td></tr>
+      <tr><td>3</td><td>Yes</td><td>Odd</td><td class="check">✓</td></tr>
+      <tr><td>5</td><td>Yes</td><td>Odd</td><td class="check">✓</td></tr>
+      <tr><td>7</td><td>Yes</td><td>Odd</td><td class="check">✓</td></tr>
+    </table>
+    <div class="case-verdict">✅ All 3 cases check out — the claim is PROVED!</div>
+    <div class="proof-explain">We didn't just try examples — we checked EVERY case. That's a proof!</div>
+  </div>
+
+  <!-- Worked Example 2 -->
+  <div class="case-proof">
+    <div class="case-title">Example: The square of any single-digit number ≤ 81</div>
+    <div class="case-subtitle">Single-digit numbers: 1, 2, 3, 4, 5, 6, 7, 8, 9 — check all 9!</div>
+    <table class="case-table">
+      <tr><th>n</th><th>n²</th><th>≤ 81?</th></tr>
+      <tr><td>1</td><td>1</td><td class="check">✓</td></tr>
+      <tr><td>2</td><td>4</td><td class="check">✓</td></tr>
+      <tr><td>3</td><td>9</td><td class="check">✓</td></tr>
+      <tr><td>4</td><td>16</td><td class="check">✓</td></tr>
+      <tr><td>5</td><td>25</td><td class="check">✓</td></tr>
+      <tr><td>6</td><td>36</td><td class="check">✓</td></tr>
+      <tr><td>7</td><td>49</td><td class="check">✓</td></tr>
+      <tr><td>8</td><td>64</td><td class="check">✓</td></tr>
+      <tr><td>9</td><td>81</td><td class="check">✓</td></tr>
+    </table>
+    <div class="case-verdict">✅ All 9 cases work — proved by exhaustion!</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📋 Proof by Trying All Cases</h1>
+    <p>Your turn — check every case! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Prove It by Checking All Cases ✅</div>
+    <div class="exercise-instruction">Complete the table to prove (or disprove!) each claim.</div>
+
+    <div class="claim-card">
+      <div class="claim-text">Claim: "Every even number from 2 to 12 can be written as the sum of two prime numbers."</div>
+      <div class="claim-hint">Hint: The even numbers are 2, 4, 6, 8, 10, 12</div>
+      <table class="mini-table">
+        <tr><th>Even Number</th><th>Two Primes That Add to It</th><th>Works?</th></tr>
+        <tr><td>2</td><td></td><td></td></tr>
+        <tr><td>4</td><td>2 + 2</td><td>✓</td></tr>
+        <tr><td>6</td><td></td><td></td></tr>
+        <tr><td>8</td><td></td><td></td></tr>
+        <tr><td>10</td><td></td><td></td></tr>
+        <tr><td>12</td><td></td><td></td></tr>
+      </table>
+      <div class="verdict-row">
+        <div class="verdict-option">PROVED ✅</div>
+        <div class="verdict-option">DISPROVED ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">Claim: "For every whole number from 1 to 6, n² + n is always even."</div>
+      <table class="mini-table">
+        <tr><th>n</th><th>n²</th><th>n² + n</th><th>Even?</th></tr>
+        <tr><td>1</td><td>1</td><td>2</td><td>✓</td></tr>
+        <tr><td>2</td><td>4</td><td></td><td></td></tr>
+        <tr><td>3</td><td></td><td></td><td></td></tr>
+        <tr><td>4</td><td></td><td></td><td></td></tr>
+        <tr><td>5</td><td></td><td></td><td></td></tr>
+        <tr><td>6</td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="verdict-row">
+        <div class="verdict-option">PROVED ✅</div>
+        <div class="verdict-option">DISPROVED ❌</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Can You Use Proof by Cases? 🤔</div>
+    <div class="exercise-instruction">For each claim, decide: can it be proved by checking all cases? Why or why not?</div>
+
+    <div class="claim-card">
+      <div class="claim-text">a) "Every month of the year has at least 28 days."</div>
+      <div class="work-area">Can you check all cases? <span class="blank-wide"></span><br>How many cases? <span class="blank"></span> &nbsp; Answer: <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">b) "Every even number is divisible by 2."</div>
+      <div class="work-area">Can you check all cases? <span class="blank-wide"></span><br>Why or why not? <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">c) "Every two-digit perfect square is less than 100."</div>
+      <div class="work-area">Can you check all cases? <span class="blank-wide"></span><br>The two-digit perfect squares are: <span class="blank-wide"></span></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1-Claim 1) 2 = not possible with two primes (trick! — 2 can't be written as sum of two primes if we require primes &gt; 0, since 1 isn't prime; Goldbach's conjecture starts at 4); 4=2+2, 6=3+3, 8=3+5, 10=5+5 or 3+7, 12=5+7. —
+    1-Claim 2) All even: 2, 6, 12, 20, 30, 42 — PROVED —
+    2a) Yes, 12 months — PROVED — 2b) No! Infinite even numbers — need a different proof — 2c) Yes! 16,25,36,49,64,81 — all &lt; 100 ✓
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial: How to Multiply Decimals</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #1565c0;
+    }
+    .section { border: 2px solid #90caf9; border-radius: 10px; padding: 14px 16px; background: #e3f2fd; }
+    .section-green { border-color: #a5d6a7; background: #e8f5e9; }
+    .section-purple { border-color: #ce93d8; background: #f3e5f5; }
+    .section-orange { border-color: #ffcc80; background: #fff3e0; }
+    .section-title { font-size: 15px; font-weight: 700; color: #0d47a1; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+    .section-green .section-title { color: #2e7d32; }
+    .section-purple .section-title { color: #6a1b9a; }
+    .section-orange .section-title { color: #e65100; }
+    .section-text { font-size: 13px; line-height: 1.6; color: #444; }
+    .section-text p { margin-bottom: 8px; }
+    .rule-box { background: #fff9c4; border: 2px solid #f9a825; border-radius: 8px; padding: 12px 16px; margin: 8px 0; }
+    .rule-box .rule-label { font-size: 12px; font-weight: 700; color: #e65100; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .5px; }
+    .rule-box p { font-size: 13px; color: #555; line-height: 1.5; }
+    .rule-box .highlight { color: #c62828; font-weight: 700; }
+    .example { background: #fff; border: 1.5px solid #90caf9; border-radius: 8px; padding: 12px 14px; margin: 8px 0; }
+    .example-green { border-color: #a5d6a7; }
+    .example-purple { border-color: #ce93d8; }
+    .example-orange { border-color: #ffcc80; }
+    .example-label { font-size: 11px; font-weight: 700; color: #1565c0; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+    .example-green .example-label { color: #2e7d32; }
+    .example-purple .example-label { color: #6a1b9a; }
+    .example-orange .example-label { color: #e65100; }
+    .step { font-size: 13px; margin-bottom: 5px; line-height: 1.5; }
+    .step .step-num { display: inline-block; background: #1565c0; color: #fff; border-radius: 50%; width: 20px; height: 20px; text-align: center; line-height: 20px; font-size: 11px; font-weight: 700; margin-right: 6px; }
+    .example-green .step .step-num { background: #2e7d32; }
+    .example-purple .step .step-num { background: #6a1b9a; }
+    .example-orange .step .step-num { background: #e65100; }
+    .math { font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: #1565c0; }
+    .example-green .math { color: #2e7d32; }
+    .example-purple .math { color: #6a1b9a; }
+    .example-orange .math { color: #e65100; }
+    .result { font-size: 15px; font-weight: 700; margin-top: 6px; }
+    .vertical-demo { display: inline-flex; flex-direction: column; align-items: flex-end; font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700; color: #1565c0; background: #f0f7ff; border-radius: 8px; padding: 10px 18px; margin: 6px 0; }
+    .vertical-demo-green { color: #2e7d32; background: #f0f9f0; }
+    .vertical-demo-purple { color: #6a1b9a; background: #f8f0fa; }
+    .vertical-demo .vd-line { width: 100%; border-top: 2px solid #333; margin: 4px 0; }
+    .vertical-demo .vd-answer { color: #c62828; }
+    .example-row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .example-row .example { flex: 1; min-width: 200px; }
+    .remember-box { background: #fce4ec; border: 2px solid #ef5350; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #c62828; margin: 6px 0; }
+    .remember-box strong { color: #b71c1c; }
+    .try-it { background: #f3e5f5; border: 2px solid #ab47bc; border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
+    .try-it-label { font-size: 12px; font-weight: 700; color: #6a1b9a; margin-bottom: 6px; text-transform: uppercase; }
+    .try-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+    .try-card { background: #fff; border: 1.5px solid #ce93d8; border-radius: 8px; padding: 10px 8px; text-align: center; font-size: 16px; font-weight: 700; color: #6a1b9a; }
+    .nav-link { display: inline-block; margin-top: 8px; font-size: 12px; color: #1565c0; text-decoration: none; }
+    .nav-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Tutorial: How to Multiply Decimals</h1>
+    <p>Grade 5 · Decimal Multiplication — Learn the Method</p>
+  </div>
+  <div class="page-num">Page 1 of 6</div>
+
+  <!-- INTRO -->
+  <div class="section">
+    <div class="section-title">🎯 What You Will Learn</div>
+    <div class="section-text">
+      <p>In this tutorial, you will learn how to multiply decimals step by step. By the end, you'll be able to:</p>
+      <p>✅ Multiply a decimal by a whole number<br/>
+         ✅ Multiply a decimal by another decimal<br/>
+         ✅ Multiply by 10, 100, and 1,000<br/>
+         ✅ Know where to place the decimal point in the answer</p>
+    </div>
+  </div>
+
+  <!-- THE BIG IDEA -->
+  <div class="rule-box">
+    <div class="rule-label">🔑 The Big Idea</div>
+    <p><span class="highlight">Multiplying decimals is just like multiplying whole numbers</span> — the only extra step is figuring out where the decimal point goes in the answer.</p>
+  </div>
+
+  <!-- PART 1: Decimal × Whole Number -->
+  <div class="section">
+    <div class="section-title">📘 Part 1: Decimal × Whole Number</div>
+    <div class="section-text">
+      <p>When you multiply a decimal by a whole number, follow these three steps:</p>
+    </div>
+
+    <div class="rule-box">
+      <div class="rule-label">3-Step Method</div>
+      <p><span class="highlight">Step 1:</span> Ignore the decimal point and multiply as whole numbers.<br/>
+         <span class="highlight">Step 2:</span> Count the total decimal places in the original numbers.<br/>
+         <span class="highlight">Step 3:</span> Place the decimal point in the answer so it has that many decimal places.</p>
+    </div>
+
+    <div class="example">
+      <div class="example-label">✏️ Worked Example A — Tenths × Whole</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">2.4 × 3</span></div>
+      <div class="step"><span class="step-num">2</span> Ignore the decimal — multiply <span class="math">24 × 3 = 72</span></div>
+      <div class="step"><span class="step-num">3</span> <span class="math">2.4</span> has <strong>1 decimal place</strong>. So put 1 decimal place in the answer.</div>
+      <div class="result">✅ Answer: <span class="math">2.4 × 3 = 7.2</span></div>
+    </div>
+
+    <div class="example">
+      <div class="example-label">✏️ Worked Example B — Hundredths × Whole</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">1.25 × 4</span></div>
+      <div class="step"><span class="step-num">2</span> Ignore the decimal — multiply <span class="math">125 × 4 = 500</span></div>
+      <div class="step"><span class="step-num">3</span> <span class="math">1.25</span> has <strong>2 decimal places</strong>. So put 2 decimal places in the answer.</div>
+      <div class="result">✅ Answer: <span class="math">1.25 × 4 = 5.00</span></div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Tip:</strong> A whole number has <strong>0 decimal places</strong>. So in 2.4 × 3, you only count the 1 decimal place from 2.4.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Tutorial: How to Multiply Decimals</h1>
+    <p>Vertical Method, Practice &amp; Decimal × Decimal</p>
+  </div>
+  <div class="page-num">Page 2 of 6</div>
+
+  <!-- Vertical example -->
+  <div class="section" style="padding: 10px 14px;">
+    <div class="section-title" style="margin-bottom: 4px;">📐 How It Looks Vertically — set it up like long multiplication</div>
+    <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+      <div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">Example: 3.6 × 4</div>
+        <div class="vertical-demo" style="font-size: 15px; padding: 5px 12px; margin: 3px 0;">
+          <div>&nbsp;&nbsp;3.6</div>
+          <div>× &nbsp;4</div>
+          <div class="vd-line"></div>
+          <div class="vd-answer">14.4</div>
+        </div>
+        <div style="font-size: 10px; color: #888;">↑ 1 decimal place</div>
+      </div>
+      <div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">Example: 5.24 × 3</div>
+        <div class="vertical-demo" style="font-size: 15px; padding: 5px 12px; margin: 3px 0;">
+          <div>&nbsp;5.24</div>
+          <div>× &nbsp;&nbsp;3</div>
+          <div class="vd-line"></div>
+          <div class="vd-answer">15.72</div>
+        </div>
+        <div style="font-size: 10px; color: #888;">↑ 2 decimal places</div>
+      </div>
+      <div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">Example: 0.08 × 7</div>
+        <div class="vertical-demo" style="font-size: 15px; padding: 5px 12px; margin: 3px 0;">
+          <div>&nbsp;0.08</div>
+          <div>× &nbsp;&nbsp;7</div>
+          <div class="vd-line"></div>
+          <div class="vd-answer">&nbsp;0.56</div>
+        </div>
+        <div style="font-size: 10px; color: #888;">↑ 2 decimal places</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Try It -->
+  <div class="try-it" style="padding: 8px 12px;">
+    <div class="try-it-label" style="margin-bottom: 4px;">✍️ Try It Yourself — Decimal × Whole Number</div>
+    <div class="try-grid" style="gap: 5px;">
+      <div class="try-card" style="padding: 7px 6px; font-size: 14px;">0.7 × 5 = <span class="blank"></span></div>
+      <div class="try-card" style="padding: 7px 6px; font-size: 14px;">3.2 × 4 = <span class="blank"></span></div>
+      <div class="try-card" style="padding: 7px 6px; font-size: 14px;">1.05 × 6 = <span class="blank"></span></div>
+      <div class="try-card" style="padding: 7px 6px; font-size: 14px;">4.8 × 3 = <span class="blank"></span></div>
+      <div class="try-card" style="padding: 7px 6px; font-size: 14px;">0.25 × 8 = <span class="blank"></span></div>
+      <div class="try-card" style="padding: 7px 6px; font-size: 14px;">6.15 × 2 = <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <!-- PART 2: Decimal × Decimal -->
+  <div class="section section-green">
+    <div class="section-title">📗 Part 2: Decimal × Decimal (Tenths × Tenths)</div>
+    <div class="section-text">
+      <p>When <strong>both</strong> numbers have decimals, the method is the same — but you count the decimal places in <strong>both</strong> numbers and add them together.</p>
+    </div>
+
+    <div class="rule-box">
+      <div class="rule-label">🔑 Key Rule</div>
+      <p><span class="highlight">Total decimal places in the answer = decimal places in the first number + decimal places in the second number.</span></p>
+      <p>Example: 0.3 × 0.4 → 1 place + 1 place = <strong>2 decimal places</strong> in the answer.</p>
+    </div>
+
+    <div class="example example-green">
+      <div class="example-label">✏️ Worked Example C — Tenths × Tenths</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">0.6 × 0.3</span></div>
+      <div class="step"><span class="step-num">2</span> Ignore the decimals — multiply <span class="math">6 × 3 = 18</span></div>
+      <div class="step"><span class="step-num">3</span> Count: <span class="math">0.6</span> has 1 place + <span class="math">0.3</span> has 1 place = <strong>2 places total</strong></div>
+      <div class="step"><span class="step-num">4</span> Place the decimal: 18 → <span class="math">0.18</span></div>
+      <div class="result">✅ Answer: <span class="math">0.6 × 0.3 = 0.18</span></div>
+    </div>
+
+    <div class="example example-green">
+      <div class="example-label">✏️ Worked Example D — Larger Tenths</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">1.2 × 3.4</span></div>
+      <div class="step"><span class="step-num">2</span> Ignore the decimals — multiply <span class="math">12 × 34 = 408</span></div>
+      <div class="step"><span class="step-num">3</span> Count: <span class="math">1.2</span> has 1 place + <span class="math">3.4</span> has 1 place = <strong>2 places total</strong></div>
+      <div class="step"><span class="step-num">4</span> Place the decimal: 408 → <span class="math">4.08</span></div>
+      <div class="result">✅ Answer: <span class="math">1.2 × 3.4 = 4.08</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Tutorial: How to Multiply Decimals</h1>
+    <p>Hundredths &amp; Practice</p>
+  </div>
+  <div class="page-num">Page 3 of 6</div>
+
+  <!-- PART 3: Hundredths -->
+  <div class="section section-purple">
+    <div class="section-title">📕 Part 3: Multiplying with Hundredths</div>
+    <div class="section-text">
+      <p>Hundredths have <strong>2 decimal places</strong>. When you multiply hundredths by tenths, the answer can have 3 or even 4 decimal places!</p>
+    </div>
+
+    <div class="example example-purple">
+      <div class="example-label">✏️ Worked Example E — Hundredths × Whole</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">0.15 × 6</span></div>
+      <div class="step"><span class="step-num">2</span> Multiply: <span class="math">15 × 6 = 90</span></div>
+      <div class="step"><span class="step-num">3</span> <span class="math">0.15</span> has 2 places + whole number has 0 = <strong>2 places</strong></div>
+      <div class="step"><span class="step-num">4</span> Place the decimal: 90 → <span class="math">0.90</span></div>
+      <div class="result">✅ Answer: <span class="math">0.15 × 6 = 0.90</span></div>
+    </div>
+
+    <div class="example example-purple">
+      <div class="example-label">✏️ Worked Example F — Hundredths × Tenths</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">0.25 × 0.4</span></div>
+      <div class="step"><span class="step-num">2</span> Multiply: <span class="math">25 × 4 = 100</span></div>
+      <div class="step"><span class="step-num">3</span> <span class="math">0.25</span> has 2 places + <span class="math">0.4</span> has 1 place = <strong>3 places</strong></div>
+      <div class="step"><span class="step-num">4</span> Place the decimal: 100 → <span class="math">0.100</span></div>
+      <div class="result">✅ Answer: <span class="math">0.25 × 0.4 = 0.100 = 0.1</span></div>
+    </div>
+
+    <div class="remember-box">
+      <strong>⚠️ Remember:</strong> You may need to add a <strong>leading zero</strong> if the product doesn't have enough digits. For example, if you need 3 decimal places but the product is only 2 digits (like 12), write it as <strong>0.012</strong>.
+    </div>
+  </div>
+
+  <!-- Try It -->
+  <div class="try-it">
+    <div class="try-it-label">✍️ Try It Yourself — Decimal × Decimal</div>
+    <div class="try-grid">
+      <div class="try-card">0.4 × 0.5 = <span class="blank"></span></div>
+      <div class="try-card">1.3 × 2.1 = <span class="blank"></span></div>
+      <div class="try-card">0.12 × 5 = <span class="blank"></span></div>
+      <div class="try-card">0.7 × 0.9 = <span class="blank"></span></div>
+      <div class="try-card">2.5 × 1.4 = <span class="blank"></span></div>
+      <div class="try-card">0.35 × 0.2 = <span class="blank"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Tutorial: How to Multiply Decimals</h1>
+    <p>Powers of 10 &amp; Estimation</p>
+  </div>
+  <div class="page-num">Page 4 of 6</div>
+
+  <!-- PART 4: Multiply by 10, 100, 1000 -->
+  <div class="section section-orange">
+    <div class="section-title">⚡ Part 4: Multiply by 10, 100, and 1,000</div>
+    <div class="section-text">
+      <p>Multiplying by powers of 10 is the easiest kind of decimal multiplication. You just <strong>move the decimal point to the right</strong>!</p>
+    </div>
+
+    <div class="rule-box">
+      <div class="rule-label">🔑 Power-of-10 Shortcut</div>
+      <p><span class="highlight">× 10</span> → move the decimal point <strong>1 place</strong> to the right<br/>
+         <span class="highlight">× 100</span> → move the decimal point <strong>2 places</strong> to the right<br/>
+         <span class="highlight">× 1,000</span> → move the decimal point <strong>3 places</strong> to the right</p>
+    </div>
+
+    <div class="example-row">
+      <div class="example example-orange">
+        <div class="example-label">Example G</div>
+        <div class="step"><span class="math">3.45 × 10</span></div>
+        <div class="step">Move decimal 1 place right →</div>
+        <div class="result"><span class="math">= 34.5</span></div>
+      </div>
+      <div class="example example-orange">
+        <div class="example-label">Example H</div>
+        <div class="step"><span class="math">3.45 × 100</span></div>
+        <div class="step">Move decimal 2 places right →</div>
+        <div class="result"><span class="math">= 345</span></div>
+      </div>
+      <div class="example example-orange">
+        <div class="example-label">Example I</div>
+        <div class="step"><span class="math">3.45 × 1,000</span></div>
+        <div class="step">Move decimal 3 places right →</div>
+        <div class="result"><span class="math">= 3,450</span></div>
+      </div>
+    </div>
+
+    <div class="tip-box">
+      <strong>💡 Tip:</strong> Count the zeros in 10, 100, or 1,000 — that tells you how many places to move! <strong>10</strong> has 1 zero, <strong>100</strong> has 2, <strong>1,000</strong> has 3.
+    </div>
+  </div>
+
+  <!-- Try It -->
+  <div class="try-it">
+    <div class="try-it-label">✍️ Try It Yourself — Powers of 10</div>
+    <div class="try-grid">
+      <div class="try-card">2.7 × 10 = <span class="blank"></span></div>
+      <div class="try-card">0.45 × 100 = <span class="blank"></span></div>
+      <div class="try-card">1.306 × 1,000 = <span class="blank"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 5 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Tutorial: How to Multiply Decimals</h1>
+    <p>Estimation</p>
+  </div>
+  <div class="page-num">Page 5 of 6</div>
+
+  <!-- PART 5: Estimation -->
+  <div class="section">
+    <div class="section-title">🧠 Part 5: Using Estimation to Check Your Answer</div>
+    <div class="section-text">
+      <p>Always <strong>estimate first</strong> to make sure your decimal point is in the right place. Round each decimal to the nearest whole number, then multiply.</p>
+    </div>
+
+    <div class="example">
+      <div class="example-label">✏️ Worked Example J — Estimate &amp; Check</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">4.8 × 3.2</span></div>
+      <div class="step"><span class="step-num">2</span> <strong>Estimate:</strong> Round 4.8 → 5 and 3.2 → 3, so about <span class="math">5 × 3 = 15</span></div>
+      <div class="step"><span class="step-num">3</span> <strong>Exact:</strong> 48 × 32 = 1,536. Need 2 decimal places → <span class="math">15.36</span></div>
+      <div class="step"><span class="step-num">4</span> <strong>Check:</strong> 15.36 is close to our estimate of 15 ✓</div>
+      <div class="result">✅ Answer: <span class="math">4.8 × 3.2 = 15.36</span></div>
+    </div>
+
+    <div class="remember-box">
+      <strong>⚠️ Common Mistake:</strong> Students sometimes put the decimal in the wrong spot and get 1.536 or 153.6. Estimation catches this — neither of those is close to 15!
+    </div>
+  </div>
+
+  <!-- Try It -->
+  <div class="try-it">
+    <div class="try-it-label">✍️ Try It Yourself — Estimation</div>
+    <div style="font-size: 12px; color: #6a1b9a; font-weight: 600; margin: 4px 0;">Estimate first, then find the exact answer:</div>
+    <div class="try-grid">
+      <div class="try-card" style="font-size: 13px;">3.9 × 2.1<br/>Est ≈ <span class="blank"></span><br/>Exact = <span class="blank"></span></div>
+      <div class="try-card" style="font-size: 13px;">5.1 × 1.8<br/>Est ≈ <span class="blank"></span><br/>Exact = <span class="blank"></span></div>
+      <div class="try-card" style="font-size: 13px;">0.75 × 4<br/>Est ≈ <span class="blank"></span><br/>Exact = <span class="blank"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 6 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Tutorial: How to Multiply Decimals</h1>
+    <p>Summary &amp; Answer Key</p>
+  </div>
+  <div class="page-num">Page 6 of 6</div>
+
+  <!-- Quick Reference -->
+  <div class="section">
+    <div class="section-title">📋 Quick-Reference Summary</div>
+    <div class="section-text">
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 4px;">
+        <thead>
+          <tr style="background: #bbdefb; text-align: left;">
+            <th style="padding: 8px; border: 1px solid #90caf9;">Type</th>
+            <th style="padding: 8px; border: 1px solid #90caf9;">Example</th>
+            <th style="padding: 8px; border: 1px solid #90caf9;">Decimal Places</th>
+            <th style="padding: 8px; border: 1px solid #90caf9;">Answer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">Decimal × Whole</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">2.4 × 3</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">1 + 0 = 1</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">7.2</td>
+          </tr>
+          <tr style="background: #f5f5f5;">
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">Tenths × Tenths</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">0.6 × 0.3</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">1 + 1 = 2</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">0.18</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">Hundredths × Whole</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">0.15 × 6</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">2 + 0 = 2</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">0.90</td>
+          </tr>
+          <tr style="background: #f5f5f5;">
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">Hundredths × Tenths</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">0.25 × 0.4</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">2 + 1 = 3</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">0.100</td>
+          </tr>
+          <tr>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">× 10 / 100 / 1,000</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">3.45 × 100</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;">Move right 2</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700;">345</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Checklist -->
+  <div class="rule-box">
+    <div class="rule-label">✅ Before You Move On — Self-Check</div>
+    <p>Ask yourself these questions:<br/>
+       ☐ Can I multiply a decimal by a whole number?<br/>
+       ☐ Can I multiply two decimals together?<br/>
+       ☐ Do I know how to count decimal places?<br/>
+       ☐ Can I use estimation to check my answer?<br/>
+       ☐ Do I know the shortcut for multiplying by 10, 100, and 1,000?</p>
+  </div>
+
+  <!-- Answer Key for Try-It Sections -->
+  <div class="section" style="background: #fafafa; border-color: #ccc;">
+    <div class="section-title" style="color: #555;">🔓 Answer Key — Try-It Exercises</div>
+    <div class="section-text" style="font-size: 11px; color: #777;">
+      <p><strong>Page 2 — Decimal × Whole Number:</strong><br/>
+        0.7 × 5 = <strong>3.5</strong> &nbsp;|&nbsp;
+        3.2 × 4 = <strong>12.8</strong> &nbsp;|&nbsp;
+        1.05 × 6 = <strong>6.30</strong> &nbsp;|&nbsp;
+        4.8 × 3 = <strong>14.4</strong> &nbsp;|&nbsp;
+        0.25 × 8 = <strong>2.00</strong> &nbsp;|&nbsp;
+        6.15 × 2 = <strong>12.30</strong></p>
+      <p><strong>Page 3 — Decimal × Decimal:</strong><br/>
+        0.4 × 0.5 = <strong>0.20</strong> &nbsp;|&nbsp;
+        1.3 × 2.1 = <strong>2.73</strong> &nbsp;|&nbsp;
+        0.12 × 5 = <strong>0.60</strong> &nbsp;|&nbsp;
+        0.7 × 0.9 = <strong>0.63</strong> &nbsp;|&nbsp;
+        2.5 × 1.4 = <strong>3.50</strong> &nbsp;|&nbsp;
+        0.35 × 0.2 = <strong>0.070</strong></p>
+      <p><strong>Page 4 — Powers of 10:</strong><br/>
+        2.7 × 10 = <strong>27</strong> &nbsp;|&nbsp;
+        0.45 × 100 = <strong>45</strong> &nbsp;|&nbsp;
+        1.306 × 1,000 = <strong>1,306</strong></p>
+      <p><strong>Page 5 — Estimate &amp; Exact:</strong><br/>
+        3.9 × 2.1 ≈ 4 × 2 = <strong>8</strong>, exact = <strong>8.19</strong> &nbsp;|&nbsp;
+        5.1 × 1.8 ≈ 5 × 2 = <strong>10</strong>, exact = <strong>9.18</strong> &nbsp;|&nbsp;
+        0.75 × 4 ≈ 1 × 4 = <strong>4</strong>, exact = <strong>3.00</strong></p>
+    </div>
+  </div>
+
+  <!-- Next Steps -->
+  <div class="tip-box">
+    <strong>🚀 What's Next?</strong> Now that you understand the method, practice with the worksheets:
+    <ol style="margin: 6px 0 0 18px; font-size: 12px;">
+      <li><a href="01_multiply_decimal_by_whole.html" style="color: #1565c0;">Decimal × Whole Number</a></li>
+      <li><a href="02_multiply_tenths_by_tenths.html" style="color: #1565c0;">Tenths × Tenths</a></li>
+      <li><a href="03_multiply_hundredths.html" style="color: #1565c0;">Multiply Hundredths</a></li>
+      <li><a href="04_multiply_by_10_100_1000.html" style="color: #1565c0;">Multiply by 10, 100, 1,000</a></li>
+      <li><a href="05_mixed_decimal_multiplication.html" style="color: #1565c0;">Mixed Multiplication</a></li>
+      <li><a href="06_multiplication_word_problems.html" style="color: #1565c0;">Word Problems</a></li>
+    </ol>
+  </div>
+
+  <div style="text-align: center; margin-top: auto; font-size: 11px; color: #bbb;">
+    Open educational resources — learn, then practice!
+  </div>
+</div>
+
+</body>
+</html>

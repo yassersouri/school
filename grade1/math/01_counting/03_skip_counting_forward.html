@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skip Counting Forward</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e67e22;
+      --accent: #f0b27a;
+      --accent-bg: #fef5e7;
+      --title-color: #a04000;
+    }
+    .page-header p { font-size: 12px; color: #777; }
+    .hop-row { display: flex; align-items: center; gap: 10px; font-size: 16px; margin-bottom: 8px; }
+    .hop-row .label { font-weight: bold; min-width: 100px; }
+    .label-2s { color: #e74c3c; }
+    .label-5s { color: #2980b9; }
+    .label-10s { color: #27ae60; }
+    .bunny-track { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; margin: 8px 0; align-items: flex-end; }
+    .bunny-stop { display: flex; flex-direction: column; align-items: center; width: 56px; }
+    .bunny-hop { font-size: 20px; margin-bottom: 2px; }
+    .bunny-num { width: 48px; height: 42px; border: 3px solid #e74c3c; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #fadbd8; }
+    .bunny-num.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .bunny-arc { font-size: 10px; color: #e74c3c; margin-bottom: -4px; }
+    .star-path { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin: 10px 0; }
+    .star-item { width: 62px; height: 62px; position: relative; display: flex; align-items: center; justify-content: center; }
+    .star-bg { font-size: 56px; position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; opacity: 0.3; }
+    .star-num { position: relative; z-index: 1; font-size: 20px; font-weight: bold; color: #2c3e50; }
+    .star-item.blank .star-num { color: transparent; }
+    .star-item.blank { border: 3px dashed #f39c12; border-radius: 8px; }
+    .mountain-path { display: flex; gap: 6px; align-items: flex-end; justify-content: center; margin: 10px 0; }
+    .mountain-peak { display: flex; flex-direction: column; align-items: center; }
+    .mountain-shape { width: 0; height: 0; border-left: 30px solid transparent; border-right: 30px solid transparent; border-bottom-style: solid; border-bottom-width: 40px; }
+    .mountain-num { margin-top: 4px; font-size: 18px; font-weight: bold; width: 44px; height: 36px; border: 2px solid #27ae60; border-radius: 8px; display: flex; align-items: center; justify-content: center; background: #d5f5e3; }
+    .mountain-num.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .m1 .mountain-shape { border-bottom-color: #abebc6; }
+    .m2 .mountain-shape { border-bottom-color: #82e0aa; border-bottom-width: 55px; }
+    .m3 .mountain-shape { border-bottom-color: #58d68d; border-bottom-width: 70px; }
+    .m4 .mountain-shape { border-bottom-color: #2ecc71; border-bottom-width: 85px; }
+    .m5 .mountain-shape { border-bottom-color: #27ae60; border-bottom-width: 100px; }
+    .m6 .mountain-shape { border-bottom-color: #1e8449; border-bottom-width: 115px; }
+    .honey-trail { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; margin: 8px 0; }
+    .honey-pot { width: 54px; height: 54px; border: 3px solid #f39c12; border-radius: 50% 50% 40% 40%; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: bold; background: #fdebd0; }
+    .honey-pot.blank { background: #fff; border-style: dashed; }
+    .rocket-path { display: flex; flex-direction: column; gap: 8px; }
+    .rocket-row { display: flex; align-items: center; gap: 10px; font-size: 16px; }
+    .rocket-row .label { font-weight: bold; min-width: 80px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🐰 Skip Counting Forward! 🐰</h1>
+    <p>Hop, hop, hop — skip those numbers!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <!-- Exercise 1: Bunny Hops by 2s -->
+  <div class="exercise">
+    <div class="exercise-title">1) Bunny Hops — Count by 2s 🐇</div>
+    <div class="exercise-instruction">The bunny hops every 2 numbers. Fill in the missing hops!</div>
+    <div class="bunny-track">
+      <div class="bunny-stop"><div class="bunny-hop">🐇</div><div class="bunny-num">2</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">4</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">8</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">14</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">18</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+    </div>
+    <br/>
+    <div class="bunny-track">
+      <div class="bunny-stop"><div class="bunny-hop">🐇</div><div class="bunny-num">22</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">26</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">30</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">36</div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num blank"></div></div>
+      <div class="bunny-stop"><div class="bunny-arc">+2</div><div class="bunny-num">40</div></div>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Star Path by 5s -->
+  <div class="exercise">
+    <div class="exercise-title">2) Star Trail — Count by 5s ⭐</div>
+    <div class="exercise-instruction">Follow the stars! Each star jumps by 5. Write the missing numbers.</div>
+    <div class="star-path">
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">5</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">10</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">20</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">35</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">45</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+    </div>
+    <div class="star-path">
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">55</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">65</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">80</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">90</div></div>
+      <div class="star-item blank"><div class="star-bg">⭐</div><div class="star-num">__</div></div>
+      <div class="star-item"><div class="star-bg">⭐</div><div class="star-num">100</div></div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Mountain Climb by 10s -->
+  <div class="exercise">
+    <div class="exercise-title">3) Mountain Climb — Count by 10s ⛰️</div>
+    <div class="exercise-instruction">Climb up the mountains by 10s! Fill in the missing peaks.</div>
+    <div class="mountain-path">
+      <div class="mountain-peak m1"><div class="mountain-shape"></div><div class="mountain-num">10</div></div>
+      <div class="mountain-peak m1"><div class="mountain-shape"></div><div class="mountain-num blank"></div></div>
+      <div class="mountain-peak m2"><div class="mountain-shape"></div><div class="mountain-num">30</div></div>
+      <div class="mountain-peak m2"><div class="mountain-shape"></div><div class="mountain-num blank"></div></div>
+      <div class="mountain-peak m3"><div class="mountain-shape"></div><div class="mountain-num blank"></div></div>
+      <div class="mountain-peak m3"><div class="mountain-shape"></div><div class="mountain-num">60</div></div>
+      <div class="mountain-peak m4"><div class="mountain-shape"></div><div class="mountain-num blank"></div></div>
+      <div class="mountain-peak m4"><div class="mountain-shape"></div><div class="mountain-num">80</div></div>
+      <div class="mountain-peak m5"><div class="mountain-shape"></div><div class="mountain-num blank"></div></div>
+      <div class="mountain-peak m5"><div class="mountain-shape"></div><div class="mountain-num">100</div></div>
+      <div class="mountain-peak m6"><div class="mountain-shape"></div><div class="mountain-num blank"></div></div>
+      <div class="mountain-peak m6"><div class="mountain-shape"></div><div class="mountain-num">120</div></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answers:</strong> 1) Row 1: 6, 10, 12, 16, 20 — Row 2: 24, 28, 32, 34, 38 &nbsp;|&nbsp; 2) Row 1: 15, 25, 30, 40, 50 — Row 2: 60, 70, 75, 85, 95 &nbsp;|&nbsp; 3) 20, 40, 50, 70, 90, 110
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🐰 Skip Counting Forward! 🐰</h1>
+    <p>You're a skip-counting superstar! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 4: Honey Trail by 2s -->
+  <div class="exercise">
+    <div class="exercise-title">4) Bear's Honey Trail — by 2s 🍯🐻</div>
+    <div class="exercise-instruction">Help the bear find honey! Count by 2s starting from 40.</div>
+    <div class="honey-trail">
+      <div class="honey-pot">40</div>
+      <div class="honey-pot blank"></div>
+      <div class="honey-pot">44</div>
+      <div class="honey-pot blank"></div>
+      <div class="honey-pot blank"></div>
+      <div class="honey-pot">50</div>
+      <div class="honey-pot blank"></div>
+      <div class="honey-pot">54</div>
+      <div class="honey-pot blank"></div>
+      <div class="honey-pot blank"></div>
+      <div class="honey-pot">60</div>
+      <div class="honey-pot">🍯</div>
+    </div>
+  </div>
+
+  <!-- Exercise 5: Fill-in by 5s and 10s -->
+  <div class="exercise">
+    <div class="exercise-title">5) Mixed Skip Counting 🎪</div>
+    <div class="exercise-instruction">Fill in the blanks. Watch carefully — some count by 5s, some by 10s!</div>
+    <div class="rocket-path">
+      <div class="hop-row"><span class="label label-5s">⭐ by 5s: a)</span> 15, <span class="fill-box"></span>, 25, <span class="fill-box"></span>, <span class="fill-box"></span>, 40, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="hop-row"><span class="label label-10s">⛰️ by 10s: b)</span> 20, <span class="fill-box"></span>, <span class="fill-box"></span>, 50, <span class="fill-box"></span>, <span class="fill-box"></span>, 80, <span class="fill-box"></span></div>
+      <div class="hop-row"><span class="label label-5s">⭐ by 5s: c)</span> <span class="fill-box"></span>, 55, <span class="fill-box"></span>, <span class="fill-box"></span>, 70, <span class="fill-box"></span>, <span class="fill-box"></span>, 85</div>
+      <div class="hop-row"><span class="label label-10s">⛰️ by 10s: d)</span> <span class="fill-box"></span>, <span class="fill-box"></span>, 50, <span class="fill-box"></span>, 70, <span class="fill-box"></span>, <span class="fill-box"></span>, 100</div>
+      <div class="hop-row"><span class="label label-2s">🐇 by 2s: e)</span> 72, <span class="fill-box"></span>, <span class="fill-box"></span>, 78, <span class="fill-box"></span>, <span class="fill-box"></span>, 84, <span class="fill-box"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 6: Connect the Dots (conceptual) -->
+  <div class="exercise">
+    <div class="exercise-title">6) Complete the Pattern 🧩</div>
+    <div class="exercise-instruction">Each row follows a skip-counting pattern. Figure out the rule, then fill in the blanks!</div>
+    <div class="rocket-path">
+      <div class="hop-row"><span class="label">🔵 a)</span> 3, 5, 7, 9, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count by ___</em></div>
+      <div class="hop-row"><span class="label">🟢 b)</span> 10, 20, 30, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count by ___</em></div>
+      <div class="hop-row"><span class="label">🟡 c)</span> 5, 10, 15, 20, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count by ___</em></div>
+      <div class="hop-row"><span class="label">🔴 d)</span> 4, 6, 8, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count by ___</em></div>
+    </div>
+  </div>
+
+  <!-- Exercise 7: Clap & Count -->
+  <div class="exercise">
+    <div class="exercise-title">7) Clap & Count! 👏</div>
+    <div class="exercise-instruction">With a partner: clap on every number you say! Count by 5s from 5 to 100. Circle the numbers you clap on.</div>
+    <div style="display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin: 6px 0;">
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">1</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">2</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">3</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">4</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #2980b9; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold; background:#d6eaf8;">5</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">6</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">7</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">8</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">9</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">10</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">11</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">12</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">13</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">14</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">15</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">16</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">17</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">18</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">19</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">20</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">21</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">22</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">23</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">24</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">25</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">26</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">27</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">28</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">29</span>
+      <span style="display:inline-block; width:36px; height:30px; border:2px solid #d5dbdb; border-radius:6px; text-align:center; line-height:30px; font-size:13px; font-weight:bold;">30</span>
+    </div>
+    <p style="font-size:11px; color:#888; text-align:center; margin-top:4px;">Hint: 5 is already circled for you! How many numbers did you circle in total? <span class="fill-box" style="width:30px;"></span></p>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answers:</strong> 4) 42, 46, 48, 52, 56, 58 &nbsp;|&nbsp; 5) a) 20, 30, 35, 45, 50 b) 30, 40, 60, 70, 90 c) 50, 60, 65, 75, 80 d) 30, 40, 60, 80, 90 e) 74, 76, 80, 82, 86 &nbsp;|&nbsp; 6) a) 11, 13, 15 (by 2) b) 40, 50, 60 (by 10) c) 25, 30, 35 (by 5) d) 10, 12, 14 (by 2) &nbsp;|&nbsp; 7) Circle: 5, 10, 15, 20, 25, 30 → 6 numbers
+  </div>
+</div>
+
+</body>
+</html>

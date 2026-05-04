@@ -1,0 +1,72 @@
+/* ── Shared Practice Sheet Styles ─────────────────────────────────
+   Each HTML file sets CSS custom properties on :root to theme it.
+   Required variables: --accent, --accent-bg, --heading-color,
+   --title-color, --col-bg, --col-heading, --word-bg
+   Optional: --draw-bg (defaults to --accent-bg)
+   ─────────────────────────────────────────────────────────────── */
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fffdf5; color: #333; }
+
+/* A4 page layout */
+.page { width: 210mm; min-height: 297mm; margin: 0 auto 10mm; padding: 12mm 16mm; background: #fff; border: 1px solid #ddd; page-break-after: always; display: flex; flex-direction: column; gap: 12px; }
+.page-header { text-align: center; }
+.page-header h1 { font-size: 20px; color: var(--heading-color); }
+.page-header p, .page-num { font-size: 11px; color: #777; }
+.page-num { text-align: right; margin-top: -8px; }
+
+/* Exercise card */
+.exercise { border: 2px solid var(--accent); border-radius: 12px; padding: 10px 14px; background: var(--accent-bg); }
+.exercise-title { font-size: 13px; font-weight: bold; color: var(--title-color); margin-bottom: 6px; }
+.exercise-instruction { font-size: 11px; color: #555; margin-bottom: 8px; font-style: italic; }
+
+/* Word grid & columns */
+.word-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.word-col { border: 1.5px dashed var(--accent); border-radius: 10px; padding: 8px; background: var(--col-bg); }
+.word-col h3 { text-align: center; color: var(--col-heading); font-size: 12px; margin-bottom: 6px; }
+.word-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+.word-list li { font-size: 30px; font-weight: bold; text-align: center; background: var(--word-bg); border-radius: 8px; padding: 3px; }
+
+/* Word bank & blanks */
+.word-bank { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.bank-word { background: #d4f7d4; border: 1px solid #5cb85c; border-radius: 6px; padding: 2px 10px; font-size: 13px; font-weight: bold; color: #2d6a2d; }
+.blank-list, .build-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+.blank-list li, .build-list li { font-size: 15px; }
+.blank { display: inline-block; border-bottom: 2px solid #333; width: 90px; height: 20px; }
+
+/* Sorting exercise */
+.sort-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.sort-col { border: 2px solid #80deea; border-radius: 8px; padding: 6px; background: #e0f7fa; }
+.sort-col h4 { font-size: 12px; color: #006064; text-align: center; margin-bottom: 4px; }
+.sort-slot { border-bottom: 1.5px solid #006064; height: 20px; margin-bottom: 4px; }
+
+/* Drawing exercise */
+.draw-row { display: flex; gap: 14px; align-items: flex-start; }
+.draw-box { width: 480px; height: 330px; border: 2px dashed var(--accent); border-radius: 8px; background: var(--draw-bg, var(--accent-bg)); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; }
+
+/* Answer key */
+.answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 10px; color: #888; }
+
+/* Print */
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .page { border: none; margin: 0; min-height: auto; }
+  .page:last-child { page-break-after: avoid; }
+  .answer-key,
+  div.answer-key { display: none !important; visibility: hidden !important; height: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; }
+}
+
+/* ── Mixed Practice Overrides ────────────────────────────────── */
+body.mixed .word-col h3 { font-size: 11px; }
+body.mixed .word-list { display: flex; flex-direction: column; gap: 4px; }
+body.mixed .word-list li { font-size: 22px; padding: 2px; }
+body.mixed .sort-cols { gap: 8px; }
+body.mixed .sort-col h4 { font-size: 11px; }
+body.mixed .draw-box { height: 280px; }
+
+body.mixed.cols-3 .word-grid { grid-template-columns: repeat(3, 1fr); }
+body.mixed.cols-3 .sort-cols { grid-template-columns: repeat(3, 1fr); }
+body.mixed.cols-4 .word-grid { grid-template-columns: repeat(4, 1fr); }
+body.mixed.cols-4 .sort-cols { grid-template-columns: repeat(4, 1fr); }

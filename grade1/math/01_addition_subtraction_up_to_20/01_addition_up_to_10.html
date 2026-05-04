@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Addition Up to 10</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #2e7d32;
+      --accent: #81c784;
+      --accent-bg: #f1f8e9;
+      --title-color: #1b5e20;
+      --answer-key-color: #1b5e20;
+      --wp-bg: #f9fbe7;
+    }
+    .domino-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .domino { background: #fff; border: 2px solid #81c784; border-radius: 10px; padding: 8px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .domino-halves { display: flex; gap: 2px; width: 100%; }
+    .domino-half { flex: 1; background: #e8f5e9; border: 1px solid #81c784; border-radius: 6px; padding: 6px; display: flex; flex-wrap: wrap; justify-content: center; gap: 3px; min-height: 36px; }
+    .dot { width: 8px; height: 8px; background: #2e7d32; border-radius: 50%; }
+    .domino-eq { font-size: 16px; font-weight: bold; color: #2e7d32; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🧮 Addition Up to 10</h1>
+    <p>Practice adding numbers! Sums go up to <strong>10</strong>.</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <!-- Exercise 1: Solve -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Solve the Addition Problems ➕</div>
+    <div class="exercise-instruction">Add the numbers and write the answer.</div>
+    <div class="problem-grid">
+      <div class="problem-card">2 + 3 = <span class="blank"></span></div>
+      <div class="problem-card">1 + 4 = <span class="blank"></span></div>
+      <div class="problem-card">5 + 2 = <span class="blank"></span></div>
+      <div class="problem-card">3 + 3 = <span class="blank"></span></div>
+      <div class="problem-card">4 + 4 = <span class="blank"></span></div>
+      <div class="problem-card">6 + 1 = <span class="blank"></span></div>
+      <div class="problem-card">0 + 7 = <span class="blank"></span></div>
+      <div class="problem-card">5 + 5 = <span class="blank"></span></div>
+      <div class="problem-card">3 + 7 = <span class="blank"></span></div>
+      <div class="problem-card">2 + 6 = <span class="blank"></span></div>
+      <div class="problem-card">1 + 8 = <span class="blank"></span></div>
+      <div class="problem-card">4 + 5 = <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Dominos -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Count the Dots &amp; Add 🎲</div>
+    <div class="exercise-instruction">Count the dots on each half. Write the addition sentence.</div>
+    <div class="domino-grid">
+      <div class="domino">
+        <div class="domino-halves">
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span></div>
+        </div>
+        <div class="domino-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+      </div>
+      <div class="domino">
+        <div class="domino-halves">
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+        <div class="domino-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+      </div>
+      <div class="domino">
+        <div class="domino-halves">
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+        <div class="domino-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+      </div>
+      <div class="domino">
+        <div class="domino-halves">
+          <div class="domino-half"><span class="dot"></span></div>
+          <div class="domino-half"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        </div>
+        <div class="domino-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Number Line -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Use the Number Line 📏</div>
+    <div class="exercise-instruction">Use the number line to help you add. Start at the first number and hop forward.</div>
+    <div class="number-line">
+      <div class="nl-num">0</div><div class="nl-num">1</div><div class="nl-num">2</div><div class="nl-num">3</div><div class="nl-num">4</div><div class="nl-num">5</div><div class="nl-num">6</div><div class="nl-num">7</div><div class="nl-num">8</div><div class="nl-num">9</div><div class="nl-num">10</div>
+    </div>
+    <div class="problem-grid">
+      <div class="problem-card">3 + 4 = <span class="blank"></span></div>
+      <div class="problem-card">2 + 5 = <span class="blank"></span></div>
+      <div class="problem-card">6 + 3 = <span class="blank"></span></div>
+      <div class="problem-card">1 + 9 = <span class="blank"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🧮 Addition Up to 10</h1>
+    <p>Keep going — you are doing great! 💪</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 4: Missing Number -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">4</span> Find the Missing Number 🔍</div>
+    <div class="exercise-instruction">What number goes in the blank?</div>
+    <div class="problem-grid">
+      <div class="problem-card">3 + <span class="blank"></span> = 5</div>
+      <div class="problem-card"><span class="blank"></span> + 4 = 7</div>
+      <div class="problem-card">6 + <span class="blank"></span> = 10</div>
+      <div class="problem-card"><span class="blank"></span> + 5 = 9</div>
+      <div class="problem-card">2 + <span class="blank"></span> = 8</div>
+      <div class="problem-card"><span class="blank"></span> + 1 = 6</div>
+      <div class="problem-card">7 + <span class="blank"></span> = 10</div>
+      <div class="problem-card"><span class="blank"></span> + 3 = 8</div>
+    </div>
+  </div>
+
+  <!-- Exercise 5: True or False -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">5</span> True or False? ✅❌</div>
+    <div class="exercise-instruction">Circle T if the equation is true or F if it is false.</div>
+    <div class="tf-grid">
+      <div class="tf-card">3 + 4 = 7 <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">5 + 3 = 9 <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">2 + 6 = 8 <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">4 + 4 = 9 <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">1 + 9 = 10 <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">6 + 3 = 8 <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+    </div>
+  </div>
+
+  <!-- Exercise 6: Word Problems -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">6</span> Word Problems 📖</div>
+    <div class="exercise-instruction">Read each story. Write the number sentence and the answer.</div>
+    <ul class="word-problem-list">
+      <li>1. Sam has 3 apples. Mom gives him 4 more. How many apples does Sam have now?<div class="wp-answer"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div></li>
+      <li>2. There are 5 birds on a tree. 2 more birds fly in. How many birds are there?<div class="wp-answer"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div></li>
+      <li>3. Mia has 6 crayons. She finds 4 more. How many crayons does she have?<div class="wp-answer"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div></li>
+      <li>4. There are 2 cats and 7 dogs in the park. How many animals in all?<div class="wp-answer"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> 5, 5, 7, 6, 8, 7, 7, 10, 10, 8, 9, 9 &nbsp;
+    <strong>Ex.2:</strong> 3+2=5, 4+3=7, 5+5=10, 1+6=7 &nbsp;
+    <strong>Ex.3:</strong> 7, 7, 9, 10 &nbsp;
+    <strong>Ex.4:</strong> 2, 3, 4, 4, 6, 5, 3, 5 &nbsp;
+    <strong>Ex.5:</strong> T, F, T, F, T, F &nbsp;
+    <strong>Ex.6:</strong> 3+4=7, 5+2=7, 6+4=10, 2+7=9
+  </div>
+</div>
+
+</body>
+</html>

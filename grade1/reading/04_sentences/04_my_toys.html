@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sentences &amp; Stories: My Toys</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #c8a2d8;
+    --accent-bg: #f4ecf7;
+    --heading-color: #7d3c98;
+    --title-color: #5b2c6f;
+    --col-bg: #fff;
+    --col-heading: #5b2c6f;
+    --word-bg: #fff;
+  }
+
+  /* Story / reading text */
+  .story { background: #fff; border: 1.5px dashed var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 18px; line-height: 1.7; }
+  .story p { margin-bottom: 8px; }
+  .story .title { display:block; text-align:center; font-size: 20px; color: var(--title-color); font-weight: bold; margin-bottom: 8px; }
+
+  /* Comprehension Q&A */
+  .q-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .q-list li { font-size: 14px; }
+  .q-list .q { font-weight: bold; display: block; margin-bottom: 4px; color: #333; }
+  .answer-line { display: block; border-bottom: 2px solid #333; height: 22px; }
+
+  /* Cloze (pick the word) */
+  .cloze-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .cloze-list li { font-size: 15px; line-height: 1.8; }
+  .cloze-blank { display: inline-block; border-bottom: 2px solid #333; min-width: 80px; height: 18px; margin: 0 4px; }
+  .choices { display: inline-flex; gap: 6px; margin-left: 6px; }
+  .choice { background: #fff; border: 1.5px solid var(--accent); border-radius: 6px; padding: 1px 10px; font-size: 13px; font-weight: bold; color: var(--title-color); }
+
+  /* True / False */
+  .tf-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tf-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid var(--accent); }
+  .tf-list .sent { flex: 1; }
+  .tf-boxes { display: flex; gap: 8px; flex-shrink: 0; }
+  .tf-box { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: bold; color: var(--title-color); }
+  .tf-circle { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--title-color); border-radius: 50%; }
+
+  /* Drawing area */
+  .draw-box { height: 300px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🧸 Sentences &amp; Stories: My Toys</h1><p>Read · Answer · Build · Draw</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Read the Story 📖</div>
+    <div class="exercise-instruction">Read it out loud. Then read it again!</div>
+    <div class="story">
+      <span class="title">My Toy Box</span>
+      <p>I have a big toy box. It is in my room.</p>
+      <p>I have a top and a truck. I have a kite, too.</p>
+      <p>My truck is red. My kite is blue.</p>
+      <p>I like to play with my toys on the rug.</p>
+      <p>I am lucky to have so much fun.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Reading Comprehension 🤔</div>
+    <div class="exercise-instruction">Look back at the story. Write your answer on the line.</div>
+    <ul class="q-list">
+      <li><span class="q">Where is the toy box?</span><span class="answer-line"></span></li>
+      <li><span class="q">What color is the truck?</span><span class="answer-line"></span></li>
+      <li><span class="q">What color is the kite?</span><span class="answer-line"></span></li>
+      <li><span class="q">Where do I play with my toys?</span><span class="answer-line"></span></li>
+      <li><span class="q">How do I feel?</span><span class="answer-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) True or False? ✅ ❌</div>
+    <div class="exercise-instruction">Read each sentence. Circle <strong>T</strong> for true or <strong>F</strong> for false.</div>
+    <ul class="tf-list">
+      <li><span class="sent">The toy box is big.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">The truck is blue.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">The kite is blue.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">I play with my toys on the bed.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">I feel lucky.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🧸 Sentences &amp; Stories: My Toys</h1><p>Keep going — you are doing great!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Pick the Word ✏️</div>
+    <div class="exercise-instruction">Pick the word that fits. Write it on the line.</div>
+    <ul class="cloze-list">
+      <li>My toy box is <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">big</span><span class="choice">bug</span></span>
+      </li>
+      <li>My truck is <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">red</span><span class="choice">rod</span></span>
+      </li>
+      <li>My kite is <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">blue</span><span class="choice">blew</span></span>
+      </li>
+      <li>I play on the <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">rug</span><span class="choice">rag</span></span>
+      </li>
+      <li>I am so <span class="cloze-blank"></span>!
+        <span class="choices"><span class="choice">lucky</span><span class="choice">tricky</span></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Build a Sentence ✍️</div>
+    <div class="exercise-instruction">Put the words in order to make a sentence.</div>
+    <ul class="build-list">
+      <li>
+        <div class="word-bank"><span class="bank-word">box</span><span class="bank-word">is</span><span class="bank-word">big</span><span class="bank-word">toy</span><span class="bank-word">My</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+      <li>
+        <div class="word-bank"><span class="bank-word">red</span><span class="bank-word">is</span><span class="bank-word">truck</span><span class="bank-word">My</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+      <li>
+        <div class="word-bank"><span class="bank-word">fun</span><span class="bank-word">I</span><span class="bank-word">my</span><span class="bank-word">with</span><span class="bank-word">have</span><span class="bank-word">toys</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Read and Draw 🎨</div>
+    <div class="exercise-instruction">Read the sentence, then draw a picture of it.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:17px;"><strong>"A red truck and a blue kite on a rug."</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> 1. in my room · 2. red · 3. blue · 4. on the rug · 5. lucky ·
+    <strong>Ex.3:</strong> T, F, T, F, T ·
+    <strong>Ex.4:</strong> big, red, blue, rug, lucky ·
+    <strong>Ex.5:</strong> My toy box is big. / My truck is red. / I have fun with my toys.
+  </div>
+</div>
+</body>
+</html>

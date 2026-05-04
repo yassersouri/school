@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>If-Then Reasoning — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #283593;
+      --accent: #9fa8da;
+      --accent-bg: #e8eaf6;
+      --title-color: #1a237e;
+      --answer-key-color: #1a237e;
+    }
+    .concept-box { border: 2.5px solid #283593; border-radius: 14px; padding: 16px 18px; background: #e8eaf6; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #1a237e; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .chain-box { background: #fff; border: 2.5px solid #9fa8da; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+    .chain-title { font-size: 15px; font-weight: bold; color: #283593; margin-bottom: 8px; text-align: center; }
+    .chain-steps { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .chain-step { display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: bold; max-width: 500px; width: 100%; }
+    .chain-step.given { background: #e8eaf6; border: 2px solid #5c6bc0; color: #283593; }
+    .chain-step.reason { background: #fff8e1; border: 2px solid #ffb74d; color: #e65100; }
+    .chain-step.result { background: #e8f5e9; border: 2px solid #81c784; color: #2e7d32; }
+    .chain-arrow { font-size: 20px; color: #9fa8da; }
+    .step-label { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0; min-width: 60px; }
+    .step-text { font-size: 13px; }
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 8px; line-height: 1.5; }
+    .claim-card { background: #fff; border: 2px solid #9fa8da; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2.2; }
+    .if-then-template { display: flex; flex-direction: column; gap: 6px; }
+    .it-row { display: flex; align-items: center; gap: 8px; }
+    .it-label { font-size: 12px; font-weight: bold; min-width: 70px; padding: 4px 8px; border-radius: 6px; text-align: center; }
+    .it-label.if { background: #e8eaf6; color: #283593; }
+    .it-label.then { background: #fff8e1; color: #e65100; }
+    .it-label.so { background: #e8f5e9; color: #2e7d32; }
+    .fill-chain { display: flex; flex-direction: column; gap: 4px; padding: 8px; }
+    .fc-step { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #333; }
+    .fc-arrow { color: #9fa8da; font-size: 16px; padding-left: 30px; }
+    .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .match-card { background: #fff; border: 2px solid #9fa8da; border-radius: 10px; padding: 12px; }
+    .match-if { font-size: 13px; font-weight: bold; color: #283593; margin-bottom: 6px; }
+    .match-then { font-size: 13px; color: #555; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔗 If-Then Reasoning</h1>
+    <p>Lesson 6 — Building <strong>chains of logic</strong> to prove things!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 If-Then Statements</div>
+    <div class="concept-text">
+      A <strong>direct proof</strong> works by connecting facts in a chain:<br><br>
+      <strong>"IF</strong> something is true, <strong>THEN</strong> something else must also be true."<br><br>
+      By linking several if-then statements together, you can prove things step by step — like building a bridge from what you <em>know</em> to what you want to <em>show</em>.
+    </div>
+  </div>
+
+  <!-- Worked Example 1 -->
+  <div class="chain-box">
+    <div class="chain-title">Example 1: If a number is divisible by 10, then it's divisible by 5</div>
+    <div class="chain-steps">
+      <div class="chain-step given">
+        <span class="step-label">START</span>
+        <span class="step-text">Let's say a number is divisible by 10.</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">REASON</span>
+        <span class="step-text">That means it equals 10 × (something). For example, 30 = 10 × 3.</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">REASON</span>
+        <span class="step-text">But 10 = 5 × 2, so 10 × (something) = 5 × 2 × (something).</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step result">
+        <span class="step-label">PROVED!</span>
+        <span class="step-text">This means the number is 5 × (something), so it's divisible by 5. ✓</span>
+      </div>
+    </div>
+    <div class="proof-explain">Each step follows logically from the one before it. That's a proof!</div>
+  </div>
+
+  <!-- Worked Example 2 -->
+  <div class="chain-box">
+    <div class="chain-title">Example 2: If a number is divisible by 6, then it's divisible by 3</div>
+    <div class="chain-steps">
+      <div class="chain-step given">
+        <span class="step-label">START</span>
+        <span class="step-text">The number is divisible by 6.</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">REASON</span>
+        <span class="step-text">So it equals 6 × (something).</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">REASON</span>
+        <span class="step-text">6 = 3 × 2, so 6 × (something) = 3 × 2 × (something).</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step result">
+        <span class="step-label">PROVED!</span>
+        <span class="step-text">The number is 3 × (something), so it's divisible by 3. ✓</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Complete the If-Then Chain 🔗</div>
+    <div class="exercise-instruction">Fill in the missing steps to complete each proof.</div>
+
+    <div class="claim-card">
+      <div class="claim-text">Prove: If a number is divisible by 12, then it's divisible by 4.</div>
+      <div class="fill-chain">
+        <div class="fc-step"><span class="it-label if">START</span> The number is divisible by 12.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">REASON</span> So it equals 12 × (something).</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">REASON</span> 12 = 4 × <span class="blank"></span>, so 12 × (something) = <span class="blank-wide"></span></div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label so">PROVED!</span> <span class="blank-wide"></span></div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">Prove: If a whole number ends in 0, then it's even.</div>
+      <div class="fill-chain">
+        <div class="fc-step"><span class="it-label if">START</span> The number ends in 0.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">REASON</span> Numbers ending in 0 are divisible by <span class="blank"></span>.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">REASON</span> 10 = 2 × <span class="blank"></span>, so the number is divisible by <span class="blank"></span>.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label so">PROVED!</span> <span class="blank-wide"></span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔗 If-Then Reasoning</h1>
+    <p>Build your own proof chains! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Match If-Then Pairs 🔀</div>
+    <div class="exercise-instruction">Draw a line connecting each IF to the correct THEN.</div>
+
+    <div class="match-grid">
+      <div class="match-card">
+        <div class="match-if">IF a number is divisible by 100…</div>
+        <div class="match-then">THEN it ends in 5 or 0.</div>
+      </div>
+      <div class="match-card">
+        <div class="match-if">IF a number is divisible by 9…</div>
+        <div class="match-then">THEN it is divisible by 50.</div>
+      </div>
+      <div class="match-card">
+        <div class="match-if">IF a number is a multiple of 4…</div>
+        <div class="match-then">THEN its digits add up to a multiple of 9.</div>
+      </div>
+      <div class="match-card">
+        <div class="match-if">IF a number is divisible by 5…</div>
+        <div class="match-then">THEN it is even.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Write Your Own Proof! ✍️</div>
+    <div class="exercise-instruction">Choose one claim and write a step-by-step proof using if-then reasoning.</div>
+
+    <div class="claim-card">
+      <div class="claim-text">Choose one to prove:</div>
+      <div style="font-size:13px; color:#555; margin-bottom:8px;">
+        A) If a number is divisible by 8, then it's divisible by 2.<br>
+        B) If a number is a multiple of 15, then it's a multiple of 5.<br>
+        C) If you add any two multiples of 3, the result is also a multiple of 3.
+      </div>
+      <div class="work-area">
+        I chose: <span class="blank"></span><br><br>
+        <span class="it-label if">START</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-left:20px;">⬇️</span><br>
+        <span class="it-label then">REASON</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-left:20px;">⬇️</span><br>
+        <span class="it-label then">REASON</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-left:20px;">⬇️</span><br>
+        <span class="it-label so">PROVED!</span> <span class="blank-wide"></span> <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big takeaway -->
+  <div class="tip-box">
+    🎓 <strong>Congratulations!</strong> You've learned 5 proof techniques:
+    <strong>checking examples vs. proof</strong>,
+    <strong>counterexamples</strong>,
+    <strong>visual/dot proofs</strong>,
+    <strong>picture proofs</strong>,
+    <strong>proof by cases</strong>, and
+    <strong>if-then reasoning</strong>. You're thinking like a real mathematician!
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1a) 12=4×3, 4×3×(something), divisible by 4 — 1b) divisible by 10, 10=2×5, divisible by 2, number is even —
+    2) div by 100→div by 50; div by 9→digits add to mult of 9; mult of 4→even; div by 5→ends in 5 or 0 —
+    3) A: 8=2×4, so 8×n=2×4×n, divisible by 2; B: 15=5×3, so 15×n=5×3×n, divisible by 5; C: 3a+3b=3(a+b), multiple of 3
+  </div>
+</div>
+
+</body>
+</html>

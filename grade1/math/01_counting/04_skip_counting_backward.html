@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Skip Counting Backward</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #c0392b;
+      --accent: #e74c3c;
+      --accent-bg: #fdedec;
+      --title-color: #922b21;
+    }
+    .page-header p { font-size: 12px; color: #777; }
+    .hop-row { display: flex; align-items: center; gap: 10px; font-size: 16px; margin-bottom: 8px; }
+    .hop-row .label { font-weight: bold; min-width: 100px; }
+    .chute-track { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; margin: 8px 0; align-items: flex-start; }
+    .chute-stop { display: flex; flex-direction: column; align-items: center; width: 56px; }
+    .chute-icon { font-size: 20px; margin-bottom: 2px; }
+    .chute-arc { font-size: 10px; color: #c0392b; margin-top: -4px; }
+    .chute-num { width: 48px; height: 42px; border: 3px solid #e74c3c; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #f5b7b1; }
+    .chute-num.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .sub-path { display: flex; flex-direction: column; gap: 0; margin: 8px 0; align-items: center; }
+    .sub-level { display: flex; align-items: center; gap: 8px; margin: 3px 0; }
+    .sub-depth { font-size: 11px; color: #2980b9; width: 50px; text-align: right; }
+    .sub-bubble { width: 56px; height: 46px; border: 3px solid #2980b9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #d6eaf8; }
+    .sub-bubble.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .sub-arrow { font-size: 14px; color: #2980b9; margin-left: 58px; }
+    .elevator-shaft { display: flex; flex-direction: column; gap: 4px; margin: 8px auto; width: 260px; }
+    .elevator-floor { display: flex; align-items: center; gap: 10px; }
+    .floor-label { width: 70px; font-size: 12px; font-weight: bold; color: #7d3c98; text-align: right; }
+    .floor-num { width: 60px; height: 44px; border: 3px solid #8e44ad; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; background: #e8daef; }
+    .floor-num.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .floor-arrow { font-size: 18px; color: #8e44ad; margin-left: 80px; }
+    .waterfall { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 8px 0; }
+    .water-drop { width: 54px; height: 54px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); border: 3px solid #3498db; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; background: #d4e6f1; }
+    .water-drop span { transform: rotate(-45deg); }
+    .water-drop.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .space-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 8px 0; }
+    .planet { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid #e74c3c; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #f9e79f; }
+    .planet.blank { background: #fff; border-style: dashed; border-color: #f39c12; }
+    .planet.moon { border-color: #5dade2; background: #d6eaf8; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🪂 Skip Counting Backward! 🪂</h1>
+    <p>Float down the numbers — skip as you go!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <!-- Exercise 1: Parachute by 2s -->
+  <div class="exercise">
+    <div class="exercise-title">1) Parachute Drop — Count Back by 2s 🪂</div>
+    <div class="exercise-instruction">You're floating down! Skip backward by 2s. Fill in the missing numbers.</div>
+    <div class="chute-track">
+      <div class="chute-stop"><div class="chute-icon">🪂</div><div class="chute-num">30</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num">26</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num">20</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num">16</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+    </div>
+    <br/>
+    <div class="chute-track">
+      <div class="chute-stop"><div class="chute-icon">🪂</div><div class="chute-num">50</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num">44</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num">40</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num">34</div></div>
+      <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Waterfall by 5s -->
+  <div class="exercise">
+    <div class="exercise-title">2) Waterfall Splash — Count Back by 5s 💧</div>
+    <div class="exercise-instruction">The water drops fall by 5s! Fill in the missing drops.</div>
+    <div class="waterfall">
+      <div class="water-drop"><span>100</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>90</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>75</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>65</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>50</span></div>
+      <div class="water-drop blank"><span></span></div>
+    </div>
+    <div class="waterfall">
+      <div class="water-drop"><span>40</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>25</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>15</span></div>
+      <div class="water-drop blank"><span></span></div>
+      <div class="water-drop"><span>5</span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Elevator by 10s -->
+  <div class="exercise">
+    <div class="exercise-title">3) Elevator Going Down — Count Back by 10s 🛗</div>
+    <div class="exercise-instruction">The elevator is going to the ground floor! Count back by 10s.</div>
+    <div class="elevator-shaft">
+      <div class="elevator-floor"><div class="floor-label">Floor 12:</div><div class="floor-num">120</div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 11:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 10:</div><div class="floor-num">100</div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 9:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 8:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 7:</div><div class="floor-num">70</div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 6:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 5:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 4:</div><div class="floor-num">40</div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 3:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Floor 2:</div><div class="floor-num blank"></div></div>
+      <div class="floor-arrow">⬇️ −10</div>
+      <div class="elevator-floor"><div class="floor-label">Ground:</div><div class="floor-num">10</div></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answers:</strong> 1) Row 1: 28, 24, 22, 18, 14, 12 — Row 2: 48, 46, 42, 38, 36, 32 &nbsp;|&nbsp; 2) Row 1: 95, 85, 80, 70, 60, 55, 45 — Row 2: 35, 30, 20, 10 &nbsp;|&nbsp; 3) 110, 90, 80, 60, 50, 30, 20
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🪂 Skip Counting Backward! 🪂</h1>
+    <p>You're doing awesome — finish strong! 💪</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 4: Planet Hop Backward -->
+  <div class="exercise">
+    <div class="exercise-title">4) Planet Hop — Count Back by 2s 🪐</div>
+    <div class="exercise-instruction">Hop backward through the planets! Fill in the missing ones.</div>
+    <div class="space-grid">
+      <div class="planet">60</div>
+      <div class="planet blank"></div>
+      <div class="planet">56</div>
+      <div class="planet blank"></div>
+      <div class="planet blank"></div>
+      <div class="planet">50</div>
+      <div class="planet blank"></div>
+      <div class="planet blank"></div>
+      <div class="planet">44</div>
+      <div class="planet blank"></div>
+    </div>
+  </div>
+
+  <!-- Exercise 5: Mixed Skip Backward -->
+  <div class="exercise">
+    <div class="exercise-title">5) Mixed Skip Counting Backward 🎯</div>
+    <div class="exercise-instruction">Fill in the blanks. Watch the rule — some go by 2s, 5s, or 10s!</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="hop-row"><span class="label" style="color:#e74c3c;">🪂 by 2s: a)</span> 40, <span class="fill-box"></span>, <span class="fill-box"></span>, 34, <span class="fill-box"></span>, <span class="fill-box"></span>, 28</div>
+      <div class="hop-row"><span class="label" style="color:#2980b9;">💧 by 5s: b)</span> 75, <span class="fill-box"></span>, <span class="fill-box"></span>, 60, <span class="fill-box"></span>, <span class="fill-box"></span>, 45</div>
+      <div class="hop-row"><span class="label" style="color:#8e44ad;">🛗 by 10s: c)</span> 100, <span class="fill-box"></span>, <span class="fill-box"></span>, 70, <span class="fill-box"></span>, <span class="fill-box"></span>, 40</div>
+      <div class="hop-row"><span class="label" style="color:#e74c3c;">🪂 by 2s: d)</span> 88, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span>, 80, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="hop-row"><span class="label" style="color:#2980b9;">💧 by 5s: e)</span> <span class="fill-box"></span>, 55, <span class="fill-box"></span>, <span class="fill-box"></span>, 40, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 6: Figure Out the Rule -->
+  <div class="exercise">
+    <div class="exercise-title">6) What's the Rule? 🕵️</div>
+    <div class="exercise-instruction">Each row counts backward by a secret number. Figure out the rule, then fill in the blanks!</div>
+    <div style="display: flex; flex-direction: column; gap: 8px;">
+      <div class="hop-row"><span class="label" style="color:#16a085;">🔍 a)</span> 50, 45, 40, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
+      <div class="hop-row"><span class="label" style="color:#16a085;">🔍 b)</span> 24, 22, 20, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
+      <div class="hop-row"><span class="label" style="color:#16a085;">🔍 c)</span> 90, 80, 70, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
+      <div class="hop-row"><span class="label" style="color:#16a085;">🔍 d)</span> 100, 95, 90, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
+    </div>
+  </div>
+
+  <!-- Exercise 7: Space Countdown -->
+  <div class="exercise">
+    <div class="exercise-title">7) Rocket Countdown! 🚀</div>
+    <div class="exercise-instruction">Count backward by 10s from 100 to blast off! Write each number, then shout "BLAST OFF!" at the end.</div>
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; margin:8px 0;">
+      <div style="font-size:22px; font-weight:bold; color:#e74c3c;">100</div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div style="font-size:20px; color:#888;">→</div>
+      <div style="font-size:22px; font-weight:bold; color:#e74c3c;">🚀 BLAST OFF!</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answers:</strong> 4) 58, 54, 52, 48, 46, 42 &nbsp;|&nbsp; 5) a) 38, 36, 32, 30 b) 70, 65, 55, 50 c) 90, 80, 60, 50 d) 86, 84, 82, 78, 76 e) 60, 50, 45, 35, 30 &nbsp;|&nbsp; 6) a) 35, 30, 25 (by 5) b) 18, 16, 14 (by 2) c) 60, 50, 40 (by 10) d) 85, 80, 75 (by 5) &nbsp;|&nbsp; 7) 90, 80, 70, 60, 50, 40, 30, 20, 10
+  </div>
+</div>
+
+</body>
+</html>

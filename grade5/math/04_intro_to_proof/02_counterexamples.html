@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Counterexamples — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #c62828;
+      --accent: #ef9a9a;
+      --accent-bg: #ffebee;
+      --title-color: #b71c1c;
+      --answer-key-color: #b71c1c;
+    }
+    .concept-box { border: 2.5px solid #c62828; border-radius: 14px; padding: 16px 18px; background: #ffebee; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #b71c1c; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .demo-box { background: #fff; border: 2.5px solid #ef9a9a; border-radius: 14px; padding: 14px 16px; }
+    .demo-claim { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 6px; border-bottom: 2px dashed #ef9a9a; padding-bottom: 6px; }
+    .demo-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: .5px; margin-top: 8px; margin-bottom: 3px; }
+    .demo-label.try { color: #1565c0; }
+    .demo-label.fail { color: #c62828; }
+    .demo-content { font-size: 13px; color: #555; line-height: 1.6; }
+    .demo-verdict { font-size: 14px; font-weight: bold; color: #c62828; margin-top: 6px; padding: 6px 10px; background: #ffcdd2; border-radius: 8px; text-align: center; }
+    .claim-card { background: #fff; border: 2px solid #ef9a9a; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .claim-num { display: inline-block; background: #c62828; color: #fff; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; font-size: 12px; font-weight: bold; margin-right: 8px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2; }
+    .verdict-row { display: flex; gap: 12px; margin-top: 8px; }
+    .verdict-option { flex: 1; border: 2px solid #ccc; border-radius: 8px; padding: 6px; text-align: center; font-size: 12px; font-weight: bold; color: #555; }
+    .detective-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .detective-card { background: #fff; border: 2px solid #ef9a9a; border-radius: 10px; padding: 12px; }
+    .detective-claim { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 6px; }
+    .detective-hint { font-size: 11px; color: #888; font-style: italic; margin-bottom: 4px; }
+    .detective-answer { font-size: 12px; color: #555; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🚫 Counterexamples</h1>
+    <p>Lesson 2 — One example is all it takes to <strong>disprove</strong> a claim!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 What Is a Counterexample?</div>
+    <div class="concept-text">
+      A <strong>counterexample</strong> is a single example that proves a claim is <strong>false</strong>.<br><br>
+      If someone says "ALL swans are white," you don't need to check every swan in the world. You just need to find <strong>one black swan</strong> — and the claim is disproved!<br><br>
+      In math, it works the same way. If someone claims something is ALWAYS true, finding just <strong>one case</strong> where it fails is enough to prove them wrong.
+    </div>
+  </div>
+
+  <!-- Worked Example 1 -->
+  <div class="demo-box" style="margin-bottom: 12px;">
+    <div class="demo-claim">Claim: "All prime numbers are odd."</div>
+    <div class="demo-label try">🧪 Let's check some primes:</div>
+    <div class="demo-content">3 is odd ✓ &nbsp;&nbsp; 5 is odd ✓ &nbsp;&nbsp; 7 is odd ✓ &nbsp;&nbsp; 11 is odd ✓ &nbsp;&nbsp; 13 is odd ✓</div>
+    <div class="demo-label fail">🔍 But wait…</div>
+    <div class="demo-content"><strong>2</strong> is a prime number, and 2 is <strong>even</strong>!</div>
+    <div class="demo-verdict">❌ Counterexample: 2 — The claim is FALSE!</div>
+  </div>
+
+  <!-- Worked Example 2 -->
+  <div class="demo-box">
+    <div class="demo-claim">Claim: "The square of any number is bigger than that number."</div>
+    <div class="demo-label try">🧪 Let's check:</div>
+    <div class="demo-content">3² = 9 &gt; 3 ✓ &nbsp;&nbsp; 5² = 25 &gt; 5 ✓ &nbsp;&nbsp; 10² = 100 &gt; 10 ✓</div>
+    <div class="demo-label fail">🔍 But wait…</div>
+    <div class="demo-content"><strong>1² = 1</strong>, and 1 is NOT bigger than 1! Also <strong>0² = 0</strong>.</div>
+    <div class="demo-verdict">❌ Counterexample: 1 (or 0) — The claim is FALSE!</div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Find the Counterexample! 🔎</div>
+    <div class="exercise-instruction">Each claim below is <strong>false</strong>. Find a counterexample to disprove it.</div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">a</span>"All multiples of 3 are odd."</div>
+      <div class="work-area">My counterexample: <span class="blank-wide"></span> because <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">b</span>"If you subtract two numbers, you always get a smaller number."</div>
+      <div class="work-area">My counterexample: <span class="blank-wide"></span> because <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">c</span>"All numbers that end in 5 are divisible by 10."</div>
+      <div class="work-area">My counterexample: <span class="blank-wide"></span> because <span class="blank-wide"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🚫 Counterexamples</h1>
+    <p>Be a math detective — find the flaw! 🕵️</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> True or False? You Decide! ⚖️</div>
+    <div class="exercise-instruction">For each claim: if you think it's <strong>true</strong>, explain why. If you think it's <strong>false</strong>, give a counterexample.</div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">a</span>"Every even number greater than 2 can be divided by 2 with no remainder."</div>
+      <div class="work-area">
+        My answer: <span class="blank-wide"></span><br>
+        Reason / counterexample: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">TRUE ✅</div>
+        <div class="verdict-option">FALSE ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">b</span>"The product of two odd numbers is always even."</div>
+      <div class="work-area">
+        My answer: <span class="blank-wide"></span><br>
+        Reason / counterexample: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">TRUE ✅</div>
+        <div class="verdict-option">FALSE ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">c</span>"If a number is divisible by 6, it is also divisible by 3."</div>
+      <div class="work-area">
+        My answer: <span class="blank-wide"></span><br>
+        Reason / counterexample: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">TRUE ✅</div>
+        <div class="verdict-option">FALSE ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">d</span>"Adding 1 to a prime number always gives a composite number."</div>
+      <div class="work-area">
+        My answer: <span class="blank-wide"></span><br>
+        Reason / counterexample: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">TRUE ✅</div>
+        <div class="verdict-option">FALSE ❌</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Make your own -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Make Your Own False Claim! 🎭</div>
+    <div class="exercise-instruction">Write a math claim that SOUNDS true but is actually false. Then give the counterexample.</div>
+    <div class="claim-card">
+      <div class="work-area">
+        My false claim: <span class="blank-wide"></span><br>
+        Counterexample: <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1a) 6 is a multiple of 3 and is even — 1b) 5 − 5 = 0, not smaller (or 3 − 7 = −4) — 1c) 15 ends in 5 but 15 ÷ 10 = 1.5 —
+    2a) TRUE (that's the definition of even) — 2b) FALSE (3 × 5 = 15, which is odd) — 2c) TRUE (6 = 2 × 3, so any multiple of 6 is a multiple of 3) — 2d) FALSE (2 + 1 = 3, which is prime)
+  </div>
+</div>
+
+</body>
+</html>

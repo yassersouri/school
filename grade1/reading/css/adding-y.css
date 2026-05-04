@@ -1,0 +1,32 @@
+/* ── Adding -y Component Styles ───────────────────────────────────
+   Extra components used only by the adding-y practice sheets.
+   Uses variables from practice-sheet.css plus:
+   --rule-bg, --rule-border, --rule-text, --rule-example,
+   --pair-bg, --base-word-width (optional, default 70px)
+   ─────────────────────────────────────────────────────────────── */
+
+/* Rule explanation box */
+.rule-box { border-radius: 10px; padding: 10px 14px; margin-bottom: 10px; text-align: center; background: var(--rule-bg); border: 2px solid var(--rule-border); }
+.rule-box p { font-size: 13px; color: var(--rule-text); }
+.rule-box .example { font-size: 18px; font-weight: bold; color: var(--rule-example, var(--heading-color)); margin-top: 4px; }
+
+/* Word pair cards */
+.pair-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.pair-card { border: 1.5px solid var(--accent); border-radius: 10px; padding: 10px; background: var(--pair-bg); text-align: center; }
+.pair-card .base { font-size: 24px; font-weight: bold; color: #555; }
+.pair-card .arrow { font-size: 20px; color: var(--heading-color); margin: 2px 0; }
+.pair-card .result { font-size: 28px; font-weight: bold; color: var(--heading-color); }
+.pair-card .highlight { background: var(--accent); color: #fff; border-radius: 4px; padding: 0 3px; }
+
+/* Transform exercise */
+.transform-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.transform-list li { font-size: 17px; display: flex; align-items: center; gap: 10px; }
+.transform-list .base-word { font-weight: bold; font-size: 20px; width: var(--base-word-width, 70px); }
+.transform-list .arrow-sm { font-size: 18px; color: var(--heading-color); }
+.write-line { border-bottom: 2px solid #333; width: 130px; height: 24px; display: inline-block; }
+
+/* Adding -y sheets use 100px blanks */
+.blank { width: 100px; }
+
+/* Adding -y draw boxes are shorter */
+.draw-box { height: 300px; }

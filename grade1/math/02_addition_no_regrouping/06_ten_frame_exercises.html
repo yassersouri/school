@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ten-Frame No-Regrouping Exercises</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #00695c;
+      --accent-bg: #f1faf9;
+    }
+    .page-header .sub { font-size: 11px; color: #999; }
+    .name-line { font-size: 12px; color: #777; }
+    .name-line span { display: inline-block; border-bottom: 1.5px solid #999; width: 160px; margin-left: 4px; }
+    .ex-equation { font-size: 18px; font-weight: bold; color: #004d40; text-align: center; margin-bottom: 5px; }
+    .ans-blank { display: inline-block; border-bottom: 2.5px solid #2e7d32; width: 34px; }
+    .ex-frames { display: flex; align-items: flex-end; justify-content: center; gap: 5px; }
+    .frame-group { text-align: center; }
+    .frame-label { font-size: 10px; font-weight: bold; margin-bottom: 2px; }
+    .frame-label.green { color: #00695c; }
+    .frame-label.orange { color: #ef6c00; }
+    .frame-label.result { color: #2e7d32; }
+    .frame-label.gray { color: #999; }
+    .ex-op { font-size: 18px; font-weight: bold; color: #555; padding: 0 1px; align-self: center; }
+    .ex-arrow { font-size: 20px; color: #2e7d32; padding: 0 1px; align-self: center; }
+    .ten-frame { display: inline-grid; grid-template-columns: repeat(5, 1fr); gap: 2px; border: 2px solid #00695c; border-radius: 6px; padding: 3px; background: #e0f2f1; }
+    .ten-frame.orange { border-color: #ef6c00; background: #fff3e0; }
+    .ten-frame.result { border-color: #2e7d32; background: #e8f5e9; }
+    .tf-cell { width: 24px; height: 24px; border: 1px solid #80cbc4; border-radius: 3px; background: #fff; }
+    .ten-frame.orange .tf-cell { border-color: #ffcc80; }
+    .ten-frame.result .tf-cell { border-color: #a5d6a7; }
+    .instruction { font-size: 11px; color: #555; font-style: italic; text-align: center; }
+    /* Page 2 compact: 5 ten-frames per row */
+    .compact .ten-frame { gap: 1.5px; padding: 2px; border-width: 2px; }
+    .compact .tf-cell { width: 20px; height: 20px; border-radius: 2px; }
+    .compact .ex-equation { font-size: 16px; margin-bottom: 4px; }
+    .compact .ex-op { font-size: 16px; }
+    .compact .ex-arrow { font-size: 17px; }
+    .compact .ex-frames { gap: 4px; }
+    .compact .frame-label { font-size: 9px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🧩 Ten-Frame Addition — No Regrouping</h1>
+    <div class="sub">Grade 1 · Draw dots, combine them — they all fit!</div>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+  <div class="name-line">Name: <span></span></div>
+  <div class="instruction">Draw dots for each number. Then combine all the dots into one frame. They fit — no new ten needed! Write the answer.</div>
+
+  <!-- Problem 1: 4 + 3 = 7 -->
+  <div class="exercise">
+    <div class="ex-equation">① &nbsp; 4 + 3 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 4</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 3</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ✅</div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 2: 5 + 4 = 9 -->
+  <div class="exercise">
+    <div class="ex-equation">② &nbsp; 5 + 4 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 5</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 4</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ✅</div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 3: 6 + 2 = 8 -->
+  <div class="exercise">
+    <div class="ex-equation">③ &nbsp; 6 + 2 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 6</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 2</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ✅</div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 4: 3 + 5 = 8 -->
+  <div class="exercise">
+    <div class="ex-equation">④ &nbsp; 3 + 5 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 3</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 5</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ✅</div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 5: 7 + 2 = 9 -->
+  <div class="exercise">
+    <div class="ex-equation">⑤ &nbsp; 7 + 2 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 7</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 2</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ✅</div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Tip:</strong> Draw dots for each number first. Then put all the dots together in the green "combine" frame. They all fit — <strong>no new ten needed!</strong> Count the dots for your answer.
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page compact">
+  <div class="page-header">
+    <h1>🧩 Ten-Frame Addition — No Regrouping</h1>
+    <div class="sub">More Practice — teen + single digit</div>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Problem 6: 12 + 3 = 15 -->
+  <div class="exercise">
+    <div class="ex-equation">⑥ &nbsp; 12 + 3 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 12</div><div style="display:flex; gap:3px;"><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 3</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ones ✅</div><div style="display:flex; gap:3px;"><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 7: 14 + 5 = 19 -->
+  <div class="exercise">
+    <div class="ex-equation">⑦ &nbsp; 14 + 5 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 14</div><div style="display:flex; gap:3px;"><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 5</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ones ✅</div><div style="display:flex; gap:3px;"><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 8: 11 + 6 = 17 -->
+  <div class="exercise">
+    <div class="ex-equation">⑧ &nbsp; 11 + 6 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 11</div><div style="display:flex; gap:3px;"><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 6</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ones ✅</div><div style="display:flex; gap:3px;"><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 9: 13 + 4 = 17 -->
+  <div class="exercise">
+    <div class="ex-equation">⑨ &nbsp; 13 + 4 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 13</div><div style="display:flex; gap:3px;"><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 4</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ones ✅</div><div style="display:flex; gap:3px;"><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 10: 15 + 3 = 18 -->
+  <div class="exercise">
+    <div class="ex-equation">⑩ &nbsp; 15 + 3 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label green">draw 15</div><div style="display:flex; gap:3px;"><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label orange">draw 3</div><div class="ten-frame orange"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label result">combine ones ✅</div><div style="display:flex; gap:3px;"><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div><div class="ten-frame result"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div></div>
+    </div>
+  </div>
+
+  <div style="border-top: 2px dashed #ccc; padding-top: 6px; font-size: 9px; color: #aaa;">
+    <strong>Answers:</strong> ① 7 &nbsp; ② 9 &nbsp; ③ 8 &nbsp; ④ 8 &nbsp; ⑤ 9 &nbsp; ⑥ 15 &nbsp; ⑦ 19 &nbsp; ⑧ 17 &nbsp; ⑨ 17 &nbsp; ⑩ 18
+  </div>
+</div>
+
+</body>
+</html>

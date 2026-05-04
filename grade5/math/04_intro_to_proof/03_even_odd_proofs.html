@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Even &amp; Odd Number Proofs — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #00695c;
+      --accent: #80cbc4;
+      --accent-bg: #e0f2f1;
+      --title-color: #004d40;
+      --answer-key-color: #004d40;
+    }
+    .concept-box { border: 2.5px solid #00695c; border-radius: 14px; padding: 16px 18px; background: #e0f2f1; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #004d40; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .dot-proof { background: #fff; border: 2.5px solid #80cbc4; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+    .dot-proof-title { font-size: 15px; font-weight: bold; color: #00695c; margin-bottom: 8px; text-align: center; }
+    .dot-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 8px 0; flex-wrap: wrap; }
+    .dot-group { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .dot-pair-row { display: flex; gap: 4px; }
+    .dot { width: 18px; height: 18px; border-radius: 50%; display: inline-block; }
+    .dot.green { background: #00695c; }
+    .dot.orange { background: #e65100; }
+    .dot.blue { background: #1565c0; }
+    .dot.red { background: #c62828; }
+    .dot.purple { background: #7b1fa2; }
+    .dot.leftover { border: 2px dashed #c62828; background: #ffcdd2; }
+    .dot.paired { opacity: 0.6; }
+    .dot-label { font-size: 12px; font-weight: bold; color: #555; margin-top: 4px; }
+    .arrow-label { font-size: 22px; color: #333; font-weight: bold; }
+    .result-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; }
+    .result-tag.even { background: #c8e6c9; color: #2e7d32; }
+    .result-tag.odd { background: #ffcdd2; color: #c62828; }
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 6px; line-height: 1.5; }
+    .rule-box { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 10px; background: #fff; border: 2px solid #80cbc4; border-radius: 10px; margin-bottom: 8px; }
+    .rule-text { font-size: 16px; font-weight: bold; color: #00695c; }
+    .claim-card { background: #fff; border: 2px solid #80cbc4; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 6px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2.2; }
+    .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .proof-card { background: #fff; border: 2px solid #80cbc4; border-radius: 10px; padding: 12px; }
+    .proof-card-title { font-size: 13px; font-weight: bold; color: #00695c; margin-bottom: 6px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟢 Even &amp; Odd Number Proofs</h1>
+    <p>Lesson 3 — Your first real proofs using <strong>dot pairs</strong>!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 Even &amp; Odd — The Dot-Pair Way</div>
+    <div class="concept-text">
+      An <strong>even</strong> number can have all its dots paired up with nothing left over.<br>
+      An <strong>odd</strong> number always has <strong>exactly 1 dot</strong> left over after pairing.<br><br>
+      We can use this idea to PROVE rules about adding even and odd numbers!
+    </div>
+  </div>
+
+  <!-- Proof 1: Even + Even = Even -->
+  <div class="dot-proof">
+    <div class="dot-proof-title">Proof 1: Even + Even = Even</div>
+    <div class="rule-box">
+      <div class="result-tag even">Even</div>
+      <span class="rule-text">+</span>
+      <div class="result-tag even">Even</div>
+      <span class="rule-text">=</span>
+      <div class="result-tag even">Even</div>
+    </div>
+    <div class="dot-row">
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-label">6 (even)</div>
+      </div>
+      <span class="arrow-label">+</span>
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot blue"></span><span class="dot blue"></span></div>
+        <div class="dot-pair-row"><span class="dot blue"></span><span class="dot blue"></span></div>
+        <div class="dot-label">4 (even)</div>
+      </div>
+      <span class="arrow-label">=</span>
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot blue"></span><span class="dot blue"></span></div>
+        <div class="dot-pair-row"><span class="dot blue"></span><span class="dot blue"></span></div>
+        <div class="dot-label">10 (even!)</div>
+      </div>
+    </div>
+    <div class="proof-explain">
+      Both numbers have all dots in pairs. When you combine them, every dot still has a partner.<br>
+      <strong>Nothing left over → the result is always even!</strong> This works for ANY two even numbers.
+    </div>
+  </div>
+
+  <!-- Proof 2: Odd + Odd = Even -->
+  <div class="dot-proof">
+    <div class="dot-proof-title">Proof 2: Odd + Odd = Even</div>
+    <div class="rule-box">
+      <div class="result-tag odd">Odd</div>
+      <span class="rule-text">+</span>
+      <div class="result-tag odd">Odd</div>
+      <span class="rule-text">=</span>
+      <div class="result-tag even">Even</div>
+    </div>
+    <div class="dot-row">
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot leftover"></span></div>
+        <div class="dot-label">5 (odd)</div>
+      </div>
+      <span class="arrow-label">+</span>
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot purple"></span><span class="dot purple"></span></div>
+        <div class="dot-pair-row"><span class="dot leftover"></span></div>
+        <div class="dot-label">3 (odd)</div>
+      </div>
+      <span class="arrow-label">=</span>
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot purple"></span><span class="dot purple"></span></div>
+        <div class="dot-pair-row" style="border: 2px dashed #c62828; border-radius: 8px; padding: 2px 4px; background: #fff3e0;"><span class="dot orange" style="background:#e65100;"></span><span class="dot purple" style="background:#7b1fa2;"></span></div>
+        <div class="dot-label">8 (even!)</div>
+      </div>
+    </div>
+    <div class="proof-explain">
+      Each odd number has 1 leftover dot. The two leftovers <strong>pair up together</strong>!<br>
+      <strong>No dots left over → the result is always even!</strong>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟢 Even &amp; Odd Number Proofs</h1>
+    <p>Now prove it yourself! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Proof 3: Even + Odd = Odd -->
+  <div class="dot-proof">
+    <div class="dot-proof-title">Proof 3: Even + Odd = Odd</div>
+    <div class="rule-box">
+      <div class="result-tag even">Even</div>
+      <span class="rule-text">+</span>
+      <div class="result-tag odd">Odd</div>
+      <span class="rule-text">=</span>
+      <div class="result-tag odd">Odd</div>
+    </div>
+    <div class="dot-row">
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-label">4 (even)</div>
+      </div>
+      <span class="arrow-label">+</span>
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot leftover"></span></div>
+        <div class="dot-label">5 (odd)</div>
+      </div>
+      <span class="arrow-label">=</span>
+      <div class="dot-group">
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot green"></span><span class="dot green"></span></div>
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot orange"></span><span class="dot orange"></span></div>
+        <div class="dot-pair-row"><span class="dot leftover"></span></div>
+        <div class="dot-label">9 (odd!)</div>
+      </div>
+    </div>
+    <div class="proof-explain">
+      The even number has no leftovers. The odd number has 1 leftover.<br>
+      <strong>That 1 leftover stays → the result is always odd!</strong>
+    </div>
+  </div>
+
+  <!-- Exercise 1: Draw dot proofs -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Draw Your Own Dot Proof ✏️</div>
+    <div class="exercise-instruction">Use dots to prove each statement. Draw paired dots and mark any leftover.</div>
+    <div class="proof-grid">
+      <div class="proof-card">
+        <div class="proof-card-title">Prove: 8 + 6 is even</div>
+        <div class="work-area" style="min-height: 80px;">
+          Draw dots for 8: <br><br>
+          Draw dots for 6: <br><br>
+          Combined: <span class="blank-wide"></span> — left over? <span class="blank"></span>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-card-title">Prove: 7 + 5 is even</div>
+        <div class="work-area" style="min-height: 80px;">
+          Draw dots for 7: <br><br>
+          Draw dots for 5: <br><br>
+          Combined: <span class="blank-wide"></span> — left over? <span class="blank"></span>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-card-title">Prove: 6 + 3 is odd</div>
+        <div class="work-area" style="min-height: 80px;">
+          Draw dots for 6: <br><br>
+          Draw dots for 3: <br><br>
+          Combined: <span class="blank-wide"></span> — left over? <span class="blank"></span>
+        </div>
+      </div>
+      <div class="proof-card">
+        <div class="proof-card-title">Prove: 9 + 9 is even</div>
+        <div class="work-area" style="min-height: 80px;">
+          Draw dots for 9: <br><br>
+          Draw dots for 9: <br><br>
+          Combined: <span class="blank-wide"></span> — left over? <span class="blank"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Quick predict -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Predict: Even or Odd? ⚡</div>
+    <div class="exercise-instruction">Use the rules you proved to predict the answer WITHOUT calculating!</div>
+    <div class="problem-grid">
+      <div class="problem-card" style="font-size:14px;">Even + Even<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">Odd + Odd<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">Even + Odd<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">Odd + Even<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">124 + 336<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">457 + 891<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">200 + 77<br>=<span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">13 + 13 + 13<br>=<span class="blank"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Explain It! 💬</div>
+    <div class="exercise-instruction">In your own words, explain why odd + odd = even.</div>
+    <div class="claim-card">
+      <div class="work-area" style="line-height: 2.5;">
+        <span class="blank-wide"></span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span class="blank-wide"></span> <span class="blank-wide"></span> <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    2) Even, Even, Odd, Odd, Even (E+E), Even (O+O), Odd (E+O), Odd (O+O+O → O+O=E, E+O=O)
+  </div>
+</div>
+
+</body>
+</html>

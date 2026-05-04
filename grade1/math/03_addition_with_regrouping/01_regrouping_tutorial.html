@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>How to Add With Regrouping — Visual Tutorial</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #7b1fa2;
+    }
+    .page.compact { gap: 10px; padding: 10mm 14mm; }
+    .ten-frame { display: inline-grid; grid-template-columns: repeat(5, 1fr); gap: 3px; border: 3px solid #7b1fa2; border-radius: 8px; padding: 4px; background: #f3e5f5; }
+    .ten-frame.second { border-color: #00897b; background: #e0f2f1; }
+    .tf-cell { width: 30px; height: 30px; border: 1.5px solid #ce93d8; border-radius: 5px; background: #fff; display: flex; align-items: center; justify-content: center; }
+    .ten-frame.second .tf-cell { border-color: #80cbc4; }
+    .dot { width: 20px; height: 20px; border-radius: 50%; }
+    .dot.purple { background: #7b1fa2; }
+    .dot.teal   { background: #00897b; }
+    .dot.red    { background: #e53935; }
+    .block-ten { width: 18px; height: 90px; background: #7b1fa2; border-radius: 4px; display: inline-block; border: 2px solid #4a148c; }
+    .block-one { width: 18px; height: 18px; background: #ce93d8; border-radius: 3px; display: inline-block; border: 1.5px solid #7b1fa2; }
+    .block-one.teal { background: #80cbc4; border-color: #00897b; }
+    .blocks-group { display: flex; gap: 3px; align-items: flex-end; flex-wrap: wrap; }
+    .vis-section { border: 2.5px solid #ce93d8; border-radius: 14px; padding: 14px 16px; background: #faf2fc; }
+    .vis-title { font-size: 18px; font-weight: bold; color: #4a148c; margin-bottom: 10px; text-align: center; }
+    .vis-row { display: flex; align-items: center; justify-content: center; gap: 16px; margin: 8px 0; flex-wrap: wrap; }
+    .vis-eq { font-size: 32px; font-weight: bold; color: #333; }
+    .vis-result { font-size: 36px; font-weight: bold; color: #c2185b; }
+    .vis-note { font-size: 12px; color: #888; text-align: center; font-style: italic; margin-top: 4px; }
+    .vert-demo { display: inline-flex; flex-direction: column; align-items: flex-end; font-size: 40px; font-weight: bold; color: #7b1fa2; background: #fff; border: 3px solid #ce93d8; border-radius: 14px; padding: 14px 24px; line-height: 1.2; }
+    .vert-demo .vd-carry { font-size: 18px; color: #e53935; margin-right: 6px; }
+    .vert-demo .vd-op { display: flex; gap: 8px; color: #7b1fa2; }
+    .vert-demo .vd-op .plus { color: #333; }
+    .vert-demo .vd-line { width: 100%; border-top: 4px solid #333; margin: 6px 0; }
+    .vert-demo .vd-ans { color: #c2185b; }
+    .vert-demo .vd-ans .carry-digit { color: #e53935; }
+    .compare-row { display: flex; gap: 20px; justify-content: center; }
+    .compare-box { flex: 1; max-width: 280px; border-radius: 14px; padding: 16px; text-align: center; }
+    .compare-box.no-regroup { background: #e8f5e9; border: 3px solid #81c784; }
+    .compare-box.regroup { background: #fce4ec; border: 3px solid #f48fb1; }
+    .compare-box .cb-title { font-size: 14px; font-weight: bold; margin-bottom: 8px; }
+    .compare-box.no-regroup .cb-title { color: #2e7d32; }
+    .compare-box.regroup .cb-title { color: #c2185b; }
+    .compare-box .cb-math { font-size: 28px; font-weight: bold; margin: 6px 0; }
+    .compare-box.no-regroup .cb-math { color: #2e7d32; }
+    .compare-box.regroup .cb-math { color: #c2185b; }
+    .compare-box .cb-ones { font-size: 14px; font-weight: bold; margin-top: 4px; }
+    .tf-row { display: flex; align-items: center; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .compact .vis-section { padding: 8px 10px; }
+    .compact .vis-title { font-size: 15px; margin-bottom: 4px; }
+    .compact .ten-frame { gap: 2px; padding: 3px; border-width: 2px; }
+    .compact .tf-cell { width: 22px; height: 22px; border-width: 1px; }
+    .compact .dot { width: 14px; height: 14px; }
+    .compact .vis-eq { font-size: 22px; }
+    .compact .vis-result { font-size: 26px; }
+    .compact .tf-row { gap: 8px; }
+    .compact .vert-demo { font-size: 28px; padding: 8px 16px; border-width: 2px; border-radius: 10px; }
+    .compact .vert-demo .vd-carry { font-size: 14px; }
+    .compact .vert-demo .vd-line { margin: 4px 0; border-top-width: 3px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔄 Addition With Regrouping</h1>
+    <div class="page-sub">Visual Tutorial</div>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <!-- Side-by-side comparison -->
+  <div class="vis-section">
+    <div class="vis-title">No Regrouping vs. Regrouping</div>
+    <div class="compare-row">
+      <div class="compare-box no-regroup">
+        <div class="cb-title">✅ No Regrouping</div>
+        <div class="cb-math">12 + 3 = 15</div>
+        <div style="display:flex; gap:16px; justify-content:center; align-items:flex-end; margin:8px 0;">
+          <div style="display:flex; gap:4px; align-items:flex-end;">
+            <span class="block-ten"></span>
+            <div class="blocks-group"><span class="block-one"></span><span class="block-one"></span></div>
+          </div>
+          <span style="font-size:24px; font-weight:bold; color:#2e7d32;">+</span>
+          <div class="blocks-group"><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span></div>
+        </div>
+        <div class="cb-ones">ones: 2 + 3 = 5 ✅</div>
+      </div>
+      <div class="compare-box regroup">
+        <div class="cb-title">🔄 Regrouping!</div>
+        <div class="cb-math">7 + 8 = 15</div>
+        <div style="display:flex; gap:16px; justify-content:center; align-items:flex-end; margin:8px 0;">
+          <div class="blocks-group"><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span></div>
+          <span style="font-size:24px; font-weight:bold; color:#c2185b;">+</span>
+          <div class="blocks-group"><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span></div>
+        </div>
+        <div class="cb-ones">ones: 7 + 8 = 15 → trade 10 for 1 ten!</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 + 8 with ten-frames -->
+  <div class="vis-section">
+    <div class="vis-title">7 + 8 = 15</div>
+
+    <!-- before -->
+    <div class="tf-row" style="margin-bottom:8px;">
+      <div style="text-align:center;">
+        <div style="font-size:20px; font-weight:bold; color:#7b1fa2; margin-bottom:4px;">7</div>
+        <div class="ten-frame">
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <div class="vis-eq">+</div>
+      <div style="text-align:center;">
+        <div style="font-size:20px; font-weight:bold; color:#00897b; margin-bottom:4px;">8</div>
+        <div class="ten-frame second">
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center; font-size:28px; color:#c2185b;">⬇️</div>
+
+    <!-- after -->
+    <div class="tf-row">
+      <div style="text-align:center;">
+        <div style="font-size:20px; font-weight:bold; color:#c2185b; margin-bottom:4px;">10 ✓</div>
+        <div class="ten-frame" style="border-color:#c2185b;">
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot red"></span></div>
+          <div class="tf-cell"><span class="dot red"></span></div>
+          <div class="tf-cell"><span class="dot red"></span></div>
+        </div>
+      </div>
+      <div class="vis-eq">+</div>
+      <div style="text-align:center;">
+        <div style="font-size:20px; font-weight:bold; color:#00897b; margin-bottom:4px;">5</div>
+        <div class="ten-frame second">
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <div class="vis-eq">=</div>
+      <div class="vis-result">15</div>
+    </div>
+  </div>
+
+  <!-- 7 + 8 blocks -->
+  <div class="vis-section">
+    <div class="vis-title">7 + 8 = 15 &nbsp; with Blocks</div>
+    <div class="vis-row">
+      <div class="blocks-group">
+        <span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span>
+      </div>
+      <span class="vis-eq">+</span>
+      <div class="blocks-group">
+        <span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span><span class="block-one teal"></span>
+      </div>
+    </div>
+    <div style="text-align:center; font-size:24px; color:#c2185b;">⬇️ 15 ones → 1 ten + 5 ones ⬇️</div>
+    <div class="vis-row">
+      <span class="block-ten"></span>
+      <div class="blocks-group" style="margin-left:8px;">
+        <span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span><span class="block-one"></span>
+      </div>
+      <span class="vis-eq">=</span>
+      <span class="vis-result">15</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page compact">
+  <div class="page-header">
+    <h1 style="font-size:20px;">🔄 Addition With Regrouping</h1>
+    <div class="page-sub">More Examples</div>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- 8 + 5 ten-frame -->
+  <div class="vis-section">
+    <div class="vis-title">8 + 5 = 13</div>
+    <div class="tf-row">
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#7b1fa2; margin-bottom:2px;">8</div>
+        <div class="ten-frame">
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <div class="vis-eq">+</div>
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#00897b; margin-bottom:2px;">5</div>
+        <div class="ten-frame second">
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <span style="font-size:20px; color:#c2185b;">→</span>
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#c2185b; margin-bottom:2px;">10</div>
+        <div class="ten-frame" style="border-color:#c2185b;">
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot red"></span></div>
+          <div class="tf-cell"><span class="dot red"></span></div>
+        </div>
+      </div>
+      <span class="vis-eq">+</span>
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#00897b; margin-bottom:2px;">3</div>
+        <div class="ten-frame second">
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <span class="vis-eq">=</span>
+      <span class="vis-result">13</span>
+    </div>
+  </div>
+
+  <!-- 9 + 6 ten-frame -->
+  <div class="vis-section">
+    <div class="vis-title">9 + 6 = 15</div>
+    <div class="tf-row">
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#7b1fa2; margin-bottom:2px;">9</div>
+        <div class="ten-frame">
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <div class="vis-eq">+</div>
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#00897b; margin-bottom:2px;">6</div>
+        <div class="ten-frame second">
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <span style="font-size:20px; color:#c2185b;">→</span>
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#c2185b; margin-bottom:2px;">10</div>
+        <div class="ten-frame" style="border-color:#c2185b;">
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot purple"></span></div>
+          <div class="tf-cell"><span class="dot red"></span></div>
+        </div>
+      </div>
+      <span class="vis-eq">+</span>
+      <div style="text-align:center;">
+        <div style="font-size:15px; font-weight:bold; color:#00897b; margin-bottom:2px;">5</div>
+        <div class="ten-frame second">
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"><span class="dot teal"></span></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+          <div class="tf-cell"></div>
+        </div>
+      </div>
+      <span class="vis-eq">=</span>
+      <span class="vis-result">15</span>
+    </div>
+  </div>
+
+  <!-- Vertical carrying -->
+  <div class="vis-section">
+    <div class="vis-title">Vertical — Carry the 1</div>
+    <div style="display:flex; gap:24px; justify-content:center; align-items:flex-end; flex-wrap:wrap;">
+      <div style="text-align:center;">
+        <div class="vert-demo">
+          <div class="vd-carry">¹</div>
+          <div>&nbsp;7</div>
+          <div class="vd-op"><span class="plus">+</span> 8</div>
+          <div class="vd-line"></div>
+          <div class="vd-ans"><span class="carry-digit">1</span>5</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="vert-demo">
+          <div class="vd-carry">¹</div>
+          <div>&nbsp;8</div>
+          <div class="vd-op"><span class="plus">+</span> 5</div>
+          <div class="vd-line"></div>
+          <div class="vd-ans"><span class="carry-digit">1</span>3</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="vert-demo">
+          <div class="vd-carry">¹</div>
+          <div>&nbsp;9</div>
+          <div class="vd-op"><span class="plus">+</span> 6</div>
+          <div class="vd-line"></div>
+          <div class="vd-ans"><span class="carry-digit">1</span>5</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="vert-demo">
+          <div class="vd-carry">¹</div>
+          <div>&nbsp;6</div>
+          <div class="vd-op"><span class="plus">+</span> 7</div>
+          <div class="vd-line"></div>
+          <div class="vd-ans"><span class="carry-digit">1</span>3</div>
+        </div>
+      </div>
+      <div style="text-align:center;">
+        <div class="vert-demo">
+          <div class="vd-carry">¹</div>
+          <div>&nbsp;9</div>
+          <div class="vd-op"><span class="plus">+</span> 9</div>
+          <div class="vd-line"></div>
+          <div class="vd-ans"><span class="carry-digit">1</span>8</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

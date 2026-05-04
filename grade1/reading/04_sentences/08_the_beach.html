@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sentences &amp; Stories: The Beach</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #f9e79f;
+    --accent-bg: #fef9e7;
+    --heading-color: #b7950b;
+    --title-color: #9a7d0a;
+    --col-bg: #fff;
+    --col-heading: #9a7d0a;
+    --word-bg: #fff;
+  }
+
+  /* Story / reading text */
+  .story { background: #fff; border: 1.5px dashed var(--accent); border-radius: 10px; padding: 12px 16px; font-size: 18px; line-height: 1.7; }
+  .story p { margin-bottom: 8px; }
+  .story .title { display:block; text-align:center; font-size: 20px; color: var(--title-color); font-weight: bold; margin-bottom: 8px; }
+
+  /* Comprehension Q&A */
+  .q-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .q-list li { font-size: 14px; }
+  .q-list .q { font-weight: bold; display: block; margin-bottom: 4px; color: #333; }
+  .answer-line { display: block; border-bottom: 2px solid #333; height: 22px; }
+
+  /* Cloze (pick the word) */
+  .cloze-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .cloze-list li { font-size: 15px; line-height: 1.8; }
+  .cloze-blank { display: inline-block; border-bottom: 2px solid #333; min-width: 80px; height: 18px; margin: 0 4px; }
+  .choices { display: inline-flex; gap: 6px; margin-left: 6px; }
+  .choice { background: #fff; border: 1.5px solid var(--accent); border-radius: 6px; padding: 1px 10px; font-size: 13px; font-weight: bold; color: var(--title-color); }
+
+  /* True / False */
+  .tf-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tf-list li { display: flex; align-items: center; gap: 10px; font-size: 15px; background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid var(--accent); }
+  .tf-list .sent { flex: 1; }
+  .tf-boxes { display: flex; gap: 8px; flex-shrink: 0; }
+  .tf-box { display: inline-flex; align-items: center; gap: 4px; font-size: 13px; font-weight: bold; color: var(--title-color); }
+  .tf-circle { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--title-color); border-radius: 50%; }
+
+  /* Drawing area */
+  .draw-box { height: 300px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🏖️ Sentences &amp; Stories: The Beach</h1><p>Read · Answer · Build · Draw</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Read the Story 📖</div>
+    <div class="exercise-instruction">Read it out loud. Then read it again!</div>
+    <div class="story">
+      <span class="title">Day at the Beach</span>
+      <p>Pam and Sam went to the beach.</p>
+      <p>The sand was hot. The sea was blue.</p>
+      <p>Sam made a sand cake. Pam got a shell.</p>
+      <p>They ran in the waves. They had so much fun.</p>
+      <p>It was a sunny, sandy day.</p>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Reading Comprehension 🤔</div>
+    <div class="exercise-instruction">Look back at the story. Write your answer on the line.</div>
+    <ul class="q-list">
+      <li><span class="q">Where did Pam and Sam go?</span><span class="answer-line"></span></li>
+      <li><span class="q">How was the sand?</span><span class="answer-line"></span></li>
+      <li><span class="q">What did Sam make?</span><span class="answer-line"></span></li>
+      <li><span class="q">What did Pam get?</span><span class="answer-line"></span></li>
+      <li><span class="q">How was the day?</span><span class="answer-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) True or False? ✅ ❌</div>
+    <div class="exercise-instruction">Read each sentence. Circle <strong>T</strong> for true or <strong>F</strong> for false.</div>
+    <ul class="tf-list">
+      <li><span class="sent">They went to the lake.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">The sand was hot.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">The sea was blue.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">Pam made a sand cake.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+      <li><span class="sent">It was a sunny day.</span>
+        <span class="tf-boxes"><span class="tf-box"><span class="tf-circle"></span>T</span><span class="tf-box"><span class="tf-circle"></span>F</span></span>
+      </li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🏖️ Sentences &amp; Stories: The Beach</h1><p>Keep going — you are doing great!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Pick the Word ✏️</div>
+    <div class="exercise-instruction">Pick the word that fits. Write it on the line.</div>
+    <ul class="cloze-list">
+      <li>The sand is <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">hot</span><span class="choice">hat</span></span>
+      </li>
+      <li>The sea is <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">blue</span><span class="choice">bee</span></span>
+      </li>
+      <li>Sam made a sand <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">cake</span><span class="choice">cane</span></span>
+      </li>
+      <li>Pam got a <span class="cloze-blank"></span>.
+        <span class="choices"><span class="choice">shell</span><span class="choice">spell</span></span>
+      </li>
+      <li>It is a <span class="cloze-blank"></span> day.
+        <span class="choices"><span class="choice">sandy</span><span class="choice">sleepy</span></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Build a Sentence ✍️</div>
+    <div class="exercise-instruction">Put the words in order to make a sentence.</div>
+    <ul class="build-list">
+      <li>
+        <div class="word-bank"><span class="bank-word">beach</span><span class="bank-word">to</span><span class="bank-word">the</span><span class="bank-word">went</span><span class="bank-word">We</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+      <li>
+        <div class="word-bank"><span class="bank-word">blue</span><span class="bank-word">sea</span><span class="bank-word">is</span><span class="bank-word">The</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+      <li>
+        <div class="word-bank"><span class="bank-word">sand</span><span class="bank-word">made</span><span class="bank-word">cake</span><span class="bank-word">I</span><span class="bank-word">a</span></div>
+        <div style="border-bottom:2px solid #333; height:22px; margin-top:4px;"></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Read and Draw 🎨</div>
+    <div class="exercise-instruction">Read the sentence, then draw a picture of it.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:17px;"><strong>"A blue sea, hot sand, and a sand cake on the beach."</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> 1. to the beach · 2. hot · 3. a sand cake · 4. a shell · 5. sunny and sandy ·
+    <strong>Ex.3:</strong> F, T, T, F, T ·
+    <strong>Ex.4:</strong> hot, blue, cake, shell, sandy ·
+    <strong>Ex.5:</strong> We went to the beach. / The sea is blue. / I made a sand cake.
+  </div>
+</div>
+</body>
+</html>

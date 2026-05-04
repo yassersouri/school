@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Counting Forward</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #2e86c1;
+      --accent: #5dade2;
+      --accent-bg: #eaf6fd;
+      --title-color: #1a5276;
+    }
+    .page-header p { font-size: 12px; color: #777; }
+    .number-track { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 8px 0; }
+    .num-cell { width: 46px; height: 46px; border: 2px solid #5dade2; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; background: #fff; }
+    .num-cell.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .num-cell.highlight { background: #abebc6; border-color: #27ae60; }
+    .caterpillar { display: flex; align-items: center; justify-content: center; gap: 0; margin: 10px 0; flex-wrap: wrap; }
+    .cat-segment { width: 52px; height: 52px; border-radius: 50%; border: 3px solid #27ae60; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #abebc6; margin-left: -6px; position: relative; }
+    .cat-segment:first-child { margin-left: 0; }
+    .cat-segment.head { background: #f9e79f; border-color: #f1c40f; width: 58px; height: 58px; font-size: 14px; }
+    .cat-segment.blank { background: #fff; border-style: dashed; border-color: #e74c3c; }
+    .rocket-path { display: flex; flex-direction: column; gap: 8px; }
+    .rocket-row { display: flex; align-items: center; gap: 10px; font-size: 16px; }
+    .rocket-row .label { font-weight: bold; color: #8e44ad; min-width: 60px; }
+    .nl-tick { display: flex; flex-direction: column; align-items: center; width: 44px; }
+    .nl-tick .bar { width: 2px; height: 18px; background: #5dade2; }
+    .nl-tick .num { font-size: 16px; font-weight: bold; margin-top: 4px; }
+    .nl-tick .num.blank-nl { border-bottom: 2px solid #e74c3c; color: transparent; min-width: 24px; display: inline-block; }
+    .nl-line { width: 100%; height: 3px; background: #5dade2; margin-top: -32px; margin-bottom: 14px; border-radius: 2px; }
+    .pond-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 8px 0; }
+    .lily { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid #27ae60; background: #d5f5e3; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+    .lily.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+    .maze-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
+    .maze-cell { aspect-ratio: 1; border: 2px solid #d5dbdb; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; background: #fafafa; }
+    .maze-cell.path { background: #abebc6; border-color: #27ae60; }
+    .maze-cell.blank-maze { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════ PAGE 1 ═══════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🚀 Counting Forward! 🚀</h1>
+    <p>Let's blast off with numbers!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <!-- Exercise 1: Number Track -->
+  <div class="exercise">
+    <div class="exercise-title">1) Fill the Number Track 🛤️</div>
+    <div class="exercise-instruction">Write the missing numbers. Start at 1 and count forward!</div>
+    <div class="number-track">
+      <div class="num-cell">1</div>
+      <div class="num-cell">2</div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell">4</div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell">6</div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell">8</div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell">11</div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell">13</div>
+      <div class="num-cell blank"></div>
+      <div class="num-cell">15</div>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Caterpillar -->
+  <div class="exercise">
+    <div class="exercise-title">2) Counting Caterpillar 🐛</div>
+    <div class="exercise-instruction">This caterpillar is hungry for numbers! Fill in the blanks on its body.</div>
+    <div class="caterpillar">
+      <div class="cat-segment head">🐛 20</div>
+      <div class="cat-segment">21</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">23</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">26</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">28</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">30</div>
+    </div>
+    <br/>
+    <div class="caterpillar">
+      <div class="cat-segment head">🐛 45</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">47</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">50</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">52</div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment blank"></div>
+      <div class="cat-segment">55</div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: What Comes Next? -->
+  <div class="exercise">
+    <div class="exercise-title">3) What Comes Next? 🔮</div>
+    <div class="exercise-instruction">Write the next three numbers in each row.</div>
+    <div class="rocket-path">
+      <div class="rocket-row"><span class="label">🌟 a)</span> 33, 34, 35, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="rocket-row"><span class="label">🌟 b)</span> 57, 58, 59, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="rocket-row"><span class="label">🌟 c)</span> 78, 79, 80, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="rocket-row"><span class="label">🌟 d)</span> 96, 97, 98, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="rocket-row"><span class="label">🌟 e)</span> 108, 109, 110, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answers:</strong> 1) 3, 5, 7, 9, 10, 12, 14 &nbsp;|&nbsp; 2) Row 1: 22, 24, 25, 27, 29 — Row 2: 46, 48, 49, 51, 53, 54 &nbsp;|&nbsp; 3) a) 36, 37, 38 b) 60, 61, 62 c) 81, 82, 83 d) 99, 100, 101 e) 111, 112, 113
+  </div>
+</div>
+
+<!-- ═══════════ PAGE 2 ═══════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🚀 Counting Forward! 🚀</h1>
+    <p>Keep going — you're a counting star! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 4: Lily-Pad Pond -->
+  <div class="exercise">
+    <div class="exercise-title">4) Frog's Lily-Pad Pond 🐸</div>
+    <div class="exercise-instruction">Help the frog hop across the pond! Fill in the missing numbers from 61 to 75.</div>
+    <div class="pond-grid">
+      <div class="lily">61</div>
+      <div class="lily blank"></div>
+      <div class="lily">63</div>
+      <div class="lily blank"></div>
+      <div class="lily">65</div>
+      <div class="lily blank"></div>
+      <div class="lily">67</div>
+      <div class="lily blank"></div>
+      <div class="lily blank"></div>
+      <div class="lily">70</div>
+      <div class="lily blank"></div>
+      <div class="lily">72</div>
+      <div class="lily blank"></div>
+      <div class="lily blank"></div>
+      <div class="lily">75</div>
+    </div>
+  </div>
+
+  <!-- Exercise 5: Hundred Chart Maze -->
+  <div class="exercise">
+    <div class="exercise-title">5) Number Maze 🏰</div>
+    <div class="exercise-instruction">Count from 1 to 30. Color the path by filling in the missing numbers, then trace the path!</div>
+    <div class="maze-grid">
+      <div class="maze-cell path">1</div>
+      <div class="maze-cell path">2</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">4</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell">42</div>
+      <div class="maze-cell">58</div>
+      <div class="maze-cell">73</div>
+      <div class="maze-cell">91</div>
+      <div class="maze-cell">36</div>
+
+      <div class="maze-cell">88</div>
+      <div class="maze-cell">44</div>
+      <div class="maze-cell">71</div>
+      <div class="maze-cell">53</div>
+      <div class="maze-cell path">6</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">8</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">10</div>
+      <div class="maze-cell">67</div>
+
+      <div class="maze-cell">55</div>
+      <div class="maze-cell">32</div>
+      <div class="maze-cell">64</div>
+      <div class="maze-cell">47</div>
+      <div class="maze-cell">82</div>
+      <div class="maze-cell">39</div>
+      <div class="maze-cell">76</div>
+      <div class="maze-cell">50</div>
+      <div class="maze-cell path">11</div>
+      <div class="maze-cell blank-maze"></div>
+
+      <div class="maze-cell">41</div>
+      <div class="maze-cell">63</div>
+      <div class="maze-cell">87</div>
+      <div class="maze-cell">34</div>
+      <div class="maze-cell">79</div>
+      <div class="maze-cell">56</div>
+      <div class="maze-cell">48</div>
+      <div class="maze-cell">93</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">14</div>
+
+      <div class="maze-cell">72</div>
+      <div class="maze-cell">38</div>
+      <div class="maze-cell">51</div>
+      <div class="maze-cell">66</div>
+      <div class="maze-cell">84</div>
+      <div class="maze-cell">43</div>
+      <div class="maze-cell path">18</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">16</div>
+      <div class="maze-cell blank-maze"></div>
+
+      <div class="maze-cell">62</div>
+      <div class="maze-cell">45</div>
+      <div class="maze-cell">77</div>
+      <div class="maze-cell">35</div>
+      <div class="maze-cell">90</div>
+      <div class="maze-cell">54</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">20</div>
+      <div class="maze-cell">68</div>
+      <div class="maze-cell">33</div>
+
+      <div class="maze-cell">85</div>
+      <div class="maze-cell">37</div>
+      <div class="maze-cell path">24</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">22</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell">46</div>
+      <div class="maze-cell">78</div>
+      <div class="maze-cell">59</div>
+      <div class="maze-cell">40</div>
+
+      <div class="maze-cell">69</div>
+      <div class="maze-cell">52</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">26</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">28</div>
+      <div class="maze-cell blank-maze"></div>
+      <div class="maze-cell path">30</div>
+      <div class="maze-cell">83</div>
+      <div class="maze-cell">🏆</div>
+    </div>
+  </div>
+
+  <!-- Exercise 6: Count and Connect -->
+  <div class="exercise">
+    <div class="exercise-title">6) Rocket Launch Countdown UP! 🚀</div>
+    <div class="exercise-instruction">Count forward from the numbers given. Fill in every blank to launch the rocket!</div>
+    <div class="rocket-path">
+      <div class="rocket-row"><span class="label">🔥 a)</span> 85, <span class="fill-box"></span>, 87, <span class="fill-box"></span>, <span class="fill-box"></span>, 90, <span class="fill-box"></span>, <span class="fill-box"></span></div>
+      <div class="rocket-row"><span class="label">🔥 b)</span> <span class="fill-box"></span>, 112, <span class="fill-box"></span>, 114, <span class="fill-box"></span>, <span class="fill-box"></span>, 117, <span class="fill-box"></span></div>
+      <div class="rocket-row"><span class="label">🔥 c)</span> 95, <span class="fill-box"></span>, <span class="fill-box"></span>, 98, <span class="fill-box"></span>, <span class="fill-box"></span>, 101, <span class="fill-box"></span></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answers:</strong> 4) 62, 64, 66, 68, 69, 71, 73, 74 &nbsp;|&nbsp; 5) 3, 5, 7, 9, 12, 13, 15, 17, 19, 21, 23, 25, 27, 29 &nbsp;|&nbsp; 6) a) 86, 88, 89, 91, 92 b) 111, 113, 115, 116, 118 c) 96, 97, 99, 100, 102
+  </div>
+</div>
+
+</body>
+</html>

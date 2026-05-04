@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ten-Frame Regrouping Exercises</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #7b1fa2;
+      --accent-bg: #faf2fc;
+    }
+    .page-header .sub { font-size: 11px; color: #999; }
+    .name-line { font-size: 12px; color: #777; }
+    .name-line span { display: inline-block; border-bottom: 1.5px solid #999; width: 160px; margin-left: 4px; }
+    .ex-equation { font-size: 18px; font-weight: bold; color: #4a148c; text-align: center; margin-bottom: 5px; }
+    .ans-blank { display: inline-block; border-bottom: 2.5px solid #c2185b; width: 34px; }
+    .ex-frames { display: flex; align-items: flex-end; justify-content: center; gap: 5px; }
+    .frame-group { text-align: center; }
+    .frame-label { font-size: 10px; font-weight: bold; margin-bottom: 2px; }
+    .frame-label.purple { color: #7b1fa2; }
+    .frame-label.teal { color: #00897b; }
+    .frame-label.pink { color: #c2185b; }
+    .frame-label.gray { color: #999; }
+    .ex-op { font-size: 18px; font-weight: bold; color: #555; padding: 0 1px; align-self: center; }
+    .ex-arrow { font-size: 20px; color: #c2185b; padding: 0 1px; align-self: center; }
+    .ten-frame { display: inline-grid; grid-template-columns: repeat(5, 1fr); gap: 2px; border: 2px solid #7b1fa2; border-radius: 6px; padding: 3px; background: #f3e5f5; }
+    .ten-frame.teal { border-color: #00897b; background: #e0f2f1; }
+    .ten-frame.pink { border-color: #c2185b; background: #fce4ec; }
+    .tf-cell { width: 24px; height: 24px; border: 1px solid #ce93d8; border-radius: 3px; background: #fff; }
+    .ten-frame.teal .tf-cell { border-color: #80cbc4; }
+    .ten-frame.pink .tf-cell { border-color: #f48fb1; }
+    .instruction { font-size: 11px; color: #555; font-style: italic; text-align: center; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔄 Ten-Frame Regrouping</h1>
+    <div class="sub">Grade 1 · Draw dots, make a 10, then add the rest</div>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+  <div class="name-line">Name: <span></span></div>
+  <div class="instruction">Draw dots for each number. Then regroup to make 10 + leftover. Write the answer!</div>
+
+  <!-- Problem 1: 8 + 5 = 13 -->
+  <div class="exercise">
+    <div class="ex-equation">① &nbsp; 8 + 5 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 8</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 5</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 2: 7 + 6 = 13 -->
+  <div class="exercise">
+    <div class="ex-equation">② &nbsp; 7 + 6 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 7</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 6</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 3: 9 + 4 = 13 -->
+  <div class="exercise">
+    <div class="ex-equation">③ &nbsp; 9 + 4 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 9</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 4</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 4: 6 + 8 = 14 -->
+  <div class="exercise">
+    <div class="ex-equation">④ &nbsp; 6 + 8 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 6</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 8</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 5: 5 + 7 = 12 -->
+  <div class="exercise">
+    <div class="ex-equation">⑤ &nbsp; 5 + 7 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 5</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 7</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Tip:</strong> Draw dots for each number first. Then fill the pink "make 10" frame with 10 dots. Put what's left in the last frame. <strong>10 + leftover = answer!</strong>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔄 Ten-Frame Regrouping</h1>
+    <div class="sub">More Practice</div>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Problem 6: 9 + 7 = 16 -->
+  <div class="exercise">
+    <div class="ex-equation">⑥ &nbsp; 9 + 7 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 9</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 7</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 7: 8 + 8 = 16 -->
+  <div class="exercise">
+    <div class="ex-equation">⑦ &nbsp; 8 + 8 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 8</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 8</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 8: 7 + 9 = 16 -->
+  <div class="exercise">
+    <div class="ex-equation">⑧ &nbsp; 7 + 9 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 7</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 9</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 9: 6 + 5 = 11 -->
+  <div class="exercise">
+    <div class="ex-equation">⑨ &nbsp; 6 + 5 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 6</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 5</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <!-- Problem 10: 9 + 9 = 18 -->
+  <div class="exercise">
+    <div class="ex-equation">⑩ &nbsp; 9 + 9 = <span class="ans-blank"></span></div>
+    <div class="ex-frames">
+      <div class="frame-group"><div class="frame-label purple">draw 9</div><div class="ten-frame"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label teal">draw 9</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-arrow">→</div>
+      <div class="frame-group"><div class="frame-label pink">make 10</div><div class="ten-frame pink"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+      <div class="ex-op">+</div>
+      <div class="frame-group"><div class="frame-label gray">leftover</div><div class="ten-frame teal"><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div><div class="tf-cell"></div></div></div>
+    </div>
+  </div>
+
+  <div style="border-top: 2px dashed #ccc; padding-top: 6px; font-size: 9px; color: #aaa;">
+    <strong>Answers:</strong> ① 13 &nbsp; ② 13 &nbsp; ③ 13 &nbsp; ④ 14 &nbsp; ⑤ 12 &nbsp; ⑥ 16 &nbsp; ⑦ 16 &nbsp; ⑧ 16 &nbsp; ⑨ 11 &nbsp; ⑩ 18
+  </div>
+</div>
+
+</body>
+</html>

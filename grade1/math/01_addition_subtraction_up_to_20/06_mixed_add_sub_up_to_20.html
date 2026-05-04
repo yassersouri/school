@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mixed Addition &amp; Subtraction Up to 20</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #00695c;
+      --accent: #80cbc4;
+      --accent-bg: #e0f2f1;
+      --title-color: #004d40;
+      --answer-key-color: #004d40;
+      --wp-bg: #f0faf9;
+    }
+    .problem-card.add-card { color: #2e7d32; border-color: #81c784; }
+    .problem-card.sub-card { color: #c62828; border-color: #ef9a9a; }
+    .op-circle { display: inline-block; width: 28px; height: 28px; border: 2px solid #333; border-radius: 50%; text-align: center; line-height: 24px; font-size: 16px; margin: 0 2px; }
+    .compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .compare-card { background: #fff; border: 2px solid #80cbc4; border-radius: 10px; padding: 10px; text-align: center; font-size: 18px; font-weight: bold; color: #00695c; display: flex; align-items: center; justify-content: center; gap: 6px; }
+    .fact-family-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .fact-family-card { background: #fff; border: 2px solid #80cbc4; border-radius: 12px; padding: 10px; }
+    .ff-numbers { text-align: center; font-size: 18px; font-weight: bold; color: #00695c; margin-bottom: 8px; }
+    .ff-equations { display: flex; flex-direction: column; gap: 4px; }
+    .ff-eq { font-size: 15px; font-weight: bold; display: flex; align-items: center; gap: 4px; }
+    .vertical-problem.vp-add { color: #2e7d32; }
+    .vertical-problem.vp-sub { color: #c62828; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔀 Mixed Addition &amp; Subtraction — Up to 20</h1>
+    <p>Read the signs carefully! Numbers go up to <strong>20</strong>.</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <!-- Exercise 1: Mixed Solve -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Add or Subtract — Watch the Sign! 👀</div>
+    <div class="exercise-instruction">Look at the ➕ or ➖ sign, then solve.</div>
+    <div class="problem-grid">
+      <div class="problem-card add-card">7 + 8 = <span class="blank"></span></div>
+      <div class="problem-card sub-card">15 − 6 = <span class="blank"></span></div>
+      <div class="problem-card add-card">9 + 9 = <span class="blank"></span></div>
+      <div class="problem-card sub-card">18 − 9 = <span class="blank"></span></div>
+      <div class="problem-card sub-card">14 − 7 = <span class="blank"></span></div>
+      <div class="problem-card add-card">6 + 8 = <span class="blank"></span></div>
+      <div class="problem-card sub-card">20 − 11 = <span class="blank"></span></div>
+      <div class="problem-card add-card">5 + 9 = <span class="blank"></span></div>
+      <div class="problem-card add-card">8 + 6 = <span class="blank"></span></div>
+      <div class="problem-card sub-card">16 − 8 = <span class="blank"></span></div>
+      <div class="problem-card sub-card">17 − 9 = <span class="blank"></span></div>
+      <div class="problem-card add-card">11 + 7 = <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 2: Vertical Mixed -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Vertical — Mixed! ⬇️</div>
+    <div class="exercise-instruction">Some add, some subtract. Watch the sign!</div>
+    <div class="vertical-grid">
+      <div class="vertical-problem vp-add">
+        <div>9</div>
+        <div>+ 7</div>
+        <div class="vp-line"></div>
+        <div class="vp-ans"></div>
+      </div>
+      <div class="vertical-problem vp-sub">
+        <div>15</div>
+        <div>− 8</div>
+        <div class="vp-line"></div>
+        <div class="vp-ans"></div>
+      </div>
+      <div class="vertical-problem vp-add">
+        <div>8</div>
+        <div>+ 9</div>
+        <div class="vp-line"></div>
+        <div class="vp-ans"></div>
+      </div>
+      <div class="vertical-problem vp-sub">
+        <div>20</div>
+        <div>− 8</div>
+        <div class="vp-line"></div>
+        <div class="vp-ans"></div>
+      </div>
+      <div class="vertical-problem vp-sub">
+        <div>13</div>
+        <div>− 5</div>
+        <div class="vp-line"></div>
+        <div class="vp-ans"></div>
+      </div>
+      <div class="vertical-problem vp-add">
+        <div>12</div>
+        <div>+ 6</div>
+        <div class="vp-line"></div>
+        <div class="vp-ans"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Choose the Sign -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Choose + or − ❓</div>
+    <div class="exercise-instruction">Write + or − in the circle to make the equation true.</div>
+    <div class="compare-grid">
+      <div class="compare-card">8 <span class="op-circle"></span> 7 = 15</div>
+      <div class="compare-card">17 <span class="op-circle"></span> 9 = 8</div>
+      <div class="compare-card">9 <span class="op-circle"></span> 6 = 15</div>
+      <div class="compare-card">20 <span class="op-circle"></span> 4 = 16</div>
+      <div class="compare-card">11 <span class="op-circle"></span> 8 = 19</div>
+      <div class="compare-card">16 <span class="op-circle"></span> 7 = 9</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔀 Mixed Addition &amp; Subtraction — Up to 20</h1>
+    <p>Almost there — you are a math whiz! 🧙</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Exercise 4: Fact Families -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">4</span> Fact Families 🏠</div>
+    <div class="exercise-instruction">Use the three numbers to write 2 addition and 2 subtraction facts.</div>
+    <div class="fact-family-grid">
+      <div class="fact-family-card">
+        <div class="ff-numbers">7, 8, 15</div>
+        <div class="ff-equations">
+          <div class="ff-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></div>
+        </div>
+      </div>
+      <div class="fact-family-card">
+        <div class="ff-numbers">6, 9, 15</div>
+        <div class="ff-equations">
+          <div class="ff-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></div>
+        </div>
+      </div>
+      <div class="fact-family-card">
+        <div class="ff-numbers">5, 8, 13</div>
+        <div class="ff-equations">
+          <div class="ff-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></div>
+          <div class="ff-eq"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 5: Missing Number Mixed -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">5</span> Find the Missing Number 🔍</div>
+    <div class="exercise-instruction">What number goes in the blank?</div>
+    <div class="problem-grid">
+      <div class="problem-card add-card"><span class="blank"></span> + 9 = 16</div>
+      <div class="problem-card sub-card">18 − <span class="blank"></span> = 11</div>
+      <div class="problem-card add-card">8 + <span class="blank"></span> = 17</div>
+      <div class="problem-card sub-card"><span class="blank"></span> − 6 = 14</div>
+      <div class="problem-card sub-card">15 − <span class="blank"></span> = 7</div>
+      <div class="problem-card add-card"><span class="blank"></span> + 7 = 13</div>
+      <div class="problem-card add-card">9 + <span class="blank"></span> = 18</div>
+      <div class="problem-card sub-card"><span class="blank"></span> − 8 = 12</div>
+    </div>
+  </div>
+
+  <!-- Exercise 6: Word Problems -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">6</span> Word Problems 📖</div>
+    <div class="exercise-instruction">Read each story. Decide if you add or subtract, then solve.</div>
+    <ul class="word-problem-list">
+      <li>1. Lily had 16 stickers. She gave 9 to her friend. How many does she have left? <div class="wp-answer"><span class="blank"></span> ○ <span class="blank"></span> = <span class="blank"></span></div></li>
+      <li>2. There are 8 red cars and 7 blue cars. How many cars in all? <div class="wp-answer"><span class="blank"></span> ○ <span class="blank"></span> = <span class="blank"></span></div></li>
+      <li>3. 20 kids are playing. 12 go inside. How many are still outside? <div class="wp-answer"><span class="blank"></span> ○ <span class="blank"></span> = <span class="blank"></span></div></li>
+      <li>4. A baker made 9 muffins in the morning and 8 in the afternoon. How many muffins total? <div class="wp-answer"><span class="blank"></span> ○ <span class="blank"></span> = <span class="blank"></span></div></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> 15, 9, 18, 9, 7, 14, 9, 14, 14, 8, 8, 18 &nbsp;
+    <strong>Ex.2:</strong> 16, 7, 17, 12, 8, 18 &nbsp;
+    <strong>Ex.3:</strong> +, −, +, −, +, − &nbsp;
+    <strong>Ex.4:</strong> 7+8=15 / 8+7=15 / 15−7=8 / 15−8=7 | 6+9=15 / 9+6=15 / 15−6=9 / 15−9=6 | 5+8=13 / 8+5=13 / 13−5=8 / 13−8=5 &nbsp;
+    <strong>Ex.5:</strong> 7, 7, 9, 20, 8, 6, 9, 20 &nbsp;
+    <strong>Ex.6:</strong> 16−9=7, 8+7=15, 20−12=8, 9+8=17
+  </div>
+</div>
+
+</body>
+</html>

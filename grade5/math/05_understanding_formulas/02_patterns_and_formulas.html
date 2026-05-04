@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patterns &amp; Formulas — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffcc80;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .sub-table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 13px; }
+    .sub-table th { background: #e65100; color: #fff; padding: 5px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+    .sub-table td { border: 1.5px solid #ffcc80; padding: 5px 8px; text-align: center; }
+    .sub-table .highlight { background: #fff3e0; font-weight: bold; color: #bf360c; }
+    .pattern-row { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 15px; font-weight: bold; color: #e65100; margin: 4px 0; flex-wrap: wrap; }
+    .pattern-num { background: #fff; border: 2px solid #ffcc80; border-radius: 6px; padding: 4px 8px; min-width: 32px; text-align: center; font-size: 14px; }
+    .pattern-num.mystery { background: #fff3e0; border-style: dashed; color: #bf360c; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔢 Patterns &amp; Formulas</h1>
+    <p>Lesson 2 — From <strong>patterns</strong> to <strong>formulas</strong></p>
+  </div>
+  <div class="page-num">Page 1 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 What Does "…" Mean?</div>
+    <div class="concept-text">
+      When you see three dots <strong>…</strong> in math, they mean <strong>"keep going in the same pattern."</strong><br><br>
+      For example:<br>
+      <strong>1, 2, 3, …, 10</strong> means "1, 2, 3, 4, 5, 6, 7, 8, 9, 10" — all the numbers up to 10.<br>
+      <strong>2, 4, 6, …</strong> means "2, 4, 6, 8, 10, 12, …" — keep going forever by 2s!
+    </div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> What Comes Next? 🔮</div>
+    <div class="exercise-instruction">Figure out the pattern, then write the next three numbers.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">1</span>
+          <span class="pattern-num">2</span>
+          <span class="pattern-num">3</span>
+          <span class="pattern-num">4</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">Rule: add <span class="blank" style="width:30px;"></span> each time</div>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">2</span>
+          <span class="pattern-num">4</span>
+          <span class="pattern-num">6</span>
+          <span class="pattern-num">8</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">Rule: add <span class="blank" style="width:30px;"></span> each time</div>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">1</span>
+          <span class="pattern-num">3</span>
+          <span class="pattern-num">5</span>
+          <span class="pattern-num">7</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">Rule: add <span class="blank" style="width:30px;"></span> each time</div>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">5</span>
+          <span class="pattern-num">10</span>
+          <span class="pattern-num">15</span>
+          <span class="pattern-num">20</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">Rule: add <span class="blank" style="width:30px;"></span> each time</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">🧩 From Pattern to Formula</div>
+    <div class="concept-text">
+      A <strong>formula</strong> is a shortcut that lets you jump straight to <em>any</em> number in the pattern — without listing them all!<br><br>
+      <strong>Even numbers:</strong> 2, 4, 6, 8, … → The <em>n</em>th even number = <strong>2 × n</strong>.<br>
+      <strong>Odd numbers:</strong> 1, 3, 5, 7, … → The <em>n</em>th odd number = <strong>2 × n − 1</strong>.
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Test the Formulas 🧪</div>
+    <div class="exercise-instruction">Use the formulas to fill in the tables. Check that they match the patterns!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:8px;">
+        <div style="text-align:center; font-weight:bold; color:#e65100; margin-bottom:4px; font-size:12px;">Even numbers: 2 × n</div>
+        <table class="sub-table" style="font-size:12px;">
+          <tr><th>n</th><th>2 × n</th></tr>
+          <tr><td>1</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>2</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>3</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>4</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>5</td><td><span class="blank" style="width:35px;"></span></td></tr>
+        </table>
+      </div>
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:8px;">
+        <div style="text-align:center; font-weight:bold; color:#e65100; margin-bottom:4px; font-size:12px;">Odd numbers: 2 × n − 1</div>
+        <table class="sub-table" style="font-size:12px;">
+          <tr><th>n</th><th>2 × n − 1</th></tr>
+          <tr><td>1</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>2</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>3</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>4</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>5</td><td><span class="blank" style="width:35px;"></span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔢 Patterns &amp; Formulas</h1>
+    <p>Jumping ahead with formulas — like a superpower! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🚀 Why Formulas Are Powerful</div>
+    <div class="concept-text">
+      Without a formula, finding the 100th odd number means listing all of them:<br>
+      1, 3, 5, 7, 9, 11, 13, … (counting 100 numbers — that takes forever!)<br><br>
+      With the formula <strong>2 × n − 1</strong>, you jump straight there:<br>
+      2 × 100 − 1 = 200 − 1 = <strong>199</strong>. Done! ⚡
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Jump Ahead! 🚀</div>
+    <div class="exercise-instruction">Use the formula to find the answer — no need to list them all!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>7th</strong> even number<br>
+        <span class="mini-label">Formula: 2 × n</span><br>
+        2 × 7 = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>20th</strong> even number<br>
+        <span class="mini-label">Formula: 2 × n</span><br>
+        2 × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>7th</strong> odd number<br>
+        <span class="mini-label">Formula: 2 × n − 1</span><br>
+        2 × 7 − 1 = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>20th</strong> odd number<br>
+        <span class="mini-label">Formula: 2 × n − 1</span><br>
+        2 × <span class="blank"></span> − 1 = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 4 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">4</span> Match the Formula 🎯</div>
+    <div class="exercise-instruction">Each pattern below follows a formula. Write the formula using n. The first one is done for you.</div>
+    <table class="sub-table">
+      <tr><th>Pattern</th><th>1st</th><th>2nd</th><th>3rd</th><th>4th</th><th>5th</th><th>Formula</th></tr>
+      <tr>
+        <td style="font-size:11px;">Multiples of 3</td>
+        <td>3</td><td>6</td><td>9</td><td>12</td><td>15</td>
+        <td class="highlight">3 × n</td>
+      </tr>
+      <tr>
+        <td style="font-size:11px;">Multiples of 4</td>
+        <td>4</td><td>8</td><td>12</td><td>16</td><td>20</td>
+        <td><span class="blank"></span></td>
+      </tr>
+      <tr>
+        <td style="font-size:11px;">Add-one pattern</td>
+        <td>2</td><td>3</td><td>4</td><td>5</td><td>6</td>
+        <td><span class="blank"></span></td>
+      </tr>
+      <tr>
+        <td style="font-size:11px;">Squares</td>
+        <td>1</td><td>4</td><td>9</td><td>16</td><td>25</td>
+        <td><span class="blank"></span></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔢 Patterns &amp; Formulas</h1>
+    <p>Say it in your own words! 💬</p>
+  </div>
+  <div class="page-num">Page 3 of 3</div>
+
+  <!-- Exercise 5 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">5</span> Say It in Words 💬</div>
+    <div class="exercise-instruction">Write what each formula does in plain English. The first one is done for you.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:12px;">
+        <strong>n + 10</strong><br>
+        <em style="color:#888;">"Add 10 to the number."</em>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:12px;">
+        <strong>2 × n</strong><br>
+        <span class="mini-label">Your words:</span><br>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:12px;">
+        <strong>n × n</strong><br>
+        <span class="mini-label">Your words:</span><br>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:12px;">
+        <strong>2 × n − 1</strong><br>
+        <span class="mini-label">Your words:</span><br>
+        <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 6 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">6</span> Find the Big Numbers 🌟</div>
+    <div class="exercise-instruction">Use the formula to find each answer without listing all the numbers.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>50th</strong> even number<br>
+        <span class="mini-label">Formula: 2 × n</span><br>
+        2 × 50 = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>50th</strong> odd number<br>
+        <span class="mini-label">Formula: 2 × n − 1</span><br>
+        2 × 50 − 1 = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>100th</strong> even number<br>
+        <span class="mini-label">Formula: 2 × n</span><br>
+        2 × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        The <strong>100th</strong> odd number<br>
+        <span class="mini-label">Formula: 2 × n − 1</span><br>
+        2 × <span class="blank"></span> − 1 = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 5,6,7 (add 1); 10,12,14 (add 2); 9,11,13 (add 2); 25,30,35 (add 5) —
+    2) Even: 2,4,6,8,10 · Odd: 1,3,5,7,9 —
+    3) 14, 40, 13, 39 —
+    4) 4×n, n+1, n×n —
+    5) "Double the number"; "Multiply the number by itself"; "Double the number and subtract 1" —
+    6) 100, 99, 200, 199
+  </div>
+</div>
+</body>
+</html>

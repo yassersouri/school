@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Picture Proofs — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #6a1b9a;
+      --accent: #ce93d8;
+      --accent-bg: #f3e5f5;
+      --title-color: #4a148c;
+      --answer-key-color: #4a148c;
+    }
+    .concept-box { border: 2.5px solid #6a1b9a; border-radius: 14px; padding: 16px 18px; background: #f3e5f5; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #4a148c; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .picture-proof { background: #fff; border: 2.5px solid #ce93d8; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+    .pp-title { font-size: 15px; font-weight: bold; color: #6a1b9a; margin-bottom: 4px; text-align: center; }
+    .pp-subtitle { font-size: 12px; color: #888; text-align: center; margin-bottom: 10px; font-style: italic; }
+
+    /* Staircase grid */
+    .staircase-area { display: flex; align-items: flex-end; justify-content: center; gap: 2px; margin: 8px 0; }
+    .stair-col { display: flex; flex-direction: column; gap: 2px; }
+    .stair-cell { width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; }
+    .stair-cell.a { background: #6a1b9a; }
+    .stair-cell.b { background: #ab47bc; }
+    .stair-cell.c { background: #ce93d8; }
+    .stair-cell.mirror { background: #ff8a65; }
+
+    /* L-shape grid for odd numbers proof */
+    .square-grid { display: inline-grid; gap: 2px; margin: 8px; }
+    .sq-cell { width: 24px; height: 24px; border-radius: 3px; }
+    .sq-cell.filled { background: #6a1b9a; }
+    .sq-cell.new { background: #e65100; border: 2px solid #bf360c; }
+    .sq-cell.empty { background: #f3e5f5; border: 1px dashed #ce93d8; }
+
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 8px; line-height: 1.5; }
+    .formula-box { text-align: center; font-size: 18px; font-weight: bold; color: #6a1b9a; padding: 8px; background: #fff; border: 2px solid #ce93d8; border-radius: 10px; margin: 8px 0; }
+    .claim-card { background: #fff; border: 2px solid #ce93d8; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2.2; }
+    .draw-box { min-height: 100px; border: 2px dashed #ce93d8; border-radius: 10px; padding: 10px; margin: 8px 0; background: #faf5fc; }
+    .draw-label { font-size: 11px; color: #888; font-style: italic; }
+    .grid-row { display: flex; gap: 20px; justify-content: center; align-items: flex-end; flex-wrap: wrap; margin: 10px 0; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 Picture Proofs</h1>
+    <p>Lesson 4 — Prove math facts with <strong>pictures</strong>!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 Seeing Is Believing (and Proving!)</div>
+    <div class="concept-text">
+      Sometimes the best way to prove something is to <strong>draw a picture</strong>. A good picture can show you WHY a formula works — not just THAT it works. These are called <strong>visual proofs</strong> or <strong>proofs without words</strong>.
+    </div>
+  </div>
+
+  <!-- Picture Proof 1: Sum of first n odd numbers = n² -->
+  <div class="picture-proof">
+    <div class="pp-title">Picture Proof 1: Odd Numbers Build Perfect Squares</div>
+    <div class="pp-subtitle">1 + 3 + 5 + 7 + … = a perfect square!</div>
+
+    <div class="grid-row">
+      <!-- 1×1 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(1, 24px);">
+          <div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;"><strong>1</strong> = 1²</div>
+      </div>
+
+      <!-- 2×2 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(2, 24px);">
+          <div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell new"></div><div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;">1+<strong>3</strong> = 2²</div>
+      </div>
+
+      <!-- 3×3 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(3, 24px);">
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell new"></div><div class="sq-cell new"></div><div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;">1+3+<strong>5</strong> = 3²</div>
+      </div>
+
+      <!-- 4×4 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(4, 24px);">
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell new"></div><div class="sq-cell new"></div><div class="sq-cell new"></div><div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;">1+3+5+<strong>7</strong> = 4²</div>
+      </div>
+    </div>
+
+    <div class="proof-explain">
+      Each odd number (orange L-shape) wraps around the previous square to make a bigger square!<br>
+      The <em>n</em>th odd number is 2<em>n</em>−1, and it adds exactly enough to go from (<em>n</em>−1)² to <em>n</em>².
+    </div>
+    <div class="formula-box">1 + 3 + 5 + 7 + ⋯ + (2n−1) = n²</div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Continue the Pattern 🔲</div>
+    <div class="exercise-instruction">Use the L-shape pattern to answer without calculating each addition!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">1 + 3 + 5 + 7 + 9 = <span class="blank"></span><br><span style="font-size:11px;color:#888;">That's 5 odd numbers → <span class="blank"></span>²</span></div>
+      <div class="problem-card" style="font-size:14px;">1 + 3 + 5 + 7 + 9 + 11 = <span class="blank"></span><br><span style="font-size:11px;color:#888;">That's 6 odd numbers → <span class="blank"></span>²</span></div>
+      <div class="problem-card" style="font-size:14px;">1 + 3 + 5 + … + 19 = <span class="blank"></span><br><span style="font-size:11px;color:#888;">That's <span class="blank"></span> odd numbers → <span class="blank"></span>²</span></div>
+      <div class="problem-card" style="font-size:14px;">1 + 3 + 5 + … + 99 = <span class="blank"></span><br><span style="font-size:11px;color:#888;">That's <span class="blank"></span> odd numbers → <span class="blank"></span>²</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 Picture Proofs</h1>
+    <p>The staircase trick! ⭐</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <!-- Picture Proof 2: Staircase sum 1+2+3+...+n = n(n+1)/2 -->
+  <div class="picture-proof">
+    <div class="pp-title">Picture Proof 2: The Staircase</div>
+    <div class="pp-subtitle">1 + 2 + 3 + 4 = ?&nbsp; Make two staircases into a rectangle!</div>
+
+    <div class="grid-row">
+      <!-- Staircase only -->
+      <div style="text-align:center;">
+        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">Staircase for 1+2+3+4</div>
+        <div class="staircase-area">
+          <div class="stair-col"><div class="stair-cell a"></div></div>
+          <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
+          <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
+          <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
+        </div>
+      </div>
+
+      <div style="font-size:24px; font-weight:bold; color:#333; align-self:center;">→</div>
+
+      <!-- Double staircase = rectangle -->
+      <div style="text-align:center;">
+        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">Two copies → 4 × 5 rectangle!</div>
+        <div style="display:inline-grid; grid-template-columns: repeat(4, 28px); gap:2px;">
+          <div class="stair-cell a"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div>
+          <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div>
+          <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell mirror"></div>
+          <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div>
+          <div class="stair-cell mirror"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-explain">
+      The staircase has 1+2+3+4 = 10 blocks (purple).<br>
+      Flip a copy (orange) and fit them together → a 4×5 = 20 rectangle.<br>
+      The staircase is <strong>half</strong> of the rectangle: 20 ÷ 2 = <strong>10</strong> ✓
+    </div>
+    <div class="formula-box">1 + 2 + 3 + ⋯ + n = n × (n + 1) ÷ 2</div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Use the Staircase Formula 📐</div>
+    <div class="exercise-instruction">Use the formula n × (n+1) ÷ 2 to find each sum quickly!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">1 + 2 + 3 + 4 + 5<br>n = 5 → 5 × 6 ÷ 2 = <span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">1 + 2 + 3 + … + 10<br>n = 10 → 10 × <span class="blank"></span> ÷ 2 = <span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">1 + 2 + 3 + … + 20<br>n = 20 → <span class="blank"></span> × <span class="blank"></span> ÷ 2 = <span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">1 + 2 + 3 + … + 100<br>n = 100 → <span class="blank"></span> × <span class="blank"></span> ÷ 2 = <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Draw Your Own Picture Proof ✏️</div>
+    <div class="exercise-instruction">Draw the staircase for 1+2+3+4+5 and show how two copies make a 5×6 rectangle.</div>
+    <div class="draw-box">
+      <div class="draw-label">Draw your staircase here:</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 25 (5²), 36 (6²), 100 (10 odd numbers → 10²), 2500 (50 odd numbers → 50²) —
+    2) 15, 55, 210, 5050
+  </div>
+</div>
+
+</body>
+</html>
