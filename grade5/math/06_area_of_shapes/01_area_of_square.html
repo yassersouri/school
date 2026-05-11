@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area of a Square — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟧 Area of a Square</h1>
+    <p>Lesson 1 — What is <strong>area</strong>, and how do we measure it?</p>
+  </div>
+  <div class="page-num">Page 1 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 What Is Area?</div>
+    <div class="concept-text">
+      <strong>Area</strong> is the amount of <em>space inside</em> a flat shape. We measure area by counting how many <strong>unit squares</strong> fit inside the shape.<br><br>
+      A <strong>unit square</strong> is a square that measures 1 unit on each side. Its area is <strong>1 square unit</strong> (we write it as 1 unit² or, for centimeters, 1 cm²).
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Counting Unit Squares Inside a Square</div>
+    <div class="shape-figure">
+      <div>
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <g fill="#fff3e0" stroke="#e65100" stroke-width="2">
+            <rect x="10" y="10" width="100" height="100"/>
+          </g>
+          <g stroke="#ffb74d" stroke-width="1">
+            <line x1="35" y1="10" x2="35" y2="110"/>
+            <line x1="60" y1="10" x2="60" y2="110"/>
+            <line x1="85" y1="10" x2="85" y2="110"/>
+            <line x1="10" y1="35" x2="110" y2="35"/>
+            <line x1="10" y1="60" x2="110" y2="60"/>
+            <line x1="10" y1="85" x2="110" y2="85"/>
+          </g>
+          <text x="60" y="125" font-size="11" text-anchor="middle" fill="#888">4 units</text>
+        </svg>
+        <div class="shape-caption">A 4 × 4 square holds <strong>16</strong> unit squares → area = 16 unit²</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Count the Unit Squares 🔢</div>
+    <div class="exercise-instruction">Each grid below is a square. Count the unit squares to find the area.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card" style="font-size:13px;">
+        2 × 2 square<br>
+        <span class="mini-label">unit squares inside:</span><br>
+        Area = <span class="blank"></span> unit²
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        3 × 3 square<br>
+        <span class="mini-label">unit squares inside:</span><br>
+        Area = <span class="blank"></span> unit²
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        5 × 5 square<br>
+        <span class="mini-label">unit squares inside:</span><br>
+        Area = <span class="blank"></span> unit²
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟧 Area of a Square</h1>
+    <p>Use the shortcut: <strong>side × side</strong> ⚡</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">📏 The Formula</div>
+    <div class="concept-text">
+      Counting every square would take forever for a big shape! Luckily there's a shortcut.<br>
+      A square has <strong>all 4 sides equal</strong>. If one side is <em>s</em>, the rows make <em>s</em> columns of <em>s</em> unit squares.
+    </div>
+  </div>
+
+  <div class="formula-box">
+    <span class="formula-name">Area of a square with side s</span>
+    Area = s × s = s²
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example</div>
+    <div class="step-by-step">
+      <div class="step">Find the area of a square with side 6 cm:</div>
+      <div class="step"><strong>Step 1:</strong> Write the formula → Area = s × s</div>
+      <div class="step"><strong>Step 2:</strong> Replace s with 6 → 6 × 6</div>
+      <div class="step"><strong>Step 3:</strong> Calculate → <strong>36 cm²</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Use the Formula 📐</div>
+    <div class="exercise-instruction">Find the area of each square using Area = s × s.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        side = 4 cm<br>
+        Area = 4 × 4 = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        side = 7 m<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        side = 9 cm<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        side = 12 m<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        side = 10 cm<br>
+        Area = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        side = 15 m<br>
+        Area = <span class="blank"></span> m²
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟧 Area of a Square</h1>
+    <p>Word problems and going backwards! 🧠</p>
+  </div>
+  <div class="page-num">Page 3 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🔁 Going Backwards</div>
+    <div class="concept-text">
+      If you know the <strong>area</strong> of a square but not the side, ask: <em>what number times itself gives this area?</em><br>
+      Example: Area = 25 cm² → side × side = 25 → side = <strong>5 cm</strong> (because 5 × 5 = 25).
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Find the Missing Side 🔍</div>
+    <div class="exercise-instruction">Which number times itself gives the area?</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        Area = 16 cm² → side = <span class="blank"></span> cm
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 49 m² → side = <span class="blank"></span> m
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 81 cm² → side = <span class="blank"></span> cm
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 100 m² → side = <span class="blank"></span> m
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">4</span> Word Problems 📝</div>
+    <div class="exercise-instruction">Read carefully, then use Area = s × s.</div>
+    <ul class="word-problem-list">
+      <li>
+        A square garden has sides of 8 m. What is its area?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A square tile measures 20 cm on each side. What is its area?
+        <span class="wp-answer">Area = <span class="blank"></span> cm²</span>
+      </li>
+      <li>
+        Sara wants to cover a square floor of side 11 m with paint. How many m² of paint does she need?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A square poster has an area of 64 cm². How long is one side?
+        <span class="wp-answer">side = <span class="blank"></span> cm</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 4, 9, 25 —
+    2) 16; 7×7=49; 9×9=81; 12×12=144; 100; 225 —
+    3) 4, 7, 9, 10 —
+    4) 64 m²; 400 cm²; 121 m²; 8 cm
+  </div>
+</div>
+
+</body>
+</html>

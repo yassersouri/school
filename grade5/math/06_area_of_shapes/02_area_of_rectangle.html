@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area of a Rectangle — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟫 Area of a Rectangle</h1>
+    <p>Lesson 2 — Rows and columns of <strong>unit squares</strong></p>
+  </div>
+  <div class="page-num">Page 1 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 Why length × width Works</div>
+    <div class="concept-text">
+      A rectangle has two pairs of equal sides. We call the longer one <strong>length</strong> (<em>l</em>) and the shorter one <strong>width</strong> (<em>w</em>).<br><br>
+      If you fill the rectangle with unit squares, you get <em>w</em> rows, each with <em>l</em> squares. So the total is <em>l</em> × <em>w</em>.
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">A 5 × 3 Rectangle</div>
+    <div class="shape-figure">
+      <svg width="220" height="140" viewBox="0 0 220 140">
+        <g fill="#fff3e0" stroke="#e65100" stroke-width="2">
+          <rect x="10" y="20" width="200" height="80"/>
+        </g>
+        <g stroke="#ffb74d" stroke-width="1">
+          <line x1="50" y1="20" x2="50" y2="100"/>
+          <line x1="90" y1="20" x2="90" y2="100"/>
+          <line x1="130" y1="20" x2="130" y2="100"/>
+          <line x1="170" y1="20" x2="170" y2="100"/>
+          <line x1="10" y1="48" x2="210" y2="48"/>
+          <line x1="10" y1="74" x2="210" y2="74"/>
+        </g>
+        <text x="110" y="115" font-size="11" text-anchor="middle" fill="#888">length = 5</text>
+        <text x="6" y="63" font-size="11" text-anchor="end" fill="#888">width = 3</text>
+      </svg>
+    </div>
+    <div class="shape-caption">3 rows × 5 squares per row = <strong>15</strong> unit squares → area = 15 unit²</div>
+  </div>
+
+  <div class="formula-box">
+    <span class="formula-name">Area of a rectangle</span>
+    Area = length × width = l × w
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example</div>
+    <div class="step-by-step">
+      <div class="step">Find the area of a rectangle with length 8 cm and width 4 cm:</div>
+      <div class="step"><strong>Step 1:</strong> Write the formula → Area = l × w</div>
+      <div class="step"><strong>Step 2:</strong> Plug in → 8 × 4</div>
+      <div class="step"><strong>Step 3:</strong> Calculate → <strong>32 cm²</strong> ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟫 Area of a Rectangle</h1>
+    <p>Practice with the formula 📐</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Find the Area 📐</div>
+    <div class="exercise-instruction">Use Area = l × w for each rectangle.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        l = 6 cm, w = 2 cm<br>
+        Area = 6 × 2 = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 9 m, w = 4 m<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 10 cm, w = 7 cm<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 12 m, w = 5 m<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 15 cm, w = 8 cm<br>
+        Area = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 20 m, w = 11 m<br>
+        Area = <span class="blank"></span> m²
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">🔁 Going Backwards</div>
+    <div class="concept-text">
+      If you know the area and one side, divide!<br>
+      Area = l × w &nbsp;⇒&nbsp; l = Area ÷ w &nbsp;and&nbsp; w = Area ÷ l<br>
+      Example: Area = 24 cm², length = 6 cm → width = 24 ÷ 6 = <strong>4 cm</strong>.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Find the Missing Side 🔍</div>
+    <div class="exercise-instruction">Use division to find the missing length or width.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        Area = 30 cm², l = 5 cm → w = <span class="blank"></span> cm
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 48 m², w = 6 m → l = <span class="blank"></span> m
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 56 cm², l = 8 cm → w = <span class="blank"></span> cm
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 72 m², w = 9 m → l = <span class="blank"></span> m
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟫 Area of a Rectangle</h1>
+    <p>Real-world rectangles all around us! 🌍</p>
+  </div>
+  <div class="page-num">Page 3 of 3</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Word Problems 📝</div>
+    <div class="exercise-instruction">Decide whether to multiply or divide, then solve.</div>
+    <ul class="word-problem-list">
+      <li>
+        A classroom floor is 9 m long and 6 m wide. What is its area?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A book cover is 25 cm long and 18 cm wide. How many cm² of paper covers it?
+        <span class="wp-answer">Area = <span class="blank"></span> cm²</span>
+      </li>
+      <li>
+        A rectangular pool has an area of 60 m² and is 10 m long. How wide is it?
+        <span class="wp-answer">width = <span class="blank"></span> m</span>
+      </li>
+      <li>
+        Reza is tiling a rectangular wall of 14 m by 3 m. How many m² of tiles does he need?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A piece of paper has area 100 cm² and width 5 cm. How long is it?
+        <span class="wp-answer">length = <span class="blank"></span> cm</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="concept-box" style="margin-top:auto;">
+    <div class="concept-title">⭐ Quick Check</div>
+    <div class="concept-text">
+      A square is a special rectangle where length = width. So Area = s × s is just l × w with l = w!
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 12; 9×4=36; 10×7=70; 12×5=60; 120; 220 —
+    2) 6, 8, 7, 8 —
+    3) 54 m²; 450 cm²; 6 m; 42 m²; 20 cm
+  </div>
+</div>
+
+</body>
+</html>
