@@ -101,7 +101,9 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 ### 2. Phonics — Digraphs & Blends
 - **Consonant digraphs:** `sh`, `ch`, `th`, `wh`, `ck`, `ng`.
 - **Beginning blends:** s-blends (sn, sl, sp, st, sk, sw), l-blends (bl, cl, fl, gl, pl, sl), r-blends (br, cr, dr, fr, gr, pr, tr).
-- **Ending blends:** -nd, -nt, -nk, -mp, -st, -ft, -lt, -lk, -sk. **(needs exercises)**
+- **Ending blends:** -nd, -nt, -nk, -mp, -st, -ft, -lt, -lk, -sk.
+
+📂 **Repo materials:** [Digraphs — index](06_digraphs/index.html) — 7 sheets: [sh](06_digraphs/01_sh.html), [ch](06_digraphs/02_ch.html), [th](06_digraphs/03_th.html), [wh](06_digraphs/04_wh.html), [ck](06_digraphs/05_ck.html), [ng](06_digraphs/06_ng.html), [Mixed Practice ⭐](06_digraphs/07_mixed_digraphs.html). · [Blends — index](07_blends/index.html) — 5 sheets: [S-blends](07_blends/01_s_blends.html), [L-blends](07_blends/02_l_blends.html), [R-blends](07_blends/03_r_blends.html), [Ending blends](07_blends/04_ending_blends.html), [Mixed Practice ⭐](07_blends/05_mixed_blends.html).
 
 ### 3. Phonics — Long Vowels
 - Silent-e (CVCe) for a, i, o, u, e: cake, bike, hope, cute, Pete.
@@ -109,12 +111,14 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 - Open-syllable long vowels: he, she, go, no, hi, me.
 - Compare and contrast short vs. long vowels (cap/cape, kit/kite).
 
-📂 **Repo materials:** [Long Vowels — index](02_long_vowels/index.html) — 7 sheets on CVCe and vowel teams: [Long A: CVCe + ay](02_long_vowels/01_long_a_cvce_ay.html), [Long E: CVCe + ee](02_long_vowels/02_long_e_cvce_ee.html), [Long E: CVCe + ea](02_long_vowels/03_long_e_cvce_ea.html), [Long I: CVCe + igh](02_long_vowels/04_long_i_cvce_igh.html), [Long O: CVCe + oa](02_long_vowels/05_long_o_cvce_oa.html), [Long U: CVCe + ue](02_long_vowels/06_long_u_cvce_ue.html), [Long A: CVCe + ai](02_long_vowels/07_long_a_cvce_ai.html).
+📂 **Repo materials:** [Long Vowels — index](02_long_vowels/index.html) — 11 sheets on CVCe and vowel teams: [Long A: CVCe + ay](02_long_vowels/01_long_a_cvce_ay.html), [Long E: CVCe + ee](02_long_vowels/02_long_e_cvce_ee.html), [Long E: CVCe + ea](02_long_vowels/03_long_e_cvce_ea.html), [Long I: CVCe + igh](02_long_vowels/04_long_i_cvce_igh.html), [Long O: CVCe + oa](02_long_vowels/05_long_o_cvce_oa.html), [Long U: CVCe + ue](02_long_vowels/06_long_u_cvce_ue.html), [Long A: CVCe + ai](02_long_vowels/07_long_a_cvce_ai.html), [Long O: ow](02_long_vowels/08_long_o_ow.html), [Long I: ie & y](02_long_vowels/09_long_i_ie_y.html), [Long U: ew & oo](02_long_vowels/10_long_u_ew_oo.html), [Open-Syllable Long Vowels ⭐](02_long_vowels/11_open_syllable_long_vowels.html).
 
-Additional long-vowel patterns **(needs exercises):** `ay`, `ee` (apart from CVCe + ee), `ow`/`oa` for Long O, `ie`/`y` for Long I, `ew`/`oo` for Long U, open-syllable long vowels.
+Remaining patterns to add later: `oo` (book sound), additional mixed-review sheets.
 
 ### 4. High-Frequency Sight Words — Set 2 (~30 more words)
-are, they, have, what, when, with, this, that, then, them, their, here, there, where, who, why, how, some, come, want, will, your, very, again, into, our, out, about, made, make. **(needs exercises)**
+are, they, have, what, when, with, this, that, then, them, their, here, there, where, who, why, how, some, come, want, will, your, very, again, into, our, out, about, made, make.
+
+📂 **Repo materials:** [Sight Words — index](12_sight_words/index.html) — Set 2 sheets: [Set 2 — Read & Trace](12_sight_words/04_set2_read_and_trace.html), [Set 2 — Fill in the Blank](12_sight_words/05_set2_fill_in_the_blank.html), [Set 2 — Find & Circle](12_sight_words/06_set2_find_and_circle.html).
 
 ### 5. Thematic Word Sets — Expanded Categories
 - **Number words 11–20:** eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty.
@@ -123,7 +127,9 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - **Season words:** spring, summer, fall/autumn, winter.
 - **Weather words:** sunny, cloudy, rainy, snowy, windy, hot, cold, warm, cool.
 - **Animal words (pets & farm):** dog, cat, fish, bird, rabbit, hamster, cow, pig, horse, sheep, hen, duck.
-- **Food words:** apple, banana, bread, milk, water, egg, rice, cheese, juice, cookie. **(needs exercises)**
+- **Food words:** apple, banana, bread, milk, water, egg, rice, cheese, juice, cookie.
+
+📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — Term 2 sheets: [Number Words 11–20](12b_thematic_word_sets/07_number_words_11_20.html), [Ordinal Words](12b_thematic_word_sets/08_ordinal_words.html), [Months of the Year](12b_thematic_word_sets/09_months_of_the_year.html), [Season Words](12b_thematic_word_sets/10_season_words.html), [Weather Words](12b_thematic_word_sets/11_weather_words.html), [Animal Words: Pets & Farm](12b_thematic_word_sets/12_animal_words_pets_farm.html), [Food Words](12b_thematic_word_sets/13_food_words.html).
 
 ### 6. Fluency
 - Read short decodable books with digraphs, blends, and long vowels.
