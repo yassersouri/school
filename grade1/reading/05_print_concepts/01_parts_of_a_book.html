@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Print Concepts: Parts of a Book &amp; Tracking Print</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #5dade2;
+    --accent-bg: #ebf5fb;
+    --heading-color: #1a6fbd;
+    --title-color: #1f618d;
+    --col-bg: #f4faff;
+    --col-heading: #1f618d;
+    --word-bg: #fff;
+  }
+  /* Pretend book diagram */
+  .book-diagram { display: flex; justify-content: center; gap: 18px; margin: 6px auto; }
+  .book-cover { width: 160px; height: 210px; background: #fff; border: 3px solid var(--accent); border-radius: 8px 14px 14px 8px; padding: 14px 12px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; box-shadow: 4px 4px 0 #cbe2f3; position: relative; }
+  .book-cover .label { position: absolute; font-size: 11px; color: #1f618d; font-weight: bold; }
+  .book-cover .label-top { top: -18px; left: 50%; transform: translateX(-50%); }
+  .book-cover .label-side { right: -110px; top: 50%; transform: translateY(-50%); width: 100px; text-align: left; }
+  .book-cover .label-side::before { content: "← "; }
+  .book-cover .book-title { font-size: 18px; color: #1a6fbd; text-align: center; font-weight: bold; }
+  .book-cover .book-pic { font-size: 64px; }
+  .book-cover .book-author { font-size: 12px; color: #555; text-align: center; }
+  .book-back { background: #f4faff; }
+
+  /* Tracking lines */
+  .track-row { background: #fff; border: 1.5px dashed var(--accent); border-radius: 8px; padding: 8px 12px; font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; position: relative; }
+  .track-row .arrow { color: #1a6fbd; font-weight: bold; margin-right: 8px; }
+  .start-dot { display: inline-block; width: 14px; height: 14px; background: #2ecc71; border-radius: 50%; vertical-align: middle; margin-right: 6px; }
+  .end-dot   { display: inline-block; width: 14px; height: 14px; background: #e74c3c; border-radius: 50%; vertical-align: middle; margin-left: 6px; }
+
+  /* Multiple choice rows */
+  .mc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .mc-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #aed6f1; font-size: 14px; }
+  .mc-list .opts { margin-top: 4px; }
+  .mc-opt { display: inline-block; border: 1.5px solid var(--accent); border-radius: 14px; padding: 1px 10px; margin-right: 6px; font-size: 13px; color: #1f618d; font-weight: bold; background: #fff; }
+
+  /* Match list */
+  .match-table { width: 100%; border-collapse: collapse; }
+  .match-table td { padding: 6px 8px; font-size: 14px; border-bottom: 1px dashed #aed6f1; }
+  .match-table td.right { text-align: right; color: #1f618d; font-weight: bold; }
+  .match-table td.line { width: 50%; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>📕 Parts of a Book &amp; Tracking Print</h1><p>Look · Point · Read · Learn</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Look at the Book 📖</div>
+    <div class="exercise-instruction">This is the <strong>front cover</strong>. Point to the title, the author, and the picture.</div>
+    <div class="book-diagram">
+      <div class="book-cover">
+        <span class="label label-top">Front Cover</span>
+        <div class="book-title">My Big Red Dog</div>
+        <div class="book-pic">🐶</div>
+        <div class="book-author">by Sam Kim</div>
+      </div>
+    </div>
+    <ul class="mc-list" style="margin-top:8px;">
+      <li>What is the <strong>title</strong> of the book?
+        <div class="opts"><span class="mc-opt">My Big Red Dog</span><span class="mc-opt">Sam Kim</span><span class="mc-opt">A Cat</span></div>
+      </li>
+      <li>Who is the <strong>author</strong>?
+        <div class="opts"><span class="mc-opt">My Big Red Dog</span><span class="mc-opt">Sam Kim</span><span class="mc-opt">The dog</span></div>
+      </li>
+      <li>The <strong>illustrator</strong> is the person who…
+        <div class="opts"><span class="mc-opt">writes the words</span><span class="mc-opt">draws the pictures</span><span class="mc-opt">sells the book</span></div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Match the Parts 🔗</div>
+    <div class="exercise-instruction">Draw a line to match each book part to what it does.</div>
+    <table class="match-table">
+      <tr><td class="line">Front cover</td><td class="right">tells the story or facts</td></tr>
+      <tr><td class="line">Title</td><td class="right">the name of the book</td></tr>
+      <tr><td class="line">Author</td><td class="right">the person who wrote it</td></tr>
+      <tr><td class="line">Illustrator</td><td class="right">the person who drew the pictures</td></tr>
+      <tr><td class="line">Pages</td><td class="right">the first thing you see</td></tr>
+      <tr><td class="line">Back cover</td><td class="right">the back of the book</td></tr>
+    </table>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Track the Print ➡️</div>
+    <div class="exercise-instruction">We read from <strong>left to right</strong>. Put your finger on the green dot 🟢, slide to the red dot 🔴 as you read.</div>
+    <div class="track-row"><span class="start-dot"></span>The cat sat on the mat.<span class="end-dot"></span></div>
+    <div class="track-row"><span class="start-dot"></span>I can see a big red bus.<span class="end-dot"></span></div>
+    <div class="track-row"><span class="start-dot"></span>My dog likes to run and jump.<span class="end-dot"></span></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>📕 Parts of a Book &amp; Tracking Print</h1><p>Keep going — great reading!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) One Word at a Time 👉</div>
+    <div class="exercise-instruction">When we read, <strong>one spoken word</strong> matches <strong>one printed word</strong>. Point to each word as you say it. Count the words and write the number.</div>
+    <ul class="blank-list">
+      <li>1. I see a dog. → <span class="blank"></span> words</li>
+      <li>2. The big red bus. → <span class="blank"></span> words</li>
+      <li>3. My mom can run. → <span class="blank"></span> words</li>
+      <li>4. We like to play in the sun. → <span class="blank"></span> words</li>
+      <li>5. Cats and dogs are pets. → <span class="blank"></span> words</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Top to Bottom, Page to Page ⬇️</div>
+    <div class="exercise-instruction">Number the steps 1, 2, 3, 4 to show how we read a book.</div>
+    <ul class="blank-list">
+      <li><span class="blank" style="width:40px;"></span> Read the next page.</li>
+      <li><span class="blank" style="width:40px;"></span> Open to the first page.</li>
+      <li><span class="blank" style="width:40px;"></span> Look at the front cover and read the title.</li>
+      <li><span class="blank" style="width:40px;"></span> Read from the top of the page down to the bottom.</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Draw Your Own Book Cover 🎨</div>
+    <div class="exercise-instruction">Make a front cover. Add a <strong>title</strong> and your name as the <strong>author</strong>.</div>
+    <div class="draw-row">
+      <div style="flex:1;">
+        <p style="font-size:14px;">Title: <span style="display:inline-block; border-bottom:2px solid #333; width:170px;"></span></p>
+        <p style="font-size:14px; margin-top:8px;">By: <span style="display:inline-block; border-bottom:2px solid #333; width:170px;"></span></p>
+        <p style="font-size:12px; color:#666; margin-top:8px;">Don't forget to draw a picture!</p>
+      </div>
+      <div class="draw-box">Draw your cover ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> My Big Red Dog · Sam Kim · draws the pictures ·
+    <strong>Ex.2:</strong> Front cover → first thing you see · Title → name of book · Author → wrote it · Illustrator → drew pictures · Pages → tell the story · Back cover → back of the book ·
+    <strong>Ex.4:</strong> 1) 4 · 2) 4 · 3) 4 · 4) 7 · 5) 5 ·
+    <strong>Ex.5:</strong> 1=cover, 2=open first page, 3=read top to bottom, 4=read next page (3, 2, 1, 4 in list order).
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thematic Words: Days of the Week</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #af7ac5;
+    --accent-bg: #f4ecf7;
+    --heading-color: #6c3483;
+    --title-color: #4a235a;
+    --col-bg: #ebdef0;
+    --col-heading: #4a235a;
+    --word-bg: #fff;
+  }
+  /* Order-the-days slots */
+  .day-order { list-style: none; display: flex; flex-direction: column; gap: 6px; counter-reset: dord; }
+  .day-order li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #d2b4de; display: flex; align-items: center; gap: 10px; font-size: 16px; }
+  .day-order li::before { counter-increment: dord; content: counter(dord) "."; font-weight: bold; color: #6c3483; min-width: 22px; }
+  .day-line { flex: 1; border-bottom: 2px solid #333; height: 22px; }
+  /* Trace the days */
+  .day-trace { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .day-trace li { background: #fff; border-radius: 8px; padding: 6px 10px; border: 1px solid #d2b4de; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .day-label { font-weight: bold; color: #4a235a; min-width: 80px; }
+  .day-trace-word { color: #d2b4de; font-size: 22px; font-weight: bold; letter-spacing: 1px; min-width: 110px; }
+  .day-trace-line { flex: 1; border-bottom: 2px dotted #6c3483; height: 24px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>📅 Days of the Week</h1><p>Read · Order · Trace</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Read the Days 🗣️</div>
+    <div class="exercise-instruction">Read each day out loud, in order.</div>
+    <div class="word-grid">
+      <div class="word-col">
+        <h3>Weekend &amp; School Start</h3>
+        <ul class="word-list">
+          <li>Sunday</li><li>Monday</li><li>Tuesday</li><li>Wednesday</li>
+        </ul>
+      </div>
+      <div class="word-col">
+        <h3>Rest of the Week</h3>
+        <ul class="word-list">
+          <li>Thursday</li><li>Friday</li><li>Saturday</li><li>Sunday</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Put the Days in Order 📂</div>
+    <div class="exercise-instruction">Put the days in order, starting with <strong>Sunday</strong>.</div>
+    <div class="word-bank"><span class="bank-word">Friday</span><span class="bank-word">Sunday</span><span class="bank-word">Wednesday</span><span class="bank-word">Monday</span><span class="bank-word">Saturday</span><span class="bank-word">Tuesday</span><span class="bank-word">Thursday</span></div>
+    <ul class="day-order" style="margin-top:10px;">
+      <li><span class="day-line"></span></li>
+      <li><span class="day-line"></span></li>
+      <li><span class="day-line"></span></li>
+      <li><span class="day-line"></span></li>
+      <li><span class="day-line"></span></li>
+      <li><span class="day-line"></span></li>
+      <li><span class="day-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Trace the Days ✏️</div>
+    <div class="exercise-instruction">Trace each day, then write it on the line.</div>
+    <ul class="day-trace">
+      <li><span class="day-label">Sun.</span><span class="day-trace-word">Sunday</span><span class="day-trace-line"></span></li>
+      <li><span class="day-label">Mon.</span><span class="day-trace-word">Monday</span><span class="day-trace-line"></span></li>
+      <li><span class="day-label">Tue.</span><span class="day-trace-word">Tuesday</span><span class="day-trace-line"></span></li>
+      <li><span class="day-label">Wed.</span><span class="day-trace-word">Wednesday</span><span class="day-trace-line"></span></li>
+      <li><span class="day-label">Thu.</span><span class="day-trace-word">Thursday</span><span class="day-trace-line"></span></li>
+      <li><span class="day-label">Fri.</span><span class="day-trace-word">Friday</span><span class="day-trace-line"></span></li>
+      <li><span class="day-label">Sat.</span><span class="day-trace-word">Saturday</span><span class="day-trace-line"></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>📅 Days of the Week</h1><p>Keep going — great work!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Fill in the Blank ✏️</div>
+    <div class="exercise-instruction">Choose the day that fits.</div>
+    <div class="word-bank"><span class="bank-word">Sunday</span><span class="bank-word">Monday</span><span class="bank-word">Wednesday</span><span class="bank-word">Friday</span><span class="bank-word">Saturday</span><span class="bank-word">seven</span></div>
+    <ul class="blank-list" style="margin-top:10px;">
+      <li>1. There are <span class="blank"></span> days in a week.</li>
+      <li>2. The day after Tuesday is <span class="blank"></span>.</li>
+      <li>3. The day before Tuesday is <span class="blank"></span>.</li>
+      <li>4. The first day of the school week is often <span class="blank"></span>.</li>
+      <li>5. The last day of the work week is often <span class="blank"></span>.</li>
+      <li>6. <span class="blank"></span> and Sunday make the weekend.</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Today / Tomorrow / Yesterday 🗓️</div>
+    <div class="exercise-instruction">Fill in each sentence with a day of the week.</div>
+    <ul class="blank-list">
+      <li>1. If today is <strong>Monday</strong>, tomorrow is <span class="blank"></span>.</li>
+      <li>2. If today is <strong>Wednesday</strong>, yesterday was <span class="blank"></span>.</li>
+      <li>3. If today is <strong>Friday</strong>, tomorrow is <span class="blank"></span>.</li>
+      <li>4. If today is <strong>Sunday</strong>, tomorrow is <span class="blank"></span>.</li>
+      <li>5. If today is <strong>Thursday</strong>, yesterday was <span class="blank"></span>.</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Build a Sentence ✍️</div>
+    <div class="exercise-instruction">Words are shuffled. Put them in order.</div>
+    <ul class="build-list">
+      <li><div class="word-bank"><span class="bank-word">is</span><span class="bank-word">Today</span><span class="bank-word">Monday</span></div><div style="border-bottom:2px solid #333; height:22px;"></div></li>
+      <li><div class="word-bank"><span class="bank-word">play</span><span class="bank-word">on</span><span class="bank-word">I</span><span class="bank-word">Saturday</span></div><div style="border-bottom:2px solid #333; height:22px;"></div></li>
+      <li><div class="word-bank"><span class="bank-word">go</span><span class="bank-word">school</span><span class="bank-word">to</span><span class="bank-word">on</span><span class="bank-word">We</span><span class="bank-word">Friday</span></div><div style="border-bottom:2px solid #333; height:22px;"></div></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday ·
+    <strong>Ex.4:</strong> 1. seven · 2. Wednesday · 3. Monday · 4. Monday · 5. Friday · 6. Saturday ·
+    <strong>Ex.5:</strong> 1. Tuesday · 2. Tuesday · 3. Saturday · 4. Monday · 5. Wednesday ·
+    <strong>Ex.6:</strong> Today is Monday. / I play on Saturday. / We go to school on Friday.
+  </div>
+</div>
+</body>
+</html>

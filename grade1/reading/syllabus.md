@@ -28,7 +28,9 @@ Each term below cycles through all six strands so they grow together.
 - Track print with a finger; one spoken word = one printed word.
 - Identify front cover, back cover, title, author, illustrator.
 - Recognize and use spaces between words and basic punctuation: `.` `?` `!`
-- Distinguish letters, words, and sentences. **(needs exercises)**
+- Distinguish letters, words, and sentences.
+
+📂 **Repo materials:** [Print Concepts — index](05_print_concepts/index.html) — 2 sheets covering parts of a book &amp; tracking print, and letters / words / sentences / punctuation.
 
 ### 2. Phonological & Phonemic Awareness
 - Rhyme: recognize and produce rhyming words (cat/hat, sun/run).
@@ -36,7 +38,9 @@ Each term below cycles through all six strands so they grow together.
 - Onset–rime: blend and segment (c-at → cat).
 - Phoneme isolation: identify the first, last, and middle sounds in CVC words.
 - Phoneme blending: /c/ /a/ /t/ → cat.
-- Phoneme segmenting: cat → /c/ /a/ /t/. **(needs exercises)**
+- Phoneme segmenting: cat → /c/ /a/ /t/.
+
+📂 **Repo materials:** [Phonemic Awareness — index](13_phonemic_awareness/index.html) — 3 sheets: Rhyme &amp; Syllables, Blending &amp; Segmenting, Mixed Sound Play.
 
 ### 3. Alphabet & Letter–Sound Knowledge
 - Recognize and name all 26 upper- and lower-case letters.
@@ -52,7 +56,9 @@ Each term below cycles through all six strands so they grow together.
 📂 **Repo materials:** [Short Vowels — index](01_short_vowels/index.html) — 22 sheets covering short **a**, **e**, **i**, **o**, **u**, including word families (-at/-an, -ed/-en, -ig/-in, -ot/-op, -ug/-un, -it/-id, -ip/-ick, -ill/-im, -ap/-ad, -ag/-am, -ack/-ash, -et/-ell, -eck/-est, -og/-ock, -ob/-ox, -ut/-ub, -uck/-ump) and ⭐ Mixed Practice sheets for each vowel.
 
 ### 5. High-Frequency Sight Words — Set 1 (~30 words)
-the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for. **(needs exercises)**
+the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for.
+
+📂 **Repo materials:** [Sight Words — index](12_sight_words/index.html) — 3 sheets for Set 1: Read &amp; Trace, Fill in the Blank, Find &amp; Circle.
 
 ### 6. Thematic Word Sets — Introductory Categories
 Read, recognize, and spell common everyday vocabulary grouped by meaning. These sets are taught alongside sight words and reinforce both reading and writing.
@@ -62,12 +68,14 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 - **Shape words:** circle, square, triangle, rectangle, oval, star, heart, diamond.
 - **Family words:** mom, dad, mother, father, sister, brother, baby, family, grandma, grandpa, aunt, uncle.
 - **Body-part words:** head, hair, eye, ear, nose, mouth, arm, hand, leg, foot, finger, toe.
-- **Days of the week:** Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday. **(needs exercises)**
+- **Days of the week:** Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday.
+
+📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — 6 introductory category sheets: Colour Words, Number Words 0–10, Shape Words, Family Words, Body-Part Words, Days of the Week. (Numbers 11–20, ordinals, months, seasons, weather, animals, food, etc. will be added in later terms.)
 
 ### 7. Fluency
 - Read decodable sentences using known short-vowel words and Set 1 sight words.
 - Re-read familiar sentences to build accuracy and pace.
-- Pause briefly at periods; show simple expression for `?` and `!`. **(needs exercises)**
+- Pause briefly at periods; show simple expression for `?` and `!`. **(needs exercises)** *(See also: [Fluency Passages — index](15_fluency_passages/index.html) for re-read passages.)*
 
 ### 8. Vocabulary & Comprehension (Listening + Reading)
 - Listen to picture books read aloud daily.
@@ -93,7 +101,9 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 ### 2. Phonics — Digraphs & Blends
 - **Consonant digraphs:** `sh`, `ch`, `th`, `wh`, `ck`, `ng`.
 - **Beginning blends:** s-blends (sn, sl, sp, st, sk, sw), l-blends (bl, cl, fl, gl, pl, sl), r-blends (br, cr, dr, fr, gr, pr, tr).
-- **Ending blends:** -nd, -nt, -nk, -mp, -st, -ft, -lt, -lk, -sk. **(needs exercises)**
+- **Ending blends:** -nd, -nt, -nk, -mp, -st, -ft, -lt, -lk, -sk.
+
+📂 **Repo materials:** [Digraphs — index](06_digraphs/index.html) — 7 sheets: [sh](06_digraphs/01_sh.html), [ch](06_digraphs/02_ch.html), [th](06_digraphs/03_th.html), [wh](06_digraphs/04_wh.html), [ck](06_digraphs/05_ck.html), [ng](06_digraphs/06_ng.html), [Mixed Practice ⭐](06_digraphs/07_mixed_digraphs.html). · [Blends — index](07_blends/index.html) — 5 sheets: [S-blends](07_blends/01_s_blends.html), [L-blends](07_blends/02_l_blends.html), [R-blends](07_blends/03_r_blends.html), [Ending blends](07_blends/04_ending_blends.html), [Mixed Practice ⭐](07_blends/05_mixed_blends.html).
 
 ### 3. Phonics — Long Vowels
 - Silent-e (CVCe) for a, i, o, u, e: cake, bike, hope, cute, Pete.
@@ -101,12 +111,14 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 - Open-syllable long vowels: he, she, go, no, hi, me.
 - Compare and contrast short vs. long vowels (cap/cape, kit/kite).
 
-📂 **Repo materials:** [Long Vowels — index](02_long_vowels/index.html) — 7 sheets on CVCe and vowel teams: [Long A: CVCe + ay](02_long_vowels/01_long_a_cvce_ay.html), [Long E: CVCe + ee](02_long_vowels/02_long_e_cvce_ee.html), [Long E: CVCe + ea](02_long_vowels/03_long_e_cvce_ea.html), [Long I: CVCe + igh](02_long_vowels/04_long_i_cvce_igh.html), [Long O: CVCe + oa](02_long_vowels/05_long_o_cvce_oa.html), [Long U: CVCe + ue](02_long_vowels/06_long_u_cvce_ue.html), [Long A: CVCe + ai](02_long_vowels/07_long_a_cvce_ai.html).
+📂 **Repo materials:** [Long Vowels — index](02_long_vowels/index.html) — 11 sheets on CVCe and vowel teams: [Long A: CVCe + ay](02_long_vowels/01_long_a_cvce_ay.html), [Long E: CVCe + ee](02_long_vowels/02_long_e_cvce_ee.html), [Long E: CVCe + ea](02_long_vowels/03_long_e_cvce_ea.html), [Long I: CVCe + igh](02_long_vowels/04_long_i_cvce_igh.html), [Long O: CVCe + oa](02_long_vowels/05_long_o_cvce_oa.html), [Long U: CVCe + ue](02_long_vowels/06_long_u_cvce_ue.html), [Long A: CVCe + ai](02_long_vowels/07_long_a_cvce_ai.html), [Long O: ow](02_long_vowels/08_long_o_ow.html), [Long I: ie & y](02_long_vowels/09_long_i_ie_y.html), [Long U: ew & oo](02_long_vowels/10_long_u_ew_oo.html), [Open-Syllable Long Vowels ⭐](02_long_vowels/11_open_syllable_long_vowels.html).
 
-Additional long-vowel patterns **(needs exercises):** `ay`, `ee` (apart from CVCe + ee), `ow`/`oa` for Long O, `ie`/`y` for Long I, `ew`/`oo` for Long U, open-syllable long vowels.
+Remaining patterns to add later: `oo` (book sound), additional mixed-review sheets.
 
 ### 4. High-Frequency Sight Words — Set 2 (~30 more words)
-are, they, have, what, when, with, this, that, then, them, their, here, there, where, who, why, how, some, come, want, will, your, very, again, into, our, out, about, made, make. **(needs exercises)**
+are, they, have, what, when, with, this, that, then, them, their, here, there, where, who, why, how, some, come, want, will, your, very, again, into, our, out, about, made, make.
+
+📂 **Repo materials:** [Sight Words — index](12_sight_words/index.html) — Set 2 sheets: [Set 2 — Read & Trace](12_sight_words/04_set2_read_and_trace.html), [Set 2 — Fill in the Blank](12_sight_words/05_set2_fill_in_the_blank.html), [Set 2 — Find & Circle](12_sight_words/06_set2_find_and_circle.html).
 
 ### 5. Thematic Word Sets — Expanded Categories
 - **Number words 11–20:** eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty.
@@ -115,13 +127,15 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - **Season words:** spring, summer, fall/autumn, winter.
 - **Weather words:** sunny, cloudy, rainy, snowy, windy, hot, cold, warm, cool.
 - **Animal words (pets & farm):** dog, cat, fish, bird, rabbit, hamster, cow, pig, horse, sheep, hen, duck.
-- **Food words:** apple, banana, bread, milk, water, egg, rice, cheese, juice, cookie. **(needs exercises)**
+- **Food words:** apple, banana, bread, milk, water, egg, rice, cheese, juice, cookie.
+
+📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — Term 2 sheets: [Number Words 11–20](12b_thematic_word_sets/07_number_words_11_20.html), [Ordinal Words](12b_thematic_word_sets/08_ordinal_words.html), [Months of the Year](12b_thematic_word_sets/09_months_of_the_year.html), [Season Words](12b_thematic_word_sets/10_season_words.html), [Weather Words](12b_thematic_word_sets/11_weather_words.html), [Animal Words: Pets & Farm](12b_thematic_word_sets/12_animal_words_pets_farm.html), [Food Words](12b_thematic_word_sets/13_food_words.html).
 
 ### 6. Fluency
 - Read short decodable books with digraphs, blends, and long vowels.
 - Re-read to improve smoothness; read at a steady pace ≈ 30–50 wpm by end of term.
 - Use punctuation (. ? !) to guide expression.
-- Read simple dialogue with different "voices". **(needs exercises)**
+- Read simple dialogue with different "voices". **(needs exercises)** *(See also: [Fluency Passages — index](15_fluency_passages/index.html) — especially [The Big Storm](15_fluency_passages/04_the_big_storm.html) for dialogue &amp; expression.)*
 
 ### 7. Vocabulary & Comprehension
 - Ask and answer who / what / where / when / why / how questions about a text.
@@ -144,7 +158,9 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - **Diphthongs:** `oi`/`oy` (coin, boy), `ou`/`ow` (cloud, cow).
 - **Other vowel sounds:** `oo` (book vs. moon), `aw`/`au` (saw, paw).
 - **Soft c / soft g:** city, cent; gem, giraffe.
-- **Silent letters:** `kn-`, `wr-`, `-mb`. **(needs exercises)**
+- **Silent letters:** `kn-`, `wr-`, `-mb`.
+
+📂 **Repo materials:** [R-Controlled Vowels — index](08_r_controlled_vowels/index.html) — 6 sheets covering ar, or, er, ir, ur and a mixed-practice sheet · [Diphthongs &amp; Other Vowels — index](09_diphthongs_other_vowels/index.html) — 7 sheets covering oi/oy, ou/ow, oo, aw/au, soft c &amp; soft g, silent letters (kn-, wr-, -mb), and mixed practice.
 
 ### 2. Phonics — Endings, Suffixes, and Compound Words
 - Plurals: add `-s`, add `-es` (boxes, foxes), change `y` to `i` + `es` (baby → babies).
@@ -152,12 +168,20 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - Comparative endings: `-er`, `-est` (big, bigger, biggest).
 - Adding `-y` to make describing words: double-the-letter rule vs. just add `-y`.
 - Compound words: read and split (sun + shine → sunshine).
-- Contractions: I'm, don't, can't, it's, he's, she's, we're, you're, they're, isn't. **(needs exercises for most)**
+- Contractions: I'm, don't, can't, it's, he's, she's, we're, you're, they're, isn't.
 
 📂 **Repo materials (Adding -y):** [Adding -y — index](03_adding_y/index.html) — [Double the Letter + y (Part 1)](03_adding_y/01_double_and_add_y_part1.html), [Part 2](03_adding_y/02_double_and_add_y_part2.html), [Just Add -y (Part 1)](03_adding_y/03_just_add_y_part1.html), [Part 2](03_adding_y/04_just_add_y_part2.html), [Mixed Practice ⭐](03_adding_y/05_mixed_practice.html).
 
+📂 **Repo materials (Endings):** [Endings — index](10_endings/index.html) — 7 sheets on plurals (-s, -es, y→ies), verb endings (-ed, -ing), comparatives (-er, -est), and mixed practice.
+
+📂 **Repo materials (Contractions):** [Contractions — index](11_contractions/index.html) — 2 sheets covering I'm, don't, can't, it's, isn't, he's, she's, we're, you're, they're, won't.
+
+📂 **Repo materials (Compound Words):** [Compound Words — index](14_compound_words/index.html) — 2 sheets on reading, building, and splitting compound words.
+
 ### 3. High-Frequency Sight Words — Set 3 (~30 more words)
-because, before, after, around, another, every, never, only, other, over, under, please, thank, friend, family, people, school, water, today, tomorrow, yesterday, morning, night, little, big, new, old, first, last, next. **(needs exercises)**
+because, before, after, around, another, every, never, only, other, over, under, please, thank, friend, family, people, school, water, today, tomorrow, yesterday, morning, night, little, big, new, old, first, last, next.
+
+📂 **Repo materials:** [Sight Words — index](12_sight_words/index.html) — Set 3 sheets [Read &amp; Trace](12_sight_words/07_set3_read_and_trace.html), [Fill in the Blank](12_sight_words/08_set3_fill_in_the_blank.html), [Find &amp; Circle](12_sight_words/09_set3_find_and_circle.html).
 
 ### 4. Thematic Word Sets — Wider World
 - **Number words 21–100 (by tens):** twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. (Cross-references math: see [Math Syllabus — Number Sense to 100](../math/syllabus.md#1-number-sense-to-100).)
@@ -166,13 +190,17 @@ because, before, after, around, another, every, never, only, other, over, under,
 - **Action verbs:** run, jump, hop, skip, walk, swim, fly, sit, stand, sleep, eat, drink, read, write, play.
 - **Feeling words:** happy, sad, mad, scared, surprised, tired, excited, kind.
 - **Animal words (wild):** lion, tiger, bear, elephant, monkey, snake, frog, fox, wolf, deer, owl.
-- **Opposites pairs:** hot/cold, big/small, fast/slow, up/down, in/out, on/off, day/night, open/close, full/empty, hard/soft. **(needs exercises)**
+- **Opposites pairs:** hot/cold, big/small, fast/slow, up/down, in/out, on/off, day/night, open/close, full/empty, hard/soft.
+
+📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — Term 3 "Wider World" sheets: [Number Words to 100](12b_thematic_word_sets/14_number_words_to_100.html), [Time Words](12b_thematic_word_sets/15_time_words.html), [Place &amp; Community Words](12b_thematic_word_sets/16_place_community_words.html), [Action Verbs](12b_thematic_word_sets/17_action_verbs.html), [Feeling Words](12b_thematic_word_sets/18_feeling_words.html), [Animal Words: Wild](12b_thematic_word_sets/19_animal_words_wild.html), [Opposites Pairs](12b_thematic_word_sets/20_opposites_pairs.html).
 
 ### 5. Fluency
 - Read passages of 50–100 words with ≥ 95% accuracy.
 - Read aloud at a comfortable pace (50–70 wpm by end of term).
 - Use expression for dialogue, exclamations, and questions.
-- Self-correct when meaning breaks down. **(needs exercises)**
+- Self-correct when meaning breaks down.
+
+📂 **Repo materials:** [Fluency Passages — index](15_fluency_passages/index.html) — 4 short passages with cold/warm/hot re-read charts: [At the Zoo](15_fluency_passages/01_at_the_zoo.html), [My Lost Cat](15_fluency_passages/02_my_lost_cat.html), [Seeds Grow](15_fluency_passages/03_seeds_grow.html), [The Big Storm](15_fluency_passages/04_the_big_storm.html).
 
 ### 6. Vocabulary & Comprehension
 - Identify story elements: character, setting, problem, solution.
@@ -180,7 +208,9 @@ because, before, after, around, another, every, never, only, other, over, under,
 - Identify the **main idea** and one or two key details in non-fiction.
 - Identify text features: title, headings, labels, captions, table of contents.
 - Use simple text evidence ("It says here…") to answer questions.
-- Discuss why authors write (to tell a story, to give information, to give an opinion). **(needs exercises)**
+- Discuss why authors write (to tell a story, to give information, to give an opinion).
+
+📂 **Repo materials:** [Comprehension — index](16_comprehension/index.html) — 5 sheets: [Story Elements](16_comprehension/01_story_elements.html), [Main Idea &amp; Key Details](16_comprehension/02_main_idea.html), [Text Features](16_comprehension/03_text_features.html), [Compare Two Stories](16_comprehension/04_compare_two_stories.html), [Opinion Writing](16_comprehension/05_opinion_writing.html).
 
 📂 **Repo materials (Sentences & Stories):** [Sentences & Stories — index](04_sentences/index.html) — 12 short stories with comprehension and build-&-draw activities: My Puppy, At the Park, At School, My Toys, The Farm, Bath Time, My Bike, The Beach, Bedtime, Snack Time, The Pond, Game Day.
 
@@ -205,15 +235,21 @@ because, before, after, around, another, every, never, only, other, over, under,
 - Use a flexible toolkit when stuck on a word: sound it out, look at parts you know, look at the picture, re-read, think about what makes sense.
 - Talk about books with a partner: favourite part, character, lesson.
 
+📂 **Repo materials:** [Fluency Passages — index](15_fluency_passages/index.html) — use the cold/warm/hot re-read charts to sustain independent reading and build a flexible reading toolkit.
+
 ### 3. Comprehension Across Texts
 - Compare two stories with similar characters or themes.
 - Compare two non-fiction texts on the same topic.
-- Express and justify opinions about texts ("I liked… because…"). **(needs exercises)**
+- Express and justify opinions about texts ("I liked… because…").
+
+📂 **Repo materials:** [Comprehension — index](16_comprehension/index.html) — especially [Compare Two Stories](16_comprehension/04_compare_two_stories.html) for same/different/both comparison, and [Opinion Writing](16_comprehension/05_opinion_writing.html) for justifying opinions about texts.
 
 ### 4. Writing Connection
 - Write a short story with a beginning, middle, and end.
 - Write a short informational piece on a familiar topic.
-- Write an opinion piece with a reason. **(needs exercises)**
+- Write an opinion piece with a reason.
+
+📂 **Repo materials:** [Comprehension — Opinion Writing](16_comprehension/05_opinion_writing.html) — opinion-piece scaffold with sentence frames ("I like ___ best because ___") and two writing prompts.
 
 ---
 

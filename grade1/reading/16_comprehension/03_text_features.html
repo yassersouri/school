@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comprehension: Text Features</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #af7ac5;
+    --accent-bg: #f5eef8;
+    --heading-color: #76448a;
+    --title-color: #5b2c6f;
+    --col-bg: #e8daef;
+    --col-heading: #5b2c6f;
+    --word-bg: #fff;
+  }
+  /* Labeled book page diagram */
+  .book-page { background: #fff; border: 2.5px solid var(--accent); border-radius: 12px; padding: 14px 18px; position: relative; }
+  .bp-title { text-align: center; font-size: 22px; font-weight: bold; color: var(--title-color); border-bottom: 2px dashed #aaa; padding-bottom: 6px; }
+  .bp-heading { font-size: 16px; font-weight: bold; color: #555; margin-top: 8px; }
+  .bp-body { font-size: 14px; line-height: 1.6; margin-top: 4px; }
+  .bp-pic { margin: 8px auto 4px; width: 80%; height: 80px; border: 2px dashed #888; border-radius: 8px; background: #fafafa; display: flex; align-items: center; justify-content: center; color: #aaa; font-size: 13px; }
+  .bp-caption { text-align: center; font-size: 12px; font-style: italic; color: #666; }
+  .bp-label { font-size: 11px; color: #b03a2e; font-weight: bold; }
+  /* Feature labels with lines */
+  .feat-tags { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 10px; }
+  .feat-tag { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 4px 6px; text-align: center; font-size: 12px; font-weight: bold; color: var(--title-color); }
+  /* TOC */
+  .toc { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: 14px; max-width: 360px; margin: 0 auto; }
+  .toc h3 { text-align: center; color: var(--title-color); margin-bottom: 6px; font-size: 16px; }
+  .toc ol { padding-left: 22px; line-height: 1.8; }
+  .toc ol li { display: flex; justify-content: space-between; border-bottom: 1px dotted #aaa; }
+  .toc ol li span:last-child { font-weight: bold; }
+  /* Match list */
+  .match-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .match-list li { background: #fff; border: 1px solid #d2b4de; border-radius: 8px; padding: 6px 12px; font-size: 14px; display: flex; align-items: center; gap: 12px; }
+  .match-label { font-weight: bold; color: var(--title-color); min-width: 80px; }
+  .match-line { flex: 1; border-bottom: 2px dotted var(--title-color); height: 18px; }
+  /* Number labels */
+  .num-pointer { display: inline-block; background: var(--accent); color: #fff; font-weight: bold; border-radius: 50%; width: 22px; height: 22px; line-height: 22px; text-align: center; font-size: 12px; margin-right: 4px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>📑 Text Features</h1><p>Title · Heading · Label · Caption · Table of Contents</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Look at the Book Page 📖</div>
+    <div class="exercise-instruction">Each part has a number. Use the numbers to find each feature.</div>
+    <div class="book-page">
+      <div class="bp-title"><span class="num-pointer">1</span>All About Frogs</div>
+      <div class="bp-heading"><span class="num-pointer">2</span>What Frogs Eat</div>
+      <div class="bp-body">Frogs eat bugs. They use their long, sticky tongue to catch flies and ants. A frog can flick its tongue very fast!</div>
+      <div class="bp-pic">🐸 (picture of a frog) <span class="bp-label">&nbsp;←&nbsp;<span class="num-pointer" style="background:#b03a2e;">3</span>tongue</span></div>
+      <div class="bp-caption"><span class="num-pointer">4</span>A frog catches a fly with its long tongue.</div>
+    </div>
+    <div class="feat-tags">
+      <div class="feat-tag">1 Title</div>
+      <div class="feat-tag">2 Heading</div>
+      <div class="feat-tag">3 Label</div>
+      <div class="feat-tag">4 Caption</div>
+      <div class="feat-tag">5 Contents (see Ex.3)</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Match Feature to Its Job 🎯</div>
+    <div class="exercise-instruction">Write the matching feature on the line.</div>
+    <ul class="match-list">
+      <li><span class="match-label">Title</span><span style="font-size:13px;">tells the name of the whole book</span><span class="match-line"></span></li>
+      <li><span class="match-label">Heading</span><span style="font-size:13px;">tells the topic of a section</span><span class="match-line"></span></li>
+      <li><span class="match-label">Label</span><span style="font-size:13px;">names a part of a picture</span><span class="match-line"></span></li>
+      <li><span class="match-label">Caption</span><span style="font-size:13px;">tells about a picture</span><span class="match-line"></span></li>
+      <li><span class="match-label">Contents</span><span style="font-size:13px;">lists chapters &amp; page numbers</span><span class="match-line"></span></li>
+    </ul>
+    <p style="font-size:12px; color:#666; margin-top:6px; font-style: italic;">Write: TITLE / HEADING / LABEL / CAPTION / CONTENTS</p>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>📑 Text Features</h1><p>Keep going — great work!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Read the Table of Contents 📚</div>
+    <div class="exercise-instruction">This is from a book called <strong>All About Frogs</strong>. Use it to answer the questions.</div>
+    <div class="toc">
+      <h3>📑 Contents</h3>
+      <ol>
+        <li><span>What is a Frog?</span><span>2</span></li>
+        <li><span>Where Frogs Live</span><span>5</span></li>
+        <li><span>What Frogs Eat</span><span>8</span></li>
+        <li><span>Baby Frogs</span><span>12</span></li>
+        <li><span>Fun Frog Facts</span><span>15</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Answer the Questions ✏️</div>
+    <div class="exercise-instruction">Use the table of contents.</div>
+    <ul class="match-list">
+      <li><span style="flex:1;">Which page starts "Where Frogs Live"?</span><span class="match-line" style="max-width: 80px;"></span></li>
+      <li><span style="flex:1;">What chapter is on page 8?</span><span class="match-line"></span></li>
+      <li><span style="flex:1;">How many chapters are there?</span><span class="match-line" style="max-width: 80px;"></span></li>
+      <li><span style="flex:1;">What chapter is the LAST?</span><span class="match-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Find the Feature 🔎</div>
+    <div class="exercise-instruction">Look at Exercise 1. Write the number (1–4) of the feature.</div>
+    <ul class="match-list">
+      <li><span style="flex:1;">"All About Frogs" — this is the…</span><span class="match-line" style="max-width: 100px;"></span></li>
+      <li><span style="flex:1;">"tongue" — this is a…</span><span class="match-line" style="max-width: 100px;"></span></li>
+      <li><span style="flex:1;">"What Frogs Eat" — this is a…</span><span class="match-line" style="max-width: 100px;"></span></li>
+      <li><span style="flex:1;">"A frog catches a fly…" — this is a…</span><span class="match-line" style="max-width: 100px;"></span></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> TITLE, HEADING, LABEL, CAPTION, CONTENTS ·
+    <strong>Ex.4:</strong> 1. page 5 · 2. "What Frogs Eat" · 3. 5 chapters · 4. "Fun Frog Facts" ·
+    <strong>Ex.5:</strong> 1. title (1) · 2. label (3) · 3. heading (2) · 4. caption (4).
+  </div>
+</div>
+</body>
+</html>

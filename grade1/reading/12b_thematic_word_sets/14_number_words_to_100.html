@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thematic Words: Number Words to 100</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #5dade2;
+    --accent-bg: #ebf5fb;
+    --heading-color: #1b4f72;
+    --title-color: #1f618d;
+    --col-bg: #d6eaf8;
+    --col-heading: #1b4f72;
+    --word-bg: #fff;
+  }
+  /* Numeral ↔ word match list */
+  .num-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .num-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #aed6f1; display: flex; align-items: center; gap: 12px; font-size: 16px; }
+  .num-numeral { font-weight: bold; color: #1b4f72; min-width: 40px; font-size: 20px; text-align: center; }
+  .num-line { flex: 1; border-bottom: 2px dotted #1f618d; height: 18px; }
+  /* Count by tens */
+  .ten-row { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-top: 4px; }
+  .ten-box { background: #fff; border: 2px solid var(--accent); border-radius: 8px; padding: 6px 2px; text-align: center; font-size: 16px; font-weight: bold; color: #1b4f72; }
+  .ten-box.blank { color: #bbb; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>💯 Number Words to 100</h1><p>Read · Match · Count by Tens</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Read the Number Words 🗣️</div>
+    <div class="exercise-instruction">Read each word out loud.</div>
+    <div class="word-grid">
+      <div class="word-col">
+        <h3>Group A</h3>
+        <ul class="word-list">
+          <li>twenty</li><li>thirty</li><li>forty</li><li>fifty</li>
+        </ul>
+      </div>
+      <div class="word-col">
+        <h3>Group B</h3>
+        <ul class="word-list">
+          <li>sixty</li><li>seventy</li><li>eighty</li><li>ninety</li>
+        </ul>
+      </div>
+    </div>
+    <div style="margin-top:8px; text-align:center;">
+      <span style="font-size:28px; font-weight:bold; color:#1b4f72; background:#fff; border:2px solid var(--accent); border-radius:10px; padding:4px 18px;">one hundred</span>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Match Numeral to Word 🎯</div>
+    <div class="exercise-instruction">Write the matching number word on the line.</div>
+    <ul class="num-list">
+      <li><span class="num-numeral">20</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">30</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">40</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">50</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">60</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">70</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">80</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">90</span><span class="num-line"></span></li>
+      <li><span class="num-numeral">100</span><span class="num-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Count by Tens 🔢</div>
+    <div class="exercise-instruction">Fill in the missing number words.</div>
+    <div class="ten-row">
+      <div class="ten-box">ten</div>
+      <div class="ten-box blank">_____</div>
+      <div class="ten-box">thirty</div>
+      <div class="ten-box blank">_____</div>
+      <div class="ten-box">fifty</div>
+    </div>
+    <div class="ten-row" style="margin-top:6px;">
+      <div class="ten-box blank">_____</div>
+      <div class="ten-box">seventy</div>
+      <div class="ten-box blank">_____</div>
+      <div class="ten-box">ninety</div>
+      <div class="ten-box blank">_____</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>💯 Number Words to 100</h1><p>Keep going — great work!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Fill in the Blank ✏️</div>
+    <div class="exercise-instruction">Choose a number word that fits.</div>
+    <div class="word-bank"><span class="bank-word">twenty</span><span class="bank-word">thirty</span><span class="bank-word">fifty</span><span class="bank-word">sixty</span><span class="bank-word">eighty</span><span class="bank-word">one hundred</span></div>
+    <ul class="blank-list" style="margin-top:10px;">
+      <li>1. I am six, but my grandma is <span class="blank"></span>.</li>
+      <li>2. There are <span class="blank"></span> minutes in one hour.</li>
+      <li>3. Half of one hundred is <span class="blank"></span>.</li>
+      <li>4. I can count to <span class="blank"></span>!</li>
+      <li>5. A toy box has <span class="blank"></span> blocks. (2 tens)</li>
+      <li>6. My dad turned <span class="blank"></span> last year. (8 tens)</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Sort: Less than 50 or More than 50? 📂</div>
+    <div class="exercise-instruction">Sort: twenty, sixty, thirty, eighty, forty, ninety, seventy.</div>
+    <div class="sort-cols">
+      <div class="sort-col"><h4>Less than 50</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>More than 50</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Read and Draw 🎨</div>
+    <div class="exercise-instruction">Read, then draw the picture.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:16px;"><strong>"I see thirty stars, twenty clouds, and one hundred raindrops!"</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred ·
+    <strong>Ex.3:</strong> ten, twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred ·
+    <strong>Ex.4 sample:</strong> 1. sixty · 2. sixty · 3. fifty · 4. one hundred · 5. twenty · 6. eighty ·
+    <strong>Ex.5:</strong> Less than 50: twenty, thirty, forty — More than 50: sixty, seventy, eighty, ninety.
+  </div>
+</div>
+</body>
+</html>

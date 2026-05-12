@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phonemic Awareness: Rhyme &amp; Syllables</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #ec7063;
+    --accent-bg: #fdedec;
+    --heading-color: #c0392b;
+    --title-color: #922b21;
+    --col-bg: #fbeae7;
+    --col-heading: #922b21;
+    --word-bg: #fff;
+  }
+  /* Rhyme pair rows */
+  .rhyme-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .rhyme-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #f5b7b1; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .rhyme-pair { font-weight: bold; color: #922b21; flex: 1; }
+  .yn-boxes { display: inline-flex; gap: 4px; }
+  .yn-box { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border: 2px solid var(--accent); border-radius: 50%; font-weight: bold; color: #922b21; background: #fff; font-size: 13px; }
+
+  /* Find the rhyme (multiple choice) */
+  .mc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .mc-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #f5b7b1; font-size: 15px; }
+  .mc-opt { display: inline-block; border: 1.5px solid var(--accent); border-radius: 14px; padding: 1px 12px; margin: 4px 4px 0 0; font-size: 14px; color: #922b21; font-weight: bold; background: #fff; }
+
+  /* Syllable claps */
+  .syll-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .syll-list li { background: #fff; border-radius: 8px; padding: 8px 12px; border: 1px solid #f5b7b1; font-size: 16px; display: flex; align-items: center; gap: 10px; }
+  .syll-word { flex: 1; font-weight: bold; color: #922b21; }
+  .clap-circles { display: inline-flex; gap: 4px; }
+  .clap { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--accent); border-radius: 50%; background: #fff; }
+  .syll-num-box { display: inline-block; width: 32px; height: 26px; border: 2px solid #922b21; border-radius: 6px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>👂 Rhyming Words &amp; Syllables</h1><p>Listen · Clap · Hear the sounds</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Do They Rhyme? 🎵</div>
+    <div class="exercise-instruction">Say each pair out loud. Do they rhyme? Circle <strong>Y</strong> for yes or <strong>N</strong> for no.</div>
+    <ul class="rhyme-list">
+      <li><span class="rhyme-pair">cat — hat</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">dog — sun</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">pig — big</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">red — bed</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">cup — top</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">fan — man</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">box — fox</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+      <li><span class="rhyme-pair">car — pen</span><span class="yn-boxes"><span class="yn-box">Y</span><span class="yn-box">N</span></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Find the Rhyme 🔎</div>
+    <div class="exercise-instruction">Circle the word in each row that rhymes with the bold word.</div>
+    <ul class="mc-list">
+      <li><strong>sun</strong> →
+        <span class="mc-opt">run</span><span class="mc-opt">map</span><span class="mc-opt">dog</span><span class="mc-opt">cat</span>
+      </li>
+      <li><strong>top</strong> →
+        <span class="mc-opt">tin</span><span class="mc-opt">hop</span><span class="mc-opt">bag</span><span class="mc-opt">sit</span>
+      </li>
+      <li><strong>bell</strong> →
+        <span class="mc-opt">bag</span><span class="mc-opt">cup</span><span class="mc-opt">tell</span><span class="mc-opt">log</span>
+      </li>
+      <li><strong>jump</strong> →
+        <span class="mc-opt">just</span><span class="mc-opt">bump</span><span class="mc-opt">pop</span><span class="mc-opt">net</span>
+      </li>
+      <li><strong>nest</strong> →
+        <span class="mc-opt">nut</span><span class="mc-opt">bus</span><span class="mc-opt">best</span><span class="mc-opt">box</span>
+      </li>
+      <li><strong>duck</strong> →
+        <span class="mc-opt">truck</span><span class="mc-opt">desk</span><span class="mc-opt">door</span><span class="mc-opt">drum</span>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>👂 Rhyming Words &amp; Syllables</h1><p>Clap, count, and listen!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Make Your Own Rhyme ✏️</div>
+    <div class="exercise-instruction">Write one word that rhymes with each word below. (Real or silly — both are okay!)</div>
+    <ul class="blank-list">
+      <li>1. cat → <span class="blank"></span></li>
+      <li>2. pig → <span class="blank"></span></li>
+      <li>3. hop → <span class="blank"></span></li>
+      <li>4. red → <span class="blank"></span></li>
+      <li>5. bug → <span class="blank"></span></li>
+      <li>6. ten → <span class="blank"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Clap the Syllables 👏</div>
+    <div class="exercise-instruction">Clap each word and count the parts. Colour in one circle for each clap, then write the number.</div>
+    <ul class="syll-list">
+      <li><span class="syll-word">cat</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">apple</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">happy</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">banana</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">elephant</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">dog</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">rabbit</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+      <li><span class="syll-word">butterfly</span><span class="clap-circles"><span class="clap"></span><span class="clap"></span><span class="clap"></span><span class="clap"></span></span><span class="syll-num-box"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Sort by Syllables 📂</div>
+    <div class="exercise-instruction">Sort: <strong>fish, monkey, kangaroo, sun, pencil, hippo</strong></div>
+    <div class="sort-cols" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="sort-col"><h4>1 syllable</h4><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>2 syllables</h4><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>3 syllables</h4><div class="sort-slot"></div><div class="sort-slot"></div></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> Y, N, Y, Y, N, Y, Y, N ·
+    <strong>Ex.2:</strong> run, hop, tell, bump, best, truck ·
+    <strong>Ex.3:</strong> samples — bat, big/dig/wig, mop/pop/top, bed/fed, hug/rug/mug, hen/men/pen ·
+    <strong>Ex.4:</strong> cat 1 · apple 2 · happy 2 · banana 3 · elephant 3 · dog 1 · rabbit 2 · butterfly 3 ·
+    <strong>Ex.5:</strong> 1: fish, sun · 2: monkey, pencil, hippo · 3: kangaroo.
+  </div>
+</div>
+</body>
+</html>

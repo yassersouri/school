@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Phonemic Awareness: Blending &amp; Segmenting</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #ec7063;
+    --accent-bg: #fdedec;
+    --heading-color: #c0392b;
+    --title-color: #922b21;
+    --col-bg: #fbeae7;
+    --col-heading: #922b21;
+    --word-bg: #fff;
+  }
+  /* Sound boxes (Elkonin-style) */
+  .blend-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .blend-list li { background: #fff; border-radius: 8px; padding: 8px 12px; border: 1px solid #f5b7b1; font-size: 16px; display: flex; align-items: center; gap: 14px; }
+  .sound-boxes { display: inline-flex; gap: 6px; }
+  .sound { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px solid var(--accent); border-radius: 8px; background: #fff; font-weight: bold; color: #922b21; font-size: 20px; font-family: 'Comic Sans MS', cursive; }
+  .arrow { font-size: 20px; color: #922b21; font-weight: bold; }
+  .answer-line-sm { display: inline-block; border-bottom: 2px solid #333; width: 110px; height: 24px; }
+
+  /* Empty boxes for segment exercise */
+  .seg-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .seg-list li { background: #fff; border-radius: 8px; padding: 8px 12px; border: 1px solid #f5b7b1; font-size: 18px; display: flex; align-items: center; gap: 14px; }
+  .seg-word { font-weight: bold; color: #922b21; min-width: 80px; font-size: 22px; }
+  .seg-empty { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px dashed var(--accent); border-radius: 8px; background: #fff; }
+
+  /* Onset–rime split */
+  .onset-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .onset-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #f5b7b1; font-size: 17px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .onset { background: #f8d7da; border: 2px solid #c0392b; border-radius: 8px; padding: 4px 10px; font-weight: bold; color: #922b21; }
+  .rime  { background: #fce4ec; border: 2px solid #c0392b; border-radius: 8px; padding: 4px 10px; font-weight: bold; color: #922b21; }
+  .plus { font-size: 20px; color: #922b21; }
+  .equals { font-size: 20px; color: #922b21; }
+  .onset-blank { display: inline-block; border-bottom: 2px solid #333; width: 80px; height: 24px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>👂 Blending &amp; Segmenting Sounds</h1><p>Push the sounds together · Pull them apart</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Blend the Sounds 🔊 → 🗣️</div>
+    <div class="exercise-instruction">Say each sound in the boxes, then push them together to make the word. Write the word.</div>
+    <ul class="blend-list">
+      <li><span class="sound-boxes"><span class="sound">c</span><span class="sound">a</span><span class="sound">t</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">s</span><span class="sound">u</span><span class="sound">n</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">m</span><span class="sound">a</span><span class="sound">p</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">p</span><span class="sound">i</span><span class="sound">g</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">b</span><span class="sound">e</span><span class="sound">d</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">h</span><span class="sound">o</span><span class="sound">p</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">l</span><span class="sound">e</span><span class="sound">g</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+      <li><span class="sound-boxes"><span class="sound">f</span><span class="sound">u</span><span class="sound">n</span></span><span class="arrow">→</span><span class="answer-line-sm"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Onset + Rime ➕</div>
+    <div class="exercise-instruction">The first sound is the <strong>onset</strong>. The rest is the <strong>rime</strong>. Put them together!</div>
+    <ul class="onset-list">
+      <li><span class="onset">c</span><span class="plus">+</span><span class="rime">at</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">h</span><span class="plus">+</span><span class="rime">at</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">b</span><span class="plus">+</span><span class="rime">ig</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">d</span><span class="plus">+</span><span class="rime">og</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">m</span><span class="plus">+</span><span class="rime">op</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">r</span><span class="plus">+</span><span class="rime">un</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">j</span><span class="plus">+</span><span class="rime">et</span><span class="equals">=</span><span class="onset-blank"></span></li>
+      <li><span class="onset">t</span><span class="plus">+</span><span class="rime">en</span><span class="equals">=</span><span class="onset-blank"></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>👂 Blending &amp; Segmenting Sounds</h1><p>Now break them apart!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Segment the Sounds ✂️</div>
+    <div class="exercise-instruction">Say the word slowly. Tap one box for each sound, then write the letters in the boxes.</div>
+    <ul class="seg-list">
+      <li><span class="seg-word">cat</span><span class="arrow">→</span><span class="seg-empty"></span><span class="seg-empty"></span><span class="seg-empty"></span></li>
+      <li><span class="seg-word">map</span><span class="arrow">→</span><span class="seg-empty"></span><span class="seg-empty"></span><span class="seg-empty"></span></li>
+      <li><span class="seg-word">bus</span><span class="arrow">→</span><span class="seg-empty"></span><span class="seg-empty"></span><span class="seg-empty"></span></li>
+      <li><span class="seg-word">hot</span><span class="arrow">→</span><span class="seg-empty"></span><span class="seg-empty"></span><span class="seg-empty"></span></li>
+      <li><span class="seg-word">red</span><span class="arrow">→</span><span class="seg-empty"></span><span class="seg-empty"></span><span class="seg-empty"></span></li>
+      <li><span class="seg-word">pig</span><span class="arrow">→</span><span class="seg-empty"></span><span class="seg-empty"></span><span class="seg-empty"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) First Sound 🔤</div>
+    <div class="exercise-instruction">What is the <strong>first sound</strong> you hear? Write the letter.</div>
+    <ul class="blank-list">
+      <li>1. dog → <span class="blank" style="width:50px;"></span></li>
+      <li>2. fish → <span class="blank" style="width:50px;"></span></li>
+      <li>3. moon → <span class="blank" style="width:50px;"></span></li>
+      <li>4. ten → <span class="blank" style="width:50px;"></span></li>
+      <li>5. apple → <span class="blank" style="width:50px;"></span></li>
+      <li>6. snake → <span class="blank" style="width:50px;"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Last Sound 🔚</div>
+    <div class="exercise-instruction">What is the <strong>last sound</strong> you hear? Write the letter.</div>
+    <ul class="blank-list">
+      <li>1. cat → <span class="blank" style="width:50px;"></span></li>
+      <li>2. bus → <span class="blank" style="width:50px;"></span></li>
+      <li>3. ham → <span class="blank" style="width:50px;"></span></li>
+      <li>4. red → <span class="blank" style="width:50px;"></span></li>
+      <li>5. dog → <span class="blank" style="width:50px;"></span></li>
+      <li>6. fish → <span class="blank" style="width:50px;"></span></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> cat, sun, map, pig, bed, hop, leg, fun ·
+    <strong>Ex.2:</strong> cat, hat, big, dog, mop, run, jet, ten ·
+    <strong>Ex.3:</strong> c-a-t · m-a-p · b-u-s · h-o-t · r-e-d · p-i-g ·
+    <strong>Ex.4:</strong> d, f, m, t, a, s ·
+    <strong>Ex.5:</strong> t, s, m, d, g, sh.
+  </div>
+</div>
+</body>
+</html>

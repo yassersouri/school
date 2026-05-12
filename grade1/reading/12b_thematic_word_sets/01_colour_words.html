@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Thematic Words: Colour Words</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #ec407a;
+    --accent-bg: #fce4ec;
+    --heading-color: #ad1457;
+    --title-color: #880e4f;
+    --col-bg: #fde7ef;
+    --col-heading: #880e4f;
+    --word-bg: #fff;
+  }
+  /* Word ↔ colour-swatch match list */
+  .match-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .match-list li { background: #fff; border-radius: 8px; padding: 6px 10px; border: 1px solid #f8bbd0; display: flex; align-items: center; gap: 10px; font-size: 16px; }
+  .match-word { font-weight: bold; color: #880e4f; flex: 1; }
+  .swatch { display: inline-block; width: 26px; height: 26px; border-radius: 6px; border: 1.5px solid #555; }
+  .match-line { flex: 1; border-bottom: 2px dotted #ad1457; height: 18px; }
+  /* Colour-the-word boxes */
+  .color-words { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .color-word-box { background: #fff; border: 2px solid var(--accent); border-radius: 8px; padding: 8px 4px; text-align: center; font-size: 20px; font-weight: bold; color: #333; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🎨 Colour Words</h1><p>Read · Match · Colour</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Read the Colour Words 🗣️</div>
+    <div class="exercise-instruction">Read each word out loud.</div>
+    <div class="word-grid">
+      <div class="word-col">
+        <h3>Group A</h3>
+        <ul class="word-list">
+          <li>red</li><li>orange</li><li>yellow</li><li>green</li><li>blue</li><li>purple</li>
+        </ul>
+      </div>
+      <div class="word-col">
+        <h3>Group B</h3>
+        <ul class="word-list">
+          <li>pink</li><li>black</li><li>white</li><li>brown</li><li>grey</li><li>blue</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Match Word to Colour 🎯</div>
+    <div class="exercise-instruction">Look at the swatch. Write the matching colour word on the line.</div>
+    <ul class="match-list">
+      <li><span class="swatch" style="background:#e53935;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#fb8c00;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#fdd835;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#43a047;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#1e88e5;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#8e24aa;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#ec407a;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#000;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#fff;"></span><span class="match-line"></span></li>
+      <li><span class="swatch" style="background:#6d4c41;"></span><span class="match-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Colour the Word 🖍️</div>
+    <div class="exercise-instruction">Read each word, then colour the box using that colour.</div>
+    <div class="color-words">
+      <div class="color-word-box">red</div>
+      <div class="color-word-box">orange</div>
+      <div class="color-word-box">yellow</div>
+      <div class="color-word-box">green</div>
+      <div class="color-word-box">blue</div>
+      <div class="color-word-box">purple</div>
+      <div class="color-word-box">pink</div>
+      <div class="color-word-box">brown</div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🎨 Colour Words</h1><p>Keep going — great work!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Fill in the Blank ✏️</div>
+    <div class="exercise-instruction">Choose the colour word that fits the sentence.</div>
+    <div class="word-bank"><span class="bank-word">red</span><span class="bank-word">yellow</span><span class="bank-word">green</span><span class="bank-word">blue</span><span class="bank-word">white</span><span class="bank-word">black</span><span class="bank-word">brown</span><span class="bank-word">pink</span></div>
+    <ul class="blank-list" style="margin-top:10px;">
+      <li>1. The sun is <span class="blank"></span>.</li>
+      <li>2. Grass is <span class="blank"></span>.</li>
+      <li>3. The sky is <span class="blank"></span>.</li>
+      <li>4. An apple can be <span class="blank"></span>.</li>
+      <li>5. Snow is <span class="blank"></span>.</li>
+      <li>6. A bear can be <span class="blank"></span>.</li>
+      <li>7. My pet's nose is <span class="blank"></span>.</li>
+      <li>8. The night is <span class="blank"></span>.</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Sort: Warm or Cool? 📂</div>
+    <div class="exercise-instruction">Sort: red, blue, yellow, green, orange, purple</div>
+    <div class="sort-cols">
+      <div class="sort-col"><h4>Warm 🔥</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>Cool ❄️</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Read and Draw 🎨</div>
+    <div class="exercise-instruction">Read, then draw &amp; colour in the box.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:16px;"><strong>"I see a red apple, a yellow sun, and a green tree under a blue sky."</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.2:</strong> red, orange, yellow, green, blue, purple, pink, black, white, brown ·
+    <strong>Ex.4:</strong> 1. yellow · 2. green · 3. blue · 4. red · 5. white · 6. brown · 7. pink · 8. black ·
+    <strong>Ex.5:</strong> Warm: red, yellow, orange — Cool: blue, green, purple.
+  </div>
+</div>
+</body>
+</html>
