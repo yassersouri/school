@@ -28,7 +28,9 @@ Each term below cycles through all six strands so they grow together.
 - Track print with a finger; one spoken word = one printed word.
 - Identify front cover, back cover, title, author, illustrator.
 - Recognize and use spaces between words and basic punctuation: `.` `?` `!`
-- Distinguish letters, words, and sentences. **(needs exercises)**
+- Distinguish letters, words, and sentences.
+
+📂 **Repo materials:** [Print Concepts — index](05_print_concepts/index.html) — 2 sheets covering parts of a book &amp; tracking print, and letters / words / sentences / punctuation.
 
 ### 2. Phonological & Phonemic Awareness
 - Rhyme: recognize and produce rhyming words (cat/hat, sun/run).
@@ -36,7 +38,9 @@ Each term below cycles through all six strands so they grow together.
 - Onset–rime: blend and segment (c-at → cat).
 - Phoneme isolation: identify the first, last, and middle sounds in CVC words.
 - Phoneme blending: /c/ /a/ /t/ → cat.
-- Phoneme segmenting: cat → /c/ /a/ /t/. **(needs exercises)**
+- Phoneme segmenting: cat → /c/ /a/ /t/.
+
+📂 **Repo materials:** [Phonemic Awareness — index](13_phonemic_awareness/index.html) — 3 sheets: Rhyme &amp; Syllables, Blending &amp; Segmenting, Mixed Sound Play.
 
 ### 3. Alphabet & Letter–Sound Knowledge
 - Recognize and name all 26 upper- and lower-case letters.
@@ -52,7 +56,9 @@ Each term below cycles through all six strands so they grow together.
 📂 **Repo materials:** [Short Vowels — index](01_short_vowels/index.html) — 22 sheets covering short **a**, **e**, **i**, **o**, **u**, including word families (-at/-an, -ed/-en, -ig/-in, -ot/-op, -ug/-un, -it/-id, -ip/-ick, -ill/-im, -ap/-ad, -ag/-am, -ack/-ash, -et/-ell, -eck/-est, -og/-ock, -ob/-ox, -ut/-ub, -uck/-ump) and ⭐ Mixed Practice sheets for each vowel.
 
 ### 5. High-Frequency Sight Words — Set 1 (~30 words)
-the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for. **(needs exercises)**
+the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for.
+
+📂 **Repo materials:** [Sight Words — index](12_sight_words/index.html) — 3 sheets for Set 1: Read &amp; Trace, Fill in the Blank, Find &amp; Circle.
 
 ### 6. Thematic Word Sets — Introductory Categories
 Read, recognize, and spell common everyday vocabulary grouped by meaning. These sets are taught alongside sight words and reinforce both reading and writing.
@@ -62,7 +68,9 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 - **Shape words:** circle, square, triangle, rectangle, oval, star, heart, diamond.
 - **Family words:** mom, dad, mother, father, sister, brother, baby, family, grandma, grandpa, aunt, uncle.
 - **Body-part words:** head, hair, eye, ear, nose, mouth, arm, hand, leg, foot, finger, toe.
-- **Days of the week:** Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday. **(needs exercises)**
+- **Days of the week:** Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday.
+
+📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — 6 introductory category sheets: Colour Words, Number Words 0–10, Shape Words, Family Words, Body-Part Words, Days of the Week. (Numbers 11–20, ordinals, months, seasons, weather, animals, food, etc. will be added in later terms.)
 
 ### 7. Fluency
 - Read decodable sentences using known short-vowel words and Set 1 sight words.

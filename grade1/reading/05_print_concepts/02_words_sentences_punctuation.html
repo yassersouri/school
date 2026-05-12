@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Print Concepts: Letters, Words, Sentences &amp; Punctuation</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #5dade2;
+    --accent-bg: #ebf5fb;
+    --heading-color: #1a6fbd;
+    --title-color: #1f618d;
+    --col-bg: #f4faff;
+    --col-heading: #1f618d;
+    --word-bg: #fff;
+  }
+  /* Smush row: words pushed together with no spaces, child writes them apart */
+  .smush { background: #fff; border: 1.5px dashed var(--accent); border-radius: 8px; padding: 8px 12px; font-size: 22px; letter-spacing: 1px; margin-bottom: 6px; font-weight: bold; color: #1f618d; }
+  .smush + .answer-line { display: block; border-bottom: 2px solid #333; height: 24px; margin-bottom: 10px; }
+
+  /* Punctuation choices */
+  .punct-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .punct-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #aed6f1; font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+  .punct-opts { display: inline-flex; gap: 6px; }
+  .punct-opt { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border: 2px solid var(--accent); border-radius: 50%; font-weight: bold; color: #1f618d; background: #fff; font-size: 16px; }
+
+  /* Count-the-words boxes */
+  .count-row { background: #fff; border: 1.5px dashed var(--accent); border-radius: 8px; padding: 8px 12px; font-size: 18px; margin-bottom: 6px; display: flex; justify-content: space-between; align-items: center; }
+  .count-box { display: inline-block; width: 40px; height: 28px; border: 2px solid #1f618d; border-radius: 6px; }
+
+  /* Letter / word / sentence sort items */
+  .sort-item { display: inline-block; background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 4px 10px; margin: 3px; font-size: 14px; font-weight: bold; color: #1f618d; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>✏️ Letters, Words, Sentences &amp; Punctuation</h1><p>Spaces · Capitals · . ? !</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Letter, Word, or Sentence? 🔍</div>
+    <div class="exercise-instruction">Sort each item into the right column.</div>
+    <div style="margin-bottom:8px;">
+      <span class="sort-item">b</span><span class="sort-item">cat</span><span class="sort-item">I can run.</span>
+      <span class="sort-item">m</span><span class="sort-item">sun</span><span class="sort-item">The dog is big.</span>
+      <span class="sort-item">P</span><span class="sort-item">happy</span><span class="sort-item">We like to play.</span>
+    </div>
+    <div class="sort-cols" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="sort-col"><h4>Letter</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>Word</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>Sentence</h4><div class="sort-slot"></div><div class="sort-slot"></div><div class="sort-slot"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Add the Spaces 🪄</div>
+    <div class="exercise-instruction">These words got squished together! Re-write them on the line with a space between each word.</div>
+    <div class="smush">Icanrun.</div>
+    <div class="answer-line"></div>
+    <div class="smush">Thecatisfat.</div>
+    <div class="answer-line"></div>
+    <div class="smush">Mymomlikesme.</div>
+    <div class="answer-line"></div>
+    <div class="smush">Wegotothepark.</div>
+    <div class="answer-line"></div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Count the Words 🔢</div>
+    <div class="exercise-instruction">Count the words in each sentence. Write the number in the box.</div>
+    <div class="count-row"><span>The dog ran fast.</span><span class="count-box"></span></div>
+    <div class="count-row"><span>I see a red bus.</span><span class="count-box"></span></div>
+    <div class="count-row"><span>My cat naps in the sun.</span><span class="count-box"></span></div>
+    <div class="count-row"><span>We can hop and jump and run!</span><span class="count-box"></span></div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>✏️ Letters, Words, Sentences &amp; Punctuation</h1><p>Keep going — you're a print pro!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Pick the Punctuation . ? !</div>
+    <div class="exercise-instruction">Read each sentence. Circle the right end mark. Use <strong>.</strong> for telling, <strong>?</strong> for asking, and <strong>!</strong> for shouting or surprise.</div>
+    <ul class="punct-list">
+      <li><span>The sun is hot</span><span class="punct-opts"><span class="punct-opt">.</span><span class="punct-opt">?</span><span class="punct-opt">!</span></span></li>
+      <li><span>What is your name</span><span class="punct-opts"><span class="punct-opt">.</span><span class="punct-opt">?</span><span class="punct-opt">!</span></span></li>
+      <li><span>Look at that big bug</span><span class="punct-opts"><span class="punct-opt">.</span><span class="punct-opt">?</span><span class="punct-opt">!</span></span></li>
+      <li><span>I have a red hat</span><span class="punct-opts"><span class="punct-opt">.</span><span class="punct-opt">?</span><span class="punct-opt">!</span></span></li>
+      <li><span>Where is my dog</span><span class="punct-opts"><span class="punct-opt">.</span><span class="punct-opt">?</span><span class="punct-opt">!</span></span></li>
+      <li><span>Wow, that is so fun</span><span class="punct-opts"><span class="punct-opt">.</span><span class="punct-opt">?</span><span class="punct-opt">!</span></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Fix the Sentence ✏️</div>
+    <div class="exercise-instruction">Each sentence needs a capital letter at the start and an end mark. Re-write it correctly on the line.</div>
+    <ul class="blank-list">
+      <li>1. <em>the cat is fat</em><div style="border-bottom:2px solid #333; height:22px; margin-top:2px;"></div></li>
+      <li>2. <em>can you run</em><div style="border-bottom:2px solid #333; height:22px; margin-top:2px;"></div></li>
+      <li>3. <em>i see a big bus</em><div style="border-bottom:2px solid #333; height:22px; margin-top:2px;"></div></li>
+      <li>4. <em>look at that</em><div style="border-bottom:2px solid #333; height:22px; margin-top:2px;"></div></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Read and Draw 🎨</div>
+    <div class="exercise-instruction">Read this sentence — pause at the period! Then draw what you see in your head.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:16px;"><strong>"My big red dog naps in the sun. He is happy!"</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> Letters: b, m, P · Words: cat, sun, happy · Sentences: I can run. / The dog is big. / We like to play. ·
+    <strong>Ex.2:</strong> I can run. / The cat is fat. / My mom likes me. / We go to the park. ·
+    <strong>Ex.3:</strong> 4, 5, 6, 7 ·
+    <strong>Ex.4:</strong> . ? ! . ? ! ·
+    <strong>Ex.5:</strong> The cat is fat. / Can you run? / I see a big bus. / Look at that!
+  </div>
+</div>
+</body>
+</html>
