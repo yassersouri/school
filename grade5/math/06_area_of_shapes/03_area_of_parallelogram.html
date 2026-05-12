@@ -50,20 +50,42 @@
   </div>
 
   <div class="example-box">
-    <div class="example-title">Base and Height</div>
+    <div class="example-title">Rectangle vs. Parallelogram</div>
     <div class="shape-figure">
+      <!-- Rectangle: height = side -->
+      <svg width="180" height="140" viewBox="0 0 180 140">
+        <rect x="30" y="20" width="120" height="80" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- right-angle marker at top-left corner -->
+        <polyline points="38,28 38,20 30,20" fill="none" stroke="#bf360c" stroke-width="1.5"/>
+        <polyline points="30,28 38,28" fill="none" stroke="#bf360c" stroke-width="1.5"/>
+        <!-- height arrow along left side -->
+        <line x1="20" y1="20" x2="20" y2="100" stroke="#1565c0" stroke-width="2"/>
+        <polygon points="17,24 23,24 20,18" fill="#1565c0"/>
+        <polygon points="17,96 23,96 20,102" fill="#1565c0"/>
+        <text x="14" y="64" font-size="11" fill="#1565c0" font-weight="bold" text-anchor="end">h</text>
+        <text x="90" y="115" font-size="11" fill="#888" text-anchor="middle">base (b)</text>
+        <text x="90" y="132" font-size="11" fill="#bf360c" text-anchor="middle" font-weight="bold">Rectangle — h = side</text>
+      </svg>
+      <!-- Parallelogram: height ≠ slanted side -->
       <svg width="240" height="140" viewBox="0 0 240 140">
-        <g fill="#fff3e0" stroke="#e65100" stroke-width="2">
-          <polygon points="30,110 90,30 230,30 170,110"/>
-        </g>
-        <line x1="90" y1="30" x2="90" y2="110" stroke="#1565c0" stroke-width="2" stroke-dasharray="5,3"/>
-        <line x1="86" y1="30" x2="94" y2="30" stroke="#1565c0" stroke-width="2"/>
-        <line x1="86" y1="110" x2="94" y2="110" stroke="#1565c0" stroke-width="2"/>
-        <text x="100" y="70" font-size="11" fill="#1565c0" font-weight="bold">height (h)</text>
-        <text x="100" y="125" font-size="11" fill="#888">base (b)</text>
+        <polygon points="30,100 80,20 200,20 150,100" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- slanted side highlighted in red -->
+        <line x1="30" y1="100" x2="80" y2="20" stroke="#c62828" stroke-width="2.5"/>
+        <!-- perpendicular height (blue dashed) from top-left vertex down to base line -->
+        <line x1="80" y1="20" x2="80" y2="100" stroke="#1565c0" stroke-width="2" stroke-dasharray="5,3"/>
+        <!-- right-angle marker where height meets base -->
+        <polyline points="80,92 88,92 88,100" fill="none" stroke="#1565c0" stroke-width="1.5"/>
+        <!-- height label -->
+        <text x="86" y="64" font-size="11" fill="#1565c0" font-weight="bold">h</text>
+        <!-- slanted side label (red), placed to the left of the slanted side with a small leader -->
+        <text x="14" y="48" font-size="10" fill="#c62828" font-weight="bold">slant</text>
+        <line x1="32" y1="46" x2="46" y2="56" stroke="#c62828" stroke-width="1"/>
+        <!-- base label -->
+        <text x="115" y="115" font-size="11" fill="#888" text-anchor="middle">base (b)</text>
+        <text x="115" y="132" font-size="11" fill="#bf360c" text-anchor="middle" font-weight="bold">Parallelogram — h ≠ slant</text>
       </svg>
     </div>
-    <div class="shape-caption">The blue dashed line is the height — it's the <strong>perpendicular</strong> distance, not the slanted side!</div>
+    <div class="shape-caption">The <span style="color:#1565c0;font-weight:bold;">blue dashed line</span> is the height — always <strong>perpendicular</strong> to the base, never the <span style="color:#c62828;font-weight:bold;">red slanted side</span>!</div>
   </div>
 
   <div class="warn-box">
@@ -88,19 +110,37 @@
   </div>
 
   <div class="example-box">
-    <div class="shape-figure">
-      <svg width="160" height="100" viewBox="0 0 160 100">
-        <polygon points="20,90 50,20 150,20 120,90" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
-        <line x1="50" y1="20" x2="50" y2="90" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4,3"/>
-        <text x="80" y="55" font-size="11" fill="#888">parallelogram</text>
+    <div class="example-title">The Cut-and-Slide Trick</div>
+    <div class="shape-figure" style="gap:6px;">
+      <!-- Step 1: parallelogram with the triangle to be cut shaded differently -->
+      <svg width="150" height="120" viewBox="0 0 170 120">
+        <!-- main body of parallelogram (the part that stays) -->
+        <polygon points="50,20 150,20 120,90 20,90" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- triangle to cut off on the left, highlighted -->
+        <polygon points="20,90 50,20 50,90" fill="#ffcc80" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+        <!-- scissors emoji on the cut line -->
+        <text x="32" y="58" font-size="14">✂️</text>
+        <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">1. Cut the triangle</text>
       </svg>
       <div style="font-size:22px; color:#e65100; font-weight:bold;">→</div>
-      <svg width="160" height="100" viewBox="0 0 160 100">
+      <!-- Step 2: slide arrow showing the triangle moving to the right -->
+      <svg width="150" height="120" viewBox="0 0 170 120">
+        <polygon points="50,20 150,20 120,90 20,90" fill="#fff3e0" stroke="#e65100" stroke-width="2" stroke-dasharray="3,3"/>
+        <polygon points="20,90 50,20 50,90" fill="#ffcc80" stroke="#e65100" stroke-width="2" opacity="0.4"/>
+        <!-- slide arrow -->
+        <line x1="55" y1="55" x2="135" y2="55" stroke="#1565c0" stroke-width="2.5"/>
+        <polygon points="135,50 145,55 135,60" fill="#1565c0"/>
+        <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">2. Slide it across</text>
+      </svg>
+      <div style="font-size:22px; color:#e65100; font-weight:bold;">→</div>
+      <!-- Step 3: resulting rectangle, with triangle re-attached on the right -->
+      <svg width="150" height="120" viewBox="0 0 170 120">
         <rect x="20" y="20" width="100" height="70" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
-        <text x="70" y="55" font-size="11" fill="#888">rectangle</text>
+        <polygon points="120,20 150,20 120,90" fill="#ffcc80" stroke="#e65100" stroke-width="2"/>
+        <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">3. Get a rectangle!</text>
       </svg>
     </div>
-    <div class="shape-caption">Same base, same height, same area!</div>
+    <div class="shape-caption">Same <strong>base</strong>, same <strong>height</strong>, same <strong>area</strong> — it's just rearranged! That's why area = b × h.</div>
   </div>
 
   <div class="formula-box">

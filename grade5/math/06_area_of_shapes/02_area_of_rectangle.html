@@ -43,30 +43,61 @@
     <div class="concept-title">💡 Why length × width Works</div>
     <div class="concept-text">
       A rectangle has two pairs of equal sides. We call the longer one <strong>length</strong> (<em>l</em>) and the shorter one <strong>width</strong> (<em>w</em>).<br><br>
-      If you fill the rectangle with unit squares, you get <em>w</em> rows, each with <em>l</em> squares. So the total is <em>l</em> × <em>w</em>.
+      If you fill the rectangle with unit squares, you get <em>w</em> <strong>rows</strong>, each with <em>l</em> <strong>squares</strong>. So the total is <em>l</em> × <em>w</em>. That's multiplication — much faster than counting one-by-one!
     </div>
   </div>
 
   <div class="example-box">
-    <div class="example-title">A 5 × 3 Rectangle</div>
+    <div class="example-title">A 5 × 3 Rectangle — Count the Rows!</div>
     <div class="shape-figure">
-      <svg width="220" height="140" viewBox="0 0 220 140">
-        <g fill="#fff3e0" stroke="#e65100" stroke-width="2">
-          <rect x="10" y="20" width="200" height="80"/>
+      <svg width="320" height="180" viewBox="0 0 320 180">
+        <!-- length label, top -->
+        <text x="160" y="14" font-size="12" text-anchor="middle" fill="#e65100" font-weight="bold">length = 5</text>
+        <line x1="30" y1="22" x2="290" y2="22" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="30" y1="18" x2="30" y2="26" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="290" y1="18" x2="290" y2="26" stroke="#e65100" stroke-width="1.5"/>
+        <!-- width label, left (rotated) -->
+        <text x="12" y="93" font-size="12" text-anchor="middle" fill="#e65100" font-weight="bold" transform="rotate(-90 12 93)">width = 3</text>
+        <line x1="22" y1="30" x2="22" y2="150" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="18" y1="30" x2="26" y2="30" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="18" y1="150" x2="26" y2="150" stroke="#e65100" stroke-width="1.5"/>
+        <!-- Row 1 (alternating colors) -->
+        <g stroke="#e65100" stroke-width="1.5">
+          <rect x="30" y="30" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="82" y="30" width="52" height="40" fill="#fff3e0"/>
+          <rect x="134" y="30" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="186" y="30" width="52" height="40" fill="#fff3e0"/>
+          <rect x="238" y="30" width="52" height="40" fill="#ffe0b2"/>
         </g>
-        <g stroke="#ffb74d" stroke-width="1">
-          <line x1="50" y1="20" x2="50" y2="100"/>
-          <line x1="90" y1="20" x2="90" y2="100"/>
-          <line x1="130" y1="20" x2="130" y2="100"/>
-          <line x1="170" y1="20" x2="170" y2="100"/>
-          <line x1="10" y1="48" x2="210" y2="48"/>
-          <line x1="10" y1="74" x2="210" y2="74"/>
+        <!-- Row 2 -->
+        <g stroke="#e65100" stroke-width="1.5">
+          <rect x="30" y="70" width="52" height="40" fill="#fff3e0"/>
+          <rect x="82" y="70" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="134" y="70" width="52" height="40" fill="#fff3e0"/>
+          <rect x="186" y="70" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="238" y="70" width="52" height="40" fill="#fff3e0"/>
         </g>
-        <text x="110" y="115" font-size="11" text-anchor="middle" fill="#888">length = 5</text>
-        <text x="6" y="63" font-size="11" text-anchor="end" fill="#888">width = 3</text>
+        <!-- Row 3 -->
+        <g stroke="#e65100" stroke-width="1.5">
+          <rect x="30" y="110" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="82" y="110" width="52" height="40" fill="#fff3e0"/>
+          <rect x="134" y="110" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="186" y="110" width="52" height="40" fill="#fff3e0"/>
+          <rect x="238" y="110" width="52" height="40" fill="#ffe0b2"/>
+        </g>
+        <!-- Numbers 1..15 -->
+        <g font-size="13" text-anchor="middle" fill="#bf360c" font-weight="bold" font-family="Segoe UI, Arial, sans-serif">
+          <text x="56" y="55">1</text><text x="108" y="55">2</text><text x="160" y="55">3</text><text x="212" y="55">4</text><text x="264" y="55">5</text>
+          <text x="56" y="95">6</text><text x="108" y="95">7</text><text x="160" y="95">8</text><text x="212" y="95">9</text><text x="264" y="95">10</text>
+          <text x="56" y="135">11</text><text x="108" y="135">12</text><text x="160" y="135">13</text><text x="212" y="135">14</text><text x="264" y="135">15</text>
+        </g>
+        <!-- Outer border on top -->
+        <rect x="30" y="30" width="260" height="120" fill="none" stroke="#bf360c" stroke-width="2.5"/>
+        <!-- Bottom equation hint -->
+        <text x="160" y="170" font-size="12" text-anchor="middle" fill="#bf360c" font-weight="bold">3 rows × 5 = 15 squares</text>
       </svg>
     </div>
-    <div class="shape-caption">3 rows × 5 squares per row = <strong>15</strong> unit squares → area = 15 unit²</div>
+    <div class="shape-caption"><strong>3 rows</strong> × <strong>5 squares per row</strong> = <strong>15</strong> unit squares → area = <strong>15 unit²</strong></div>
   </div>
 
   <div class="formula-box">
