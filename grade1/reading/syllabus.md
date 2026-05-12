@@ -228,7 +228,7 @@ By the end of Grade 1, the learner should be able to:
 
 **Sight Words & Thematic Vocabulary**
 - Read ~100 common Grade 1 high-frequency words on sight.
-- Read and spell common thematic word sets: colour words, number words 0–20 (and tens to 100), shape words, days of the week, months, seasons, weather, family, body parts, common animals, food, and feeling words.
+- Read and spell common thematic word sets: colour words, number words 0–20 plus tens to 100, ordinal words (first, second, third…), shape words, days of the week, months, seasons, weather, time words, place/community words, family, body parts, common animals, food, action verbs, feeling words, and opposites pairs.
 
 **Fluency**
 - Read Grade 1 text accurately, at a conversational pace (≈ 50–70 wpm by year-end), with appropriate expression and attention to punctuation.
@@ -256,7 +256,7 @@ To support the topics above that don't yet have practice sheets, future folders 
 - `10_contractions/`
 - `11_compound_words/`
 - `12_sight_words/` — Set 1, Set 2, Set 3
-- `12b_thematic_word_sets/` — colour words, number words, shape words, days of the week, months, seasons, weather, family, body parts, animals, food, feelings, opposites
+- `12b_thematic_word_sets/` — colour words, number words (0–20 and tens to 100), ordinal words, shape words, days of the week, months, seasons, weather, time words, place/community words, family, body parts, animals (pets/farm/wild), food, action verbs, feelings, opposites
 - `13_phonemic_awareness/` — rhyme, syllable, blending, segmenting, manipulation
 - `14_comprehension/` — story elements, main idea, text features
 - `15_fluency_passages/` — short decodable passages with re-read targets
