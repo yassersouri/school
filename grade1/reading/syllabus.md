@@ -75,7 +75,7 @@ Read, recognize, and spell common everyday vocabulary grouped by meaning. These 
 ### 7. Fluency
 - Read decodable sentences using known short-vowel words and Set 1 sight words.
 - Re-read familiar sentences to build accuracy and pace.
-- Pause briefly at periods; show simple expression for `?` and `!`. **(needs exercises)**
+- Pause briefly at periods; show simple expression for `?` and `!`. **(needs exercises)** *(See also: [Fluency Passages — index](15_fluency_passages/index.html) for re-read passages.)*
 
 ### 8. Vocabulary & Comprehension (Listening + Reading)
 - Listen to picture books read aloud daily.
@@ -135,7 +135,7 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - Read short decodable books with digraphs, blends, and long vowels.
 - Re-read to improve smoothness; read at a steady pace ≈ 30–50 wpm by end of term.
 - Use punctuation (. ? !) to guide expression.
-- Read simple dialogue with different "voices". **(needs exercises)**
+- Read simple dialogue with different "voices". **(needs exercises)** *(See also: [Fluency Passages — index](15_fluency_passages/index.html) — especially [The Big Storm](15_fluency_passages/04_the_big_storm.html) for dialogue &amp; expression.)*
 
 ### 7. Vocabulary & Comprehension
 - Ask and answer who / what / where / when / why / how questions about a text.
@@ -190,13 +190,17 @@ because, before, after, around, another, every, never, only, other, over, under,
 - **Action verbs:** run, jump, hop, skip, walk, swim, fly, sit, stand, sleep, eat, drink, read, write, play.
 - **Feeling words:** happy, sad, mad, scared, surprised, tired, excited, kind.
 - **Animal words (wild):** lion, tiger, bear, elephant, monkey, snake, frog, fox, wolf, deer, owl.
-- **Opposites pairs:** hot/cold, big/small, fast/slow, up/down, in/out, on/off, day/night, open/close, full/empty, hard/soft. **(needs exercises)**
+- **Opposites pairs:** hot/cold, big/small, fast/slow, up/down, in/out, on/off, day/night, open/close, full/empty, hard/soft.
+
+📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — Term 3 "Wider World" sheets: [Number Words to 100](12b_thematic_word_sets/14_number_words_to_100.html), [Time Words](12b_thematic_word_sets/15_time_words.html), [Place &amp; Community Words](12b_thematic_word_sets/16_place_community_words.html), [Action Verbs](12b_thematic_word_sets/17_action_verbs.html), [Feeling Words](12b_thematic_word_sets/18_feeling_words.html), [Animal Words: Wild](12b_thematic_word_sets/19_animal_words_wild.html), [Opposites Pairs](12b_thematic_word_sets/20_opposites_pairs.html).
 
 ### 5. Fluency
 - Read passages of 50–100 words with ≥ 95% accuracy.
 - Read aloud at a comfortable pace (50–70 wpm by end of term).
 - Use expression for dialogue, exclamations, and questions.
-- Self-correct when meaning breaks down. **(needs exercises)**
+- Self-correct when meaning breaks down.
+
+📂 **Repo materials:** [Fluency Passages — index](15_fluency_passages/index.html) — 4 short passages with cold/warm/hot re-read charts: [At the Zoo](15_fluency_passages/01_at_the_zoo.html), [My Lost Cat](15_fluency_passages/02_my_lost_cat.html), [Seeds Grow](15_fluency_passages/03_seeds_grow.html), [The Big Storm](15_fluency_passages/04_the_big_storm.html).
 
 ### 6. Vocabulary & Comprehension
 - Identify story elements: character, setting, problem, solution.
@@ -204,7 +208,9 @@ because, before, after, around, another, every, never, only, other, over, under,
 - Identify the **main idea** and one or two key details in non-fiction.
 - Identify text features: title, headings, labels, captions, table of contents.
 - Use simple text evidence ("It says here…") to answer questions.
-- Discuss why authors write (to tell a story, to give information, to give an opinion). **(needs exercises)**
+- Discuss why authors write (to tell a story, to give information, to give an opinion).
+
+📂 **Repo materials:** [Comprehension — index](16_comprehension/index.html) — 5 sheets: [Story Elements](16_comprehension/01_story_elements.html), [Main Idea &amp; Key Details](16_comprehension/02_main_idea.html), [Text Features](16_comprehension/03_text_features.html), [Compare Two Stories](16_comprehension/04_compare_two_stories.html), [Opinion Writing](16_comprehension/05_opinion_writing.html).
 
 📂 **Repo materials (Sentences & Stories):** [Sentences & Stories — index](04_sentences/index.html) — 12 short stories with comprehension and build-&-draw activities: My Puppy, At the Park, At School, My Toys, The Farm, Bath Time, My Bike, The Beach, Bedtime, Snack Time, The Pond, Game Day.
 
@@ -229,15 +235,21 @@ because, before, after, around, another, every, never, only, other, over, under,
 - Use a flexible toolkit when stuck on a word: sound it out, look at parts you know, look at the picture, re-read, think about what makes sense.
 - Talk about books with a partner: favourite part, character, lesson.
 
+📂 **Repo materials:** [Fluency Passages — index](15_fluency_passages/index.html) — use the cold/warm/hot re-read charts to sustain independent reading and build a flexible reading toolkit.
+
 ### 3. Comprehension Across Texts
 - Compare two stories with similar characters or themes.
 - Compare two non-fiction texts on the same topic.
-- Express and justify opinions about texts ("I liked… because…"). **(needs exercises)**
+- Express and justify opinions about texts ("I liked… because…").
+
+📂 **Repo materials:** [Comprehension — index](16_comprehension/index.html) — especially [Compare Two Stories](16_comprehension/04_compare_two_stories.html) for same/different/both comparison, and [Opinion Writing](16_comprehension/05_opinion_writing.html) for justifying opinions about texts.
 
 ### 4. Writing Connection
 - Write a short story with a beginning, middle, and end.
 - Write a short informational piece on a familiar topic.
-- Write an opinion piece with a reason. **(needs exercises)**
+- Write an opinion piece with a reason.
+
+📂 **Repo materials:** [Comprehension — Opinion Writing](16_comprehension/05_opinion_writing.html) — opinion-piece scaffold with sentence frames ("I like ___ best because ___") and two writing prompts.
 
 ---
 
