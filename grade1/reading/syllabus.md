@@ -1,0 +1,230 @@
+# Grade 1 Reading — Comprehensive Syllabus
+
+A complete year-long reading syllabus aimed at a Canadian Grade 1 level (ages 6–7). It covers everything a Grade 1 reader is expected to learn — phonological awareness, phonics, sight words, fluency, vocabulary, comprehension, and early writing connections — whether or not practice sheets currently exist in the repo. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
+
+The school year is divided into four terms. Pacing is flexible — slow down, repeat, or skip as needed.
+
+---
+
+## Strands and Big Ideas
+
+Grade 1 reading is built on five interlocking strands:
+
+1. **Phonological & Phonemic Awareness** — hearing and manipulating sounds in spoken words.
+2. **Phonics & Word Recognition** — connecting sounds to letters and decoding written words.
+3. **High-Frequency / Sight Words** — instantly recognizing common irregular words.
+4. **Fluency** — reading accurately, at a comfortable pace, with expression.
+5. **Vocabulary & Comprehension** — understanding word meanings, sentences, and stories.
+
+Each term below cycles through all five strands so they grow together.
+
+---
+
+## Term 1 — Building Foundations (September – November)
+
+### 1. Print Concepts
+- Hold a book correctly; read left-to-right, top-to-bottom, page-by-page.
+- Track print with a finger; one spoken word = one printed word.
+- Identify front cover, back cover, title, author, illustrator.
+- Recognize and use spaces between words and basic punctuation: `.` `?` `!`
+- Distinguish letters, words, and sentences. **(needs exercises)**
+
+### 2. Phonological & Phonemic Awareness
+- Rhyme: recognize and produce rhyming words (cat/hat, sun/run).
+- Syllables: clap and count syllables in spoken words.
+- Onset–rime: blend and segment (c-at → cat).
+- Phoneme isolation: identify the first, last, and middle sounds in CVC words.
+- Phoneme blending: /c/ /a/ /t/ → cat.
+- Phoneme segmenting: cat → /c/ /a/ /t/. **(needs exercises)**
+
+### 3. Alphabet & Letter–Sound Knowledge
+- Recognize and name all 26 upper- and lower-case letters.
+- Produce the most common sound for each consonant.
+- Produce the short sound for each vowel.
+- Form letters correctly when writing. **(needs exercises)**
+
+### 4. Phonics — Short Vowels & CVC Words
+- Blend and read CVC words for each short vowel.
+- Decode and spell within common short-vowel word families.
+- Write CVC words from dictation.
+
+📂 **Repo materials:** [Short Vowels — index](01_short_vowels/index.html) — 22 sheets covering short **a**, **e**, **i**, **o**, **u**, including word families (-at/-an, -ed/-en, -ig/-in, -ot/-op, -ug/-un, -it/-id, -ip/-ick, -ill/-im, -ap/-ad, -ag/-am, -ack/-ash, -et/-ell, -eck/-est, -og/-ock, -ob/-ox, -ut/-ub, -uck/-ump) and ⭐ Mixed Practice sheets for each vowel.
+
+### 5. High-Frequency Sight Words — Set 1 (~30 words)
+the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for. **(needs exercises)**
+
+### 6. Fluency
+- Read decodable sentences using known short-vowel words and Set 1 sight words.
+- Re-read familiar sentences to build accuracy and pace.
+- Pause briefly at periods; show simple expression for `?` and `!`. **(needs exercises)**
+
+### 7. Vocabulary & Comprehension (Listening + Reading)
+- Listen to picture books read aloud daily.
+- Retell the beginning, middle, and end of a story.
+- Identify characters and setting.
+- Make predictions using the cover and pictures.
+- Learn new vocabulary words in context. **(needs exercises)**
+
+### 8. Writing Connection
+- Write own name with correct letter formation.
+- Write short CVC words and simple labels from sounds heard.
+- Begin writing simple sentences using known words. **(needs exercises)**
+
+---
+
+## Term 2 — Growing as a Reader (December – February)
+
+### 1. Phonological Awareness (continued)
+- Phoneme addition / deletion (say "cat" without /c/ → "at").
+- Phoneme substitution (change /c/ in "cat" to /b/ → "bat").
+- Manipulate sounds in 3- and 4-phoneme words. **(needs exercises)**
+
+### 2. Phonics — Digraphs & Blends
+- **Consonant digraphs:** `sh`, `ch`, `th`, `wh`, `ck`, `ng`.
+- **Beginning blends:** s-blends (sn, sl, sp, st, sk, sw), l-blends (bl, cl, fl, gl, pl, sl), r-blends (br, cr, dr, fr, gr, pr, tr).
+- **Ending blends:** -nd, -nt, -nk, -mp, -st, -ft, -lt, -lk, -sk. **(needs exercises)**
+
+### 3. Phonics — Long Vowels
+- Silent-e (CVCe) for a, i, o, u, e: cake, bike, hope, cute, Pete.
+- Common vowel teams: `ai`, `ay`, `ee`, `ea`, `oa`, `ow`, `ie`, `igh`, `ue`, `ew`.
+- Open-syllable long vowels: he, she, go, no, hi, me.
+- Compare and contrast short vs. long vowels (cap/cape, kit/kite).
+
+📂 **Repo materials:** [Long Vowels — index](02_long_vowels/index.html) — 7 sheets on CVCe and vowel teams: [Long A: CVCe + ay](02_long_vowels/01_long_a_cvce_ay.html), [Long E: CVCe + ee](02_long_vowels/02_long_e_cvce_ee.html), [Long E: CVCe + ea](02_long_vowels/03_long_e_cvce_ea.html), [Long I: CVCe + igh](02_long_vowels/04_long_i_cvce_igh.html), [Long O: CVCe + oa](02_long_vowels/05_long_o_cvce_oa.html), [Long U: CVCe + ue](02_long_vowels/06_long_u_cvce_ue.html), [Long A: CVCe + ai](02_long_vowels/07_long_a_cvce_ai.html).
+
+Additional long-vowel patterns **(needs exercises):** `ay`, `ee` (apart from CVCe + ee), `ow`/`oa` for Long O, `ie`/`y` for Long I, `ew`/`oo` for Long U, open-syllable long vowels.
+
+### 4. High-Frequency Sight Words — Set 2 (~30 more words)
+are, they, have, what, when, with, this, that, then, them, their, here, there, where, who, why, how, some, come, want, will, your, very, again, into, our, out, about, made, make. **(needs exercises)**
+
+### 5. Fluency
+- Read short decodable books with digraphs, blends, and long vowels.
+- Re-read to improve smoothness; read at a steady pace ≈ 30–50 wpm by end of term.
+- Use punctuation (. ? !) to guide expression.
+- Read simple dialogue with different "voices". **(needs exercises)**
+
+### 6. Vocabulary & Comprehension
+- Ask and answer who / what / where / when / why / how questions about a text.
+- Retell stories with key details, in order.
+- Distinguish fiction vs. non-fiction.
+- Use picture clues and context to figure out new words.
+- Identify the main topic of a non-fiction text. **(needs exercises)**
+
+### 7. Writing Connection
+- Write a simple sentence with capital letter and end punctuation.
+- Spell short-vowel CVC and CVCe words conventionally.
+- Use temporary (sound-spelled) spelling for unknown longer words. **(needs exercises)**
+
+---
+
+## Term 3 — Reading with Confidence (March – May)
+
+### 1. Phonics — R-controlled, Diphthongs, and Other Vowel Patterns
+- **R-controlled vowels:** `ar`, `or`, `er`, `ir`, `ur` (car, fork, her, bird, turn).
+- **Diphthongs:** `oi`/`oy` (coin, boy), `ou`/`ow` (cloud, cow).
+- **Other vowel sounds:** `oo` (book vs. moon), `aw`/`au` (saw, paw).
+- **Soft c / soft g:** city, cent; gem, giraffe.
+- **Silent letters:** `kn-`, `wr-`, `-mb`. **(needs exercises)**
+
+### 2. Phonics — Endings, Suffixes, and Compound Words
+- Plurals: add `-s`, add `-es` (boxes, foxes), change `y` to `i` + `es` (baby → babies).
+- Verb endings: `-ed`, `-ing` (with and without doubling: hop → hopping, jump → jumping).
+- Comparative endings: `-er`, `-est` (big, bigger, biggest).
+- Adding `-y` to make describing words: double-the-letter rule vs. just add `-y`.
+- Compound words: read and split (sun + shine → sunshine).
+- Contractions: I'm, don't, can't, it's, he's, she's, we're, you're, they're, isn't. **(needs exercises for most)**
+
+📂 **Repo materials (Adding -y):** [Adding -y — index](03_adding_y/index.html) — [Double the Letter + y (Part 1)](03_adding_y/01_double_and_add_y_part1.html), [Part 2](03_adding_y/02_double_and_add_y_part2.html), [Just Add -y (Part 1)](03_adding_y/03_just_add_y_part1.html), [Part 2](03_adding_y/04_just_add_y_part2.html), [Mixed Practice ⭐](03_adding_y/05_mixed_practice.html).
+
+### 3. High-Frequency Sight Words — Set 3 (~30 more words)
+because, before, after, around, another, every, never, only, other, over, under, please, thank, friend, family, people, school, water, today, tomorrow, yesterday, morning, night, little, big, new, old, first, last, next. **(needs exercises)**
+
+### 4. Fluency
+- Read passages of 50–100 words with ≥ 95% accuracy.
+- Read aloud at a comfortable pace (50–70 wpm by end of term).
+- Use expression for dialogue, exclamations, and questions.
+- Self-correct when meaning breaks down. **(needs exercises)**
+
+### 5. Vocabulary & Comprehension
+- Identify story elements: character, setting, problem, solution.
+- Compare and contrast two characters or two events.
+- Identify the **main idea** and one or two key details in non-fiction.
+- Identify text features: title, headings, labels, captions, table of contents.
+- Use simple text evidence ("It says here…") to answer questions.
+- Discuss why authors write (to tell a story, to give information, to give an opinion). **(needs exercises)**
+
+📂 **Repo materials (Sentences & Stories):** [Sentences & Stories — index](04_sentences/index.html) — 12 short stories with comprehension and build-&-draw activities: My Puppy, At the Park, At School, My Toys, The Farm, Bath Time, My Bike, The Beach, Bedtime, Snack Time, The Pond, Game Day.
+
+### 6. Writing Connection
+- Write 2–3 connected sentences on a topic (personal narrative or opinion).
+- Use capital letters for sentence starts, the word *I*, and names.
+- Use `.` `?` `!` correctly. **(needs exercises)**
+
+---
+
+## Term 4 — Independent Readers (June)
+
+### 1. Review & Consolidation
+- Review all phonics patterns from the year (short and long vowels, digraphs, blends, r-controlled, diphthongs, endings).
+- Review the full Grade 1 sight-word bank (~90–100 words).
+- Re-read favourite stories to deepen fluency and comprehension.
+
+### 2. Reading Behaviours
+- Choose appropriate "just-right" books independently.
+- Sustain independent reading for 15–20 minutes.
+- Use a flexible toolkit when stuck on a word: sound it out, look at parts you know, look at the picture, re-read, think about what makes sense.
+- Talk about books with a partner: favourite part, character, lesson.
+
+### 3. Comprehension Across Texts
+- Compare two stories with similar characters or themes.
+- Compare two non-fiction texts on the same topic.
+- Express and justify opinions about texts ("I liked… because…"). **(needs exercises)**
+
+### 4. Writing Connection
+- Write a short story with a beginning, middle, and end.
+- Write a short informational piece on a familiar topic.
+- Write an opinion piece with a reason. **(needs exercises)**
+
+---
+
+## End-of-Year Goals
+
+By the end of Grade 1, the learner should be able to:
+
+**Phonics & Decoding**
+- Decode regularly-spelled one-syllable words with short vowels, long vowels (CVCe and common vowel teams), digraphs, blends, r-controlled vowels, and diphthongs.
+- Read words with common endings and suffixes (`-s`, `-es`, `-ed`, `-ing`, `-er`, `-est`, `-y`).
+- Read simple two-syllable and compound words by breaking them into parts.
+
+**Sight Words**
+- Read ~100 common Grade 1 high-frequency words on sight.
+
+**Fluency**
+- Read Grade 1 text accurately, at a conversational pace (≈ 50–70 wpm by year-end), with appropriate expression and attention to punctuation.
+
+**Comprehension**
+- Retell a story with characters, setting, and main events in order.
+- Identify the main topic and key details of a non-fiction text.
+- Ask and answer literal and simple inferential questions about a text.
+- Use text and pictures together to figure out unfamiliar words and ideas.
+
+**Reading Habits**
+- Choose books independently and read for pleasure for 15+ minutes a day.
+
+---
+
+## Suggested Repo Folder Structure for Future Exercises
+
+To support the topics above that don't yet have practice sheets, future folders under `grade1/reading/` might include:
+
+- `05_digraphs/` — sh, ch, th, wh, ck, ng
+- `06_blends/` — s-blends, l-blends, r-blends, ending blends
+- `07_r_controlled_vowels/` — ar, or, er, ir, ur
+- `08_diphthongs_other_vowels/` — oi/oy, ou/ow, oo, aw/au
+- `09_endings/` — `-s`, `-es`, `-ed`, `-ing`, `-er`, `-est`
+- `10_contractions/`
+- `11_compound_words/`
+- `12_sight_words/` — Set 1, Set 2, Set 3
+- `13_phonemic_awareness/` — rhyme, syllable, blending, segmenting, manipulation
+- `14_comprehension/` — story elements, main idea, text features
+- `15_fluency_passages/` — short decodable passages with re-read targets
