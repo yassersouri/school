@@ -35,6 +35,7 @@ Each term cycles through several strands so concepts spiral rather than appear o
 
 ### 2. Representing Numbers to 50
 - Match numerals, number words, and quantities.
+- Read and write number words 0–10 (zero, one, two, …, ten); start recognizing 11–20 (eleven, twelve, …, twenty). See also [Reading Syllabus — Thematic Word Sets](../reading/syllabus.md#6-thematic-word-sets--introductory-categories).
 - Represent numbers with: objects, fingers, tally marks, ten frames, base-10 blocks, number lines, hundreds chart.
 - Write numerals correctly (formation). **(needs exercises)**
 
@@ -63,7 +64,7 @@ Each term cycles through several strands so concepts spiral rather than appear o
 
 ### 1. Number Sense to 100
 - Continue counting, comparing, and ordering to 100.
-- Read and write number words to 20.
+- Read and write number words to 20, plus the multiples of ten to 100 (thirty, forty, …, one hundred). See also [Reading Syllabus — Thematic Word Sets](../reading/syllabus.md#5-thematic-word-sets--expanded-categories).
 - Locate numbers on a hundreds chart and number line. **(needs exercises)**
 
 ### 2. Addition Within 10

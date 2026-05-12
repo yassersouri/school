@@ -1,6 +1,6 @@
 # Grade 1 Reading — Comprehensive Syllabus
 
-A complete year-long reading syllabus aimed at a Canadian Grade 1 level (ages 6–7). It covers everything a Grade 1 reader is expected to learn — phonological awareness, phonics, sight words, fluency, vocabulary, comprehension, and early writing connections — whether or not practice sheets currently exist in the repo. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
+A complete year-long reading syllabus aimed at a Canadian Grade 1 level (ages 6–7). It covers everything a Grade 1 reader is expected to learn — phonological awareness, phonics, sight words, thematic word sets (colour, number, shape, days, months, family, body, weather, animals, food), fluency, vocabulary, comprehension, and early writing connections — whether or not practice sheets currently exist in the repo. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
 
 The school year is divided into four terms. Pacing is flexible — slow down, repeat, or skip as needed.
 
@@ -8,15 +8,16 @@ The school year is divided into four terms. Pacing is flexible — slow down, re
 
 ## Strands and Big Ideas
 
-Grade 1 reading is built on five interlocking strands:
+Grade 1 reading is built on six interlocking strands:
 
 1. **Phonological & Phonemic Awareness** — hearing and manipulating sounds in spoken words.
 2. **Phonics & Word Recognition** — connecting sounds to letters and decoding written words.
 3. **High-Frequency / Sight Words** — instantly recognizing common irregular words.
-4. **Fluency** — reading accurately, at a comfortable pace, with expression.
-5. **Vocabulary & Comprehension** — understanding word meanings, sentences, and stories.
+4. **Thematic Word Sets** — reading and spelling everyday vocabulary by category (colour words, number words, shape words, days, months, family, body, weather, animals, food).
+5. **Fluency** — reading accurately, at a comfortable pace, with expression.
+6. **Vocabulary & Comprehension** — understanding word meanings, sentences, and stories.
 
-Each term below cycles through all five strands so they grow together.
+Each term below cycles through all six strands so they grow together.
 
 ---
 
@@ -53,19 +54,29 @@ Each term below cycles through all five strands so they grow together.
 ### 5. High-Frequency Sight Words — Set 1 (~30 words)
 the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for. **(needs exercises)**
 
-### 6. Fluency
+### 6. Thematic Word Sets — Introductory Categories
+Read, recognize, and spell common everyday vocabulary grouped by meaning. These sets are taught alongside sight words and reinforce both reading and writing.
+
+- **Colour words:** red, orange, yellow, green, blue, purple, pink, black, white, brown, grey.
+- **Number words 0–10:** zero, one, two, three, four, five, six, seven, eight, nine, ten. (Cross-references math: see [Math Syllabus — Representing Numbers](../math/syllabus.md#2-representing-numbers-to-50).)
+- **Shape words:** circle, square, triangle, rectangle, oval, star, heart, diamond.
+- **Family words:** mom, dad, mother, father, sister, brother, baby, family, grandma, grandpa, aunt, uncle.
+- **Body-part words:** head, hair, eye, ear, nose, mouth, arm, hand, leg, foot, finger, toe.
+- **Days of the week:** Sunday, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday. **(needs exercises)**
+
+### 7. Fluency
 - Read decodable sentences using known short-vowel words and Set 1 sight words.
 - Re-read familiar sentences to build accuracy and pace.
 - Pause briefly at periods; show simple expression for `?` and `!`. **(needs exercises)**
 
-### 7. Vocabulary & Comprehension (Listening + Reading)
+### 8. Vocabulary & Comprehension (Listening + Reading)
 - Listen to picture books read aloud daily.
 - Retell the beginning, middle, and end of a story.
 - Identify characters and setting.
 - Make predictions using the cover and pictures.
 - Learn new vocabulary words in context. **(needs exercises)**
 
-### 8. Writing Connection
+### 9. Writing Connection
 - Write own name with correct letter formation.
 - Write short CVC words and simple labels from sounds heard.
 - Begin writing simple sentences using known words. **(needs exercises)**
@@ -97,20 +108,29 @@ Additional long-vowel patterns **(needs exercises):** `ay`, `ee` (apart from CVC
 ### 4. High-Frequency Sight Words — Set 2 (~30 more words)
 are, they, have, what, when, with, this, that, then, them, their, here, there, where, who, why, how, some, come, want, will, your, very, again, into, our, out, about, made, make. **(needs exercises)**
 
-### 5. Fluency
+### 5. Thematic Word Sets — Expanded Categories
+- **Number words 11–20:** eleven, twelve, thirteen, fourteen, fifteen, sixteen, seventeen, eighteen, nineteen, twenty.
+- **Ordinal words:** first, second, third, fourth, fifth, last.
+- **Months of the year:** January, February, March, April, May, June, July, August, September, October, November, December.
+- **Season words:** spring, summer, fall/autumn, winter.
+- **Weather words:** sunny, cloudy, rainy, snowy, windy, hot, cold, warm, cool.
+- **Animal words (pets & farm):** dog, cat, fish, bird, rabbit, hamster, cow, pig, horse, sheep, hen, duck.
+- **Food words:** apple, banana, bread, milk, water, egg, rice, cheese, juice, cookie. **(needs exercises)**
+
+### 6. Fluency
 - Read short decodable books with digraphs, blends, and long vowels.
 - Re-read to improve smoothness; read at a steady pace ≈ 30–50 wpm by end of term.
 - Use punctuation (. ? !) to guide expression.
 - Read simple dialogue with different "voices". **(needs exercises)**
 
-### 6. Vocabulary & Comprehension
+### 7. Vocabulary & Comprehension
 - Ask and answer who / what / where / when / why / how questions about a text.
 - Retell stories with key details, in order.
 - Distinguish fiction vs. non-fiction.
 - Use picture clues and context to figure out new words.
 - Identify the main topic of a non-fiction text. **(needs exercises)**
 
-### 7. Writing Connection
+### 8. Writing Connection
 - Write a simple sentence with capital letter and end punctuation.
 - Spell short-vowel CVC and CVCe words conventionally.
 - Use temporary (sound-spelled) spelling for unknown longer words. **(needs exercises)**
@@ -139,13 +159,22 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 ### 3. High-Frequency Sight Words — Set 3 (~30 more words)
 because, before, after, around, another, every, never, only, other, over, under, please, thank, friend, family, people, school, water, today, tomorrow, yesterday, morning, night, little, big, new, old, first, last, next. **(needs exercises)**
 
-### 4. Fluency
+### 4. Thematic Word Sets — Wider World
+- **Number words 21–100 (by tens):** twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. (Cross-references math: see [Math Syllabus — Number Sense to 100](../math/syllabus.md#1-number-sense-to-100).)
+- **Time words:** o'clock, hour, half past, morning, afternoon, evening, night, day, week, month, year.
+- **Place / community words:** home, school, park, store, library, hospital, street, city, town.
+- **Action verbs:** run, jump, hop, skip, walk, swim, fly, sit, stand, sleep, eat, drink, read, write, play.
+- **Feeling words:** happy, sad, mad, scared, surprised, tired, excited, kind.
+- **Animal words (wild):** lion, tiger, bear, elephant, monkey, snake, frog, fox, wolf, deer, owl.
+- **Opposites pairs:** hot/cold, big/small, fast/slow, up/down, in/out, on/off, day/night, open/close, full/empty, hard/soft. **(needs exercises)**
+
+### 5. Fluency
 - Read passages of 50–100 words with ≥ 95% accuracy.
 - Read aloud at a comfortable pace (50–70 wpm by end of term).
 - Use expression for dialogue, exclamations, and questions.
 - Self-correct when meaning breaks down. **(needs exercises)**
 
-### 5. Vocabulary & Comprehension
+### 6. Vocabulary & Comprehension
 - Identify story elements: character, setting, problem, solution.
 - Compare and contrast two characters or two events.
 - Identify the **main idea** and one or two key details in non-fiction.
@@ -155,7 +184,7 @@ because, before, after, around, another, every, never, only, other, over, under,
 
 📂 **Repo materials (Sentences & Stories):** [Sentences & Stories — index](04_sentences/index.html) — 12 short stories with comprehension and build-&-draw activities: My Puppy, At the Park, At School, My Toys, The Farm, Bath Time, My Bike, The Beach, Bedtime, Snack Time, The Pond, Game Day.
 
-### 6. Writing Connection
+### 7. Writing Connection
 - Write 2–3 connected sentences on a topic (personal narrative or opinion).
 - Use capital letters for sentence starts, the word *I*, and names.
 - Use `.` `?` `!` correctly. **(needs exercises)**
@@ -167,6 +196,7 @@ because, before, after, around, another, every, never, only, other, over, under,
 ### 1. Review & Consolidation
 - Review all phonics patterns from the year (short and long vowels, digraphs, blends, r-controlled, diphthongs, endings).
 - Review the full Grade 1 sight-word bank (~90–100 words).
+- Review thematic word sets: colour, number, shape, days, months, seasons, weather, family, body, animals, food, feelings, opposites.
 - Re-read favourite stories to deepen fluency and comprehension.
 
 ### 2. Reading Behaviours
@@ -196,8 +226,9 @@ By the end of Grade 1, the learner should be able to:
 - Read words with common endings and suffixes (`-s`, `-es`, `-ed`, `-ing`, `-er`, `-est`, `-y`).
 - Read simple two-syllable and compound words by breaking them into parts.
 
-**Sight Words**
+**Sight Words & Thematic Vocabulary**
 - Read ~100 common Grade 1 high-frequency words on sight.
+- Read and spell common thematic word sets: colour words, number words 0–20 (and tens to 100), shape words, days of the week, months, seasons, weather, family, body parts, common animals, food, and feeling words.
 
 **Fluency**
 - Read Grade 1 text accurately, at a conversational pace (≈ 50–70 wpm by year-end), with appropriate expression and attention to punctuation.
@@ -225,6 +256,7 @@ To support the topics above that don't yet have practice sheets, future folders 
 - `10_contractions/`
 - `11_compound_words/`
 - `12_sight_words/` — Set 1, Set 2, Set 3
+- `12b_thematic_word_sets/` — colour words, number words, shape words, days of the week, months, seasons, weather, family, body parts, animals, food, feelings, opposites
 - `13_phonemic_awareness/` — rhyme, syllable, blending, segmenting, manipulation
 - `14_comprehension/` — story elements, main idea, text features
 - `15_fluency_passages/` — short decodable passages with re-read targets
