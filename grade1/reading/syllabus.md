@@ -158,7 +158,9 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - **Diphthongs:** `oi`/`oy` (coin, boy), `ou`/`ow` (cloud, cow).
 - **Other vowel sounds:** `oo` (book vs. moon), `aw`/`au` (saw, paw).
 - **Soft c / soft g:** city, cent; gem, giraffe.
-- **Silent letters:** `kn-`, `wr-`, `-mb`. **(needs exercises)**
+- **Silent letters:** `kn-`, `wr-`, `-mb`.
+
+📂 **Repo materials:** [R-Controlled Vowels — index](08_r_controlled_vowels/index.html) — 6 sheets covering ar, or, er, ir, ur and a mixed-practice sheet · [Diphthongs &amp; Other Vowels — index](09_diphthongs_other_vowels/index.html) — 7 sheets covering oi/oy, ou/ow, oo, aw/au, soft c &amp; soft g, silent letters (kn-, wr-, -mb), and mixed practice.
 
 ### 2. Phonics — Endings, Suffixes, and Compound Words
 - Plurals: add `-s`, add `-es` (boxes, foxes), change `y` to `i` + `es` (baby → babies).
@@ -166,12 +168,20 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 - Comparative endings: `-er`, `-est` (big, bigger, biggest).
 - Adding `-y` to make describing words: double-the-letter rule vs. just add `-y`.
 - Compound words: read and split (sun + shine → sunshine).
-- Contractions: I'm, don't, can't, it's, he's, she's, we're, you're, they're, isn't. **(needs exercises for most)**
+- Contractions: I'm, don't, can't, it's, he's, she's, we're, you're, they're, isn't.
 
 📂 **Repo materials (Adding -y):** [Adding -y — index](03_adding_y/index.html) — [Double the Letter + y (Part 1)](03_adding_y/01_double_and_add_y_part1.html), [Part 2](03_adding_y/02_double_and_add_y_part2.html), [Just Add -y (Part 1)](03_adding_y/03_just_add_y_part1.html), [Part 2](03_adding_y/04_just_add_y_part2.html), [Mixed Practice ⭐](03_adding_y/05_mixed_practice.html).
 
+📂 **Repo materials (Endings):** [Endings — index](10_endings/index.html) — 7 sheets on plurals (-s, -es, y→ies), verb endings (-ed, -ing), comparatives (-er, -est), and mixed practice.
+
+📂 **Repo materials (Contractions):** [Contractions — index](11_contractions/index.html) — 2 sheets covering I'm, don't, can't, it's, isn't, he's, she's, we're, you're, they're, won't.
+
+📂 **Repo materials (Compound Words):** [Compound Words — index](14_compound_words/index.html) — 2 sheets on reading, building, and splitting compound words.
+
 ### 3. High-Frequency Sight Words — Set 3 (~30 more words)
-because, before, after, around, another, every, never, only, other, over, under, please, thank, friend, family, people, school, water, today, tomorrow, yesterday, morning, night, little, big, new, old, first, last, next. **(needs exercises)**
+because, before, after, around, another, every, never, only, other, over, under, please, thank, friend, family, people, school, water, today, tomorrow, yesterday, morning, night, little, big, new, old, first, last, next.
+
+📂 **Repo materials:** [Sight Words — index](12_sight_words/index.html) — Set 3 sheets [Read &amp; Trace](12_sight_words/07_set3_read_and_trace.html), [Fill in the Blank](12_sight_words/08_set3_fill_in_the_blank.html), [Find &amp; Circle](12_sight_words/09_set3_find_and_circle.html).
 
 ### 4. Thematic Word Sets — Wider World
 - **Number words 21–100 (by tens):** twenty, thirty, forty, fifty, sixty, seventy, eighty, ninety, one hundred. (Cross-references math: see [Math Syllabus — Number Sense to 100](../math/syllabus.md#1-number-sense-to-100).)
