@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area of a Rectangle — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟫 Area of a Rectangle</h1>
+    <p>Lesson 2 — Rows and columns of <strong>unit squares</strong></p>
+  </div>
+  <div class="page-num">Page 1 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 Why length × width Works</div>
+    <div class="concept-text">
+      A rectangle has two pairs of equal sides. We call the longer one <strong>length</strong> (<em>l</em>) and the shorter one <strong>width</strong> (<em>w</em>).<br><br>
+      If you fill the rectangle with unit squares, you get <em>w</em> <strong>rows</strong>, each with <em>l</em> <strong>squares</strong>. So the total is <em>l</em> × <em>w</em>. That's multiplication — much faster than counting one-by-one!
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">A 5 × 3 Rectangle — Count the Rows!</div>
+    <div class="shape-figure">
+      <svg width="320" height="180" viewBox="0 0 320 180">
+        <!-- length label, top -->
+        <text x="160" y="14" font-size="12" text-anchor="middle" fill="#e65100" font-weight="bold">length = 5</text>
+        <line x1="30" y1="22" x2="290" y2="22" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="30" y1="18" x2="30" y2="26" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="290" y1="18" x2="290" y2="26" stroke="#e65100" stroke-width="1.5"/>
+        <!-- width label, left (rotated) -->
+        <text x="12" y="93" font-size="12" text-anchor="middle" fill="#e65100" font-weight="bold" transform="rotate(-90 12 93)">width = 3</text>
+        <line x1="22" y1="30" x2="22" y2="150" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="18" y1="30" x2="26" y2="30" stroke="#e65100" stroke-width="1.5"/>
+        <line x1="18" y1="150" x2="26" y2="150" stroke="#e65100" stroke-width="1.5"/>
+        <!-- Row 1 (alternating colors) -->
+        <g stroke="#e65100" stroke-width="1.5">
+          <rect x="30" y="30" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="82" y="30" width="52" height="40" fill="#fff3e0"/>
+          <rect x="134" y="30" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="186" y="30" width="52" height="40" fill="#fff3e0"/>
+          <rect x="238" y="30" width="52" height="40" fill="#ffe0b2"/>
+        </g>
+        <!-- Row 2 -->
+        <g stroke="#e65100" stroke-width="1.5">
+          <rect x="30" y="70" width="52" height="40" fill="#fff3e0"/>
+          <rect x="82" y="70" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="134" y="70" width="52" height="40" fill="#fff3e0"/>
+          <rect x="186" y="70" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="238" y="70" width="52" height="40" fill="#fff3e0"/>
+        </g>
+        <!-- Row 3 -->
+        <g stroke="#e65100" stroke-width="1.5">
+          <rect x="30" y="110" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="82" y="110" width="52" height="40" fill="#fff3e0"/>
+          <rect x="134" y="110" width="52" height="40" fill="#ffe0b2"/>
+          <rect x="186" y="110" width="52" height="40" fill="#fff3e0"/>
+          <rect x="238" y="110" width="52" height="40" fill="#ffe0b2"/>
+        </g>
+        <!-- Numbers 1..15 -->
+        <g font-size="13" text-anchor="middle" fill="#bf360c" font-weight="bold" font-family="Segoe UI, Arial, sans-serif">
+          <text x="56" y="55">1</text><text x="108" y="55">2</text><text x="160" y="55">3</text><text x="212" y="55">4</text><text x="264" y="55">5</text>
+          <text x="56" y="95">6</text><text x="108" y="95">7</text><text x="160" y="95">8</text><text x="212" y="95">9</text><text x="264" y="95">10</text>
+          <text x="56" y="135">11</text><text x="108" y="135">12</text><text x="160" y="135">13</text><text x="212" y="135">14</text><text x="264" y="135">15</text>
+        </g>
+        <!-- Outer border on top -->
+        <rect x="30" y="30" width="260" height="120" fill="none" stroke="#bf360c" stroke-width="2.5"/>
+        <!-- Bottom equation hint -->
+        <text x="160" y="170" font-size="12" text-anchor="middle" fill="#bf360c" font-weight="bold">3 rows × 5 = 15 squares</text>
+      </svg>
+    </div>
+    <div class="shape-caption"><strong>3 rows</strong> × <strong>5 squares per row</strong> = <strong>15</strong> unit squares → area = <strong>15 unit²</strong></div>
+  </div>
+
+  <div class="formula-box">
+    <span class="formula-name">Area of a rectangle</span>
+    Area = length × width = l × w
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example</div>
+    <div class="step-by-step">
+      <div class="step">Find the area of a rectangle with length 8 cm and width 4 cm:</div>
+      <div class="step"><strong>Step 1:</strong> Write the formula → Area = l × w</div>
+      <div class="step"><strong>Step 2:</strong> Plug in → 8 × 4</div>
+      <div class="step"><strong>Step 3:</strong> Calculate → <strong>32 cm²</strong> ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟫 Area of a Rectangle</h1>
+    <p>Practice with the formula 📐</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Find the Area 📐</div>
+    <div class="exercise-instruction">Use Area = l × w for each rectangle.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        l = 6 cm, w = 2 cm<br>
+        Area = 6 × 2 = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 9 m, w = 4 m<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 10 cm, w = 7 cm<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 12 m, w = 5 m<br>
+        Area = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 15 cm, w = 8 cm<br>
+        Area = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        l = 20 m, w = 11 m<br>
+        Area = <span class="blank"></span> m²
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">🔁 Going Backwards</div>
+    <div class="concept-text">
+      If you know the area and one side, divide!<br>
+      Area = l × w &nbsp;⇒&nbsp; l = Area ÷ w &nbsp;and&nbsp; w = Area ÷ l<br>
+      Example: Area = 24 cm², length = 6 cm → width = 24 ÷ 6 = <strong>4 cm</strong>.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Find the Missing Side 🔍</div>
+    <div class="exercise-instruction">Use division to find the missing length or width.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        Area = 30 cm², l = 5 cm → w = <span class="blank"></span> cm
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 48 m², w = 6 m → l = <span class="blank"></span> m
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 56 cm², l = 8 cm → w = <span class="blank"></span> cm
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Area = 72 m², w = 9 m → l = <span class="blank"></span> m
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🟫 Area of a Rectangle</h1>
+    <p>Real-world rectangles all around us! 🌍</p>
+  </div>
+  <div class="page-num">Page 3 of 3</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Word Problems 📝</div>
+    <div class="exercise-instruction">Decide whether to multiply or divide, then solve.</div>
+    <ul class="word-problem-list">
+      <li>
+        A classroom floor is 9 m long and 6 m wide. What is its area?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A book cover is 25 cm long and 18 cm wide. How many cm² of paper covers it?
+        <span class="wp-answer">Area = <span class="blank"></span> cm²</span>
+      </li>
+      <li>
+        A rectangular pool has an area of 60 m² and is 10 m long. How wide is it?
+        <span class="wp-answer">width = <span class="blank"></span> m</span>
+      </li>
+      <li>
+        Reza is tiling a rectangular wall of 14 m by 3 m. How many m² of tiles does he need?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A piece of paper has area 100 cm² and width 5 cm. How long is it?
+        <span class="wp-answer">length = <span class="blank"></span> cm</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="concept-box" style="margin-top:auto;">
+    <div class="concept-title">⭐ Quick Check</div>
+    <div class="concept-text">
+      A square is a special rectangle where length = width. So Area = s × s is just l × w with l = w!
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 12; 9×4=36; 10×7=70; 12×5=60; 120; 220 —
+    2) 6, 8, 7, 8 —
+    3) 54 m²; 450 cm²; 6 m; 42 m²; 20 cm
+  </div>
+</div>
+
+</body>
+</html>

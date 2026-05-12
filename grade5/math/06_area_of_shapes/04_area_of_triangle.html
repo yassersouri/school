@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area of a Triangle — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔺 Area of a Triangle</h1>
+    <p>Lesson 4 — Every triangle is <strong>half a rectangle</strong> in disguise!</p>
+  </div>
+  <div class="page-num">Page 1 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 The Half-Rectangle Idea</div>
+    <div class="concept-text">
+      Take any triangle. If you make a <em>copy</em> of it, flip it upside-down, and stick the two together, you always get a <strong>rectangle</strong> (or a parallelogram).<br><br>
+      So one triangle is <strong>exactly half</strong> the area of that rectangle!
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="shape-figure">
+      <svg width="170" height="110" viewBox="0 0 170 110">
+        <polygon points="20,90 150,90 90,20" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <line x1="90" y1="20" x2="90" y2="90" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="95" y="60" font-size="10" fill="#1565c0">h</text>
+        <text x="80" y="105" font-size="10" fill="#888">b</text>
+      </svg>
+      <div style="font-size:22px; color:#e65100; font-weight:bold;">+ copy →</div>
+      <svg width="170" height="110" viewBox="0 0 170 110">
+        <polygon points="20,90 150,90 90,20" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <polygon points="20,90 150,90 150,20 20,20" fill="none" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+        <text x="55" y="55" font-size="10" fill="#888">rectangle</text>
+      </svg>
+    </div>
+    <div class="shape-caption">Triangle area = (rectangle area) ÷ 2 = (b × h) ÷ 2</div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">📏 Base and Height</div>
+    <div class="concept-text">
+      Pick any side of the triangle as the <strong>base</strong> (<em>b</em>). The <strong>height</strong> (<em>h</em>) is the <em>perpendicular</em> distance from that base up to the opposite corner — straight up, not along a slanted side.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔺 Area of a Triangle</h1>
+    <p>The formula — and a worked example! 📐</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <div class="formula-box">
+    <span class="formula-name">Area of a triangle</span>
+    Area = (base × height) ÷ 2 = (b × h) ÷ 2
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example</div>
+    <div class="step-by-step">
+      <div class="step">Find the area of a triangle with base 10 cm and height 6 cm:</div>
+      <div class="step"><strong>Step 1:</strong> Write the formula → Area = (b × h) ÷ 2</div>
+      <div class="step"><strong>Step 2:</strong> Plug in → (10 × 6) ÷ 2</div>
+      <div class="step"><strong>Step 3:</strong> Multiply first → 60 ÷ 2</div>
+      <div class="step"><strong>Step 4:</strong> Divide → <strong>30 cm²</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Use the Formula 📐</div>
+    <div class="exercise-instruction">Multiply base × height, then divide by 2.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <strong>b = 8 cm, h = 4 cm</strong><br>
+        <span class="mini-label">Step 1:</span> 8 × 4 = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">Step 2:</span> ÷ 2 = <span class="blank" style="width:30px;"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <strong>b = 12 m, h = 5 m</strong><br>
+        <span class="mini-label">Step 1:</span> 12 × 5 = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">Step 2:</span> ÷ 2 = <span class="blank" style="width:30px;"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <strong>b = 9 cm, h = 6 cm</strong><br>
+        <span class="mini-label">Step 1:</span> <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">Step 2:</span> <span class="blank" style="width:30px;"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        <strong>b = 14 m, h = 10 m</strong><br>
+        <span class="mini-label">Step 1:</span> <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">Step 2:</span> <span class="blank" style="width:30px;"></span> m²
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Quick Practice ⚡</div>
+    <div class="exercise-instruction">Find the area in one line.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card" style="font-size:13px;">
+        b = 6, h = 8<br>
+        Area = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = 20, h = 7<br>
+        Area = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = 11, h = 4<br>
+        Area = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔺 Area of a Triangle</h1>
+    <p>Right triangles, word problems & mixed practice! 🧠</p>
+  </div>
+  <div class="page-num">Page 3 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">📐 Right Triangles Are Easy</div>
+    <div class="concept-text">
+      In a <strong>right triangle</strong>, the two sides that meet at the right angle (the "legs") are automatically the base and the height — they're already perpendicular to each other!
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Right Triangles 📐</div>
+    <div class="exercise-instruction">The two legs are the base and height. Find the area.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        legs 3 cm and 4 cm<br>
+        Area = (3 × 4) ÷ 2 = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        legs 5 m and 12 m<br>
+        Area = <span class="blank"></span> m²
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        legs 8 cm and 15 cm<br>
+        Area = <span class="blank"></span> cm²
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        legs 7 m and 6 m<br>
+        Area = <span class="blank"></span> m²
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">4</span> Word Problems 📝</div>
+    <div class="exercise-instruction">Use Area = (b × h) ÷ 2.</div>
+    <ul class="word-problem-list">
+      <li>
+        A triangular flag has base 30 cm and height 20 cm. What is its area?
+        <span class="wp-answer">Area = <span class="blank"></span> cm²</span>
+      </li>
+      <li>
+        A garden is shaped like a triangle with base 8 m and height 5 m. How many m² is it?
+        <span class="wp-answer">Area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A triangle has area 24 cm² and base 8 cm. What is its height?
+        <span class="wp-answer"><span class="mini-label">Hint: (8 × h) ÷ 2 = 24 → 8 × h = 48</span><br>height = <span class="blank"></span> cm</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 32→16; 60→30; 54→27; 140→70 —
+    2) 24, 70, 22 —
+    3) 6, 30, 60, 21 —
+    4) 300 cm²; 20 m²; 6 cm
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area of Shaded Regions — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 15px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .recipe-card { background: #fff3e0; border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; margin: 6px 0; }
+    .recipe-title { font-size: 13px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .recipe-steps { font-size: 12px; color: #333; line-height: 1.6; padding-left: 20px; }
+    .recipe-steps li { margin-bottom: 1px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 Area of Shaded Regions</h1>
+    <p>Lesson 5 — The big idea: <strong>subtract the hole</strong>! 🕳️</p>
+  </div>
+  <div class="page-num">Page 1 of 4</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 What's a "Shaded Region"?</div>
+    <div class="concept-text">
+      Sometimes a picture has a colored (shaded) part and a white (unshaded) part. You're asked: <em>"What is the area of the <strong>shaded</strong> part?"</em><br><br>
+      The trick: don't try to measure the weird shaded shape directly. Instead, work with the <em>simple shapes</em> hiding inside the picture!
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-title">📖 Recipe: Subtract the Hole</div>
+    <div class="recipe-steps">
+      <ol>
+        <li>Find the area of the <strong>big outer shape</strong>.</li>
+        <li>Find the area of the <strong>white (unshaded) shape</strong> inside.</li>
+        <li><strong>Subtract:</strong> Shaded = Big − White.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="formula-box">
+    Shaded Area = Outer Area − Inner Area
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example: Rectangle with a Square Hole</div>
+    <div class="shape-figure">
+      <svg width="220" height="130" viewBox="0 0 220 130">
+        <rect x="10" y="15" width="200" height="100" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+        <rect x="80" y="40" width="60" height="60" fill="#fff" stroke="#e65100" stroke-width="2"/>
+        <text x="110" y="125" font-size="11" text-anchor="middle" fill="#888">outer: 20 × 10 &nbsp;·&nbsp; inner: 6 × 6</text>
+      </svg>
+    </div>
+    <div class="step-by-step">
+      <div class="step">A 20 cm × 10 cm rectangle has a 6 cm × 6 cm square cut out. Find the shaded area.</div>
+      <div class="step"><strong>Step 1:</strong> Outer area = 20 × 10 = <strong>200 cm²</strong></div>
+      <div class="step"><strong>Step 2:</strong> Inner area = 6 × 6 = <strong>36 cm²</strong></div>
+      <div class="step"><strong>Step 3:</strong> Shaded = 200 − 36 = <strong>164 cm²</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example: Rectangle with a Triangle Hole</div>
+    <div class="shape-figure">
+      <svg width="260" height="150" viewBox="0 0 260 150">
+        <!-- outer rectangle, shaded -->
+        <rect x="30" y="30" width="200" height="70" fill="#ffb74d" stroke="#333" stroke-width="2"/>
+        <!-- white triangle cut out, base on bottom edge -->
+        <polygon points="55,100 205,100 130,30" fill="#fff" stroke="#333" stroke-width="2"/>
+        <!-- top brace + label "12 cm" -->
+        <path d="M30,22 Q30,14 38,14 L122,14 M138,14 L222,14 Q230,14 230,22" fill="none" stroke="#333" stroke-width="1"/>
+        <text x="130" y="18" font-size="12" text-anchor="middle" fill="#333">12 cm</text>
+        <!-- right side label "4 cm" -->
+        <text x="240" y="69" font-size="12" fill="#333">4 cm</text>
+        <!-- bottom brace + label "9 cm" under triangle base -->
+        <path d="M55,108 Q55,116 63,116 L125,116 M135,116 L197,116 Q205,116 205,108" fill="none" stroke="#333" stroke-width="1"/>
+        <text x="130" y="120" font-size="12" text-anchor="middle" fill="#333">9 cm</text>
+      </svg>
+    </div>
+    <div class="step-by-step">
+      <div class="step">A 12 cm × 4 cm rectangle has a triangle (base 9 cm, height 4 cm) cut out. Find the shaded area.</div>
+      <div class="step"><strong>Step 1:</strong> Outer rectangle = 12 × 4 = <strong>48 cm²</strong></div>
+      <div class="step"><strong>Step 2:</strong> Triangle = (9 × 4) ÷ 2 = 36 ÷ 2 = <strong>18 cm²</strong></div>
+      <div class="step"><strong>Step 3:</strong> Shaded = 48 − 18 = <strong>30 cm²</strong> ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 Area of Shaded Regions</h1>
+    <p>Another strategy: <strong>add the pieces</strong> ➕</p>
+  </div>
+  <div class="page-num">Page 2 of 4</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 When the Shape Is Made of Pieces</div>
+    <div class="concept-text">
+      Sometimes the shaded region is <em>built up</em> from simpler shapes — like an L-shape made from two rectangles. Then you don't subtract — you <strong>add</strong>!
+    </div>
+  </div>
+
+  <div class="recipe-card">
+    <div class="recipe-title">📖 Recipe: Add the Pieces</div>
+    <div class="recipe-steps">
+      <ol>
+        <li>Split the shape into rectangles, squares, triangles, or parallelograms.</li>
+        <li>Find the area of <strong>each piece</strong>.</li>
+        <li><strong>Add</strong> them together.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Worked Example: An L-Shape</div>
+    <div class="shape-figure">
+      <svg width="200" height="160" viewBox="0 0 200 160">
+        <polygon points="20,20 100,20 100,80 180,80 180,140 20,140" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+        <line x1="100" y1="80" x2="20" y2="80" stroke="#e65100" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="55" y="55" font-size="11" fill="#bf360c" font-weight="bold">A</text>
+        <text x="100" y="115" font-size="11" fill="#bf360c" font-weight="bold">B</text>
+      </svg>
+    </div>
+    <div class="step-by-step">
+      <div class="step">An L-shape splits into rectangle <strong>A</strong> (8 cm × 6 cm on top) and rectangle <strong>B</strong> (16 cm × 6 cm on bottom).</div>
+      <div class="step"><strong>Step 1:</strong> Area of A = 8 × 6 = <strong>48 cm²</strong></div>
+      <div class="step"><strong>Step 2:</strong> Area of B = 16 × 6 = <strong>96 cm²</strong></div>
+      <div class="step"><strong>Step 3:</strong> Total shaded = 48 + 96 = <strong>144 cm²</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>Tip:</strong> Sometimes <em>either</em> method works! You can split an L-shape into 2 rectangles (add) OR you can imagine the full big rectangle and subtract the missing corner (subtract). Try both and check your answer matches!
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 Area of Shaded Regions</h1>
+    <p>Mixed practice — pick your strategy! 🧠</p>
+  </div>
+  <div class="page-num">Page 3 of 4</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Subtract the Hole 🕳️</div>
+    <div class="exercise-instruction">Outer area − inner area = shaded area.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        Outer rectangle 10 × 8, inner square 3 × 3<br>
+        Outer = <span class="blank" style="width:30px;"></span> &nbsp; Inner = <span class="blank" style="width:30px;"></span><br>
+        Shaded = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        Outer square 12 × 12, inner rectangle 5 × 4<br>
+        Outer = <span class="blank" style="width:30px;"></span> &nbsp; Inner = <span class="blank" style="width:30px;"></span><br>
+        Shaded = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        Outer rectangle 15 × 10, inner triangle b=6 h=4<br>
+        Outer = <span class="blank" style="width:30px;"></span> &nbsp; Inner = <span class="blank" style="width:30px;"></span><br>
+        Shaded = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        Outer square 9 × 9, inner square 4 × 4<br>
+        Outer = <span class="blank" style="width:30px;"></span> &nbsp; Inner = <span class="blank" style="width:30px;"></span><br>
+        Shaded = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Add the Pieces ➕</div>
+    <div class="exercise-instruction">Split each shape into rectangles, then add.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        L-shape: piece A = 5 × 3, piece B = 8 × 4<br>
+        A = <span class="blank" style="width:30px;"></span> &nbsp; B = <span class="blank" style="width:30px;"></span><br>
+        Total = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:left; padding:10px;">
+        T-shape: top 10 × 2, stem 4 × 6<br>
+        Top = <span class="blank" style="width:30px;"></span> &nbsp; Stem = <span class="blank" style="width:30px;"></span><br>
+        Total = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">3</span> Word Problems 📝</div>
+    <div class="exercise-instruction">Decide whether to subtract or add!</div>
+    <ul class="word-problem-list">
+      <li>
+        A rectangular rug is 6 m by 4 m. In the middle there is a square table covering a 2 m × 2 m patch. What area of the rug is still showing?
+        <span class="wp-answer">Shaded area = <span class="blank"></span> m²</span>
+      </li>
+      <li>
+        A wall is a 10 m × 3 m rectangle. A 2 m × 1 m window is cut into it. How many m² of the wall need painting?
+        <span class="wp-answer">Painted area = <span class="blank"></span> m²</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) 80, 9, 71 · 144, 20, 124 · 150, 12, 138 · 81, 16, 65 —
+    2) 15, 32, 47 · 20, 24, 44 —
+    3) 24 − 4 = 20 m²; 30 − 2 = 28 m²
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 Area of Shaded Regions</h1>
+    <p>Picture problems — find the shaded area from the diagram! 🖼️</p>
+  </div>
+  <div class="page-num">Page 4 of 4</div>
+
+  <div class="concept-box">
+    <div class="concept-title">👀 Read the Picture Carefully</div>
+    <div class="concept-text">
+      For each picture: the <strong>shaded (colored) part</strong> is what you want to find. Look at the dimensions on the outside, find the area of the whole outer shape, find the area of the white shape inside, and <strong>subtract</strong>.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">4</span> Find the Shaded Area 🖼️</div>
+    <div class="exercise-instruction">Each picture shows a rectangle with a white shape cut out. Use the dimensions to find the shaded area.</div>
+
+    <div class="problem-grid-2">
+
+      <!-- Picture A: rectangle 12×4 with triangle base 9 height 4 -->
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="20" y="25" width="200" height="60" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="45,85 195,85 120,25" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">12 cm</text>
+            <text x="226" y="59" font-size="11" fill="#333">4 cm</text>
+            <text x="120" y="106" font-size="11" text-anchor="middle" fill="#333">9 cm</text>
+          </svg>
+        </div>
+        <strong>A.</strong> Rectangle = 12 × 4 = <span class="blank" style="width:30px;"></span><br>
+        Triangle = (9 × 4) ÷ 2 = <span class="blank" style="width:30px;"></span><br>
+        <strong>Shaded = <span class="blank"></span> cm²</strong>
+      </div>
+
+      <!-- Picture B: rectangle 10×6 with triangle base 10 height 6 (covers full base) -->
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="30" y="25" width="180" height="80" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="30,105 210,105 120,25" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">10 cm</text>
+            <text x="216" y="68" font-size="11" fill="#333">6 cm</text>
+            <text x="120" y="122" font-size="11" text-anchor="middle" fill="#333">10 cm</text>
+          </svg>
+        </div>
+        <strong>B.</strong> Rectangle = 10 × 6 = <span class="blank" style="width:30px;"></span><br>
+        Triangle = (10 × 6) ÷ 2 = <span class="blank" style="width:30px;"></span><br>
+        <strong>Shaded = <span class="blank"></span> cm²</strong>
+      </div>
+
+      <!-- Picture C: rectangle 14×5 with small white rectangle 6×3 inside -->
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="20" y="25" width="200" height="70" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <rect x="80" y="45" width="80" height="30" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">14 cm</text>
+            <text x="226" y="63" font-size="11" fill="#333">5 cm</text>
+            <text x="120" y="63" font-size="10" text-anchor="middle" fill="#888">6×3</text>
+            <text x="120" y="113" font-size="11" text-anchor="middle" fill="#333">inner: 6 cm × 3 cm</text>
+          </svg>
+        </div>
+        <strong>C.</strong> Rectangle = 14 × 5 = <span class="blank" style="width:30px;"></span><br>
+        Inner = 6 × 3 = <span class="blank" style="width:30px;"></span><br>
+        <strong>Shaded = <span class="blank"></span> cm²</strong>
+      </div>
+
+      <!-- Picture D: square 8×8 with two triangles cut from bottom corners -->
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="50" y="20" width="140" height="80" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="50,100 110,100 50,60" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <polygon points="130,100 190,100 190,60" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="14" font-size="11" text-anchor="middle" fill="#333">8 cm</text>
+            <text x="196" y="63" font-size="11" fill="#333">8 cm</text>
+            <text x="80" y="117" font-size="10" text-anchor="middle" fill="#888">b=6, h=4</text>
+            <text x="160" y="117" font-size="10" text-anchor="middle" fill="#888">b=6, h=4</text>
+          </svg>
+        </div>
+        <strong>D.</strong> Square = 8 × 8 = <span class="blank" style="width:30px;"></span><br>
+        Each triangle = (6 × 4) ÷ 2 = <span class="blank" style="width:30px;"></span><br>
+        Two triangles = <span class="blank" style="width:30px;"></span><br>
+        <strong>Shaded = <span class="blank"></span> cm²</strong>
+      </div>
+
+      <!-- Picture E: rectangle 16×6 with two triangles (one each end), each base 4 height 6 -->
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="20" y="25" width="200" height="75" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="20,25 70,25 20,100" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <polygon points="170,25 220,25 220,100" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">16 cm</text>
+            <text x="226" y="66" font-size="11" fill="#333">6 cm</text>
+            <text x="45" y="117" font-size="10" text-anchor="middle" fill="#888">b=4, h=6</text>
+            <text x="195" y="117" font-size="10" text-anchor="middle" fill="#888">b=4, h=6</text>
+          </svg>
+        </div>
+        <strong>E.</strong> Rectangle = 16 × 6 = <span class="blank" style="width:30px;"></span><br>
+        Each triangle = (4 × 6) ÷ 2 = <span class="blank" style="width:30px;"></span><br>
+        Two triangles = <span class="blank" style="width:30px;"></span><br>
+        <strong>Shaded = <span class="blank"></span> cm²</strong>
+      </div>
+
+      <!-- Picture F: square 10×10 with smaller square 4×4 in corner removed (L-shape) -->
+      <div class="problem-card" style="font-size:12px; text-align:left; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <polygon points="60,20 180,20 180,68 108,68 108,100 60,100" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="108,68 180,68 180,100 108,100" fill="#fff" stroke="#e65100" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="120" y="14" font-size="11" text-anchor="middle" fill="#333">10 cm</text>
+            <text x="186" y="63" font-size="11" fill="#333">10 cm</text>
+            <text x="144" y="88" font-size="10" text-anchor="middle" fill="#888">4×4 cut</text>
+          </svg>
+        </div>
+        <strong>F.</strong> Full square = 10 × 10 = <span class="blank" style="width:30px;"></span><br>
+        Corner cut = 4 × 4 = <span class="blank" style="width:30px;"></span><br>
+        <strong>Shaded = <span class="blank"></span> cm²</strong>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    A) 48, 18, 30 cm² ·
+    B) 60, 30, 30 cm² ·
+    C) 70, 18, 52 cm² ·
+    D) 64, 12, 24, 40 cm² ·
+    E) 96, 12, 24, 72 cm² ·
+    F) 100, 16, 84 cm²
+  </div>
+</div>
+
+</body>
+</html>
