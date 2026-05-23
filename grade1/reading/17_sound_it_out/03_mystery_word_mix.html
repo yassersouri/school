@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Mystery Word Mix ⭐</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+    --draw-bg: #e8eaf6;
+  }
+
+  /* Mystery: word boxes + write-the-word blank */
+  .mystery-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; }
+  .mystery-list li { background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 6px 10px; display: flex; align-items: center; gap: 10px; }
+  .mystery-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; background: var(--accent); color: #fff; border-radius: 50%; font-weight: bold; font-size: 11px; flex-shrink: 0; }
+  .mystery-boxes { display: inline-flex; gap: 4px; }
+  .mystery-letter { display: inline-flex; align-items: center; justify-content: center; min-width: 28px; height: 32px; padding: 0 5px; border: 2px solid var(--accent); border-radius: 6px; background: var(--accent-bg); color: var(--title-color); font-weight: bold; font-size: 18px; font-family: 'Comic Sans MS', cursive; }
+  .arrow { font-size: 16px; color: var(--title-color); font-weight: bold; }
+  .mystery-blank { border-bottom: 2px solid #333; flex: 1; min-width: 70px; height: 22px; }
+
+  /* Speed-read grid */
+  .speed-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; }
+  .speed-grid .sp-word { background: #fff; border: 2px solid var(--accent); border-radius: 8px; padding: 8px 4px; text-align: center; font-weight: bold; color: var(--title-color); font-size: 20px; font-family: 'Comic Sans MS', cursive; }
+  .speed-meta { display: flex; gap: 14px; align-items: center; margin-top: 8px; font-size: 13px; color: #444; }
+  .speed-meta .blank { display: inline-block; border-bottom: 2px solid #333; width: 70px; height: 18px; }
+
+  /* Match meaning */
+  .match-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .match-list li { display: grid; grid-template-columns: 95px 1fr 50px; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .match-word { background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 8px; padding: 3px 8px; font-weight: bold; color: var(--title-color); font-size: 19px; text-align: center; font-family: 'Comic Sans MS', cursive; }
+  .match-meaning { font-size: 13px; color: #444; }
+  .match-blank { border: 1.5px dashed #999; border-radius: 6px; min-height: 26px; }
+
+  /* Real / silly */
+  .check-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 16px; }
+  .check-list li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .check-word { font-weight: bold; color: var(--title-color); min-width: 70px; font-size: 20px; font-family: 'Comic Sans MS', cursive; }
+  .check-circles { display: inline-flex; gap: 8px; margin-left: auto; }
+  .check-circle { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent); font-weight: bold; font-size: 12px; color: var(--title-color); background: #fff; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>❓ Mystery Word Mix ⭐</h1><p>Use your sound-it-out powers on words you've never seen!</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Mystery Words — Sound Out and Write ✏️</div>
+    <div class="exercise-instruction">For each mystery word, touch each letter, say the sound, blend, and write the word on the line.</div>
+    <ul class="mystery-list">
+      <li><span class="mystery-num">1</span><span class="mystery-boxes"><span class="mystery-letter">y</span><span class="mystery-letter">i</span><span class="mystery-letter">p</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">2</span><span class="mystery-boxes"><span class="mystery-letter">v</span><span class="mystery-letter">e</span><span class="mystery-letter">x</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">3</span><span class="mystery-boxes"><span class="mystery-letter">s</span><span class="mystery-letter">n</span><span class="mystery-letter">u</span><span class="mystery-letter">g</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">4</span><span class="mystery-boxes"><span class="mystery-letter">g</span><span class="mystery-letter">l</span><span class="mystery-letter">o</span><span class="mystery-letter">b</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">5</span><span class="mystery-boxes"><span class="mystery-letter">r</span><span class="mystery-letter">a</span><span class="mystery-letter">f</span><span class="mystery-letter">t</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">6</span><span class="mystery-boxes"><span class="mystery-letter">c</span><span class="mystery-letter">h</span><span class="mystery-letter">u</span><span class="mystery-letter">b</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">7</span><span class="mystery-boxes"><span class="mystery-letter">m</span><span class="mystery-letter">a</span><span class="mystery-letter">t</span><span class="mystery-letter">h</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">8</span><span class="mystery-boxes"><span class="mystery-letter">p</span><span class="mystery-letter">l</span><span class="mystery-letter">u</span><span class="mystery-letter">m</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">9</span><span class="mystery-boxes"><span class="mystery-letter">d</span><span class="mystery-letter">e</span><span class="mystery-letter">n</span><span class="mystery-letter">t</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">10</span><span class="mystery-boxes"><span class="mystery-letter">s</span><span class="mystery-letter">w</span><span class="mystery-letter">i</span><span class="mystery-letter">g</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Speed Read 🏁</div>
+    <div class="exercise-instruction">Sound out each word once. Then read the whole grid out loud as fast as you can — without skipping any!</div>
+    <div class="speed-grid">
+      <div class="sp-word">jab</div><div class="sp-word">peg</div><div class="sp-word">hum</div><div class="sp-word">lug</div><div class="sp-word">web</div>
+      <div class="sp-word">snap</div><div class="sp-word">melt</div><div class="sp-word">chop</div><div class="sp-word">plum</div><div class="sp-word">gulp</div>
+      <div class="sp-word">shed</div><div class="sp-word">drum</div><div class="sp-word">runt</div><div class="sp-word">moth</div><div class="sp-word">brim</div>
+    </div>
+    <div class="speed-meta">
+      <span>⏱️ My time:</span><span class="blank"></span>
+      <span>Try again — go faster!</span><span class="blank"></span>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>❓ Mystery Word Mix ⭐</h1><p>You can read words you've never seen — keep sounding them out!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Sound Out and Match 🔍</div>
+    <div class="exercise-instruction">Sound out each mystery word, then write the matching letter (A–F) in the box.</div>
+    <ul class="match-list">
+      <li><span class="match-word">snug</span><span class="match-meaning"><strong>A.</strong> a fruit with a pit, often purple</span><span class="match-blank"></span></li>
+      <li><span class="match-word">raft</span><span class="match-meaning"><strong>B.</strong> warm and cozy, like in a blanket</span><span class="match-blank"></span></li>
+      <li><span class="match-word">plum</span><span class="match-meaning"><strong>C.</strong> to fix something that is torn</span><span class="match-blank"></span></li>
+      <li><span class="match-word">gulp</span><span class="match-meaning"><strong>D.</strong> a flat boat made of logs</span><span class="match-blank"></span></li>
+      <li><span class="match-word">mend</span><span class="match-meaning"><strong>E.</strong> a flying insect that comes out at night</span><span class="match-blank"></span></li>
+      <li><span class="match-word">moth</span><span class="match-meaning"><strong>F.</strong> a big swallow of a drink</span><span class="match-blank"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Real Word or Silly Word? 🤔</div>
+    <div class="exercise-instruction">Sound out each one. Circle <strong>R</strong> for real or <strong>S</strong> for silly.</div>
+    <ul class="check-list">
+      <li><span class="check-word">drip</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">smug</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">flom</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">chig</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">hunt</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">zest</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">blod</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">prab</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Sound Out, Then Draw 🎨</div>
+    <div class="exercise-instruction">Sound out the new words in the sentence. Then draw a picture for it.</div>
+    <div class="draw-row">
+      <div style="flex:1;"><p style="font-size:16px;"><strong>"A snug pup sat on the raft and had a big gulp of milk."</strong></p></div>
+      <div class="draw-box">Draw here ✏️</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> yip, vex, snug, glob, raft, chub, math, plum, dent, swig ·
+    <strong>Ex.3:</strong> snug–B · raft–D · plum–A · gulp–F · mend–C · moth–E ·
+    <strong>Ex.4:</strong> drip=R · smug=R · flom=S · chig=S · hunt=R · zest=R · blod=S · prab=S.
+  </div>
+</div>
+</body>
+</html>

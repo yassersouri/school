@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Bigger New Words</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+  }
+
+  /* Reminder callout */
+  .reminder-box { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .reminder-card { background: var(--accent-bg); border-radius: 8px; padding: 8px 12px; }
+  .reminder-card h4 { font-size: 13px; color: var(--title-color); margin-bottom: 4px; }
+  .reminder-card p { font-size: 12px; color: #333; line-height: 1.4; }
+  .reminder-card em { color: var(--title-color); font-style: normal; font-weight: bold; }
+
+  /* Tap and blend rows */
+  .tap-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .tap-list li { background: #fff; border-radius: 8px; padding: 5px 12px; border: 1px solid var(--accent); display: flex; align-items: center; gap: 12px; font-size: 16px; }
+  .tap-boxes { display: inline-flex; gap: 5px; }
+  .tap-letter { display: inline-flex; align-items: center; justify-content: center; min-width: 36px; height: 36px; padding: 0 6px; border: 2px solid var(--accent); border-radius: 8px; background: var(--accent-bg); color: var(--title-color); font-weight: bold; font-size: 20px; font-family: 'Comic Sans MS', cursive; }
+  .tap-letter.digraph { background: #c5cae9; }
+  .arrow { font-size: 20px; color: var(--title-color); font-weight: bold; }
+  .blend-line { display: inline-block; border-bottom: 2px solid #333; width: 130px; height: 24px; }
+
+  /* Sound box write */
+  .sb-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .sb-list li { display: flex; align-items: center; gap: 10px; font-size: 17px; }
+  .sb-word { font-weight: bold; color: var(--title-color); min-width: 80px; font-size: 22px; font-family: 'Comic Sans MS', cursive; }
+  .sb-empty { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 2px dashed var(--accent); border-radius: 8px; background: #fff; }
+
+  /* Sort cols (3 columns) */
+  .sort-cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .sort-cols-3 .sort-col { border: 2px solid var(--accent); border-radius: 8px; padding: 6px; background: var(--accent-bg); }
+  .sort-cols-3 .sort-col h4 { font-size: 12px; color: var(--title-color); text-align: center; margin-bottom: 4px; }
+  .sort-cols-3 .sort-slot { border-bottom: 1.5px solid var(--title-color); height: 22px; margin-bottom: 4px; }
+
+  /* Real / silly */
+  .check-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 16px; }
+  .check-list li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .check-word { font-weight: bold; color: var(--title-color); min-width: 70px; font-size: 20px; font-family: 'Comic Sans MS', cursive; }
+  .check-circles { display: inline-flex; gap: 8px; margin-left: auto; }
+  .check-circle { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent); font-weight: bold; font-size: 12px; color: var(--title-color); background: #fff; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🐢 Sound It Out — Bigger New Words</h1><p>Stretchy reading for words with blends and digraphs</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">Reminder — Two Letters That Stick Together 🧠</div>
+    <div class="exercise-instruction">Sometimes two letters work as a team. Spot them, say the right sound, then sound out the rest of the word.</div>
+    <div class="reminder-box">
+      <div class="reminder-card">
+        <h4>🔠 Digraphs = 1 sound</h4>
+        <p>Two letters that make <em>one</em> sound together:<br><em>sh</em> in <em>shop</em>, <em>ch</em> in <em>chip</em>, <em>th</em> in <em>thin</em>.</p>
+      </div>
+      <div class="reminder-card">
+        <h4>🧩 Blends = 2 sounds glued</h4>
+        <p>Two letters whose sounds <em>slide</em> together fast:<br><em>sn</em> in <em>snap</em>, <em>cl</em> in <em>clip</em>, <em>nd</em> in <em>hand</em>.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Tap and Blend — Digraph Words 🔠</div>
+    <div class="exercise-instruction">The dark blue box is <strong>one sound</strong> (a digraph). Tap, say each sound, then blend.</div>
+    <ul class="tap-list">
+      <li><span class="tap-boxes"><span class="tap-letter digraph">sh</span><span class="tap-letter">e</span><span class="tap-letter">d</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter digraph">ch</span><span class="tap-letter">a</span><span class="tap-letter">p</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">m</span><span class="tap-letter">o</span><span class="tap-letter digraph">th</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">d</span><span class="tap-letter">a</span><span class="tap-letter digraph">sh</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">g</span><span class="tap-letter">u</span><span class="tap-letter digraph">sh</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Tap and Blend — Beginning Blends 🧩</div>
+    <div class="exercise-instruction">Two letters at the start, two sounds. Slide them together fast!</div>
+    <ul class="tap-list">
+      <li><span class="tap-boxes"><span class="tap-letter">s</span><span class="tap-letter">n</span><span class="tap-letter">i</span><span class="tap-letter">p</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">c</span><span class="tap-letter">l</span><span class="tap-letter">o</span><span class="tap-letter">g</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">p</span><span class="tap-letter">l</span><span class="tap-letter">u</span><span class="tap-letter">m</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">d</span><span class="tap-letter">r</span><span class="tap-letter">u</span><span class="tap-letter">m</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">b</span><span class="tap-letter">r</span><span class="tap-letter">a</span><span class="tap-letter">g</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">s</span><span class="tap-letter">w</span><span class="tap-letter">i</span><span class="tap-letter">g</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🐢 Sound It Out — Bigger New Words</h1><p>Keep stretching · keep blending</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Tap and Blend — Ending Blends 🧩</div>
+    <div class="exercise-instruction">Two letters at the end, two sounds. Don't drop either one!</div>
+    <ul class="tap-list">
+      <li><span class="tap-boxes"><span class="tap-letter">g</span><span class="tap-letter">u</span><span class="tap-letter">l</span><span class="tap-letter">p</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">m</span><span class="tap-letter">e</span><span class="tap-letter">l</span><span class="tap-letter">t</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">m</span><span class="tap-letter">e</span><span class="tap-letter">n</span><span class="tap-letter">d</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">r</span><span class="tap-letter">a</span><span class="tap-letter">f</span><span class="tap-letter">t</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">r</span><span class="tap-letter">u</span><span class="tap-letter">n</span><span class="tap-letter">t</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">s</span><span class="tap-letter">i</span><span class="tap-letter">f</span><span class="tap-letter">t</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Sort the Words 📂</div>
+    <div class="exercise-instruction">Sound out each word, then write it in the right column.<br><strong>Words:</strong> shed, snip, gulp, moth, plum, melt</div>
+    <div class="sort-cols-3">
+      <div class="sort-col"><h4>Digraph</h4><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>Start blend</h4><div class="sort-slot"></div><div class="sort-slot"></div></div>
+      <div class="sort-col"><h4>End blend</h4><div class="sort-slot"></div><div class="sort-slot"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Real Word or Silly Word? 🤔</div>
+    <div class="exercise-instruction">Sound out each word. Circle <strong>R</strong> for real or <strong>S</strong> for silly.</div>
+    <ul class="check-list">
+      <li><span class="check-word">snug</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">flob</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">chub</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">drim</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">past</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">glun</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">shop</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">thiv</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> shed, chap, moth, dash, gush ·
+    <strong>Ex.2:</strong> snip, clog, plum, drum, brag, swig ·
+    <strong>Ex.3:</strong> gulp, melt, mend, raft, runt, sift ·
+    <strong>Ex.4:</strong> Digraph: shed, moth · Start blend: snip, plum · End blend: gulp, melt ·
+    <strong>Ex.5:</strong> snug=R · flob=S · chub=R · drim=S · past=R · glun=S · shop=R · thiv=S.
+  </div>
+</div>
+</body>
+</html>

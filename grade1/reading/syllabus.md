@@ -55,6 +55,16 @@ Each term below cycles through all six strands so they grow together.
 
 📂 **Repo materials:** [Short Vowels — index](01_short_vowels/index.html) — 22 sheets covering short **a**, **e**, **i**, **o**, **u**, including word families (-at/-an, -ed/-en, -ig/-in, -ot/-op, -ug/-un, -it/-id, -ip/-ick, -ill/-im, -ap/-ad, -ag/-am, -ack/-ash, -et/-ell, -eck/-est, -og/-ock, -ob/-ox, -ut/-ub, -uck/-ump) and ⭐ Mixed Practice sheets for each vowel.
 
+### 4b. Decoding Strategy — Sound It Out (cross-cutting)
+- Teach an explicit 4-step strategy for reading unfamiliar but decodable words: **look** at each letter → **say** each sound → **slide** the sounds together → **say** the word.
+- Apply the strategy to **new words the child has never seen before** (e.g., *yam, peg, web, hex, plum, gulp, moth*) so the learner discovers that phonics knowledge unlocks any regular word, not just memorized ones.
+- Reinforce that two letters can form one sound (digraphs: *sh, ch, th*) or two sounds glued together (blends: *sn, cl, gr, -nd, -lp*).
+- Mix in "real or silly?" exercises so the child sounds out blindly before judging meaning — building trust in the decoding process.
+- Extend the strategy to **multi-syllable words** by chunking: spot each chunk (one vowel sound each), sound out each chunk, then push the chunks together (*sun·set*, *nap·kin*, *fan·tas·tic*).
+- Re-use this strategy whenever a new phonics pattern is introduced in Terms 2–4.
+
+📂 **Repo materials:** [Sound It Out — index](17_sound_it_out/index.html) — 5 sheets: [Step by Step](17_sound_it_out/01_sound_it_out_steps.html) (the 4-step strategy with new CVC words), [Bigger New Words](17_sound_it_out/02_bigger_new_words.html) (blend &amp; digraph words), [Mystery Word Mix ⭐](17_sound_it_out/03_mystery_word_mix.html) (mixed mystery-word practice with speed-read &amp; match-the-meaning), [2-Syllable Words](17_sound_it_out/04_two_syllable_words.html) (chunk-and-blend on compounds and closed-closed words), [3-Syllable Words](17_sound_it_out/05_three_syllable_words.html) (extend the chunk-and-blend strategy to simple 3-chunk words like *fantastic*, *contestant*, *magnetic*, *chickenpox*).
+
 ### 5. High-Frequency Sight Words — Set 1 (~30 words)
 the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for.
 
@@ -296,3 +306,4 @@ To support the topics above that don't yet have practice sheets, future folders 
 - `13_phonemic_awareness/` — rhyme, syllable, blending, segmenting, manipulation
 - `14_comprehension/` — story elements, main idea, text features
 - `15_fluency_passages/` — short decodable passages with re-read targets
+- `17_sound_it_out/` — explicit decoding strategy applied to new but decodable words (CVC, blends, digraphs)

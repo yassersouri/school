@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Step by Step</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+  }
+
+  /* Strategy callout */
+  .strategy-box { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px 14px; }
+  .strategy-model { text-align: center; font-size: 22px; color: var(--title-color); margin-bottom: 8px; }
+  .strategy-model strong { font-size: 24px; letter-spacing: 4px; }
+  .strategy-steps { list-style: none; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 6px; }
+  .strategy-steps li { background: var(--accent-bg); border-radius: 8px; padding: 8px 6px; text-align: center; font-size: 12px; color: #333; line-height: 1.35; }
+  .strategy-steps .step-num { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: var(--accent); color: #fff; border-radius: 50%; font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+  .strategy-steps strong { color: var(--title-color); }
+
+  /* Tap-and-blend rows */
+  .tap-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .tap-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid var(--accent); display: flex; align-items: center; gap: 14px; font-size: 16px; }
+  .tap-boxes { display: inline-flex; gap: 6px; }
+  .tap-letter { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px solid var(--accent); border-radius: 8px; background: var(--accent-bg); color: var(--title-color); font-weight: bold; font-size: 22px; font-family: 'Comic Sans MS', cursive; }
+  .arrow { font-size: 20px; color: var(--title-color); font-weight: bold; }
+  .blend-line { display: inline-block; border-bottom: 2px solid #333; width: 120px; height: 24px; }
+
+  /* Sound boxes for writing */
+  .sb-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .sb-list li { display: flex; align-items: center; gap: 14px; font-size: 17px; }
+  .sb-word { font-weight: bold; color: var(--title-color); min-width: 80px; font-size: 24px; font-family: 'Comic Sans MS', cursive; }
+  .sb-empty { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px dashed var(--accent); border-radius: 8px; background: #fff; }
+
+  /* Match meaning */
+  .match-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .match-list li { display: grid; grid-template-columns: 90px 1fr 60px; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .match-word { background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 8px; padding: 3px 10px; font-weight: bold; color: var(--title-color); font-size: 20px; text-align: center; font-family: 'Comic Sans MS', cursive; }
+  .match-meaning { font-size: 13px; color: #444; }
+  .match-blank { border: 1.5px dashed #999; border-radius: 6px; min-height: 26px; }
+
+  /* Real or silly */
+  .check-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 8px 18px; font-size: 16px; }
+  .check-list li { display: flex; align-items: center; gap: 12px; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .check-word { font-weight: bold; color: var(--title-color); min-width: 70px; font-size: 22px; font-family: 'Comic Sans MS', cursive; }
+  .check-circles { display: inline-flex; gap: 8px; margin-left: auto; }
+  .check-circle { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--accent); font-weight: bold; font-size: 13px; color: var(--title-color); background: #fff; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🐌 Sound It Out — Step by Step</h1><p>Look · Say each sound · Slide them together · Say the word!</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">How to Sound Out a New Word 🐌</div>
+    <div class="exercise-instruction">When you see a word you don't know, don't worry — sound it out, letter by letter!</div>
+    <div class="strategy-box">
+      <div class="strategy-model">Try with: <strong>l o g</strong></div>
+      <ul class="strategy-steps">
+        <li><span class="step-num">1</span><br><strong>Look</strong> at each letter.</li>
+        <li><span class="step-num">2</span><br><strong>Say</strong> each sound:<br>/l/ /o/ /g/</li>
+        <li><span class="step-num">3</span><br><strong>Slide</strong> them together:<br>llll-oooo-ggg</li>
+        <li><span class="step-num">4</span><br><strong>Say</strong> the word:<br><strong>log!</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Tap and Blend 👉</div>
+    <div class="exercise-instruction">Touch each letter, say its sound, then push the sounds together. Write the new word.</div>
+    <ul class="tap-list">
+      <li><span class="tap-boxes"><span class="tap-letter">y</span><span class="tap-letter">a</span><span class="tap-letter">m</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">p</span><span class="tap-letter">e</span><span class="tap-letter">g</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">h</span><span class="tap-letter">u</span><span class="tap-letter">m</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">w</span><span class="tap-letter">e</span><span class="tap-letter">b</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">j</span><span class="tap-letter">o</span><span class="tap-letter">t</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="tap-boxes"><span class="tap-letter">f</span><span class="tap-letter">i</span><span class="tap-letter">b</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Sound Boxes — Break the Word Apart 📦</div>
+    <div class="exercise-instruction">Read the new word. Then write each letter in its own box, left to right.</div>
+    <ul class="sb-list">
+      <li><span class="sb-word">mug</span><span class="arrow">→</span><span class="sb-empty"></span><span class="sb-empty"></span><span class="sb-empty"></span></li>
+      <li><span class="sb-word">rib</span><span class="arrow">→</span><span class="sb-empty"></span><span class="sb-empty"></span><span class="sb-empty"></span></li>
+      <li><span class="sb-word">pup</span><span class="arrow">→</span><span class="sb-empty"></span><span class="sb-empty"></span><span class="sb-empty"></span></li>
+      <li><span class="sb-word">vat</span><span class="arrow">→</span><span class="sb-empty"></span><span class="sb-empty"></span><span class="sb-empty"></span></li>
+      <li><span class="sb-word">hex</span><span class="arrow">→</span><span class="sb-empty"></span><span class="sb-empty"></span><span class="sb-empty"></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🐌 Sound It Out — Step by Step</h1><p>Keep going — you're a sound-it-out star!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Sound Out and Match 🔍</div>
+    <div class="exercise-instruction">Sound out each new word, then write the matching letter (A–F) in the box.</div>
+    <ul class="match-list">
+      <li><span class="match-word">yam</span><span class="match-meaning"><strong>A.</strong> what a spider makes</span><span class="match-blank"></span></li>
+      <li><span class="match-word">web</span><span class="match-meaning"><strong>B.</strong> a small lie</span><span class="match-blank"></span></li>
+      <li><span class="match-word">fib</span><span class="match-meaning"><strong>C.</strong> an orange root food, like a sweet potato</span><span class="match-blank"></span></li>
+      <li><span class="match-word">peg</span><span class="match-meaning"><strong>D.</strong> to write something down quickly</span><span class="match-blank"></span></li>
+      <li><span class="match-word">jot</span><span class="match-meaning"><strong>E.</strong> a big cup for hot drinks</span><span class="match-blank"></span></li>
+      <li><span class="match-word">mug</span><span class="match-meaning"><strong>F.</strong> a small wooden pin</span><span class="match-blank"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Real Word or Silly Word? 🤔</div>
+    <div class="exercise-instruction">Sound out each one. Circle <strong>R</strong> if it is a real word, or <strong>S</strong> if it is a silly made-up word.</div>
+    <ul class="check-list">
+      <li><span class="check-word">pet</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">blig</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">yip</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">mun</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">jog</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">vop</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">lug</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">brid</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> yam, peg, hum, web, jot, fib ·
+    <strong>Ex.2:</strong> m-u-g · r-i-b · p-u-p · v-a-t · h-e-x ·
+    <strong>Ex.3:</strong> yam–C · web–A · fib–B · peg–F · jot–D · mug–E ·
+    <strong>Ex.4:</strong> pet=R · blig=S · yip=R · mun=S · jog=R · vop=S · lug=R · brid=S.
+  </div>
+</div>
+</body>
+</html>

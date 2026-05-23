@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: 3-Syllable Words</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+  }
+
+  /* Strategy callout */
+  .strategy-box { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px 14px; }
+  .strategy-model { text-align: center; font-size: 20px; color: var(--title-color); margin-bottom: 8px; font-family: 'Comic Sans MS', cursive; }
+  .strategy-steps { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 6px; }
+  .strategy-steps li { background: var(--accent-bg); border-radius: 8px; padding: 8px 6px; text-align: center; font-size: 12px; color: #333; line-height: 1.35; }
+  .strategy-steps .step-num { display: inline-block; width: 22px; height: 22px; line-height: 22px; background: var(--accent); color: #fff; border-radius: 50%; font-weight: bold; font-size: 12px; margin-bottom: 4px; }
+  .strategy-steps strong { color: var(--title-color); }
+
+  /* Chunk rows */
+  .chunk-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .chunk-list li { background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 6px 10px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+  .chunk-word { display: inline-flex; align-items: center; gap: 4px; font-family: 'Comic Sans MS', cursive; }
+  .chunk { background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 8px; padding: 3px 10px; color: var(--title-color); font-weight: bold; font-size: 19px; }
+  .chunk-dot { color: var(--accent); font-weight: bold; font-size: 22px; padding: 0 1px; }
+  .arrow { font-size: 18px; color: var(--title-color); font-weight: bold; }
+  .blend-line { display: inline-block; border-bottom: 2px solid #333; flex: 1; min-width: 100px; height: 22px; }
+
+  /* Split-it-yourself */
+  .split-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px 14px; }
+  .split-list li { background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 8px; text-align: center; }
+  .split-word { font-family: 'Comic Sans MS', cursive; font-size: 26px; color: var(--title-color); font-weight: bold; letter-spacing: 3px; }
+  .split-hint { font-size: 11px; color: #888; margin-top: 4px; }
+  .split-blank { border-bottom: 2px solid #333; height: 22px; margin-top: 6px; }
+
+  /* Match meaning */
+  .match-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .match-list li { display: grid; grid-template-columns: 130px 1fr 50px; gap: 12px; align-items: center; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .match-word { background: var(--accent-bg); border: 2px solid var(--accent); border-radius: 8px; padding: 3px 8px; font-weight: bold; color: var(--title-color); font-size: 17px; text-align: center; font-family: 'Comic Sans MS', cursive; }
+  .match-meaning { font-size: 13px; color: #444; }
+  .match-blank { border: 1.5px dashed #999; border-radius: 6px; min-height: 26px; }
+
+  /* Real / silly */
+  .check-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px 14px; font-size: 16px; }
+  .check-list li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 4px 10px; }
+  .check-word { font-weight: bold; color: var(--title-color); min-width: 110px; font-size: 19px; font-family: 'Comic Sans MS', cursive; }
+  .check-circles { display: inline-flex; gap: 8px; margin-left: auto; }
+  .check-circle { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent); font-weight: bold; font-size: 12px; color: var(--title-color); background: #fff; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header"><h1>🧱🧱🧱 Sound It Out — 3-Syllable Words</h1><p>Three little chunks make one big word. Take it slow!</p></div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">Three Chunks, One Big Word 🧱🧱🧱</div>
+    <div class="exercise-instruction">Same plan as before — just three chunks instead of two!</div>
+    <div class="strategy-box">
+      <div class="strategy-model">Try with: <span class="chunk">fan</span><span class="chunk-dot">·</span><span class="chunk">tas</span><span class="chunk-dot">·</span><span class="chunk">tic</span></div>
+      <ul class="strategy-steps">
+        <li><span class="step-num">1</span><br><strong>Spot</strong> all three chunks (one vowel sound each).</li>
+        <li><span class="step-num">2</span><br><strong>Sound out</strong> each chunk:<br>/fan/ · /tas/ · /tic/</li>
+        <li><span class="step-num">3</span><br><strong>Push</strong> them together:<br><strong>fantastic!</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Three Chunks Already Split ✨</div>
+    <div class="exercise-instruction">Sound out each chunk, then blend the three chunks into one big word.</div>
+    <ul class="chunk-list">
+      <li><span class="chunk-word"><span class="chunk">fan</span><span class="chunk-dot">·</span><span class="chunk">tas</span><span class="chunk-dot">·</span><span class="chunk">tic</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">con</span><span class="chunk-dot">·</span><span class="chunk">tes</span><span class="chunk-dot">·</span><span class="chunk">tant</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">mag</span><span class="chunk-dot">·</span><span class="chunk">net</span><span class="chunk-dot">·</span><span class="chunk">ic</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">in</span><span class="chunk-dot">·</span><span class="chunk">vent</span><span class="chunk-dot">·</span><span class="chunk">ing</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">chick</span><span class="chunk-dot">·</span><span class="chunk">en</span><span class="chunk-dot">·</span><span class="chunk">pox</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">pic</span><span class="chunk-dot">·</span><span class="chunk">nick</span><span class="chunk-dot">·</span><span class="chunk">ing</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Three Chunks — Compound + Ending 🧩</div>
+    <div class="exercise-instruction">Two little words plus an ending you already know. Same plan!</div>
+    <ul class="chunk-list">
+      <li><span class="chunk-word"><span class="chunk">hot</span><span class="chunk-dot">·</span><span class="chunk">dog</span><span class="chunk-dot">·</span><span class="chunk">s</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">sun</span><span class="chunk-dot">·</span><span class="chunk">set</span><span class="chunk-dot">·</span><span class="chunk">ting</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">cat</span><span class="chunk-dot">·</span><span class="chunk">fish</span><span class="chunk-dot">·</span><span class="chunk">es</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+      <li><span class="chunk-word"><span class="chunk">hand</span><span class="chunk-dot">·</span><span class="chunk">print</span><span class="chunk-dot">·</span><span class="chunk">ed</span></span><span class="arrow">→</span><span class="blend-line"></span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="page">
+  <div class="page-header"><h1>🧱🧱🧱 Sound It Out — 3-Syllable Words</h1><p>You can read really long words now — just chunk &amp; blend!</p></div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Split It Yourself ✂️</div>
+    <div class="exercise-instruction">Draw <strong>two lines</strong> to split each word into three chunks, then sound it out and write it on the line.</div>
+    <ul class="split-list">
+      <li><div class="split-word">helmeted</div><div class="split-hint">hel / met / ed</div><div class="split-blank"></div></li>
+      <li><div class="split-word">contested</div><div class="split-hint">con / test / ed</div><div class="split-blank"></div></li>
+      <li><div class="split-word">sandwiches</div><div class="split-hint">sand / wich / es</div><div class="split-blank"></div></li>
+      <li><div class="split-word">contesting</div><div class="split-hint">con / test / ing</div><div class="split-blank"></div></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Sound Out and Match 🔍</div>
+    <div class="exercise-instruction">Sound out each long word, then write the matching letter (A–F).</div>
+    <ul class="match-list">
+      <li><span class="match-word">fantastic</span><span class="match-meaning"><strong>A.</strong> able to stick to metal</span><span class="match-blank"></span></li>
+      <li><span class="match-word">contestant</span><span class="match-meaning"><strong>B.</strong> an itchy red-spot illness lots of kids get</span><span class="match-blank"></span></li>
+      <li><span class="match-word">magnetic</span><span class="match-meaning"><strong>C.</strong> super amazing, really really good</span><span class="match-blank"></span></li>
+      <li><span class="match-word">chickenpox</span><span class="match-meaning"><strong>D.</strong> making up a brand new thing</span><span class="match-blank"></span></li>
+      <li><span class="match-word">inventing</span><span class="match-meaning"><strong>E.</strong> more than one sandwich</span><span class="match-blank"></span></li>
+      <li><span class="match-word">sandwiches</span><span class="match-meaning"><strong>F.</strong> a person who is in a contest</span><span class="match-blank"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Real Word or Silly Word? 🤔</div>
+    <div class="exercise-instruction">Sound out each three-chunk word, chunk by chunk. Circle <strong>R</strong> for real or <strong>S</strong> for silly.</div>
+    <ul class="check-list">
+      <li><span class="check-word">fantastic</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">muftindop</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">magnetic</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">bantopfid</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">contestant</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">napkingleb</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">inventing</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+      <li><span class="check-word">helmunpiz</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>Ex.1:</strong> fantastic, contestant, magnetic, inventing, chickenpox, picnicking ·
+    <strong>Ex.2:</strong> hotdogs, sunsetting, catfishes, handprinted ·
+    <strong>Ex.3:</strong> hel/met/ed · con/test/ed · sand/wich/es · con/test/ing ·
+    <strong>Ex.4:</strong> fantastic–C · contestant–F · magnetic–A · chickenpox–B · inventing–D · sandwiches–E ·
+    <strong>Ex.5:</strong> fantastic=R · muftindop=S · magnetic=R · bantopfid=S · contestant=R · napkingleb=S · inventing=R · helmunpiz=S.
+  </div>
+</div>
+</body>
+</html>
