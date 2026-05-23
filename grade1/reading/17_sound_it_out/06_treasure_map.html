@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Treasure Map Reader</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #fff8e1;
+    --col-heading: #5d4037;
+    --word-bg: #fff;
+    --parchment: #fdf6e3;
+    --parchment-edge: #c9a76a;
+    --ink: #4e342e;
+  }
+
+  /* The map itself — looks like a parchment with locations */
+  .map-frame {
+    background: var(--parchment);
+    background-image:
+      radial-gradient(circle at 12% 18%, rgba(201,167,106,0.25) 0, transparent 40%),
+      radial-gradient(circle at 88% 82%, rgba(201,167,106,0.25) 0, transparent 40%),
+      radial-gradient(circle at 70% 30%, rgba(201,167,106,0.15) 0, transparent 30%);
+    border: 4px double var(--parchment-edge);
+    border-radius: 14px;
+    padding: 14px 18px;
+    box-shadow: inset 0 0 30px rgba(150,100,40,0.18);
+  }
+  .map-title { text-align: center; color: var(--ink); font-family: 'Georgia', serif; font-style: italic; font-size: 22px; margin-bottom: 4px; letter-spacing: 1px; }
+  .map-sub { text-align: center; color: var(--ink); font-size: 11px; margin-bottom: 8px; font-style: italic; }
+
+  .map-grid {
+    position: relative;
+    width: 100%;
+    height: 195mm;
+    background:
+      linear-gradient(135deg, transparent 0 60%, rgba(176, 218, 246, 0.35) 60% 75%, transparent 75%),
+      radial-gradient(ellipse at 70% 70%, rgba(122, 178, 230, 0.35) 0 8%, transparent 9%),
+      radial-gradient(ellipse at 25% 35%, rgba(167, 207, 165, 0.4) 0 12%, transparent 14%),
+      radial-gradient(ellipse at 80% 18%, rgba(140, 120, 100, 0.35) 0 10%, transparent 12%),
+      radial-gradient(ellipse at 18% 80%, rgba(120, 95, 75, 0.3) 0 11%, transparent 13%);
+    border: 2px dashed var(--parchment-edge);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  .loc {
+    position: absolute;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .loc .icon { font-size: 30px; line-height: 1; display: block; filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.2)); }
+  .loc .name {
+    display: inline-block;
+    background: rgba(255, 253, 240, 0.92);
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 1px 6px;
+    font-size: 13px;
+    color: var(--ink);
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+  .loc .num {
+    display: inline-block;
+    width: 18px; height: 18px; line-height: 18px;
+    background: #c62828; color: #fff;
+    border-radius: 50%; font-size: 11px; font-weight: bold;
+    margin-right: 3px; vertical-align: middle;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.25);
+  }
+
+  /* Dashed path SVG overlay */
+  .map-path { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+
+  /* Compass rose */
+  .compass {
+    position: absolute; top: 8px; right: 10px;
+    width: 50px; height: 50px;
+    font-size: 11px; color: var(--ink);
+    text-align: center;
+  }
+  .compass-rose { font-size: 26px; }
+
+  /* Legend */
+  .legend {
+    display: flex; justify-content: space-around; align-items: center;
+    background: #fff; border: 1.5px dashed var(--parchment-edge);
+    border-radius: 8px; padding: 6px 10px; margin-top: 8px;
+    font-size: 11px; color: var(--ink);
+  }
+  .legend span { display: inline-flex; align-items: center; gap: 4px; }
+
+  /* Page 2 — the quest */
+  .quest-title { text-align: center; color: var(--heading-color); font-size: 18px; margin-bottom: 6px; }
+  .quest-intro { background: var(--accent-bg); border-radius: 8px; padding: 8px 12px; font-size: 12px; color: #333; border-left: 4px solid var(--accent); }
+
+  .quest-steps { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+  .quest-steps li {
+    counter-increment: step;
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 8px 10px 8px 38px;
+    position: relative;
+    font-size: 15px;
+    color: #333;
+    line-height: 1.55;
+  }
+  .quest-steps li::before {
+    content: counter(step);
+    position: absolute; left: 8px; top: 50%;
+    transform: translateY(-50%);
+    width: 22px; height: 22px; line-height: 22px;
+    background: #c62828; color: #fff; border-radius: 50%;
+    text-align: center; font-weight: bold; font-size: 13px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .place {
+    display: inline-block;
+    background: #fff8e1;
+    border: 1.5px solid var(--ink);
+    border-radius: 6px;
+    padding: 1px 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: var(--ink);
+    letter-spacing: 1px;
+    font-size: 16px;
+  }
+
+  /* Spotlight: all place names chunked */
+  .spotlight {
+    background: var(--accent-bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin-top: 10px;
+  }
+  .spotlight h3 { text-align: center; font-size: 13px; color: var(--title-color); margin-bottom: 6px; }
+  .spotlight-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px 14px;
+  }
+  .spotlight-list li {
+    display: flex; align-items: center; gap: 8px;
+    background: #fff; border-radius: 6px; padding: 4px 8px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .spotlight-icon { font-size: 20px; }
+  .spotlight-chunked {
+    font-weight: bold;
+    color: var(--ink);
+    font-size: 17px;
+    letter-spacing: 2px;
+  }
+  .spotlight-chunked .dot { color: var(--accent); margin: 0 1px; }
+
+  /* Riddle */
+  .riddle {
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-size: 13px;
+    color: #333;
+  }
+  .riddle h3 { color: var(--heading-color); font-size: 14px; margin-bottom: 6px; text-align: center; }
+  .riddle p { line-height: 1.6; }
+  .riddle .answer { display: block; margin-top: 6px; padding-top: 6px; border-top: 1px dashed #ccc; font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: THE MAP  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🗺️ The Sound-It-Out Treasure Map</h1>
+    <p>Read each place name on the map. Use the <strong>chunks</strong> to sound them out!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="map-frame">
+    <div class="map-title">~ The Lost Pumpkin Quest ~</div>
+    <div class="map-sub">A map for brave young readers</div>
+
+    <div class="map-grid">
+      <svg class="map-path" viewBox="0 0 100 100" preserveAspectRatio="none">
+        <path d="M 14,12 Q 24,28 18,42 Q 25,55 42,55 Q 60,55 70,68 Q 78,80 56,88"
+              stroke="#c62828" stroke-width="0.6" stroke-dasharray="1.2 1.4"
+              fill="none" stroke-linecap="round"/>
+      </svg>
+
+      <div class="compass">
+        <div class="compass-rose">🧭</div>
+        <div>N · S · E · W</div>
+      </div>
+
+      <!-- 9 places positioned around the map -->
+      <div class="loc" style="left: 14%; top: 12%;">
+        <span class="icon">🏰</span>
+        <span class="name"><span class="num">1</span>HIL·LOP HILL</span>
+      </div>
+
+      <div class="loc" style="left: 78%; top: 14%;">
+        <span class="icon">🐉</span>
+        <span class="name">DRAG·ON DEN</span>
+      </div>
+
+      <div class="loc" style="left: 18%; top: 42%;">
+        <span class="icon">🎃</span>
+        <span class="name"><span class="num">2</span>PUM·KIN PATCH</span>
+      </div>
+
+      <div class="loc" style="left: 55%; top: 32%;">
+        <span class="icon">🪨</span>
+        <span class="name">RAB·BIT ROCK</span>
+      </div>
+
+      <div class="loc" style="left: 84%; top: 44%;">
+        <span class="icon">⚙️</span>
+        <span class="name">MAG·NET MILL</span>
+      </div>
+
+      <div class="loc" style="left: 42%; top: 55%;">
+        <span class="icon">🏪</span>
+        <span class="name"><span class="num">3</span>SAND·BOX SHOP</span>
+      </div>
+
+      <div class="loc" style="left: 70%; top: 68%;">
+        <span class="icon">🐟</span>
+        <span class="name"><span class="num">4</span>CAT·FISH POND</span>
+      </div>
+
+      <div class="loc" style="left: 92%; top: 72%;">
+        <span class="icon">🌭</span>
+        <span class="name">HOT·DOG HUT</span>
+      </div>
+
+      <div class="loc" style="left: 16%; top: 80%;">
+        <span class="icon">🐾</span>
+        <span class="name">BOB·CAT BOG</span>
+      </div>
+
+      <div class="loc" style="left: 56%; top: 90%;">
+        <span class="icon">⭐</span>
+        <span class="name"><span class="num">5</span>JACK·POT CHEST</span>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span>🔴 = red numbers = your quest path</span>
+      <span>· = a chunk break</span>
+      <span>🧭 = compass</span>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────  PAGE 2: THE QUEST  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🧭 The Quest: Read &amp; Follow!</h1>
+    <p>Read each step. Point to the place on the map as you read it.</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="quest-intro">
+    <strong>🎃 Quest:</strong> Your prize pumpkin is missing! Follow the dashed red path on the map to track it down. Read each step out loud — and when you see a <span class="place">PLACE NAME</span>, sound it out chunk by chunk!
+  </div>
+
+  <ol class="quest-steps">
+    <li>
+      You wake up at the gates of <span class="place">HIL·LOP HILL</span>. The wind is cold. You spot tiny pumpkin seeds on the ground, going down the hill.
+    </li>
+    <li>
+      You follow the seeds to <span class="place">PUM·KIN PATCH</span>. Empty! Only one vine is left, pointing east.
+    </li>
+    <li>
+      You jog across the field to <span class="place">SAND·BOX SHOP</span>. The shop keeper says: &ldquo;A bobcat ran past with a pumpkin! Try the pond.&rdquo;
+    </li>
+    <li>
+      You hop over <span class="place">CAT·FISH POND</span>. A big catfish pops up and grins, &ldquo;The treasure is just south of here, mate!&rdquo;
+    </li>
+    <li>
+      You sprint to the X. You dig at <span class="place">JACK·POT CHEST</span>. <strong>YES!</strong> Your prize pumpkin &mdash; safe and shining! 🎃⭐
+    </li>
+  </ol>
+
+  <div class="spotlight">
+    <h3>🔍 Sound-It-Out Spotlight — every place on the map</h3>
+    <ul class="spotlight-list">
+      <li><span class="spotlight-icon">🏰</span><span class="spotlight-chunked">HIL<span class="dot">·</span>LOP HILL</span></li>
+      <li><span class="spotlight-icon">🐉</span><span class="spotlight-chunked">DRAG<span class="dot">·</span>ON DEN</span></li>
+      <li><span class="spotlight-icon">🎃</span><span class="spotlight-chunked">PUM<span class="dot">·</span>KIN PATCH</span></li>
+      <li><span class="spotlight-icon">🪨</span><span class="spotlight-chunked">RAB<span class="dot">·</span>BIT ROCK</span></li>
+      <li><span class="spotlight-icon">⚙️</span><span class="spotlight-chunked">MAG<span class="dot">·</span>NET MILL</span></li>
+      <li><span class="spotlight-icon">🏪</span><span class="spotlight-chunked">SAND<span class="dot">·</span>BOX SHOP</span></li>
+      <li><span class="spotlight-icon">🐟</span><span class="spotlight-chunked">CAT<span class="dot">·</span>FISH POND</span></li>
+      <li><span class="spotlight-icon">🌭</span><span class="spotlight-chunked">HOT<span class="dot">·</span>DOG HUT</span></li>
+      <li><span class="spotlight-icon">🐾</span><span class="spotlight-chunked">BOB<span class="dot">·</span>CAT BOG</span></li>
+      <li><span class="spotlight-icon">⭐</span><span class="spotlight-chunked">JACK<span class="dot">·</span>POT CHEST</span></li>
+    </ul>
+  </div>
+
+  <div class="riddle">
+    <h3>🧩 Map Riddle</h3>
+    <p>
+      I have <strong>two chunks</strong>. My first chunk is a tiny hopping pet (<em>RAB</em>). My second chunk is a small word for a small bug (<em>BIT</em>). Find me on the map and point!
+    </p>
+    <span class="answer">Answer: RAB·BIT ROCK 🪨</span>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> The dashed red path connects the 5 numbered places (1→5). The other places (DRAG·ON DEN, RAB·BIT ROCK, MAG·NET MILL, HOT·DOG HUT, BOB·CAT BOG) are extra reading practice — point and read together. After tracing the path, ask your child to invent their own &ldquo;route&rdquo; through the other places, reading each name as they go.
+  </div>
+</div>
+
+</body>
+</html>

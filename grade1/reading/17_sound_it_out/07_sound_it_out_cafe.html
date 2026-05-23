@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: The Café Menu</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #fff8e1;
+    --col-heading: #5d4037;
+    --word-bg: #fff;
+    --menu-bg: #fffaf0;
+    --menu-edge: #b3743a;
+    --menu-ink: #4a2c11;
+    --menu-accent: #c0392b;
+  }
+
+  /* Café menu look */
+  .menu-card {
+    background: var(--menu-bg);
+    background-image:
+      repeating-linear-gradient(0deg, rgba(179,116,58,0.04) 0 2px, transparent 2px 4px);
+    border: 3px double var(--menu-edge);
+    border-radius: 6px;
+    padding: 12px 18px;
+    color: var(--menu-ink);
+    font-family: 'Georgia', serif;
+  }
+  .menu-banner { text-align: center; padding-bottom: 6px; border-bottom: 2px solid var(--menu-edge); margin-bottom: 10px; }
+  .menu-banner h2 { font-size: 26px; letter-spacing: 2px; font-style: italic; color: var(--menu-ink); }
+  .menu-banner p { font-size: 11px; font-style: italic; color: var(--menu-ink); margin-top: 2px; }
+  .menu-banner .stars { letter-spacing: 4px; color: var(--menu-accent); font-size: 14px; }
+
+  .menu-section { margin-bottom: 10px; }
+  .menu-section h3 {
+    text-align: center;
+    font-size: 16px;
+    color: var(--menu-accent);
+    letter-spacing: 3px;
+    margin-bottom: 6px;
+    padding: 2px 0;
+    border-top: 1px dashed var(--menu-edge);
+    border-bottom: 1px dashed var(--menu-edge);
+    text-transform: uppercase;
+  }
+
+  .menu-items { list-style: none; }
+  .menu-items li {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 8px;
+    align-items: end;
+    padding: 4px 0;
+    border-bottom: 1px dotted rgba(179,116,58,0.4);
+    line-height: 1.25;
+  }
+  .menu-items li:last-child { border-bottom: none; }
+
+  .item-name {
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: var(--menu-ink);
+    font-size: 16px;
+    letter-spacing: 1px;
+  }
+  .item-chunk { color: var(--menu-accent); }
+  .item-desc {
+    display: block;
+    font-family: 'Georgia', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: #6b4a26;
+    margin-top: 2px;
+  }
+  .item-price {
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    color: var(--menu-ink);
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  /* Specials box */
+  .special-box {
+    background: #fff;
+    border: 2px dashed var(--menu-accent);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 8px;
+  }
+  .special-box h4 { color: var(--menu-accent); font-size: 13px; margin-bottom: 4px; letter-spacing: 1px; text-align: center; }
+  .special-box p { font-size: 13px; font-family: 'Comic Sans MS', cursive; color: var(--menu-ink); text-align: center; letter-spacing: 1px; }
+
+  /* How to read the menu */
+  .how-to-read {
+    background: var(--accent-bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #333;
+  }
+  .how-to-read strong { color: var(--title-color); }
+
+  /* Sample orders (page 2) */
+  .order-pad {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+  }
+  .order-pad h3 {
+    background: var(--accent);
+    color: #fff;
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 14px;
+    margin-bottom: 8px;
+    display: inline-block;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .order-line {
+    font-size: 16px;
+    line-height: 1.75;
+    color: #333;
+    font-family: 'Comic Sans MS', cursive;
+    padding: 2px 0;
+    border-bottom: 1px dashed #ccc;
+  }
+  .order-line:last-child { border-bottom: none; }
+  .order-line .said { color: var(--menu-accent); font-weight: bold; letter-spacing: 1px; }
+
+  /* Role-play guide */
+  .roleplay {
+    background: #fff8e1;
+    border: 2px solid var(--menu-edge);
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: var(--menu-ink);
+  }
+  .roleplay h3 { font-size: 14px; color: var(--menu-accent); margin-bottom: 6px; }
+  .roleplay ol { padding-left: 22px; line-height: 1.7; }
+  .roleplay li::marker { color: var(--menu-accent); font-weight: bold; }
+
+  /* Receipt */
+  .receipt {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px 14px;
+    margin-top: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #333;
+    max-width: 340px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 2px 0 #ddd;
+  }
+  .receipt h4 { text-align: center; font-size: 14px; margin-bottom: 4px; letter-spacing: 2px; }
+  .receipt .r-sub { text-align: center; font-size: 10px; margin-bottom: 6px; color: #666; }
+  .receipt .r-row { display: flex; justify-content: space-between; padding: 1px 0; }
+  .receipt .r-row.total { border-top: 1px dashed #999; margin-top: 4px; padding-top: 4px; font-weight: bold; }
+  .receipt .r-foot { text-align: center; font-size: 10px; margin-top: 6px; color: #666; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: THE MENU  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🍽️ The Sound-It-Out Café Menu</h1>
+    <p>Read the menu out loud. Try every funny dish — chunk by chunk!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="how-to-read">
+    🔤 <strong>How to read:</strong> Every dish name is split into <strong>chunks</strong>. Read each chunk slowly, then blend them together. For example: <em>PUM</em> + <em>KIN</em> = <strong>PUMKIN</strong> &mdash; like <em>pumpkin</em>!
+  </div>
+
+  <div class="menu-card">
+    <div class="menu-banner">
+      <h2>The Sound-It-Out Café</h2>
+      <p>~ Where every word is a delicious bite ~</p>
+      <div class="stars">★ ★ ★ ★ ★</div>
+    </div>
+
+    <div class="menu-section">
+      <h3>🥤 Drinks</h3>
+      <ul class="menu-items">
+        <li>
+          <div>
+            <div class="item-name">PUM<span class="item-chunk">·</span>KIN PUNCH</div>
+            <span class="item-desc">cold sweet pumpkin juice with a splash of fizz</span>
+          </div>
+          <div class="item-price">$2</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">BOB<span class="item-chunk">·</span>CAT BUB<span class="item-chunk">·</span>BLES</div>
+            <span class="item-desc">milky soda topped with cat-shaped foam</span>
+          </div>
+          <div class="item-price">$3</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">DRAG<span class="item-chunk">·</span>ON FIZZ</div>
+            <span class="item-desc">hot orange fizz &mdash; mind the spark!</span>
+          </div>
+          <div class="item-price">$2</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">HOT<span class="item-chunk">·</span>DOG SLUSH</div>
+            <span class="item-desc">a frozen drink, totally NOT made of hotdogs</span>
+          </div>
+          <div class="item-price">$3</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h3>🥪 Appetizers</h3>
+      <ul class="menu-items">
+        <li>
+          <div>
+            <div class="item-name">CAT<span class="item-chunk">·</span>FISH CRISPS</div>
+            <span class="item-desc">crunchy fish chips with lemon dip</span>
+          </div>
+          <div class="item-price">$4</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">RAB<span class="item-chunk">·</span>BIT NUG<span class="item-chunk">·</span>GETS</div>
+            <span class="item-desc">bouncy carrot bites (not actual rabbits!)</span>
+          </div>
+          <div class="item-price">$5</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">JACK<span class="item-chunk">·</span>POT DIP</div>
+            <span class="item-desc">creamy bean dip with chips, one lucky bowl</span>
+          </div>
+          <div class="item-price">$3</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">POP<span class="item-chunk">·</span>CORN POCK<span class="item-chunk">·</span>ETS</div>
+            <span class="item-desc">little pastry pockets stuffed with popcorn</span>
+          </div>
+          <div class="item-price">$4</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h3>🍝 Main Courses</h3>
+      <ul class="menu-items">
+        <li>
+          <div>
+            <div class="item-name">DRAG<span class="item-chunk">·</span>ON HOT<span class="item-chunk">·</span>POT</div>
+            <span class="item-desc">spicy noodles in a steamy pot &mdash; chef's pride</span>
+          </div>
+          <div class="item-price">$8</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">CAT<span class="item-chunk">·</span>FISH SAND<span class="item-chunk">·</span>WICH</div>
+            <span class="item-desc">crispy fish on a fluffy bun, pickle on top</span>
+          </div>
+          <div class="item-price">$8</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">PUM<span class="item-chunk">·</span>KIN POT<span class="item-chunk">·</span>PIE</div>
+            <span class="item-desc">flaky pie packed with pumpkin and gravy</span>
+          </div>
+          <div class="item-price">$7</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">CHICK<span class="item-chunk">·</span>EN PIC<span class="item-chunk">·</span>NIC</div>
+            <span class="item-desc">crispy chicken, sandbox-style napkin included</span>
+          </div>
+          <div class="item-price">$7</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h3>🍰 Desserts</h3>
+      <ul class="menu-items">
+        <li>
+          <div>
+            <div class="item-name">FAN<span class="item-chunk">·</span>TAS<span class="item-chunk">·</span>TIC FUDGE</div>
+            <span class="item-desc">three layers of chocolate, totally fantastic</span>
+          </div>
+          <div class="item-price">$4</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">MAG<span class="item-chunk">·</span>NET<span class="item-chunk">·</span>IC MUF<span class="item-chunk">·</span>FIN</div>
+            <span class="item-desc">a muffin so good it pulls you back for more</span>
+          </div>
+          <div class="item-price">$4</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">AT<span class="item-chunk">·</span>LAN<span class="item-chunk">·</span>TIC ICE POP</div>
+            <span class="item-desc">cool blueberry pop, deep ocean blue</span>
+          </div>
+          <div class="item-price">$3</div>
+        </li>
+        <li>
+          <div>
+            <div class="item-name">BUM<span class="item-chunk">·</span>BAS<span class="item-chunk">·</span>TIC BROWN<span class="item-chunk">·</span>IE</div>
+            <span class="item-desc">a HUGE brownie with sprinkles &mdash; loud and proud</span>
+          </div>
+          <div class="item-price">$5</div>
+        </li>
+      </ul>
+    </div>
+
+    <div class="special-box">
+      <h4>⭐ Today's Special ⭐</h4>
+      <p>HOT<span class="item-chunk">·</span>DOG SLUSH + RAB<span class="item-chunk">·</span>BIT NUG<span class="item-chunk">·</span>GETS + FAN<span class="item-chunk">·</span>TAS<span class="item-chunk">·</span>TIC FUDGE = $10</p>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────  PAGE 2: PLAY THE CAFÉ  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎭 Play Café! Read These Orders</h1>
+    <p>Now you are the customer! Read each order aloud like a real diner.</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="order-pad">
+    <h3>🗣️ Customer 1 — A Hungry Kid</h3>
+    <p class="order-line">&ldquo;Hello! Can I have <span class="said">PUM·KIN PUNCH</span> and <span class="said">RAB·BIT NUG·GETS</span>, please?&rdquo;</p>
+    <p class="order-line">&ldquo;Oh, and for after &mdash; one <span class="said">FAN·TAS·TIC FUDGE</span>!&rdquo;</p>
+  </div>
+
+  <div class="order-pad">
+    <h3>🗣️ Customer 2 — A Brave Knight</h3>
+    <p class="order-line">&ldquo;I will face the <span class="said">DRAG·ON HOT·POT</span>!&rdquo;</p>
+    <p class="order-line">&ldquo;Bring me <span class="said">DRAG·ON FIZZ</span> too &mdash; spicy and bold!&rdquo;</p>
+    <p class="order-line">&ldquo;Finish with a <span class="said">BUM·BAS·TIC BROWN·IE</span> for dessert.&rdquo;</p>
+  </div>
+
+  <div class="order-pad">
+    <h3>🗣️ Customer 3 — A Picnic Party</h3>
+    <p class="order-line">&ldquo;Three <span class="said">CHICK·EN PIC·NIC</span> plates, please.&rdquo;</p>
+    <p class="order-line">&ldquo;Plus <span class="said">POP·CORN POCK·ETS</span> on the side.&rdquo;</p>
+    <p class="order-line">&ldquo;And three <span class="said">MAG·NET·IC MUF·FINS</span> &mdash; we cannot resist!&rdquo;</p>
+  </div>
+
+  <div class="roleplay">
+    <h3>🎤 Now It's Your Turn</h3>
+    <ol>
+      <li>Read the whole menu out loud on page 1.</li>
+      <li>Pick your <strong>favorite drink</strong>, <strong>favorite main</strong>, and <strong>favorite dessert</strong> &mdash; say each one chunk by chunk.</li>
+      <li>Say: <em>&ldquo;Hello! I would like __, __, and __, please!&rdquo;</em></li>
+      <li>Read the receipt below to check your bill.</li>
+    </ol>
+  </div>
+
+  <div class="receipt">
+    <h4>SOUND-IT-OUT CAFÉ</h4>
+    <div class="r-sub">~ Receipt ~ Table 3 ~ Thank you ~</div>
+    <div class="r-row"><span>PUM·KIN PUNCH</span><span>$2</span></div>
+    <div class="r-row"><span>CAT·FISH SAND·WICH</span><span>$8</span></div>
+    <div class="r-row"><span>AT·LAN·TIC ICE POP</span><span>$3</span></div>
+    <div class="r-row total"><span>TOTAL</span><span>$13</span></div>
+    <div class="r-foot">~ Read this receipt out loud! ~</div>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> This is a roleplay reading exercise. Help your child by pretending to be the waiter ("Hello! What can I get you?"), then let them be the customer reading the chunked dish names. Mix up roles for variety. The receipt at the bottom doubles as a final read-aloud and a quick math add-up if you'd like.
+  </div>
+</div>
+
+</body>
+</html>

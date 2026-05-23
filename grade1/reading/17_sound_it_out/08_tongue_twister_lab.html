@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Tongue Twister Speed Lab</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+    --slow: #2e7d32;
+    --med: #f57c00;
+    --fast: #c62828;
+  }
+
+  /* Lab intro */
+  .lab-intro {
+    background: linear-gradient(120deg, var(--accent-bg) 0%, #fff 100%);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.5;
+  }
+  .lab-intro strong { color: var(--title-color); }
+
+  /* Speed legend */
+  .speed-legend {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 8px;
+    padding: 6px 10px;
+    margin-top: 6px;
+    font-size: 13px;
+  }
+  .speed-legend span { display: inline-flex; align-items: center; gap: 4px; font-weight: bold; }
+  .speed-legend .slow { color: var(--slow); }
+  .speed-legend .med  { color: var(--med); }
+  .speed-legend .fast { color: var(--fast); }
+
+  /* Each twister card */
+  .twister {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 12px;
+    padding: 10px 14px;
+    display: grid;
+    grid-template-columns: 30px 1fr 168px;
+    gap: 10px;
+    align-items: center;
+  }
+  .twister-num {
+    width: 30px; height: 30px; line-height: 30px;
+    background: var(--accent); color: #fff;
+    border-radius: 50%; text-align: center;
+    font-weight: bold; font-size: 16px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .twister-text {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.45;
+  }
+  .twister-text .chunk-word {
+    display: inline-block;
+    background: var(--accent-bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 5px;
+    padding: 0 5px;
+    font-weight: bold;
+    color: var(--title-color);
+    letter-spacing: 1px;
+    margin: 1px 1px;
+    font-size: 16px;
+  }
+  .twister-text .dot { color: var(--accent); font-weight: bold; }
+
+  /* Speed track checkboxes */
+  .speed-track {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    font-size: 11px;
+  }
+  .speed-row {
+    display: flex; align-items: center; gap: 6px;
+    background: #f7f8fc; border-radius: 6px;
+    padding: 3px 6px;
+  }
+  .speed-row .label { font-weight: bold; width: 64px; }
+  .speed-row.slow .label { color: var(--slow); }
+  .speed-row.med  .label { color: var(--med); }
+  .speed-row.fast .label { color: var(--fast); }
+  .speed-row .stars {
+    display: inline-flex;
+    gap: 3px;
+    margin-left: auto;
+  }
+  .speed-row .star {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 16px; height: 16px;
+    border: 1.5px solid #999;
+    border-radius: 3px;
+    font-size: 11px; color: #ccc; font-weight: bold;
+  }
+
+  /* Section labels */
+  .section-label {
+    text-align: center;
+    font-size: 13px;
+    color: var(--title-color);
+    font-weight: bold;
+    margin: 6px 0 -2px;
+    letter-spacing: 2px;
+  }
+
+  /* Champion badge */
+  .champion {
+    background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+    border: 3px double #f9a825;
+    border-radius: 12px;
+    padding: 14px;
+    text-align: center;
+    margin-top: 10px;
+  }
+  .champion h3 {
+    font-size: 20px;
+    color: #e65100;
+    margin-bottom: 6px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .champion p { font-size: 12px; color: #5d4037; }
+  .champion .badges {
+    display: flex; justify-content: center; gap: 12px;
+    margin: 8px 0 4px;
+  }
+  .badge {
+    width: 60px; height: 60px;
+    background: #fff;
+    border: 3px solid #f9a825;
+    border-radius: 50%;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    font-size: 10px; font-weight: bold; color: #5d4037;
+    line-height: 1.1;
+  }
+  .badge .emoji { font-size: 22px; }
+
+  /* Warm-up bar (page 1) */
+  .warm-up {
+    background: var(--accent-bg);
+    border-radius: 10px;
+    padding: 8px 12px;
+    border: 2px dashed var(--accent);
+  }
+  .warm-up h3 {
+    text-align: center; font-size: 13px;
+    color: var(--title-color); margin-bottom: 6px;
+  }
+  .warm-up-list {
+    list-style: none;
+    display: flex; flex-wrap: wrap; justify-content: center;
+    gap: 6px;
+  }
+  .warm-up-list li {
+    background: #fff;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    padding: 3px 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: var(--title-color);
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  .warm-up-list .dot { color: var(--accent); }
+
+  /* Mega twister */
+  .mega-twister {
+    background: linear-gradient(135deg, #ffebee 0%, #fff 100%);
+    border: 3px solid var(--fast);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-top: 8px;
+  }
+  .mega-twister h3 {
+    text-align: center;
+    color: var(--fast);
+    font-size: 16px;
+    margin-bottom: 8px;
+    letter-spacing: 2px;
+  }
+  .mega-twister-text {
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 17px;
+    color: #333;
+    line-height: 1.7;
+  }
+  .mega-twister-text .chunk-word {
+    display: inline-block;
+    background: #ffcdd2;
+    border: 1.5px solid var(--fast);
+    border-radius: 5px;
+    padding: 1px 6px;
+    font-weight: bold;
+    color: #b71c1c;
+    letter-spacing: 1px;
+    margin: 2px;
+    font-size: 17px;
+  }
+  .mega-twister-text .dot { color: var(--fast); }
+
+  /* @media print: hide tracking helpers? Actually they should print, they're checkboxes for the kid */
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: WARM-UP + TWISTERS 1-4  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🌀 Tongue Twister Speed Lab</h1>
+    <p>Read each twister three times: 🐌 Slow → 🚶 Medium → 🏃 Fast. Star each speed when you nail it!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="lab-intro">
+    <strong>🧪 The Lab Rule:</strong> A tongue twister is a sentence that is tricky to say. Long words slow you down &mdash; until you learn the <strong>chunks</strong>! Read the long words chunk-by-chunk on the slow round. Then speed up. Each time you read one without tripping, color in a star. ⭐
+  </div>
+
+  <div class="speed-legend">
+    <span class="slow">🐌 Slow</span>
+    <span class="med">🚶 Medium</span>
+    <span class="fast">🏃 Fast</span>
+  </div>
+
+  <div class="warm-up">
+    <h3>🔥 Warm-Up: Read these chunks first</h3>
+    <ul class="warm-up-list">
+      <li>FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</li>
+      <li>PUMP<span class="dot">·</span>KIN</li>
+      <li>BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC</li>
+      <li>MAG<span class="dot">·</span>NET<span class="dot">·</span>IC</li>
+      <li>POCK<span class="dot">·</span>ET</li>
+      <li>DRAG<span class="dot">·</span>ON</li>
+      <li>RAB<span class="dot">·</span>BIT</li>
+      <li>SAND<span class="dot">·</span>WICH</li>
+      <li>JACK<span class="dot">·</span>POT</li>
+    </ul>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 1 — F ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">1</div>
+    <div class="twister-text">
+      <span class="chunk-word">FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</span> Frank fixed
+      <span class="chunk-word">FIF<span class="dot">·</span>TEEN</span> flat fans.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 2 — P ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">2</div>
+    <div class="twister-text">
+      <span class="chunk-word">PUMP<span class="dot">·</span>KIN</span>
+      <span class="chunk-word">PUP<span class="dot">·</span>PIES</span> push
+      <span class="chunk-word">POCK<span class="dot">·</span>ET</span> pies past
+      <span class="chunk-word">PIG<span class="dot">·</span>PENS</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 3 — B ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">3</div>
+    <div class="twister-text">
+      <span class="chunk-word">BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC</span> Bob
+      <span class="chunk-word">BOB<span class="dot">·</span>CAT</span> banged big black
+      <span class="chunk-word">BUCK<span class="dot">·</span>ETS</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 4 — M ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">4</div>
+    <div class="twister-text">
+      <span class="chunk-word">MAG<span class="dot">·</span>NET<span class="dot">·</span>IC</span> Maggie made
+      <span class="chunk-word">MUF<span class="dot">·</span>FIN</span>
+      <span class="chunk-word">MOUN<span class="dot">·</span>TAINS</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────  PAGE 2: TWISTERS 5-8 + MEGA + CHAMPION  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🌀 Speed Lab — Round 2</h1>
+    <p>Trickier ones now! Take a breath, then read 🐌 → 🚶 → 🏃.</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 5 — D ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">5</div>
+    <div class="twister-text">
+      <span class="chunk-word">DRAG<span class="dot">·</span>ON</span> Dan dropped
+      <span class="chunk-word">DUST<span class="dot">·</span>Y</span> dishes by the
+      <span class="chunk-word">DRAW<span class="dot">·</span>ER</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 6 — S ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">6</div>
+    <div class="twister-text">
+      <span class="chunk-word">SAND<span class="dot">·</span>BOX</span> Sam smashed seven
+      <span class="chunk-word">SAND<span class="dot">·</span>WICH<span class="dot">·</span>ES</span> on
+      <span class="chunk-word">SUN<span class="dot">·</span>DAY</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 7 — J ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">7</div>
+    <div class="twister-text">
+      <span class="chunk-word">JACK<span class="dot">·</span>POT</span> Jen juggled
+      <span class="chunk-word">JEL<span class="dot">·</span>LY</span> in a
+      <span class="chunk-word">JET<span class="dot">·</span>PACK</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="section-label">⌁⌁⌁ TWISTER 8 — C/K ⌁⌁⌁</div>
+  <div class="twister">
+    <div class="twister-num">8</div>
+    <div class="twister-text">
+      <span class="chunk-word">CAT<span class="dot">·</span>FISH</span> Kim caught quick
+      <span class="chunk-word">CHICK<span class="dot">·</span>EN</span>
+      <span class="chunk-word">KIT<span class="dot">·</span>TENS</span>.
+    </div>
+    <div class="speed-track">
+      <div class="speed-row slow">  <span class="label">🐌 Slow</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row med">   <span class="label">🚶 Med</span>    <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+      <div class="speed-row fast">  <span class="label">🏃 Fast</span>   <span class="stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span></span></div>
+    </div>
+  </div>
+
+  <div class="mega-twister">
+    <h3>🏆 MEGA TWISTER — Final Challenge!</h3>
+    <p class="mega-twister-text">
+      <span class="chunk-word">FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</span> Frank,
+      <span class="chunk-word">MAG<span class="dot">·</span>NET<span class="dot">·</span>IC</span> Maggie, and
+      <span class="chunk-word">BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC</span> Bob
+      bought
+      <span class="chunk-word">PUMP<span class="dot">·</span>KIN</span>
+      <span class="chunk-word">POT<span class="dot">·</span>PIES</span> at the
+      <span class="chunk-word">JACK<span class="dot">·</span>POT</span>
+      <span class="chunk-word">PIC<span class="dot">·</span>NIC</span>!
+    </p>
+  </div>
+
+  <div class="champion">
+    <h3>⭐ Speed Lab Champion ⭐</h3>
+    <p>Color one badge each time you finish a full round of 8 twisters at that speed!</p>
+    <div class="badges">
+      <div class="badge"><span class="emoji">🐌</span>SLOW PRO</div>
+      <div class="badge"><span class="emoji">🚶</span>MEDIUM<br>MASTER</div>
+      <div class="badge"><span class="emoji">🏃</span>FAST<br>READER</div>
+      <div class="badge"><span class="emoji">🏆</span>GRAND<br>CHAMP</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> Tongue twisters build fluency by forcing automatic chunk recognition. Don't worry about perfect pronunciation &mdash; the goal is repeating each twister three times, slightly faster each round. Color in a star (or just tick it) each time the child reads a twister cleanly. Aim for 1 round (8 twisters × 3 speeds) per session over several days. Celebrate badges loudly!
+  </div>
+</div>
+
+</body>
+</html>

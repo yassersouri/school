@@ -61,9 +61,12 @@ Each term below cycles through all six strands so they grow together.
 - Reinforce that two letters can form one sound (digraphs: *sh, ch, th*) or two sounds glued together (blends: *sn, cl, gr, -nd, -lp*).
 - Mix in "real or silly?" exercises so the child sounds out blindly before judging meaning — building trust in the decoding process.
 - Extend the strategy to **multi-syllable words** by chunking: spot each chunk (one vowel sound each), sound out each chunk, then push the chunks together (*sun·set*, *nap·kin*, *fan·tas·tic*).
+- Apply the chunking strategy in **rich reading contexts** (illustrated maps, restaurant menus, tongue twisters, branching adventure stories) so the child practices decoding inside meaningful, motivating material — not only on drills.
 - Re-use this strategy whenever a new phonics pattern is introduced in Terms 2–4.
 
-📂 **Repo materials:** [Sound It Out — index](17_sound_it_out/index.html) — 5 sheets: [Step by Step](17_sound_it_out/01_sound_it_out_steps.html) (the 4-step strategy with new CVC words), [Bigger New Words](17_sound_it_out/02_bigger_new_words.html) (blend &amp; digraph words), [Mystery Word Mix ⭐](17_sound_it_out/03_mystery_word_mix.html) (mixed mystery-word practice with speed-read &amp; match-the-meaning), [2-Syllable Words](17_sound_it_out/04_two_syllable_words.html) (chunk-and-blend on compounds and closed-closed words), [3-Syllable Words](17_sound_it_out/05_three_syllable_words.html) (extend the chunk-and-blend strategy to simple 3-chunk words like *fantastic*, *contestant*, *magnetic*, *chickenpox*).
+📂 **Repo materials:** [Sound It Out — index](17_sound_it_out/index.html) — 9 sheets in two strands:
+- *Drill strand (sheets 1–5):* [Step by Step](17_sound_it_out/01_sound_it_out_steps.html) (the 4-step strategy with new CVC words), [Bigger New Words](17_sound_it_out/02_bigger_new_words.html) (blend &amp; digraph words), [Mystery Word Mix ⭐](17_sound_it_out/03_mystery_word_mix.html) (mixed mystery-word practice with speed-read &amp; match-the-meaning), [2-Syllable Words](17_sound_it_out/04_two_syllable_words.html) (chunk-and-blend on compounds and closed-closed words), [3-Syllable Words](17_sound_it_out/05_three_syllable_words.html) (extend the chunk-and-blend strategy to simple 3-chunk words like *fantastic*, *contestant*, *magnetic*, *chickenpox*).
+- *Creative reading strand (sheets 6–9):* [The Treasure Map 🗺️](17_sound_it_out/06_treasure_map.html) (illustrated parchment map with 10 chunked place names + a quest story trail), [The Sound-It-Out Café 🍽️](17_sound_it_out/07_sound_it_out_cafe.html) (roleplay restaurant menu with chunked dish names and sample customer orders), [Tongue Twister Speed Lab 🌀](17_sound_it_out/08_tongue_twister_lab.html) (8 alliterative tongue twisters with 🐌 Slow → 🚶 Medium → 🏃 Fast star-tracked reading rounds for fluency), [Pick-Your-Path Reader 🧭](17_sound_it_out/09_choose_your_adventure.html) (branching adventure story — child picks the path and reads to one of four endings).
 
 ### 5. High-Frequency Sight Words — Set 1 (~30 words)
 the, a, I, is, it, to, see, my, like, go, can, we, am, in, on, and, at, he, she, no, yes, up, look, you, me, do, said, was, of, for.
@@ -306,4 +309,4 @@ To support the topics above that don't yet have practice sheets, future folders 
 - `13_phonemic_awareness/` — rhyme, syllable, blending, segmenting, manipulation
 - `14_comprehension/` — story elements, main idea, text features
 - `15_fluency_passages/` — short decodable passages with re-read targets
-- `17_sound_it_out/` — explicit decoding strategy applied to new but decodable words (CVC, blends, digraphs)
+- `17_sound_it_out/` — explicit decoding strategy applied to new but decodable words (CVC, blends, digraphs, multi-syllable chunking) plus creative reading-in-context sheets (treasure map, café menu, tongue twisters, pick-your-path adventure)

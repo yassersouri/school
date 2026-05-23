@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Choose Your Own Adventure</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+    --start-color: #6a1b9a;
+    --start-bg: #f3e5f5;
+    --left-color: #00838f;
+    --left-bg: #e0f7fa;
+    --right-color: #ef6c00;
+    --right-bg: #fff3e0;
+    --win-color: #2e7d32;
+    --win-bg: #e8f5e9;
+    --lose-color: #c62828;
+    --lose-bg: #ffebee;
+  }
+
+  /* Intro / how-to */
+  .how-to {
+    background: var(--accent-bg);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.5;
+  }
+  .how-to strong { color: var(--title-color); }
+  .how-to ol { padding-left: 22px; margin-top: 4px; line-height: 1.7; }
+
+  /* Map of the story */
+  .story-map {
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 11px;
+    text-align: center;
+    color: #444;
+    font-family: 'Courier New', monospace;
+    line-height: 1.6;
+  }
+  .story-map .node { display: inline-block; padding: 0 4px; }
+
+  /* Passage box (basic) */
+  .passage {
+    border: 2.5px solid;
+    border-radius: 12px;
+    padding: 10px 14px;
+    color: #222;
+    line-height: 1.6;
+    position: relative;
+  }
+  .passage .num-badge {
+    position: absolute;
+    top: -14px; left: 14px;
+    width: 30px; height: 30px; line-height: 26px;
+    border-radius: 50%;
+    text-align: center;
+    color: #fff;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 14px;
+    border: 3px solid #fff;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.25);
+  }
+  .passage .title-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 6px;
+    margin-left: 38px;
+  }
+  .passage p {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+  .passage .chunk-word {
+    display: inline-block;
+    background: #fff;
+    border: 1.5px solid currentColor;
+    border-radius: 5px;
+    padding: 0 5px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 0 1px;
+    font-size: 14px;
+  }
+  .passage .dot { font-weight: bold; }
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-top: 6px;
+  }
+  .choice {
+    background: #fff;
+    border: 2px solid;
+    border-radius: 8px;
+    padding: 6px 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 13px;
+    line-height: 1.4;
+  }
+  .choice .arrow {
+    display: inline-block;
+    background: currentColor;
+    color: #fff !important;
+    border-radius: 50%;
+    width: 22px; height: 22px; line-height: 22px;
+    text-align: center;
+    font-weight: bold;
+    margin-right: 4px;
+    font-size: 12px;
+  }
+  .choice strong { font-weight: bold; }
+
+  /* Color schemes per passage type */
+  .p-start { background: var(--start-bg); border-color: var(--start-color); color: var(--start-color); }
+  .p-start .num-badge { background: var(--start-color); }
+  .p-start .title-tag { background: var(--start-color); color: #fff; }
+  .p-start .choice { border-color: var(--start-color); color: var(--start-color); }
+
+  .p-left { background: var(--left-bg); border-color: var(--left-color); color: var(--left-color); }
+  .p-left .num-badge { background: var(--left-color); }
+  .p-left .title-tag { background: var(--left-color); color: #fff; }
+  .p-left .choice { border-color: var(--left-color); color: var(--left-color); }
+
+  .p-right { background: var(--right-bg); border-color: var(--right-color); color: var(--right-color); }
+  .p-right .num-badge { background: var(--right-color); }
+  .p-right .title-tag { background: var(--right-color); color: #fff; }
+  .p-right .choice { border-color: var(--right-color); color: var(--right-color); }
+
+  .p-win { background: var(--win-bg); border-color: var(--win-color); color: var(--win-color); }
+  .p-win .num-badge { background: var(--win-color); }
+  .p-win .title-tag { background: var(--win-color); color: #fff; }
+
+  .p-lose { background: var(--lose-bg); border-color: var(--lose-color); color: var(--lose-color); }
+  .p-lose .num-badge { background: var(--lose-color); }
+  .p-lose .title-tag { background: var(--lose-color); color: #fff; }
+
+  /* Two-column layout for page 1 mid passages */
+  .mid-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  /* Ending grid for page 2 */
+  .endings {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .ending-emoji {
+    font-size: 30px;
+    line-height: 1;
+    margin-right: 6px;
+    vertical-align: middle;
+  }
+  .ending-tag {
+    display: inline-block;
+    background: #fff;
+    color: currentColor;
+    border: 2px solid currentColor;
+    border-radius: 6px;
+    padding: 1px 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 12px;
+    margin-top: 4px;
+    letter-spacing: 1px;
+  }
+  .restart {
+    background: #fff;
+    border: 1.5px dashed var(--lose-color);
+    border-radius: 6px;
+    padding: 3px 8px;
+    margin-top: 6px;
+    font-size: 12px;
+    color: var(--lose-color);
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+  }
+
+  /* Celebration banner */
+  .celebrate {
+    background: linear-gradient(135deg, #fff9c4 0%, #ffe082 100%);
+    border: 3px double #f9a825;
+    border-radius: 14px;
+    padding: 12px 16px;
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .celebrate h3 {
+    font-size: 18px;
+    color: #e65100;
+    margin-bottom: 4px;
+  }
+  .celebrate p { font-size: 12px; color: #5d4037; line-height: 1.5; }
+
+  /* Reflect prompts */
+  .reflect {
+    background: var(--accent-bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 8px;
+  }
+  .reflect h3 {
+    text-align: center;
+    font-size: 13px;
+    color: var(--title-color);
+    margin-bottom: 6px;
+  }
+  .reflect ul {
+    list-style: none;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+  }
+  .reflect li {
+    background: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #333;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .reflect li::before { content: '🤔 '; }
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: START + FIRST CHOICES  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🧭 Pick-Your-Path Reader: The Dragon Den</h1>
+    <p>Read a passage. Make a choice. Jump to the next number. <strong>YOU</strong> tell the story!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="how-to">
+    <strong>📖 How to play:</strong>
+    <ol>
+      <li>Read passage <strong>#1</strong> out loud. Sound out every long word chunk by chunk.</li>
+      <li>Pick one of the two choices and jump to that number.</li>
+      <li>Keep going until you reach <strong>🏆 WIN!</strong> or <strong>💥 TRY AGAIN!</strong></li>
+      <li>If you reach a TRY AGAIN, go back to #1 and pick a different path!</li>
+    </ol>
+  </div>
+
+  <div class="story-map">
+    <span class="node">[#1]</span> → <span class="node">[#2]</span> or <span class="node">[#3]</span>
+    &nbsp;|&nbsp;
+    <span class="node">[#2]</span> → <span class="node">[#4]</span> 🏆 or <span class="node">[#5]</span> 💥
+    &nbsp;|&nbsp;
+    <span class="node">[#3]</span> → <span class="node">[#6]</span> 🏆 or <span class="node">[#7]</span> 💥
+  </div>
+
+  <!-- PASSAGE 1: START -->
+  <div class="passage p-start">
+    <div class="num-badge">1</div>
+    <span class="title-tag">★ START ★</span>
+    <p>
+      You stand at the edge of
+      <span class="chunk-word">FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</span>
+      <span class="chunk-word">FOR<span class="dot">·</span>EST</span>.
+      The wind is warm. Two paths split ahead. One goes into a sunny meadow. The other goes into a cold, dark cave.
+    </p>
+    <p><strong>Which path do you take?</strong></p>
+    <div class="choices">
+      <div class="choice"><span class="arrow">2</span><strong>The sunny meadow</strong> — go to passage #2</div>
+      <div class="choice"><span class="arrow">3</span><strong>The cold cave</strong> — go to passage #3</div>
+    </div>
+  </div>
+
+  <div class="mid-row">
+    <!-- PASSAGE 2: MEADOW -->
+    <div class="passage p-left">
+      <div class="num-badge">2</div>
+      <span class="title-tag">MEADOW</span>
+      <p>
+        You skip through the meadow.
+        A
+        <span class="chunk-word">RAB<span class="dot">·</span>BIT</span>
+        in a tiny hat hops up.
+        &ldquo;Hi! Want to meet my best friend, or eat my big
+        <span class="chunk-word">SAND<span class="dot">·</span>WICH</span>?&rdquo;
+      </p>
+      <div class="choices">
+        <div class="choice"><span class="arrow">4</span>Meet the friend → #4</div>
+        <div class="choice"><span class="arrow">5</span>Eat the sandwich → #5</div>
+      </div>
+    </div>
+
+    <!-- PASSAGE 3: CAVE -->
+    <div class="passage p-right">
+      <div class="num-badge">3</div>
+      <span class="title-tag">CAVE</span>
+      <p>
+        You tiptoe into the cave. It is cold and dim.
+        A big
+        <span class="chunk-word">DRAG<span class="dot">·</span>ON</span>
+        is snoring loudly next to a big
+        <span class="chunk-word">JACK<span class="dot">·</span>POT</span>
+        of gold!
+      </p>
+      <div class="choices">
+        <div class="choice"><span class="arrow">6</span>Tiptoe past → #6</div>
+        <div class="choice"><span class="arrow">7</span>Wake it up → #7</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ────────────  PAGE 2: ENDINGS  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🏁 The Endings</h1>
+    <p>Find your ending — then go back to #1 and try a different path!</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="endings">
+
+    <!-- ENDING 4: WIN (from meadow → meet friend) -->
+    <div class="passage p-win">
+      <div class="num-badge">4</div>
+      <span class="title-tag">🏆 ENDING</span>
+      <p>
+        <span class="ending-emoji">🐈‍⬛</span>
+        The rabbit's friend is a
+        <span class="chunk-word">MAG<span class="dot">·</span>NET<span class="dot">·</span>IC</span>
+        <span class="chunk-word">BOB<span class="dot">·</span>CAT</span>!
+        He flips a flap of grass &mdash; under it: a
+        <span class="chunk-word">JACK<span class="dot">·</span>POT</span>
+        chest of gold! You share it with the rabbit. Everyone wins!
+      </p>
+      <div class="ending-tag">🏆 YOU WIN! 🏆</div>
+    </div>
+
+    <!-- ENDING 5: TRY AGAIN (from meadow → eat sandwich) -->
+    <div class="passage p-lose">
+      <div class="num-badge">5</div>
+      <span class="title-tag">💥 TRY AGAIN</span>
+      <p>
+        <span class="ending-emoji">🌶️</span>
+        You munch the
+        <span class="chunk-word">SAND<span class="dot">·</span>WICH</span>.
+        It is
+        <span class="chunk-word">PACK<span class="dot">·</span>ED</span>
+        with hot
+        <span class="chunk-word">PEP<span class="dot">·</span>PERS</span>!
+        Too hot, too hot! You run home for water. No treasure today.
+      </p>
+      <div class="restart">↺ Jump back to passage #1 and try a different path!</div>
+    </div>
+
+    <!-- ENDING 6: WIN (from cave → tiptoe) -->
+    <div class="passage p-win">
+      <div class="num-badge">6</div>
+      <span class="title-tag">🏆 ENDING</span>
+      <p>
+        <span class="ending-emoji">🤫</span>
+        You creep past the
+        <span class="chunk-word">DRAG<span class="dot">·</span>ON</span>
+        on
+        <span class="chunk-word">TIP<span class="dot">·</span>TOES</span>.
+        You scoop a handful of gold from the
+        <span class="chunk-word">JACK<span class="dot">·</span>POT</span>
+        and tiptoe right back out. Quiet as a cat!
+      </p>
+      <div class="ending-tag">🏆 YOU WIN! 🏆</div>
+    </div>
+
+    <!-- ENDING 7: TRY AGAIN (from cave → wake dragon) -->
+    <div class="passage p-lose">
+      <div class="num-badge">7</div>
+      <span class="title-tag">💥 TRY AGAIN</span>
+      <p>
+        <span class="ending-emoji">🔥</span>
+        You poke the
+        <span class="chunk-word">DRAG<span class="dot">·</span>ON</span>.
+        &ldquo;ROAR!&rdquo; A big
+        <span class="chunk-word">PUFF<span class="dot">·</span>Y</span>
+        flame zooms past your nose. You zoom out of the cave even faster. Yikes!
+      </p>
+      <div class="restart">↺ Jump back to passage #1 and try a different path!</div>
+    </div>
+
+  </div>
+
+  <div class="celebrate">
+    <h3>⭐ Reader's Reward ⭐</h3>
+    <p>Read this story <strong>4 times</strong>. Pick a different path each time so you reach every ending (#4, #5, #6, #7).<br>Then tell someone the whole story in your own words!</p>
+  </div>
+
+  <div class="reflect">
+    <h3>🤔 Talk About It — Pick a Question</h3>
+    <ul>
+      <li>Which ending was your favorite? Why?</li>
+      <li>Was tiptoeing brave or scared?</li>
+      <li>What other treasures could be in the cave?</li>
+      <li>Pretend you meet the BOB·CAT. What do you say?</li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> Branching stories give kids agency &mdash; they choose, they read more. The chunked words (FAN·TAS·TIC, MAG·NET·IC, JACK·POT, RAB·BIT, DRAG·ON, SAND·WICH, PEP·PERS, PUFF·Y, TIP·TOES, FOR·EST) are the sounding-out targets. After one playthrough, encourage your child to re-read passages they skipped &mdash; aim for all 7 in a session. Ask the &ldquo;Talk About It&rdquo; questions to build comprehension on top of decoding.
+  </div>
+</div>
+
+</body>
+</html>
