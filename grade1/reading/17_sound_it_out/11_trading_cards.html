@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Trading Card Pack</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+  }
+
+  /* Intro */
+  .how-to {
+    background: var(--accent-bg);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.55;
+  }
+  .how-to strong { color: var(--title-color); }
+
+  /* Card grid */
+  .card-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 8px;
+  }
+
+  /* A trading card */
+  .tc {
+    border-radius: 10px;
+    padding: 6px;
+    color: #fff;
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-height: 116mm;
+    border: 3px solid #fff;
+  }
+  .tc .tc-frame {
+    background: #fff;
+    border-radius: 6px;
+    padding: 5px 7px;
+    color: #222;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .tc-top {
+    display: flex; align-items: center; gap: 4px;
+    border-bottom: 1.5px solid #ccc;
+    padding-bottom: 3px;
+  }
+  .tc-name {
+    flex: 1;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 1px;
+    line-height: 1.15;
+  }
+  .tc-name .dot { font-weight: bold; }
+  .tc-hp {
+    background: #fff;
+    border: 1.5px solid currentColor;
+    border-radius: 4px;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: #c62828;
+  }
+
+  .tc-art {
+    background: var(--card-art-bg, #f5f5f5);
+    border: 1.5px solid #ccc;
+    border-radius: 6px;
+    height: 36mm;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 50px;
+    line-height: 1;
+  }
+  .tc-type {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 10px;
+    text-align: center;
+    background: var(--type-bg, #eee);
+    color: #222;
+    border-radius: 4px;
+    padding: 1px 0;
+    letter-spacing: 1px;
+  }
+
+  /* Stats */
+  .tc-stats {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .tc-stats li {
+    display: grid;
+    grid-template-columns: 32px 1fr;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-family: 'Comic Sans MS', cursive;
+    color: #444;
+  }
+  .stat-label { font-weight: bold; }
+  .stat-bar { display: inline-flex; gap: 1px; }
+  .pip {
+    display: inline-block;
+    width: 9px; height: 9px;
+    border-radius: 2px;
+    background: #ddd;
+  }
+  .pip.on { background: var(--pip-on, #fbc02d); }
+
+  /* Move */
+  .tc-move {
+    background: var(--move-bg, #fffde7);
+    border: 1.5px dashed currentColor;
+    border-radius: 5px;
+    padding: 3px 5px;
+    font-size: 11px;
+    font-family: 'Comic Sans MS', cursive;
+    text-align: center;
+    color: #222;
+  }
+  .tc-move .move-name {
+    font-weight: bold;
+    letter-spacing: 1px;
+  }
+  .tc-move .dot { font-weight: bold; }
+
+  /* Flavor */
+  .tc-flavor {
+    font-style: italic;
+    font-family: 'Georgia', serif;
+    font-size: 10px;
+    color: #555;
+    text-align: center;
+    border-top: 1px dashed #ccc;
+    padding-top: 3px;
+  }
+
+  /* Color themes per card */
+  .tc.theme-fire   { background: linear-gradient(135deg, #ff6f00 0%, #d84315 100%); --card-art-bg: #fff3e0; --type-bg: #ffe0b2; --pip-on: #ef6c00; --move-bg: #fff3e0; }
+  .tc.theme-fire .tc-frame { color: #bf360c; }
+  .tc.theme-fluff  { background: linear-gradient(135deg, #ec407a 0%, #ad1457 100%); --card-art-bg: #fce4ec; --type-bg: #f8bbd0; --pip-on: #c2185b; --move-bg: #fce4ec; }
+  .tc.theme-fluff .tc-frame { color: #880e4f; }
+  .tc.theme-wet    { background: linear-gradient(135deg, #29b6f6 0%, #0277bd 100%); --card-art-bg: #e1f5fe; --type-bg: #b3e5fc; --pip-on: #0277bd; --move-bg: #e1f5fe; }
+  .tc.theme-wet .tc-frame { color: #01579b; }
+  .tc.theme-loud   { background: linear-gradient(135deg, #ffd54f 0%, #ff8f00 100%); --card-art-bg: #fffde7; --type-bg: #fff59d; --pip-on: #f57f17; --move-bg: #fffde7; }
+  .tc.theme-loud .tc-frame { color: #e65100; }
+  .tc.theme-buzz   { background: linear-gradient(135deg, #ab47bc 0%, #6a1b9a 100%); --card-art-bg: #f3e5f5; --type-bg: #e1bee7; --pip-on: #7b1fa2; --move-bg: #f3e5f5; }
+  .tc.theme-buzz .tc-frame { color: #4a148c; }
+  .tc.theme-fall   { background: linear-gradient(135deg, #8d6e63 0%, #4e342e 100%); --card-art-bg: #efebe9; --type-bg: #d7ccc8; --pip-on: #5d4037; --move-bg: #efebe9; }
+  .tc.theme-fall .tc-frame { color: #3e2723; }
+
+  /* Page 2 — battle / collection */
+  .stat-key {
+    background: var(--accent-bg);
+    border: 2px dashed var(--accent);
+    border-radius: 8px;
+    padding: 8px 12px;
+  }
+  .stat-key h3 { text-align: center; color: var(--title-color); font-size: 13px; margin-bottom: 4px; }
+  .stat-key ul {
+    list-style: none;
+    display: flex; justify-content: space-around;
+    font-size: 12px;
+    color: #333;
+  }
+  .stat-key li { font-family: 'Comic Sans MS', cursive; }
+  .stat-key strong { color: var(--title-color); }
+
+  /* Battle script */
+  .battle {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .battle h3 {
+    color: var(--title-color);
+    font-size: 14px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .battle p {
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+  }
+  .battle .said-by {
+    display: inline-block;
+    background: var(--accent-bg);
+    color: var(--title-color);
+    border-radius: 4px;
+    padding: 0 5px;
+    font-weight: bold;
+    margin-right: 4px;
+  }
+  .battle .chunk-word {
+    display: inline-block;
+    background: #fffde7;
+    border: 1.5px solid #f9a825;
+    border-radius: 4px;
+    padding: 0 5px;
+    font-weight: bold;
+    color: #e65100;
+    letter-spacing: 1px;
+    margin: 0 1px;
+  }
+  .battle .chunk-word .dot { font-weight: bold; }
+
+  /* Pick-your-pal */
+  .pick {
+    background: #fff8e1;
+    border: 2px dashed #f9a825;
+    border-radius: 10px;
+    padding: 10px 14px;
+    font-size: 13px;
+    color: #5d4037;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .pick h3 { color: #c62828; text-align: center; font-size: 14px; margin-bottom: 6px; }
+  .pick ol { padding-left: 22px; line-height: 1.7; }
+
+  /* Cut-line hint */
+  .cut-line {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: THE CARDS  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🃏 Sound-It-Out Trading Cards</h1>
+    <p>Six pal cards. Read each name and move out loud — chunk by chunk!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="how-to">
+    <strong>🃏 How to read a card:</strong> Read the big <strong>name</strong> at the top. Then read the <strong>type</strong>. Then read the <strong>move</strong> at the bottom. Last, read the small line at the very end. Move on to the next card!
+  </div>
+
+  <div class="card-grid">
+
+    <!-- CARD 1: DRAG·ON DAN -->
+    <div class="tc theme-fire">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">DRAG<span class="dot">·</span>ON DAN</div>
+          <div class="tc-hp">HP 70</div>
+        </div>
+        <div class="tc-art">🐉</div>
+        <div class="tc-type">★ FIRE PAL ★</div>
+        <ul class="tc-stats">
+          <li><span class="stat-label">ATK</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span></span></li>
+          <li><span class="stat-label">DEF</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">SPD</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+        </ul>
+        <div class="tc-move">
+          <div class="move-name">PUFF<span class="dot">·</span>Y BLAST</div>
+        </div>
+        <div class="tc-flavor">"I am hot! Step back!"</div>
+      </div>
+    </div>
+
+    <!-- CARD 2: RAB·BIT RON -->
+    <div class="tc theme-fluff">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">RAB<span class="dot">·</span>BIT RON</div>
+          <div class="tc-hp">HP 40</div>
+        </div>
+        <div class="tc-art">🐰</div>
+        <div class="tc-type">★ FLUFF PAL ★</div>
+        <ul class="tc-stats">
+          <li><span class="stat-label">ATK</span><span class="stat-bar"><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">DEF</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">SPD</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span></span></li>
+        </ul>
+        <div class="tc-move">
+          <div class="move-name">HOP<span class="dot">·</span>PING JAB</div>
+        </div>
+        <div class="tc-flavor">"I am quick! Catch me if you can!"</div>
+      </div>
+    </div>
+
+    <!-- CARD 3: CAT·FISH KIM -->
+    <div class="tc theme-wet">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">CAT<span class="dot">·</span>FISH KIM</div>
+          <div class="tc-hp">HP 80</div>
+        </div>
+        <div class="tc-art">🐟</div>
+        <div class="tc-type">★ WET PAL ★</div>
+        <ul class="tc-stats">
+          <li><span class="stat-label">ATK</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">DEF</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">SPD</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+        </ul>
+        <div class="tc-move">
+          <div class="move-name">SPLASH<span class="dot">·</span>ING SLAP</div>
+        </div>
+        <div class="tc-flavor">"I am big and wet!"</div>
+      </div>
+    </div>
+
+    <!-- CARD 4: BOM·BAS·TIC BOB -->
+    <div class="tc theme-loud">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC BOB</div>
+          <div class="tc-hp">HP 60</div>
+        </div>
+        <div class="tc-art">💥</div>
+        <div class="tc-type">★ LOUD PAL ★</div>
+        <ul class="tc-stats">
+          <li><span class="stat-label">ATK</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">DEF</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">SPD</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></li>
+        </ul>
+        <div class="tc-move">
+          <div class="move-name">BIG BIG BANG</div>
+        </div>
+        <div class="tc-flavor">"I make a big bang!"</div>
+      </div>
+    </div>
+
+    <!-- CARD 5: MAG·NET·IC MAG -->
+    <div class="tc theme-buzz">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">MAG<span class="dot">·</span>NET<span class="dot">·</span>IC MAG</div>
+          <div class="tc-hp">HP 50</div>
+        </div>
+        <div class="tc-art">🧲</div>
+        <div class="tc-type">★ BUZZ PAL ★</div>
+        <ul class="tc-stats">
+          <li><span class="stat-label">ATK</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">DEF</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">SPD</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip"></span></span></li>
+        </ul>
+        <div class="tc-move">
+          <div class="move-name">ZIP<span class="dot">·</span>ZAP PULL</div>
+        </div>
+        <div class="tc-flavor">"I pull and I grip!"</div>
+      </div>
+    </div>
+
+    <!-- CARD 6: PUM·KIN PAT -->
+    <div class="tc theme-fall">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">PUM<span class="dot">·</span>KIN PAT</div>
+          <div class="tc-hp">HP 90</div>
+        </div>
+        <div class="tc-art">🎃</div>
+        <div class="tc-type">★ FALL PAL ★</div>
+        <ul class="tc-stats">
+          <li><span class="stat-label">ATK</span><span class="stat-bar"><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+          <li><span class="stat-label">DEF</span><span class="stat-bar"><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span><span class="pip on"></span></span></li>
+          <li><span class="stat-label">SPD</span><span class="stat-bar"><span class="pip on"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span><span class="pip"></span></span></li>
+        </ul>
+        <div class="tc-move">
+          <div class="move-name">ROL<span class="dot">·</span>LING THUMP</div>
+        </div>
+        <div class="tc-flavor">"I sit. I roll. I plop."</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="cut-line">✂︎ Tip: print, then cut on the white lines to make real pocket cards.</div>
+</div>
+
+<!-- ────────────  PAGE 2: BATTLE + SECOND PACK  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🃏 The Match-Up &amp; New Pack</h1>
+    <p>Read the battle script, then read your second pack of pals!</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="stat-key">
+    <h3>📊 Stat Key — What the bars mean</h3>
+    <ul>
+      <li><strong>ATK</strong> = hits hard</li>
+      <li><strong>DEF</strong> = takes hits</li>
+      <li><strong>SPD</strong> = goes fast</li>
+      <li><strong>HP</strong> = life left</li>
+    </ul>
+  </div>
+
+  <div class="battle">
+    <h3>⚔️ Battle Script — Read it out loud</h3>
+    <p>
+      <span class="said-by">REF:</span> First up &mdash; <span class="chunk-word">DRAG<span class="dot">·</span>ON</span> Dan vs <span class="chunk-word">RAB<span class="dot">·</span>BIT</span> Ron! Pick a side. Go!
+      <br>
+      <span class="said-by">DAN:</span> I will use <span class="chunk-word">PUFF<span class="dot">·</span>Y</span> BLAST! Take that!
+      <br>
+      <span class="said-by">RON:</span> I will <span class="chunk-word">HOP<span class="dot">·</span>PING</span> JAB! Boop!
+      <br>
+      <span class="said-by">REF:</span> Now &mdash; <span class="chunk-word">BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC</span> Bob vs <span class="chunk-word">CAT<span class="dot">·</span>FISH</span> Kim!
+      <br>
+      <span class="said-by">BOB:</span> BIG BIG BANG! Pow pow!
+      <br>
+      <span class="said-by">KIM:</span> <span class="chunk-word">SPLASH<span class="dot">·</span>ING</span> SLAP! Glop!
+      <br>
+      <span class="said-by">REF:</span> Last &mdash; <span class="chunk-word">MAG<span class="dot">·</span>NET<span class="dot">·</span>IC</span> Mag vs <span class="chunk-word">PUM<span class="dot">·</span>KIN</span> Pat!
+      <br>
+      <span class="said-by">MAG:</span> ZIP<span class="dot">·</span>ZAP PULL! Zap!
+      <br>
+      <span class="said-by">PAT:</span> ROL<span class="dot">·</span>LING THUMP! Bonk!
+      <br>
+      <span class="said-by">REF:</span> What a day! All pals went home for a <span class="chunk-word">PIC<span class="dot">·</span>NIC</span>. THE END!
+    </p>
+  </div>
+
+  <div class="card-grid" style="grid-template-columns: 1fr 1fr; gap: 8px;">
+
+    <!-- CARD 7: HOT·DOG HUGO -->
+    <div class="tc theme-loud" style="min-height: 90mm;">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">HOT<span class="dot">·</span>DOG HUGO</div>
+          <div class="tc-hp">HP 55</div>
+        </div>
+        <div class="tc-art" style="height: 28mm;">🌭</div>
+        <div class="tc-type">★ SNACK PAL ★</div>
+        <div class="tc-move">
+          <div class="move-name">MUS<span class="dot">·</span>TARD MIST</div>
+        </div>
+        <div class="tc-flavor">"Hot! Yum! Eat fast!"</div>
+      </div>
+    </div>
+
+    <!-- CARD 8: BOB·CAT BIX -->
+    <div class="tc theme-fall" style="min-height: 90mm;">
+      <div class="tc-frame">
+        <div class="tc-top">
+          <div class="tc-name">BOB<span class="dot">·</span>CAT BIX</div>
+          <div class="tc-hp">HP 65</div>
+        </div>
+        <div class="tc-art" style="height: 28mm;">🐈</div>
+        <div class="tc-type">★ NAP PAL ★</div>
+        <div class="tc-move">
+          <div class="move-name">PUR<span class="dot">·</span>RING POUNCE</div>
+        </div>
+        <div class="tc-flavor">"I nap. I jump. I win."</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="pick">
+    <h3>🌟 Pick Your Team of 3</h3>
+    <ol>
+      <li>Read each card name out loud.</li>
+      <li>Pick the 3 pals you like most. Say why!</li>
+      <li>Tell a pal what your team's name is. Use big words!</li>
+    </ol>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> The card format frontloads decoding into a high-interest context (kids love trading cards). Each card has a chunked name and a chunked move &mdash; that's two multi-syllable reads per card. Stats and flavor lines use only CVC/sight words. After page 1, encourage your child to cut out the six cards and re-shuffle them into a "deck" they read back to you in a different order. The battle script on page 2 is a roleplay re-read.
+  </div>
+</div>
+
+</body>
+</html>

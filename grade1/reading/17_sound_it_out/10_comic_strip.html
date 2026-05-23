@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Comic Strip Reader</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+    --pond: #b3e5fc;
+    --grass: #c8e6c9;
+    --sky: #fff9c4;
+    --ground: #d7ccc8;
+  }
+
+  /* How to read */
+  .how-to {
+    background: var(--accent-bg);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.55;
+  }
+  .how-to strong { color: var(--title-color); }
+
+  /* Comic grid */
+  .comic {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, 78mm);
+    gap: 8px;
+  }
+  .panel {
+    position: relative;
+    background: var(--sky);
+    border: 3px solid #222;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 3px 3px 0 #999;
+  }
+  .panel-num {
+    position: absolute;
+    top: 6px; left: 6px;
+    width: 26px; height: 26px;
+    background: #fff;
+    border: 2px solid #222;
+    border-radius: 50%;
+    text-align: center; line-height: 22px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    font-size: 14px;
+    z-index: 10;
+  }
+  .ground {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 24%;
+    background: var(--grass);
+    border-top: 2px solid #4caf50;
+  }
+  .pond {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 35%;
+    background: var(--pond);
+    border-top: 2px solid #0288d1;
+  }
+  .dirt {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 24%;
+    background: var(--ground);
+    border-top: 2px solid #6d4c41;
+  }
+  .scene-emoji {
+    position: absolute;
+    font-size: 30px;
+    line-height: 1;
+    filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.3));
+  }
+  .scene-big {
+    font-size: 44px;
+  }
+  .scene-bigger {
+    font-size: 56px;
+  }
+
+  /* Speech bubbles */
+  .bubble {
+    position: absolute;
+    background: #fff;
+    border: 2.5px solid #222;
+    border-radius: 14px;
+    padding: 5px 9px;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 12px;
+    color: #222;
+    line-height: 1.35;
+    max-width: 62%;
+    z-index: 5;
+  }
+  .bubble::after {
+    content: '';
+    position: absolute;
+    width: 10px; height: 10px;
+    background: #fff;
+    border-right: 2.5px solid #222;
+    border-bottom: 2.5px solid #222;
+    transform: rotate(45deg);
+  }
+  .bubble.left::after { left: 14px; bottom: -7px; }
+  .bubble.right::after { right: 14px; bottom: -7px; }
+
+  .bubble .chunk-word {
+    display: inline-block;
+    background: var(--accent-bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 4px;
+    padding: 0 4px;
+    font-weight: bold;
+    color: var(--title-color);
+    letter-spacing: 1px;
+    margin: 0 1px;
+  }
+  .bubble .dot { color: var(--accent); font-weight: bold; }
+
+  /* Caption (narration boxes) */
+  .caption {
+    position: absolute;
+    top: 6px; right: 6px;
+    background: #fff9c4;
+    border: 2px solid #f9a825;
+    border-radius: 6px;
+    padding: 3px 7px;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 11px;
+    color: #5d4037;
+    max-width: 55%;
+    z-index: 5;
+  }
+
+  /* Sound effect splash */
+  .sfx {
+    position: absolute;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: #c62828;
+    text-shadow:
+      2px 2px 0 #fff,
+      -2px 2px 0 #fff,
+      2px -2px 0 #fff,
+      -2px -2px 0 #fff,
+      3px 3px 0 #ff9800;
+    font-size: 26px;
+    transform: rotate(-8deg);
+    z-index: 6;
+    letter-spacing: 1px;
+  }
+
+  /* Word recap */
+  .recap {
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 10px;
+    padding: 8px 12px;
+  }
+  .recap h3 { text-align: center; color: var(--title-color); font-size: 13px; margin-bottom: 6px; }
+  .recap-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 12px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .recap-list li {
+    background: var(--accent-bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    padding: 4px 8px;
+    text-align: center;
+    color: var(--title-color);
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+  }
+  .recap-list .dot { color: var(--accent); }
+
+  /* Make-your-own */
+  .make-own {
+    background: var(--accent-bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-top: 10px;
+  }
+  .make-own h3 { text-align: center; color: var(--title-color); font-size: 14px; margin-bottom: 6px; }
+  .make-own p { font-size: 13px; color: #333; line-height: 1.5; font-family: 'Comic Sans MS', cursive; }
+
+  /* Re-read panel */
+  .re-read {
+    background: #fff8e1;
+    border: 2px dashed #f9a825;
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #5d4037;
+    margin-top: 8px;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .re-read strong { color: #c62828; }
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: COMIC PANELS 1-6  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>💬 Sound-It-Out Comic: Pond Pals</h1>
+    <p>Read the panels from 1 to 6. Sound out the big words in the speech bubbles!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="how-to">
+    <strong>🦸 How to read a comic:</strong> Start at panel <strong>1</strong>. Read the speech bubble. Look at the picture. Then go to panel <strong>2</strong>. Read left to right, top to bottom. Each <span class="chunk-word">CHUNK<span class="dot">·</span>ED</span> word is split with a dot — sound out each chunk!
+  </div>
+
+  <div class="comic">
+
+    <!-- PANEL 1 -->
+    <div class="panel">
+      <div class="panel-num">1</div>
+      <div class="pond"></div>
+      <div class="scene-emoji" style="left: 14%; bottom: 32%;">🧒</div>
+      <div class="scene-emoji" style="left: 70%; bottom: 12%;">🐟</div>
+      <div class="bubble left" style="left: 8%; top: 14%;">
+        Look! A big <span class="chunk-word">CAT<span class="dot">·</span>FISH</span>!
+      </div>
+    </div>
+
+    <!-- PANEL 2 -->
+    <div class="panel">
+      <div class="panel-num">2</div>
+      <div class="pond"></div>
+      <div class="scene-emoji scene-bigger" style="left: 38%; bottom: 22%;">🐟</div>
+      <div class="bubble right" style="right: 6%; top: 10%;">
+        Hi! I am <span class="chunk-word">DAN</span>. I am
+        <span class="chunk-word">FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</span>!
+      </div>
+    </div>
+
+    <!-- PANEL 3 -->
+    <div class="panel">
+      <div class="panel-num">3</div>
+      <div class="ground"></div>
+      <div class="scene-emoji" style="left: 14%; bottom: 28%;">🧒</div>
+      <div class="scene-emoji" style="left: 64%; bottom: 28%;">👧</div>
+      <div class="scene-emoji" style="left: 78%; bottom: 22%;">🎒</div>
+      <div class="bubble left" style="left: 4%; top: 8%;">
+        Got a <span class="chunk-word">SAND<span class="dot">·</span>WICH</span>, Pam?
+      </div>
+      <div class="bubble right" style="right: 4%; top: 38%;">
+        Yes! In my <span class="chunk-word">JACK<span class="dot">·</span>POT</span> bag!
+      </div>
+    </div>
+
+    <!-- PANEL 4 -->
+    <div class="panel">
+      <div class="panel-num">4</div>
+      <div class="ground"></div>
+      <div class="scene-emoji" style="left: 30%; bottom: 25%;">👧</div>
+      <div class="scene-emoji scene-big" style="left: 55%; bottom: 28%;">🎒</div>
+      <div class="scene-emoji scene-big" style="left: 60%; bottom: 50%;">🐰</div>
+      <div class="bubble right" style="right: 5%; top: 6%;">
+        Hop! I am
+        <span class="chunk-word">RAB<span class="dot">·</span>BIT</span>!
+        Got a
+        <span class="chunk-word">MUF<span class="dot">·</span>FIN</span>?
+      </div>
+    </div>
+
+    <!-- PANEL 5 -->
+    <div class="panel">
+      <div class="panel-num">5</div>
+      <div class="ground"></div>
+      <div class="scene-emoji" style="left: 10%; bottom: 25%;">🧒</div>
+      <div class="scene-emoji" style="left: 30%; bottom: 25%;">👧</div>
+      <div class="scene-emoji" style="left: 50%; bottom: 25%;">🐰</div>
+      <div class="scene-emoji" style="left: 14%; bottom: 6%;">🧺</div>
+      <div class="sfx" style="right: 8%; top: 18%;">MUNCH!<br>MUNCH!</div>
+      <div class="sfx" style="right: 16%; top: 52%; color:#f57c00; transform: rotate(6deg);">POP!</div>
+    </div>
+
+    <!-- PANEL 6 -->
+    <div class="panel">
+      <div class="panel-num">6</div>
+      <div class="ground"></div>
+      <div class="scene-emoji scene-bigger" style="right: 6%; bottom: 22%;">🐉</div>
+      <div class="scene-emoji" style="left: 8%; bottom: 25%;">🧒</div>
+      <div class="scene-emoji" style="left: 22%; bottom: 25%;">👧</div>
+      <div class="scene-emoji" style="left: 36%; bottom: 25%;">🐰</div>
+      <div class="bubble right" style="right: 4%; top: 6%;">
+        Yum!
+        <span class="chunk-word">BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC</span>
+        <span class="chunk-word">PIC<span class="dot">·</span>NIC</span>
+        pals!
+      </div>
+      <div class="caption" style="bottom: 6px; top: auto; left: 6px; right: auto;">~ THE END ~</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ────────────  PAGE 2: RECAP + MAKE YOUR OWN  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>💬 Comic Recap &amp; Re-Read</h1>
+    <p>Look back at the comic. Read the big words in the boxes below.</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="recap">
+    <h3>🔍 Big Words From the Comic — Read Each One</h3>
+    <ul class="recap-list">
+      <li>CAT<span class="dot">·</span>FISH</li>
+      <li>FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</li>
+      <li>SAND<span class="dot">·</span>WICH</li>
+      <li>JACK<span class="dot">·</span>POT</li>
+      <li>RAB<span class="dot">·</span>BIT</li>
+      <li>MUF<span class="dot">·</span>FIN</li>
+      <li>BOM<span class="dot">·</span>BAS<span class="dot">·</span>TIC</li>
+      <li>PIC<span class="dot">·</span>NIC</li>
+      <li>DRAG<span class="dot">·</span>ON</li>
+    </ul>
+  </div>
+
+  <div class="re-read">
+    <strong>🔁 Re-Read Quest:</strong>
+    Read the comic <strong>3 times</strong>.
+    <br>1st time: slow. Sound out each chunk.
+    <br>2nd time: medium. Just say the chunks fast.
+    <br>3rd time: like a real story. Use a fun voice for Dan, Pam, Rab-bit, and Drag-on!
+  </div>
+
+  <div class="comic" style="grid-template-rows: 78mm 78mm;">
+
+    <!-- BONUS PANEL A (no captions) -->
+    <div class="panel">
+      <div class="panel-num">A</div>
+      <div class="ground"></div>
+      <div class="scene-emoji scene-big" style="left: 16%; bottom: 24%;">🐉</div>
+      <div class="scene-emoji" style="left: 60%; bottom: 25%;">🧒</div>
+      <div class="bubble left" style="left: 6%; top: 6%;">
+        Hi!
+        <span class="chunk-word">DRAG<span class="dot">·</span>ON</span>
+        Dan can not stop! Run!
+      </div>
+    </div>
+
+    <!-- BONUS PANEL B -->
+    <div class="panel">
+      <div class="panel-num">B</div>
+      <div class="ground"></div>
+      <div class="scene-emoji" style="left: 10%; bottom: 25%;">🐉</div>
+      <div class="scene-emoji" style="left: 32%; bottom: 25%;">🐰</div>
+      <div class="scene-emoji" style="left: 54%; bottom: 25%;">🐈</div>
+      <div class="scene-emoji" style="left: 76%; bottom: 25%;">🐟</div>
+      <div class="bubble right" style="right: 5%; top: 6%;">
+        We had a
+        <span class="chunk-word">FAN<span class="dot">·</span>TAS<span class="dot">·</span>TIC</span>
+        day!
+      </div>
+    </div>
+
+    <!-- BONUS PANEL C -->
+    <div class="panel">
+      <div class="panel-num">C</div>
+      <div class="dirt"></div>
+      <div class="scene-emoji" style="left: 36%; bottom: 22%;">🎃</div>
+      <div class="scene-emoji" style="left: 14%; bottom: 30%;">👧</div>
+      <div class="bubble left" style="left: 2%; top: 8%;">
+        I see a
+        <span class="chunk-word">PUM<span class="dot">·</span>KIN</span>
+        in the
+        <span class="chunk-word">PIG<span class="dot">·</span>PEN</span>!
+      </div>
+    </div>
+
+    <!-- BONUS PANEL D -->
+    <div class="panel">
+      <div class="panel-num">D</div>
+      <div class="dirt"></div>
+      <div class="scene-emoji" style="left: 40%; bottom: 35%;">⭐</div>
+      <div class="scene-emoji" style="left: 18%; bottom: 25%;">🧒</div>
+      <div class="bubble left" style="left: 4%; top: 8%;">
+        I got a
+        <span class="chunk-word">JACK<span class="dot">·</span>POT</span>!
+        A big
+        <span class="chunk-word">MAG<span class="dot">·</span>NET</span>
+        too!
+      </div>
+    </div>
+
+  </div>
+
+  <div class="make-own">
+    <h3>🎬 You Are the Voice Actor</h3>
+    <p>Pick a kid in your home. Be a different voice for each pal in the comic. Read it out loud — like a real show. Make Dan boom! Make Rab-bit hop! Make Drag-on grin!</p>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> Comic strips give chunked words a story to live in. The supporting text uses only CVC and common sight words so the child can read the whole panel — not just the targets. Bonus panels A–D are short stand-alone scenes for extra reading. Encourage character voices on the 3rd re-read; fun voicing is shown to boost prosody and comprehension.
+  </div>
+</div>
+
+</body>
+</html>

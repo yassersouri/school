@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound It Out: Word Maze</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+  :root {
+    --accent: #3949ab;
+    --accent-bg: #e8eaf6;
+    --heading-color: #1a237e;
+    --title-color: #283593;
+    --col-bg: #e8eaf6;
+    --col-heading: #1a237e;
+    --word-bg: #fff;
+    --real-bg: #e8f5e9;
+    --real-border: #2e7d32;
+    --silly-bg: #ffebee;
+    --silly-border: #c62828;
+  }
+
+  .how-to {
+    background: var(--accent-bg);
+    border-left: 5px solid var(--accent);
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-size: 12px;
+    color: #333;
+    line-height: 1.55;
+  }
+  .how-to strong { color: var(--title-color); }
+
+  /* Maze rules box */
+  .rules {
+    background: #fff;
+    border: 2px dashed var(--accent);
+    border-radius: 10px;
+    padding: 8px 12px;
+    font-size: 13px;
+    color: #333;
+    font-family: 'Comic Sans MS', cursive;
+  }
+  .rules h3 { color: var(--title-color); text-align: center; font-size: 13px; margin-bottom: 4px; }
+  .rules ol { padding-left: 24px; line-height: 1.7; }
+  .rules .key {
+    display: inline-flex; align-items: center;
+    margin-left: 8px; font-size: 11px;
+  }
+  .rules .key-chip {
+    display: inline-block;
+    border: 2px solid;
+    border-radius: 4px;
+    padding: 0 6px;
+    font-weight: bold;
+    margin: 0 3px;
+    letter-spacing: 1px;
+  }
+
+  /* The maze grid */
+  .maze {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 4px;
+    background: #fff;
+    padding: 8px;
+    border: 3px solid #222;
+    border-radius: 10px;
+    box-shadow: 3px 3px 0 #999;
+  }
+  .cell {
+    aspect-ratio: 1.1 / 1;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    letter-spacing: 1px;
+    font-size: 14px;
+    border: 2px solid;
+    padding: 2px;
+    line-height: 1.1;
+  }
+  .cell .dot { font-weight: bold; }
+
+  .cell.start, .cell.end {
+    background: #fff59d;
+    border-color: #f9a825;
+    color: #5d4037;
+    font-size: 13px;
+  }
+  .cell.start::after { content: ' ⭐'; }
+  .cell.end::before  { content: '🏁 '; }
+
+  .cell.real {
+    background: var(--real-bg);
+    border-color: var(--real-border);
+    color: #1b5e20;
+  }
+  .cell.silly {
+    background: var(--silly-bg);
+    border-color: var(--silly-border);
+    color: #b71c1c;
+  }
+
+  /* Section divider */
+  .divider {
+    text-align: center;
+    color: var(--title-color);
+    font-size: 12px;
+    margin: 6px 0;
+    letter-spacing: 2px;
+  }
+
+  /* Word ladder */
+  .ladder-box {
+    background: #fff8e1;
+    border: 2px solid #f9a825;
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .ladder-box h3 {
+    text-align: center;
+    color: #c62828;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .ladder-box .intro {
+    font-size: 12px;
+    color: #5d4037;
+    font-family: 'Comic Sans MS', cursive;
+    line-height: 1.5;
+    margin-bottom: 6px;
+  }
+  .ladder {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  .rung {
+    display: grid;
+    grid-template-columns: 1fr 1fr 60px;
+    gap: 6px;
+    align-items: center;
+  }
+  .rung .opt {
+    border: 2px solid;
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 1px;
+    cursor: default;
+  }
+  .rung .opt.real {
+    background: var(--real-bg);
+    border-color: var(--real-border);
+    color: #1b5e20;
+  }
+  .rung .opt.silly {
+    background: var(--silly-bg);
+    border-color: var(--silly-border);
+    color: #b71c1c;
+  }
+  .rung .opt .dot { font-weight: bold; }
+  .rung .num {
+    text-align: center;
+    background: #fff;
+    border: 2px solid #f9a825;
+    border-radius: 50%;
+    width: 26px; height: 26px; line-height: 22px;
+    margin: 0 auto;
+    font-weight: bold;
+    color: #c62828;
+  }
+
+  /* Speed list */
+  .speed-list-box {
+    background: var(--accent-bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .speed-list-box h3 {
+    text-align: center;
+    color: var(--title-color);
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .speed-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 6px;
+  }
+  .speed-grid li {
+    background: #fff;
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    padding: 5px 6px;
+    text-align: center;
+    font-family: 'Comic Sans MS', cursive;
+    font-weight: bold;
+    color: var(--title-color);
+    font-size: 13px;
+    letter-spacing: 1px;
+  }
+  .speed-grid .dot { font-weight: bold; }
+
+  /* Path-solution callout (parent note area is enough) */
+  .helper-line {
+    text-align: center;
+    font-size: 11px;
+    color: #888;
+    font-style: italic;
+    margin-top: 4px;
+  }
+  </style>
+</head>
+<body>
+
+<!-- ────────────  PAGE 1: THE MAZE  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🧩 Word Maze: Real or Silly?</h1>
+    <p>Walk from ⭐ START to 🏁 END. Only step on REAL words!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="how-to">
+    <strong>🚶 How to walk the maze:</strong> Read each word in a box. Is it a <span class="key-chip" style="border-color: var(--real-border); color: #1b5e20; background: var(--real-bg);">REAL</span> word? Step on it! Is it a <span class="key-chip" style="border-color: var(--silly-border); color: #b71c1c; background: var(--silly-bg);">SILLY</span> made-up word? Stop! Try the next box. You can only step <strong>up</strong>, <strong>down</strong>, <strong>left</strong>, or <strong>right</strong>. No skips!
+  </div>
+
+  <div class="rules">
+    <h3>🟢 Real words and 🔴 silly words are colored!</h3>
+    Trace a path from ⭐ to 🏁 with your finger. Only land on green boxes. Read each chunked word as you step.
+  </div>
+
+  <!-- 5x5 MAZE -->
+  <div class="maze">
+    <!-- Row 1 -->
+    <div class="cell start">START</div>
+    <div class="cell real">NAP<span class="dot">·</span>KIN</div>
+    <div class="cell silly">FOG<span class="dot">·</span>VIB</div>
+    <div class="cell real">GOB<span class="dot">·</span>LIN</div>
+    <div class="cell silly">KEG<span class="dot">·</span>VAM</div>
+    <!-- Row 2 -->
+    <div class="cell silly">PIP<span class="dot">·</span>SOB</div>
+    <div class="cell real">PIC<span class="dot">·</span>NIC</div>
+    <div class="cell real">RAB<span class="dot">·</span>BIT</div>
+    <div class="cell silly">BIB<span class="dot">·</span>HUT</div>
+    <div class="cell real">BUT<span class="dot">·</span>TON</div>
+    <!-- Row 3 -->
+    <div class="cell silly">KAN<span class="dot">·</span>VOB</div>
+    <div class="cell real">HEL<span class="dot">·</span>MET</div>
+    <div class="cell real">MAG<span class="dot">·</span>NET</div>
+    <div class="cell real">HOT<span class="dot">·</span>DOG</div>
+    <div class="cell silly">JET<span class="dot">·</span>PAK</div>
+    <!-- Row 4 -->
+    <div class="cell silly">BAG<span class="dot">·</span>NID</div>
+    <div class="cell silly">TUM<span class="dot">·</span>LEK</div>
+    <div class="cell real">JACK<span class="dot">·</span>POT</div>
+    <div class="cell real">MUF<span class="dot">·</span>FIN</div>
+    <div class="cell real">PUM<span class="dot">·</span>KIN</div>
+    <!-- Row 5 -->
+    <div class="cell silly">SAD<span class="dot">·</span>BIK</div>
+    <div class="cell silly">VEG<span class="dot">·</span>NOP</div>
+    <div class="cell real">SAND<span class="dot">·</span>BOX</div>
+    <div class="cell real">BOB<span class="dot">·</span>CAT</div>
+    <div class="cell end">END</div>
+  </div>
+
+  <p class="helper-line">Hint: there is more than ONE path through the green boxes. Find any path you like!</p>
+
+  <div class="rules">
+    <h3>🏆 Three Maze Quests</h3>
+    <ol>
+      <li>Walk any path from ⭐ to 🏁. Read each word out loud.</li>
+      <li>Now walk a DIFFERENT path. Read those words too!</li>
+      <li>Read the silly words to a pal. Make them giggle!</li>
+    </ol>
+  </div>
+</div>
+
+<!-- ────────────  PAGE 2: LADDER + SPEED LIST  ──────────── -->
+<div class="page">
+  <div class="page-header">
+    <h1>🪜 Word Ladder &amp; Speed Hop</h1>
+    <p>Climb the ladder! Pick the REAL word on each rung.</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="how-to">
+    Read both words on a rung. Pick the <strong>REAL</strong> one. Step up to the next rung! Keep going until you hit the top. 🪜
+  </div>
+
+  <div class="ladder-box">
+    <h3>🪜 Real Word Ladder — Climb to the Top!</h3>
+    <p class="intro">Read both. Tap the REAL one. Climb up. Each one is a big word — sound it out!</p>
+    <div class="ladder">
+
+      <div class="rung">
+        <div class="opt real">PUM<span class="dot">·</span>KIN</div>
+        <div class="opt silly">PUM<span class="dot">·</span>VIK</div>
+        <div class="num">6</div>
+      </div>
+      <div class="rung">
+        <div class="opt silly">MAG<span class="dot">·</span>BOT</div>
+        <div class="opt real">MAG<span class="dot">·</span>NET</div>
+        <div class="num">5</div>
+      </div>
+      <div class="rung">
+        <div class="opt real">SAND<span class="dot">·</span>BOX</div>
+        <div class="opt silly">SAND<span class="dot">·</span>VOP</div>
+        <div class="num">4</div>
+      </div>
+      <div class="rung">
+        <div class="opt silly">JACK<span class="dot">·</span>NID</div>
+        <div class="opt real">JACK<span class="dot">·</span>POT</div>
+        <div class="num">3</div>
+      </div>
+      <div class="rung">
+        <div class="opt real">PIC<span class="dot">·</span>NIC</div>
+        <div class="opt silly">PIC<span class="dot">·</span>BOG</div>
+        <div class="num">2</div>
+      </div>
+      <div class="rung">
+        <div class="opt silly">HEL<span class="dot">·</span>TIP</div>
+        <div class="opt real">HEL<span class="dot">·</span>MET</div>
+        <div class="num">1</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="speed-list-box">
+    <h3>🏃 Green Speed Hop — Read the path words fast!</h3>
+    <p style="font-size: 12px; color: #333; font-family: 'Comic Sans MS', cursive; text-align: center; margin-bottom: 6px;">These are the REAL words from the maze on page 1. Read all 12 as fast as you can. Time yourself!</p>
+    <ul class="speed-grid">
+      <li>NAP<span class="dot">·</span>KIN</li>
+      <li>GOB<span class="dot">·</span>LIN</li>
+      <li>PIC<span class="dot">·</span>NIC</li>
+      <li>RAB<span class="dot">·</span>BIT</li>
+      <li>BUT<span class="dot">·</span>TON</li>
+      <li>HEL<span class="dot">·</span>MET</li>
+      <li>MAG<span class="dot">·</span>NET</li>
+      <li>HOT<span class="dot">·</span>DOG</li>
+      <li>JACK<span class="dot">·</span>POT</li>
+      <li>MUF<span class="dot">·</span>FIN</li>
+      <li>PUM<span class="dot">·</span>KIN</li>
+      <li>SAND<span class="dot">·</span>BOX</li>
+    </ul>
+  </div>
+
+  <div class="ladder-box" style="border-color: var(--silly-border);">
+    <h3 style="color: var(--silly-border);">🤪 Silly Word Giggle — Read these to a pal!</h3>
+    <p class="intro" style="text-align: center;">These are NOT real words. But you can still sound them out — and they will make a pal grin!</p>
+    <ul class="speed-grid" style="grid-template-columns: repeat(5, 1fr);">
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">FOG<span class="dot">·</span>VIB</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">KEG<span class="dot">·</span>VAM</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">PIP<span class="dot">·</span>SOB</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">BIB<span class="dot">·</span>HUT</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">JET<span class="dot">·</span>PAK</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">BAG<span class="dot">·</span>NID</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">TUM<span class="dot">·</span>LEK</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">VEG<span class="dot">·</span>NOP</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">SAD<span class="dot">·</span>BIK</li>
+      <li style="background: var(--silly-bg); border-color: var(--silly-border); color: #b71c1c;">KAN<span class="dot">·</span>VOB</li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>📝 Parent note:</strong> The maze on page 1 has multiple valid paths through the green cells &mdash; here is one simple route: <em>START → NAP·KIN → PIC·NIC → RAB·BIT → HEL·MET → MAG·NET → HOT·DOG → JACK·POT → MUF·FIN → PUM·KIN → SAND·BOX → BOB·CAT → END</em>. (Another shorter route: START → NAP·KIN → PIC·NIC → HEL·MET → MAG·NET → JACK·POT → SAND·BOX → BOB·CAT → END.) The point isn't a single &ldquo;right&rdquo; path &mdash; it's that the child reads each cell aloud and judges real-vs-silly before stepping. The Silly Word Giggle box at the bottom is intentional decoding practice: nonsense words prove the child can apply chunking blindly, not just rely on memory of known words.
+  </div>
+</div>
+
+</body>
+</html>
