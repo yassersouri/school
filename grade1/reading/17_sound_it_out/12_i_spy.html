@@ -31,42 +31,24 @@
   .scene {
     position: relative;
     width: 100%;
-    height: 150mm;
+    height: 165mm;
     border: 3px solid #222;
     border-radius: 10px;
     background:
-      /* Path */
-      radial-gradient(ellipse at 50% 100%, #d7ccc8 0 22%, transparent 22%),
-      /* Hill */
-      radial-gradient(ellipse at 80% 88%, #a5d6a7 0 28%, transparent 28%),
-      radial-gradient(ellipse at 20% 90%, #81c784 0 25%, transparent 25%),
+      /* Path winding up from bottom */
+      radial-gradient(ellipse at 50% 105%, #d7ccc8 0 28%, transparent 29%),
+      /* Right hill */
+      radial-gradient(ellipse at 85% 90%, #a5d6a7 0 32%, transparent 33%),
+      /* Left hill */
+      radial-gradient(ellipse at 15% 90%, #81c784 0 30%, transparent 31%),
       /* Pond */
-      radial-gradient(ellipse at 30% 75%, #4fc3f7 0 13%, transparent 14%),
+      radial-gradient(ellipse at 32% 80%, #4fc3f7 0 11%, transparent 12%),
       /* Sun */
-      radial-gradient(circle at 88% 12%, #fff59d 0 10%, transparent 11%),
-      /* Mountains */
+      radial-gradient(circle at 90% 10%, #fff59d 0 9%, transparent 10%),
+      /* Sky + ground band */
       linear-gradient(180deg, #b3e5fc 0%, #b3e5fc 55%, #c8e6c9 55% 100%);
     overflow: hidden;
     box-shadow: 3px 3px 0 #999;
-  }
-
-  /* CSS-drawn extras */
-  .scene::before {
-    content: '';
-    position: absolute;
-    left: -5%; top: 35%;
-    width: 50%; height: 25%;
-    background:
-      radial-gradient(ellipse at 30% 100%, #6d4c41 0 22%, transparent 23%),
-      radial-gradient(ellipse at 60% 100%, #5d4037 0 22%, transparent 23%);
-  }
-  .scene::after {
-    content: '';
-    position: absolute;
-    right: 10%; top: 35%;
-    width: 30%; height: 22%;
-    background:
-      radial-gradient(ellipse at 50% 100%, #8d6e63 0 26%, transparent 27%);
   }
 
   .item {
@@ -75,34 +57,19 @@
     line-height: 1;
     filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.3));
     transform: translate(-50%, -50%);
+    z-index: 3;
   }
   .item.big { font-size: 44px; }
-  .item.small { font-size: 24px; }
-
-  /* Tree */
-  .tree {
-    position: absolute;
-    width: 50px;
-    transform: translate(-50%, -100%);
-  }
-  .tree .top {
-    width: 50px; height: 50px;
-    background: #2e7d32;
-    border-radius: 50%;
-    margin: 0 auto;
-  }
-  .tree .trunk {
-    width: 12px; height: 30px;
-    background: #5d4037;
-    margin: -8px auto 0;
-  }
+  .item.small { font-size: 22px; }
+  .item.tiny { font-size: 18px; }
 
   /* Castle */
   .castle {
     position: absolute;
     transform: translate(-50%, -100%);
-    font-size: 50px;
+    font-size: 44px;
     line-height: 1;
+    z-index: 2;
   }
 
   /* Cloud */
@@ -115,6 +82,137 @@
       -22px -2px 0 -8px #fff,
       0 14px 0 -10px #fff;
     width: 28px; height: 18px;
+    z-index: 1;
+  }
+
+  /* Dragon's DEN — a dark cave mouth on the left hill */
+  .den {
+    position: absolute;
+    width: 70px; height: 56px;
+    background:
+      radial-gradient(ellipse at 50% 100%, #1a1a1a 0 55%, #3a2a20 55% 80%, transparent 81%);
+    border-radius: 50% 50% 0 0 / 65% 65% 0 0;
+    transform: translate(-50%, -65%);
+    z-index: 2;
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,0.5);
+  }
+  .den-label {
+    position: absolute;
+    transform: translate(-50%, 0);
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 10px;
+    color: #fff;
+    background: rgba(0,0,0,0.55);
+    padding: 1px 6px;
+    border-radius: 4px;
+    letter-spacing: 1px;
+    z-index: 3;
+  }
+
+  /* ROCK — a gray boulder */
+  .rock {
+    position: absolute;
+    width: 56px; height: 38px;
+    background:
+      radial-gradient(ellipse at 35% 35%, #9e9e9e 0 30%, #616161 32% 70%, #424242 72% 100%);
+    border-radius: 50% 50% 40% 40% / 65% 65% 35% 35%;
+    transform: translate(-50%, -50%);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.3);
+    z-index: 2;
+  }
+
+  /* RUG — picnic blanket */
+  .rug {
+    position: absolute;
+    width: 76px; height: 30px;
+    background:
+      repeating-linear-gradient(90deg, #e53935 0 12px, #fdd835 12px 24px),
+      #e53935;
+    border: 2px solid #5d4037;
+    border-radius: 4px;
+    transform: translate(-50%, -50%) rotate(-3deg);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.25);
+    z-index: 2;
+  }
+
+  /* PATCH — a dark soil bed under the pumpkins with a vine */
+  .patch {
+    position: absolute;
+    width: 130px; height: 26px;
+    background:
+      radial-gradient(ellipse at 50% 50%, #4e342e 0 55%, #6d4c41 60% 90%, transparent 91%);
+    border-radius: 50% / 80%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  .patch-vine {
+    position: absolute;
+    width: 110px; height: 6px;
+    background: linear-gradient(90deg, transparent, #33691e 20%, #33691e 80%, transparent);
+    border-radius: 3px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+  }
+
+  /* GRILL — a small black grill base with flames */
+  .grill {
+    position: absolute;
+    width: 36px; height: 12px;
+    background: linear-gradient(180deg, #424242 0 50%, #212121 50% 100%);
+    border-radius: 3px 3px 6px 6px;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    box-shadow: 0 2px 0 #757575;
+  }
+  .grill-legs {
+    position: absolute;
+    width: 36px; height: 14px;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+  .grill-legs::before, .grill-legs::after {
+    content: '';
+    position: absolute;
+    width: 2px; height: 14px;
+    background: #424242;
+    top: 0;
+  }
+  .grill-legs::before { left: 6px; }
+  .grill-legs::after  { right: 6px; }
+
+  /* TREE — small tree on the left hill */
+  .tree {
+    position: absolute;
+    width: 36px;
+    transform: translate(-50%, -100%);
+    z-index: 2;
+  }
+  .tree .top {
+    width: 36px; height: 36px;
+    background: #2e7d32;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: inset -4px -4px 0 #1b5e20;
+  }
+  .tree .trunk {
+    width: 10px; height: 22px;
+    background: #5d4037;
+    margin: -6px auto 0;
+  }
+
+  /* Zone caption tags (super subtle, help kids match clues to zones) */
+  .zone-tag {
+    position: absolute;
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 10px;
+    color: #1a237e;
+    background: rgba(255,255,255,0.78);
+    padding: 1px 6px;
+    border-radius: 4px;
+    border: 1px solid #c5cae9;
+    letter-spacing: 0.5px;
+    transform: translate(-50%, -50%);
+    z-index: 3;
   }
 
   /* Clue list */
@@ -141,9 +239,9 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    font-size: 13px;
+    font-size: 12.5px;
     color: #333;
-    padding: 3px 0;
+    padding: 2px 0;
   }
   .clue-box {
     display: inline-block;
@@ -240,38 +338,66 @@
   <div class="page-num">Page 1 of 2</div>
 
   <div class="how-to">
-    <strong>👀 How to play:</strong> Each clue starts with &ldquo;I spy a …&rdquo; and a <span class="chunk-word">CHUNK<span class="dot">·</span>ED</span> word. Read the chunks, then hunt for the thing in the big picture above. Tick ✓ the box when you find it!
+    <strong>👀 How to play:</strong> Each clue starts with &ldquo;I spy a …&rdquo; and a <span class="chunk-word">CHUNK<span class="dot">·</span>ED</span> word. Read the chunks, then hunt for the thing in the big picture. Tick ✓ the box when you find it!
   </div>
 
   <div class="scene">
 
-    <!-- Clouds -->
-    <div class="cloud" style="left: 20%; top: 10%;"></div>
-    <div class="cloud" style="left: 55%; top: 5%;"></div>
-    <div class="cloud" style="left: 75%; top: 22%;"></div>
+    <!-- ─── SKY: clouds, sun (in bg), rocket ─── -->
+    <div class="cloud" style="left: 22%; top: 12%;"></div>
+    <div class="cloud" style="left: 50%; top: 6%;"></div>
+    <div class="cloud" style="left: 72%; top: 22%;"></div>
+    <div class="item small" style="left: 62%; top: 14%;">🚀</div>
 
-    <!-- Tree, castle, items -->
-    <div class="tree" style="left: 10%; top: 70%;">
+    <!-- ─── BUGS (for tiny bug hunt) ─── -->
+    <div class="item small" style="left: 16%; top: 30%;">🦋</div>
+    <div class="item tiny" style="left: 45%; top: 32%;">🐝</div>
+    <div class="item tiny" style="left: 82%; top: 30%;">🐦</div>
+
+    <!-- ─── LEFT HILL: DEN with DRAGON, TREE ─── -->
+    <div class="den" style="left: 22%; top: 62%;"></div>
+    <div class="item big" style="left: 22%; top: 60%;">🐉</div>
+    <div class="den-label" style="left: 22%; top: 70%;">DEN</div>
+
+    <div class="tree" style="left: 9%; top: 72%;">
       <div class="top"></div>
       <div class="trunk"></div>
     </div>
-    <div class="castle" style="left: 80%; top: 78%;">🏰</div>
 
-    <div class="item" style="left: 30%; top: 75%;">🐟</div>
-    <div class="item" style="left: 23%; top: 78%;">🦆</div>
-    <div class="item" style="left: 10%; top: 60%;">🐰</div>
-    <div class="item big" style="left: 50%; top: 85%;">🎃</div>
-    <div class="item" style="left: 58%; top: 90%;">⭐</div>
-    <div class="item big" style="left: 28%; top: 50%;">🐉</div>
-    <div class="item small" style="left: 88%; top: 18%;">🚀</div>
-    <div class="item" style="left: 47%; top: 95%;">🧲</div>
-    <div class="item" style="left: 67%; top: 92%;">🧁</div>
-    <div class="item small" style="left: 75%; top: 92%;">🌭</div>
-    <div class="item" style="left: 83%; top: 60%;">🐈</div>
+    <!-- ─── POND: catfish + duck ─── -->
+    <div class="item" style="left: 30%; top: 82%;">🐟</div>
+    <div class="item small" style="left: 36%; top: 80%;">🦆</div>
 
-    <div class="item small" style="left: 16%; top: 30%;">🦋</div>
-    <div class="item small" style="left: 65%; top: 30%;">🐦</div>
-    <div class="item small" style="left: 40%; top: 38%;">🐝</div>
+    <!-- ─── GRASS: rabbit ─── -->
+    <div class="item" style="left: 12%; top: 82%;">🐰</div>
+
+    <!-- ─── PATCH: 3 pumpkins on dark soil with vine ─── -->
+    <div class="patch" style="left: 50%; top: 91%;"></div>
+    <div class="patch-vine" style="left: 50%; top: 89%;"></div>
+    <div class="item" style="left: 44%; top: 88%;">🎃</div>
+    <div class="item big" style="left: 51%; top: 87%;">🎃</div>
+    <div class="item small" style="left: 58%; top: 89%;">🎃</div>
+
+    <!-- ─── PATH: magnet ─── -->
+    <div class="item" style="left: 50%; top: 95%;">🧲</div>
+
+    <!-- ─── RIGHT HILL: castle, bobcat ─── -->
+    <div class="castle" style="left: 88%; top: 70%;">🏰</div>
+    <div class="item" style="left: 78%; top: 62%;">🐈</div>
+
+    <!-- ─── ROCK + JACKPOT (right side, mid-hill) ─── -->
+    <div class="rock" style="left: 70%; top: 78%;"></div>
+    <div class="item small" style="left: 73%; top: 75%;">💰</div>
+
+    <!-- ─── RUG + MUFFIN (bottom right, on the grass) ─── -->
+    <div class="rug" style="left: 76%; top: 92%;"></div>
+    <div class="item small" style="left: 76%; top: 90%;">🧁</div>
+
+    <!-- ─── GRILL + HOTDOG (next to rug) ─── -->
+    <div class="grill-legs" style="left: 92%; top: 94%;"></div>
+    <div class="grill" style="left: 92%; top: 91%;"></div>
+    <div class="item small" style="left: 92%; top: 89%;">🌭</div>
+    <div class="item tiny" style="left: 87%; top: 87%;">🔥</div>
 
   </div>
 
@@ -286,7 +412,7 @@
       <li><span class="clue-box"></span> I spy a <span class="chunk-word">ROCK<span class="dot">·</span>ET</span> in the sky.</li>
       <li><span class="clue-box"></span> I spy a <span class="chunk-word">MAG<span class="dot">·</span>NET</span> on the path.</li>
       <li><span class="clue-box"></span> I spy a <span class="chunk-word">MUF<span class="dot">·</span>FIN</span> on the rug.</li>
-      <li><span class="clue-box"></span> I spy a <span class="chunk-word">HOT<span class="dot">·</span>DOG</span> by the bun.</li>
+      <li><span class="clue-box"></span> I spy a <span class="chunk-word">HOT<span class="dot">·</span>DOG</span> on the grill.</li>
       <li><span class="clue-box"></span> I spy a <span class="chunk-word">BOB<span class="dot">·</span>CAT</span> on the hill.</li>
     </ul>
   </div>
@@ -301,15 +427,15 @@
   <div class="page-num">Page 2 of 2</div>
 
   <div class="bonus-box">
-    <h3>🐛 Tiny Bug Hunt</h3>
-    Three small bugs are in the park too. Find each one!
+    <h3>🐛 Tiny Critter Hunt</h3>
+    Four small critters are hiding in the park. Find each one!
     <ul class="count-list">
       <li>
         <span>I spy a <span class="chunk-word">BUT<span class="dot">·</span>TER<span class="dot">·</span>FLY</span></span>
         <span class="count-circle"></span>
       </li>
       <li>
-        <span>I spy a <span class="chunk-word">HONEY-BEE</span></span>
+        <span>I spy a <span class="chunk-word">BEE</span></span>
         <span class="count-circle"></span>
       </li>
       <li>
@@ -361,11 +487,11 @@
 
   <div class="bonus-box" style="border-color: #2e7d32; color: #1b5e20;">
     <h3 style="color: #2e7d32;">🎤 Your Turn: Read a Clue to a Pal</h3>
-    Pick a thing in the picture that has no clue yet (like the <span class="chunk-word">CAS<span class="dot">·</span>TLE</span>, the <span class="chunk-word">SUN</span>, the <span class="chunk-word">TREE</span>, or the <span class="chunk-word">DUCK</span>). Say it out loud as a clue: &ldquo;I spy a … &rdquo; Make a pal find it!
+    Pick a thing in the picture that has no clue yet (like the <span class="chunk-word">CAS<span class="dot">·</span>TLE</span>, the <span class="chunk-word">SUN</span>, the <span class="chunk-word">TREE</span>, or a <span class="chunk-word">CLOUD</span>). Say it out loud as a clue: &ldquo;I spy a … &rdquo; Make a pal find it!
   </div>
 
   <div class="answer-key">
-    <strong>📝 Parent note:</strong> &ldquo;Silly clues&rdquo; that are NOT in the picture are <strong>PEN·GUIN</strong> and <strong>JET·PACK</strong>. Answers for Count: catfish = 1, pumpkins = 1, clouds = 3, dragons = 1. The Tiny Bug Hunt requires the child to find the butterfly 🦋, bee 🐝, bird 🐦, and duck 🦆 in the scene. The closing roleplay (&ldquo;Your Turn&rdquo;) is the highest-value reading task &mdash; the child invents new clues using the chunked words at the bottom or any other word on the page, then a parent or sibling hunts for it. Use the picture multiple times across sessions.
+    <strong>📝 Parent note:</strong> &ldquo;Silly clues&rdquo; that are NOT in the picture are <strong>PEN·GUIN</strong> and <strong>JET·PACK</strong>. Answers for Count: catfish = 1, pumpkins = 3, clouds = 3, dragons = 1. The Tiny Critter Hunt requires the child to find the butterfly 🦋, bee 🐝, bird 🐦, and duck 🦆 in the scene. The closing roleplay (&ldquo;Your Turn&rdquo;) is the highest-value reading task &mdash; the child invents new clues using the chunked words at the bottom or any other word on the page, then a parent or sibling hunts for it. Use the picture multiple times across sessions.
   </div>
 </div>
 
