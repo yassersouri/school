@@ -4,6 +4,11 @@ A complete year-long reading syllabus aimed at a Canadian Grade 1 level (ages 6�
 
 The school year is divided into four terms. Pacing is flexible — slow down, repeat, or skip as needed.
 
+> **Context and use:** This is a broad Canadian sequence, not a complete
+> provincial curriculum. Adapt spelling, vocabulary, pacing, and expectations
+> to the learner's school program. Teach each pattern orally and with a worked
+> example before assigning independent practice.
+
 ---
 
 ## Strands and Big Ideas
@@ -56,13 +61,23 @@ Each term below cycles through all six strands so they grow together.
 📂 **Repo materials:** [Short Vowels — index](01_short_vowels/index.html) — 22 sheets covering short **a**, **e**, **i**, **o**, **u**, including word families (-at/-an, -ed/-en, -ig/-in, -ot/-op, -ug/-un, -it/-id, -ip/-ick, -ill/-im, -ap/-ad, -ag/-am, -ack/-ash, -et/-ell, -eck/-est, -og/-ock, -ob/-ox, -ut/-ub, -uck/-ump) and ⭐ Mixed Practice sheets for each vowel.
 
 ### 4b. Decoding Strategy — Sound It Out (cross-cutting)
-- Teach an explicit 4-step strategy for reading unfamiliar but decodable words: **look** at each letter → **say** each sound → **slide** the sounds together → **say** the word.
-- Apply the strategy to **new words the child has never seen before** (e.g., *yam, peg, web, hex, plum, gulp, moth*) so the learner discovers that phonics knowledge unlocks any regular word, not just memorized ones.
-- Reinforce that two letters can form one sound (digraphs: *sh, ch, th*) or two sounds glued together (blends: *sn, cl, gr, -nd, -lp*).
-- Mix in "real or silly?" exercises so the child sounds out blindly before judging meaning — building trust in the decoding process.
-- Extend the strategy to **multi-syllable words** by chunking: spot each chunk (one vowel sound each), sound out each chunk, then push the chunks together (*sun·set*, *nap·kin*, *fan·tas·tic*).
-- Apply the chunking strategy in **rich reading contexts** (illustrated maps, restaurant menus, tongue twisters, branching adventure stories) so the child practices decoding inside meaningful, motivating material — not only on drills.
-- Re-use this strategy whenever a new phonics pattern is introduced in Terms 2–4.
+
+Teach these stages in order. Move on when the learner can complete the current
+stage accurately without guessing from a picture.
+
+1. **CVC words:** look at the letters, say each sound, slide the sounds
+   together, then say the word (*yam, peg, web*).
+2. **Digraphs and blends:** first teach that a digraph represents one sound
+   (*sh, ch, th*) while every sound in a blend can still be heard (*sn, cl,
+   gr*). Then apply the same blending routine.
+3. **Two-syllable words:** mark the spoken beats, find a readable part in each
+   beat, read each part, then combine them (*sun·set, nap·kin*).
+4. **Longer words and connected text:** only after two-syllable words are
+   comfortable, extend the routine to longer words and stories.
+
+Use occasional decodable made-up words to check that the learner is decoding
+rather than memorizing, but explain that the item is made up after it is read.
+Re-use the strategy whenever a new phonics pattern is introduced.
 
 📂 **Repo materials:** [Sound It Out — index](17_sound_it_out/index.html) — 13 sheets in two strands:
 - *Drill strand (sheets 1–5):* [Step by Step](17_sound_it_out/01_sound_it_out_steps.html) (the 4-step strategy with new CVC words), [Bigger New Words](17_sound_it_out/02_bigger_new_words.html) (blend &amp; digraph words), [Mystery Word Mix ⭐](17_sound_it_out/03_mystery_word_mix.html) (mixed mystery-word practice with speed-read &amp; match-the-meaning), [2-Syllable Words](17_sound_it_out/04_two_syllable_words.html) (chunk-and-blend on compounds and closed-closed words), [3-Syllable Words](17_sound_it_out/05_three_syllable_words.html) (extend the chunk-and-blend strategy to simple 3-chunk words like *fantastic*, *contestant*, *magnetic*, *chickenpox*).
@@ -146,7 +161,9 @@ are, they, have, what, when, with, this, that, then, them, their, here, there, w
 
 ### 6. Fluency
 - Read short decodable books with digraphs, blends, and long vowels.
-- Re-read to improve smoothness; read at a steady pace ≈ 30–50 wpm by end of term.
+- Re-read to improve accuracy and smoothness. Rate is secondary; when local
+  assessment guidance uses a rate, aim toward 30–50 correct words per minute
+  on an unfamiliar Grade 1 passage by the end of term.
 - Use punctuation (. ? !) to guide expression.
 - Read simple dialogue with different "voices". **(needs exercises)** *(See also: [Fluency Passages — index](15_fluency_passages/index.html) — especially [The Big Storm](15_fluency_passages/04_the_big_storm.html) for dialogue &amp; expression.)*
 
@@ -208,8 +225,11 @@ because, before, after, around, another, every, never, only, other, over, under,
 📂 **Repo materials:** [Thematic Word Sets — index](12b_thematic_word_sets/index.html) — Term 3 "Wider World" sheets: [Number Words to 100](12b_thematic_word_sets/14_number_words_to_100.html), [Time Words](12b_thematic_word_sets/15_time_words.html), [Place &amp; Community Words](12b_thematic_word_sets/16_place_community_words.html), [Action Verbs](12b_thematic_word_sets/17_action_verbs.html), [Feeling Words](12b_thematic_word_sets/18_feeling_words.html), [Animal Words: Wild](12b_thematic_word_sets/19_animal_words_wild.html), [Opposites Pairs](12b_thematic_word_sets/20_opposites_pairs.html).
 
 ### 5. Fluency
-- Read passages of 50–100 words with ≥ 95% accuracy.
-- Read aloud at a comfortable pace (50–70 wpm by end of term).
+- Read passages of 50–100 words with ≥ 95% accuracy (no more than 5 errors per
+  100 words).
+- Read aloud at a conversational pace. Where local assessment guidance uses a
+  rate, 50–70 correct words per minute can be a year-end reference range, not a
+  stand-alone pass/fail score.
 - Use expression for dialogue, exclamations, and questions.
 - Self-correct when meaning breaks down.
 
@@ -280,7 +300,9 @@ By the end of Grade 1, the learner should be able to:
 - Read and spell common thematic word sets: colour words, number words 0–20 plus tens to 100, ordinal words (first, second, third…), shape words, days of the week, months, seasons, weather, time words, place/community words, family, body parts, common animals, food, action verbs, feeling words, and opposites pairs.
 
 **Fluency**
-- Read Grade 1 text accurately, at a conversational pace (≈ 50–70 wpm by year-end), with appropriate expression and attention to punctuation.
+- Read unfamiliar Grade 1 text with at least 95% accuracy, appropriate
+  expression, and attention to punctuation. Use rate only alongside accuracy
+  and comprehension.
 
 **Comprehension**
 - Retell a story with characters, setting, and main events in order.

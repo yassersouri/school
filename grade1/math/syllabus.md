@@ -4,6 +4,12 @@ A complete year-long math syllabus aimed at a Canadian Grade 1 level (ages 6–7
 
 The school year is divided into four terms. Pacing is flexible — slow down, repeat, or skip as needed.
 
+> **Context and use:** This is a broad Canadian sequence, not a complete
+> provincial curriculum. Adapt currency, vocabulary, pacing, and expectations
+> to the learner's school program. A topic marked **(needs exercises)** is a
+> curriculum goal without a matching worksheet and should be taught with
+> another resource.
+
 ---
 
 ## Strands and Big Ideas
@@ -116,6 +122,9 @@ Each term cycles through several strands so concepts spiral rather than appear o
 ## Term 3 — Place Value & Two-Digit Addition (March – May)
 
 ### 1. Place Value to 100
+- **Prerequisite check:** compose numbers to 10 and count objects by making
+  groups of 10. If grouping is not secure, practise it before symbolic
+  two-digit work.
 - Group objects into tens and ones.
 - Read, write, and represent two-digit numbers as tens + ones (47 = 4 tens + 7 ones).
 - Show numbers with base-10 blocks, ten-frames, and place-value tables.
@@ -135,7 +144,7 @@ Each term cycles through several strands so concepts spiral rather than appear o
 📂 **Repo materials:** [Addition Without Regrouping — index](02_addition_no_regrouping/index.html) — [Tutorial](02_addition_no_regrouping/00_no_regrouping_tutorial.html), [Up to 20](02_addition_no_regrouping/01_no_regrouping_up_to_20.html), [Up to 30](02_addition_no_regrouping/02_no_regrouping_up_to_30.html), [Up to 40](02_addition_no_regrouping/03_no_regrouping_up_to_40.html), [Up to 50](02_addition_no_regrouping/04_no_regrouping_up_to_50.html), [Up to 100](02_addition_no_regrouping/05_no_regrouping_up_to_100.html), [Ten-Frame Exercises](02_addition_no_regrouping/06_ten_frame_exercises.html).
 
 ### 4. Two-Digit Addition With Regrouping
-- Understand that 10 ones can be regrouped (carried) as 1 ten.
+- Understand that 10 ones can be regrouped as 1 ten.
 - Add two-digit numbers with regrouping, starting within 20, then 50, then 100.
 - Use ten-frames, base-10 blocks, place-value tables, and vertical carrying.
 
@@ -180,7 +189,9 @@ Extensions **(needs exercises):** two-digit + two-digit with regrouping up to 50
 - Read and answer questions about a graph: most, least, same, total. **(needs exercises)**
 
 ### 3. Probability (informal)
-- Use everyday language to describe chance: always, sometimes, never, more likely, less likely, equally likely. **(needs exercises)**
+- Begin with certain and impossible events (**always**, **never**), then events
+  that happen **sometimes**. Compare familiar events using **more likely**,
+  **less likely**, and **equally likely**. **(needs exercises)**
 
 ### 4. Financial Literacy — Money
 - Recognize and name Canadian coins: nickel (5¢), dime (10¢), quarter (25¢), loonie ($1), toonie ($2), and the $5 bill.
