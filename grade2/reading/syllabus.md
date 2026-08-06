@@ -1,8 +1,10 @@
 # Grade 2 Reading — Comprehensive Syllabus
 
-A complete year-long reading syllabus aimed at a Canadian Grade 2 level (ages 7–8). It builds on Grade 1’s phonics, sight-word, and fluency foundation and extends the learner into multisyllabic decoding, morphology, richer vocabulary, longer texts, and deeper comprehension. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
+A complete year-long reading syllabus aimed at a Canadian Grade 2 level (ages 7–8). It builds on Grade 1's phonics, sight-word, and fluency foundation and extends the learner into multisyllabic decoding, morphology, richer vocabulary, longer texts, and deeper comprehension. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
 
 The school year is divided into four terms. Pacing is flexible — slow down, repeat, or skip as needed.
+
+> **Curriculum alignment note:** Cross-checked against the official **BC Ministry of Education English Language Arts curriculum** (curriculum.gov.bc.ca, Grade 2). Unlike Math, BC's ELA curriculum for Grade 2 is holistic and competency-based rather than a checklist of named topics — its official content areas are broadly "Story/text elements," "Strategies and processes" (reading, oral language, metacognitive, writing), and "Language features, structures, and conventions" (word patterns/families, letter formation, sentence structure including compound sentences, punctuation, and capitalization). It does not name specific sub-skills like "syllable types" or "prefixes and suffixes" the way this syllabus does — those are a standard, developmentally appropriate breakdown of BC's "reading strategies" and "word patterns" strands used here for clarity and sequencing, not a mismatch with an official BC grade-level list the way multiplication was for Math.
 
 ---
 

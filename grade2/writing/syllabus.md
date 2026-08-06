@@ -4,6 +4,8 @@ A complete year-long writing syllabus aimed at a Canadian Grade 2 level (ages 7â
 
 The year is organized into four terms. Pacing can stay flexible so students have time to plan, talk, draft, revise, and publish with confidence.
 
+> **Curriculum alignment note:** Cross-checked against the official **BC Ministry of Education English Language Arts curriculum** (curriculum.gov.bc.ca, Grade 2), which covers reading and writing together rather than as separate subjects. BC's explicit Grade 2 writing-related content is "letter formation" (legible printing with spacing), "sentence structure" (including compound sentences), and "conventions" (end punctuation and capitalization) plus general "writing processes" (revising, editing, considering audience) â€” it does not itemize specific grammar topics like "nouns/verbs/adjectives" the way this syllabus does. Those are a standard, developmentally appropriate breakdown used here for clarity and sequencing, not a mismatch with an official BC grade-level list the way multiplication was for Math.
+
 ---
 
 ## Strands and Big Ideas

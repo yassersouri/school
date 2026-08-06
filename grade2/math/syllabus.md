@@ -1,8 +1,10 @@
 # Grade 2 Math — Comprehensive Syllabus
 
-A complete year-long math syllabus aimed at a Canadian Grade 2 level (ages 7–8). It covers every strand expected at this level — number sense, operations, patterning & algebra, measurement, geometry, data, probability, fractions, and financial literacy — whether or not practice sheets currently exist in the repo. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
+A complete year-long math syllabus aimed at a Canadian Grade 2 level (ages 7–8), cross-checked against the official **BC Ministry of Education Mathematics curriculum** (curriculum.gov.bc.ca, Grade 2). It covers every strand expected at this level — number sense, operations, patterning & algebra, measurement, geometry, data, probability, fractions, and financial literacy — whether or not practice sheets currently exist in the repo. Links to existing repo sheets are included as 📂 references; missing materials are marked **(needs exercises)** so they can be filled in later.
 
 The school year is divided into four terms. Pacing is flexible — slow down, revisit, or enrich as needed.
+
+> **Curriculum alignment note:** Everything in Terms 1–2, plus the Geometry (2-D/3-D shapes) and Measurement–Length topics, are explicit **BC Grade 2** content standards. A few items are flagged **🌟 Enrichment (BC Grade 3 content)** — multiplication, division, and fractions are officially introduced in **BC Grade 3**, not Grade 2 (confirmed directly against curriculum.gov.bc.ca/curriculum/mathematics/3). They're kept here as optional early exposure since many classrooms preview them informally, but they are not required Grade 2 material. A handful of other everyday topics (telling time; mass, capacity, area, and temperature) go a little beyond BC's explicit Grade 2 list too and are marked **(general enrichment)** for the same reason.
 
 ---
 
@@ -11,13 +13,13 @@ The school year is divided into four terms. Pacing is flexible — slow down, re
 Grade 2 math is organized around eight strands:
 
 1. **Number Sense** — counting, place value, comparing, representing, and naming numbers.
-2. **Operations** — addition, subtraction, early multiplication, early division, and relationships between operations.
+2. **Operations** — addition, subtraction, and the relationship between them, to 100.
 3. **Patterning & Algebra** — repeating and growing patterns, equality, missing numbers, and simple rules.
-4. **Measurement** — length, mass, capacity, area, time, temperature, and money.
+4. **Measurement** — length (core BC Grade 2), plus mass, capacity, area, time, temperature, and money as everyday enrichment.
 5. **Geometry & Spatial Sense** — 2-D shapes, 3-D objects, partitions, symmetry, and position.
 6. **Data Management** — collecting, organizing, graphing, and interpreting data.
 7. **Probability** — describing likelihood with everyday language.
-8. **Fractions & Financial Literacy** — equal shares, fractions of sets and wholes, and coin values.
+8. **🌟 Enrichment (BC Grade 3 preview)** — early multiplication, early division, and fractions of sets and wholes. Optional, not required BC Grade 2 content.
 
 Each term revisits multiple strands so learning spirals through the year.
 
@@ -54,12 +56,12 @@ Each term revisits multiple strands so learning spirals through the year.
 
 📂 **Repo materials:** [Comparing, Ordering, 10 More & 10 Less](01_place_value_to_100/03_compare_order_numbers.html).
 
-### 5. Patterning & Algebra (intro review)
+### 5. Patterning & Algebra (intro review) *(BC Grade 2 core)*
 - Extend and create repeating patterns with shapes, sounds, colors, and actions.
 - Describe a growing pattern rule in words. **(needs exercises)**
 - Solve simple missing-number equations such as `23 + ☐ = 30`. **(needs exercises)**
 
-### 6. Geometry Review
+### 6. Geometry Review *(BC Grade 2 core — see also Term 3 §1)*
 - Identify and sort 2-D shapes and 3-D objects by attributes.
 - Build shapes and objects using blocks, pattern blocks, and drawings. **(needs exercises)**
 
@@ -101,16 +103,53 @@ Each term revisits multiple strands so learning spirals through the year.
 
 📂 **Repo materials:** [Regrouping Word Problems](02_addition_subtraction_regrouping_100/03_regrouping_word_problems.html).
 
-### 6. Measurement — Time and Money (intro)
-- Tell time to the hour, half hour, and quarter hour. **(needs exercises)**
-- Count collections of Canadian coins with values to $2.00. **(needs exercises)**
+### 6. Measurement — Time and Money (intro) *(time is general enrichment; money/coins is BC Grade 2 core)*
+- Tell time to the hour, half hour, and quarter hour. **(needs exercises)** *(general enrichment)*
+- Count collections of Canadian coins with values to $2.00 *(BC Grade 2 core: financial literacy — coin combinations to 100 cents, extended here to $2.00)*. **(needs exercises)**
 - Connect number words for coin names with [Reading Syllabus — Thematic Word Sets](../reading/syllabus.md#6-thematic-word-sets--introductory-categories).
 
 ---
 
-## Term 3 — Multiplication, Division Concepts, and Measurement (March – May)
+## Term 3 — Geometry, Measurement, and Grade 3 Preview (March – May)
 
-### 1. Intro to Multiplication
+### 1. 2-D Shapes and 3-D Objects *(BC Grade 2 core)*
+- Sort 2-D shapes and 3-D objects using two attributes and explain the sorting rule.
+- Describe, compare, and construct 2-D shapes, including triangles, squares, rectangles, and circles.
+- Identify 2-D shapes as part of 3-D objects (e.g. a cube's faces are squares).
+- Name common 3-D objects — cubes, spheres, cones, cylinders, and rectangular prisms — and connect them to real-world objects.
+
+📂 **Repo materials:** [2-D Shapes and 3-D Objects — index](04_shapes_2d_3d_objects/index.html) — [Describing and Sorting 2-D Shapes](04_shapes_2d_3d_objects/01_describing_and_sorting_2d_shapes.html), [3-D Objects All Around Us](04_shapes_2d_3d_objects/02_3d_objects_all_around_us.html), [Shape and Object Attributes Practice](04_shapes_2d_3d_objects/03_shape_and_object_attributes.html).
+
+### 2. Measurement — Length in Centimetres and Metres *(BC Grade 2 core)*
+- Estimate length by comparing to something familiar.
+- Measure and record length, height, and width using standard metric units (centimetres).
+- Compare lengths directly and order objects from shortest to longest.
+- Recognize the metre as a bigger unit for longer distances and choose a sensible unit (cm vs. m).
+
+📂 **Repo materials:** [Measurement — Length — index](05_measurement_length/index.html) — [Measuring with a Ruler](05_measurement_length/01_measuring_with_a_ruler.html), [Estimate Then Measure](05_measurement_length/02_estimate_then_measure.html), [Centimetres and Metres](05_measurement_length/03_centimetres_and_metres.html).
+
+### 3. Measurement — Mass, Capacity, Area, and Temperature *(general enrichment — beyond BC's explicit Grade 2 list)*
+- Estimate and compare mass using grams and kilograms informally. **(needs exercises)**
+- Compare capacity using litres informally. **(needs exercises)**
+- Cover surfaces and compare area with standard and non-standard units. **(needs exercises)**
+- Read temperatures in everyday contexts. **(needs exercises)**
+
+### 4. Patterning & Algebra *(BC Grade 2 core)*
+- Extend growing and shrinking number patterns, including positional and circular patterns.
+- Describe input/output rules such as “add 5” or “take away 2.” **(needs exercises)**
+- Solve missing-number equations in all positions, and use symbols for equality and inequality. **(needs exercises)**
+
+### 5. Lines of Symmetry and Spatial Language *(general enrichment — beyond BC's explicit Grade 2 list)*
+- Recognize lines of symmetry in simple figures. **(needs exercises)**
+- Use positional language in maps and movement. **(needs exercises)**
+
+---
+
+### 🌟 Enrichment — BC Grade 3 Preview (Optional)
+
+The three items below are officially **BC Grade 3** content (confirmed against curriculum.gov.bc.ca/curriculum/mathematics/3, which introduces "multiplication and division" and "fraction concepts" as new Grade 3 material). They're kept here as an optional early taste of what's coming, not as required Grade 2 work.
+
+#### Intro to Multiplication
 - Understand multiplication as equal groups and repeated addition.
 - Read and write multiplication sentences using the `×` symbol.
 - Use the words **factor** and **product** in age-appropriate ways.
@@ -118,40 +157,22 @@ Each term revisits multiple strands so learning spirals through the year.
 
 📂 **Repo materials:** [Intro to Multiplication — index](03_intro_multiplication/index.html) — [Equal Groups Adventure](03_intro_multiplication/01_equal_groups.html), [Amazing Arrays](03_intro_multiplication/02_arrays_skip_counting.html), [Multiplication Word Problems](03_intro_multiplication/03_multiplication_word_problems.html).
 
-### 2. Intro to Division Concepts
+#### Intro to Division Concepts
 - Share objects equally into groups.
 - Describe division as fair sharing and repeated subtraction in informal ways. **(needs exercises)**
 - Connect division stories to multiplication facts. **(needs exercises)**
 
-### 3. Skip Counting and Fact Patterns
-- Skip count by 2s, 5s, and 10s to support multiplication fact fluency.
+#### Skip Counting and Multiplication Fact Patterns
+- Skip count by 2s, 5s, and 10s (this part *is* core BC Grade 2 — see Term 1 §1) to support multiplication fact fluency (the multiplication connection is the Grade 3 preview piece).
 - Notice patterns in the ones digits of skip-counting sequences.
 
 📂 **Repo materials:** [Amazing Arrays](03_intro_multiplication/02_arrays_skip_counting.html), [Multiplication Word Problems](03_intro_multiplication/03_multiplication_word_problems.html).
 
-### 4. Measurement — Length, Mass, Capacity, Area, and Temperature
-- Measure length using centimetres and metres. **(needs exercises)**
-- Estimate and compare mass using grams and kilograms informally. **(needs exercises)**
-- Compare capacity using litres informally. **(needs exercises)**
-- Cover surfaces and compare area with standard and non-standard units. **(needs exercises)**
-- Read temperatures in everyday contexts. **(needs exercises)**
-
-### 5. Geometry & Spatial Sense
-- Identify polygons, circles, spheres, prisms, pyramids, cones, and cylinders.
-- Recognize lines of symmetry in simple figures. **(needs exercises)**
-- Partition shapes into equal parts as a bridge to fractions. **(needs exercises)**
-- Use positional language in maps and movement. **(needs exercises)**
-
-### 6. Patterning & Algebra
-- Extend growing and shrinking number patterns.
-- Describe input/output rules such as “add 5” or “take away 2.” **(needs exercises)**
-- Solve missing-number equations in all positions. **(needs exercises)**
-
 ---
 
-## Term 4 — Fractions, Data, Probability, and Year-End Application (June)
+## Term 4 — Fractions Preview, Data, Probability, and Year-End Application (June)
 
-### 1. Fractions of a Whole and a Set
+### 🌟 1. Fractions of a Whole and a Set *(Enrichment — BC Grade 3 preview)*
 - Partition wholes into halves, thirds, and fourths.
 - Identify equal and unequal parts.
 - Find halves, thirds, and fourths of sets using counters and drawings.
@@ -159,7 +180,7 @@ Each term revisits multiple strands so learning spirals through the year.
 
 **(needs exercises)**
 
-### 2. Data Management
+### 2. Data Management *(BC Grade 2 core)*
 - Ask simple survey questions.
 - Collect, sort, tally, and organize data.
 - Create pictographs, bar graphs, and tally charts.
@@ -179,7 +200,7 @@ Each term revisits multiple strands so learning spirals through the year.
 - Solve simple money stories involving buying and change. **(needs exercises)**
 
 ### 5. Review and Integrated Problem Solving
-- Combine place value, operations, multiplication concepts, geometry, measurement, and data in mixed review tasks.
+- Combine place value, operations, geometry, measurement, and data in mixed review tasks (plus multiplication/fraction enrichment if it was explored).
 - Explain solutions clearly and check work using another strategy.
 
 **(needs exercises)**
@@ -199,18 +220,16 @@ By the end of Grade 2, the learner should be able to:
 - Add and subtract within 100 using mental strategies and regrouping.
 - Solve one-step and simple two-step problems.
 - Check work using inverse operations.
-- Model multiplication as equal groups, repeated addition, and arrays.
-- Understand division as equal sharing in introductory contexts.
 
 **Patterning & Algebra**
 - Extend and describe repeating and growing patterns.
 - Solve missing-number problems and simple rule-based patterns.
 
 **Measurement**
-- Measure and compare length, mass, capacity, area, time, temperature, and money using age-appropriate tools and units.
+- Measure and compare length using centimetres and metres (core); mass, capacity, area, time, and temperature as everyday enrichment.
 
 **Geometry**
-- Identify and describe common 2-D shapes and 3-D objects.
+- Identify and describe common 2-D shapes and 3-D objects, and sort them by attributes.
 - Recognize symmetry and equal partitions.
 - Use spatial language to describe location and movement.
 
@@ -219,7 +238,9 @@ By the end of Grade 2, the learner should be able to:
 - Use everyday likelihood language appropriately.
 - Count and use Canadian money in simple real-life situations.
 
-**Fractions**
+**🌟 Enrichment (BC Grade 3 preview, optional)**
+- Model multiplication as equal groups, repeated addition, and arrays.
+- Understand division as equal sharing in introductory contexts.
 - Partition wholes and sets into halves, thirds, and fourths and describe them with correct vocabulary.
 
 ---
@@ -228,17 +249,16 @@ By the end of Grade 2, the learner should be able to:
 
 To support topics above that don't yet have practice sheets, future folders under `grade2/math/` might include:
 
-- `04_counting_patterns_to_1000/`
-- `05_mental_math_strategies/`
-- `06_missing_number_equations/`
-- `07_intro_division_equal_sharing/`
-- `08_measurement_length_cm_m/`
-- `09_measurement_mass_capacity/`
+- `06_counting_patterns_to_1000/`
+- `07_mental_math_strategies/`
+- `08_missing_number_equations/`
+- `09_measurement_mass_capacity_area_temp/`
 - `10_time_money/`
-- `11_geometry_shapes_objects_symmetry/`
+- `11_symmetry_spatial_language/`
 - `12_patterning_algebra/`
-- `13_fractions_halves_thirds_fourths/`
-- `14_data_management_graphing/`
-- `15_probability_language/`
-- `16_financial_literacy_canadian_money/`
-- `17_mixed_review_and_problem_solving/`
+- `13_data_management_graphing/`
+- `14_probability_language/`
+- `15_financial_literacy_canadian_money/`
+- `16_mixed_review_and_problem_solving/`
+- `17_enrichment_intro_division_equal_sharing/` *(🌟 Grade 3 preview)*
+- `18_enrichment_fractions_halves_thirds_fourths/` *(🌟 Grade 3 preview)*

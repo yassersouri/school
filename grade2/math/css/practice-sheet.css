@@ -3,6 +3,20 @@
    Required variables: --accent, --accent-bg, --heading-color,
    --title-color, --answer-key-color
    Optional: --page-gap (default 12px), --page-padding (default 12mm 16mm)
+
+   Math components:
+   - .problem-grid / .problem-grid-2 / .problem-grid-3 / .problem-card
+   - .vertical-grid / .vertical-problem for column arithmetic
+   - .tf-grid / .tf-card / .tf-circles / .tf-circle for quick choice cards
+   - .word-problem-list for printed question lists (always use with <ul>)
+   - .tip-box for hints and reminders
+   - .number-line for simple number strips
+   - .match-container / .match-col / .match-item / .match-dots for draw-a-line matching
+   - .place-value-grid / .pv-card / .pv-table for place-value and mini tables
+   - .sort-cols / .sort-col / .sort-slot for printed sort-and-write activities
+   - .label-row / .label-chip for word banks or category labels
+   - .attr-table as a generic attribute table alias matching .pv-table styling
+   - .ruler for inline SVG ruler containers and .draw-box for free-draw spaces
    ─────────────────────────────────────────────────────────────── */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,8 +50,8 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfa
 .vertical-problem .vp-ans { min-height: 28px; }
 
 .tf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-.tf-card { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 8px 12px; font-size: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
-.tf-circles { display: flex; gap: 6px; }
+.tf-card { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 8px 12px; font-size: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+.tf-circles { display: flex; gap: 6px; flex-wrap: wrap; }
 .tf-circle { width: 28px; height: 28px; border: 2px solid var(--title-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; color: var(--title-color); }
 
 .word-problem-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
@@ -55,15 +69,37 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfa
 .match-container { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: start; }
 .match-col { display: flex; flex-direction: column; gap: 8px; }
 .match-item { background: #fff; border: 2px solid var(--accent); border-radius: 8px; padding: 6px 12px; font-size: 16px; font-weight: bold; text-align: center; }
-.match-dots { display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; }
+.match-dots { display: flex; flex-direction: column; gap: 17px; align-items: center; justify-content: center; padding-top: 4px; }
+.match-dots span { width: 10px; height: 10px; border: 2px solid var(--title-color); border-radius: 50%; display: block; }
 
 .place-value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
 .pv-card { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 10px; text-align: center; }
 .pv-card .pv-problem { font-size: 16px; font-weight: bold; color: var(--heading-color); margin-bottom: 8px; }
-.pv-table { width: 100%; border-collapse: collapse; }
-.pv-table th { font-size: 11px; color: var(--title-color); border-bottom: 2px solid var(--accent); padding: 2px 6px; }
-.pv-table td { font-size: 18px; font-weight: bold; color: var(--heading-color); padding: 4px 6px; text-align: center; border-bottom: 1px dashed #ccc; }
+.pv-table, .attr-table { width: 100%; border-collapse: collapse; background: #fff; }
+.pv-table th, .attr-table th { font-size: 11px; color: var(--title-color); border-bottom: 2px solid var(--accent); padding: 4px 6px; background: rgba(255,255,255,0.75); }
+.pv-table td, .attr-table td { font-size: 18px; font-weight: bold; color: var(--heading-color); padding: 6px; text-align: center; border-bottom: 1px dashed #ccc; }
 .pv-table .pv-blank { border-bottom: 2px solid #333; display: inline-block; width: 24px; height: 18px; }
+.attr-table td:first-child, .attr-table th:first-child { text-align: left; font-size: 14px; }
+
+.sort-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.sort-col { border: 2px solid var(--accent); border-radius: 8px; padding: 8px; background: #fff; }
+.sort-col h4 { font-size: 12px; color: var(--title-color); text-align: center; margin-bottom: 4px; }
+.sort-slot { border-bottom: 1.5px solid var(--title-color); height: 22px; margin-bottom: 8px; }
+.sort-slot:last-child { margin-bottom: 0; }
+
+.label-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: #fff; border: 1.5px dashed var(--accent); border-radius: 10px; padding: 8px 10px; margin-bottom: 10px; }
+.label-chip { border: 1.5px solid var(--accent); border-radius: 14px; padding: 2px 10px; font-size: 12px; color: var(--title-color); background: var(--accent-bg); }
+
+.ruler { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 8px; }
+.draw-box { height: 54px; border: 2px dashed var(--accent); border-radius: 10px; background: #fff; margin-top: 6px; }
+.compare-row { display: grid; grid-template-columns: 1fr auto 1fr auto; gap: 10px; align-items: center; background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 8px 10px; }
+.compare-choices { display: flex; gap: 6px; }
+.order-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.order-list li { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 8px 10px; font-size: 14px; }
+.icon-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.icon-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; text-align: center; }
+.icon-card svg { display: block; margin: 0 auto 6px; }
+.object-note { font-size: 11px; color: #666; }
 
 .answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 10px; color: #888; }
 .answer-key strong { color: var(--answer-key-color, var(--title-color)); }
