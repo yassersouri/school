@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Amazing Arrays</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #5e35b1;
+      --accent: #7e57c2;
+      --accent-bg: #ede7f6;
+      --title-color: #512da8;
+      --answer-key-color: #512da8;
+    }
+    .array-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .array-card { background: #fff; border: 2px solid var(--accent); border-radius: 12px; padding: 10px; }
+    .array-dots { display: grid; gap: 6px; justify-content: center; margin-bottom: 8px; }
+    .array-dots.r2c5 { grid-template-columns: repeat(5, 14px); }
+    .array-dots.r3c4 { grid-template-columns: repeat(4, 14px); }
+    .array-dots.r4c3 { grid-template-columns: repeat(3, 14px); }
+    .array-dots.r5c2 { grid-template-columns: repeat(2, 14px); }
+    .array-dots.r2c4 { grid-template-columns: repeat(4, 14px); }
+    .array-dots.r3c5 { grid-template-columns: repeat(5, 14px); }
+    .dot { width: 14px; height: 14px; border-radius: 50%; background: #7e57c2; }
+    .skip-list { display: flex; flex-direction: column; gap: 8px; }
+    .skip-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px 12px; font-size: 15px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header">
+    <h1>🟣 Amazing Arrays</h1>
+    <p>Rows and columns help us multiply!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Count the array dots 🔢</div>
+    <div class="exercise-instruction">Count by rows or columns, then write the multiplication sentence.</div>
+    <div class="array-grid">
+      <div class="array-card"><div class="array-dots r2c5"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>Rows × columns: <span class="blank-wide"></span><br/>Total: <span class="blank"></span></div>
+      <div class="array-card"><div class="array-dots r3c4"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>Rows × columns: <span class="blank-wide"></span><br/>Total: <span class="blank"></span></div>
+      <div class="array-card"><div class="array-dots r4c3"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>Rows × columns: <span class="blank-wide"></span><br/>Total: <span class="blank"></span></div>
+      <div class="array-card"><div class="array-dots r5c2"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>Rows × columns: <span class="blank-wide"></span><br/>Total: <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Skip-count the rows 🦘</div>
+    <div class="exercise-instruction">Write the skip-counting pattern and the total.</div>
+    <div class="skip-list">
+      <div class="skip-card">3 rows of 5 → 5, 10, <span class="blank"></span> → total <span class="blank"></span></div>
+      <div class="skip-card">4 rows of 2 → 2, 4, 6, <span class="blank"></span> → total <span class="blank"></span></div>
+      <div class="skip-card">2 rows of 10 → 10, <span class="blank"></span> → total <span class="blank"></span></div>
+      <div class="skip-card">5 rows of 2 → 2, 4, 6, 8, <span class="blank"></span> → total <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 1) 2×5=10, 3×4=12, 4×3=12, 5×2=10 &nbsp;|&nbsp; 2) 15 and 15; 8 and 8; 20 and 20; 10 and 10</div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h1>🟣 Amazing Arrays</h1>
+    <p>Build your own rows and columns!</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Draw the array 🎨</div>
+    <div class="exercise-instruction">Draw dots in rows and columns to match the sentence.</div>
+    <div class="problem-grid-3">
+      <div class="pv-card"><div class="pv-problem">2 × 4</div><div style="height:110px; border:2px dashed #c7b9ea; border-radius:8px;"></div></div>
+      <div class="pv-card"><div class="pv-problem">3 × 3</div><div style="height:110px; border:2px dashed #c7b9ea; border-radius:8px;"></div></div>
+      <div class="pv-card"><div class="pv-problem">4 × 5</div><div style="height:110px; border:2px dashed #c7b9ea; border-radius:8px;"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Choose the matching sentence 🎯</div>
+    <div class="exercise-instruction">Pick the multiplication sentence that matches.</div>
+    <ul class="word-problem-list">
+      <li>An array has 2 rows of 4. Is it 2 × 4 or 4 × 2? <span class="blank-wide"></span></li>
+      <li>An array has 3 rows of 5. Is it 3 × 5 or 5 × 3? <span class="blank-wide"></span></li>
+      <li>An array has 4 rows of 2. Is it 4 × 2 or 2 × 4? <span class="blank-wide"></span></li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Fact practice table 📋</div>
+    <div class="exercise-instruction">Complete the table.</div>
+    <table class="pv-table">
+      <tr><th>Rows</th><th>Columns</th><th>Sentence</th><th>Total</th></tr>
+      <tr><td>2</td><td>5</td><td>2 × 5</td><td><span class="pv-blank"></span></td></tr>
+      <tr><td>3</td><td>2</td><td>3 × 2</td><td><span class="pv-blank"></span></td></tr>
+      <tr><td>5</td><td>5</td><td>5 × 5</td><td><span class="pv-blank"></span></td></tr>
+    </table>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 3) 2×4=8, 3×3=9, 4×5=20 &nbsp;|&nbsp; 4) 2×4, 3×5, 4×2 &nbsp;|&nbsp; 5) 10, 6, 25</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Two-Digit Addition With Regrouping</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #5e35b1;
+      --accent: #7e57c2;
+      --accent-bg: #ede7f6;
+      --title-color: #4527a0;
+      --answer-key-color: #4527a0;
+    }
+    .demo-row { display: flex; justify-content: center; gap: 30px; flex-wrap: wrap; align-items: center; }
+    .vert-demo { display: inline-flex; flex-direction: column; align-items: flex-end; font-size: 34px; font-weight: bold; color: var(--heading-color); background: #fff; border: 3px solid #c7b9ea; border-radius: 14px; padding: 14px 22px; line-height: 1.15; }
+    .vert-demo .carry { font-size: 18px; color: #d81b60; margin-right: 6px; }
+    .vert-demo .line { width: 100%; border-top: 4px solid #333; margin: 5px 0; }
+    .base10-note { max-width: 300px; font-size: 13px; color: #5f5582; }
+    .carry-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+    .sum-check { font-size: 12px; color: #666; margin-top: 6px; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header">
+    <h1>🚀 Add With Regrouping</h1>
+    <p>Carry the extra ten and zoom ahead!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Quick tutorial: carry the 1 🔄</div>
+    <div class="exercise-instruction">When the ones add to 10 or more, regroup 10 ones as 1 ten.</div>
+    <div class="demo-row">
+      <div class="vert-demo">
+        <div class="carry">¹</div>
+        <div>27</div>
+        <div>+ 8</div>
+        <div class="line"></div>
+        <div>35</div>
+      </div>
+      <div class="base10-note"><strong>How it works:</strong><br/>7 ones + 8 ones = 15 ones.<br/>Write 5 ones. Carry 1 ten.<br/>Then 2 tens + 1 carried ten = 3 tens.</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Warm-up sums 🌟</div>
+    <div class="exercise-instruction">Solve these vertical addition problems. Each one needs regrouping.</div>
+    <div class="carry-grid">
+      <div class="vertical-problem"><div class="vp-op">27</div><div class="vp-op">+ 8</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">16</div><div class="vp-op">+ 7</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">38</div><div class="vp-op">+ 5</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">24</div><div class="vp-op">+ 9</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">45</div><div class="vp-op">+ 6</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Two-digit plus two-digit 🐝</div>
+    <div class="exercise-instruction">Add carefully. First add ones, then regroup if needed.</div>
+    <div class="vertical-grid">
+      <div class="vertical-problem"><div class="vp-op">28</div><div class="vp-op">+ 17</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">36</div><div class="vp-op">+ 25</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">47</div><div class="vp-op">+ 16</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">58</div><div class="vp-op">+ 14</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">29</div><div class="vp-op">+ 24</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+    </div>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 2) 35, 23, 43, 33, 51 &nbsp;|&nbsp; 3) 45, 61, 63, 72, 53</div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h1>🚀 Add With Regrouping</h1>
+    <p>Level up to sums within 100!</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Add and check 📦</div>
+    <div class="exercise-instruction">Solve the sum, then whisper the answer to a friend or teacher to check.</div>
+    <div class="vertical-grid">
+      <div class="vertical-problem"><div class="vp-op">46</div><div class="vp-op">+ 27</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">59</div><div class="vp-op">+ 18</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">67</div><div class="vp-op">+ 15</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">38</div><div class="vp-op">+ 44</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+      <div class="vertical-problem"><div class="vp-op">75</div><div class="vp-op">+ 16</div><div class="vp-line"></div><div class="vp-ans"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Missing addend challenge 🧩</div>
+    <div class="exercise-instruction">Find the missing number.</div>
+    <div class="problem-grid">
+      <div class="problem-card">34 + ☐ = 52</div>
+      <div class="problem-card">☐ + 18 = 47</div>
+      <div class="problem-card">29 + ☐ = 63</div>
+      <div class="problem-card">☐ + 16 = 81</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Sort the sums 🎈</div>
+    <div class="exercise-instruction">Write each answer, then decide: is it less than 70 or greater than 70?</div>
+    <ul class="word-problem-list">
+      <li>48 + 16 = <span class="blank"></span> → less than 70 / greater than 70</li>
+      <li>37 + 28 = <span class="blank"></span> → less than 70 / greater than 70</li>
+      <li>56 + 19 = <span class="blank"></span> → less than 70 / greater than 70</li>
+      <li>68 + 15 = <span class="blank"></span> → less than 70 / greater than 70</li>
+    </ul>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 4) 73, 77, 82, 82, 91 &nbsp;|&nbsp; 5) 18, 29, 34, 65 &nbsp;|&nbsp; 6) 64 less than 70; 65 less than 70; 75 greater than 70; 83 greater than 70</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,98 @@
+/* ── Grade 2 Writing — Shared Practice Sheet Styles ─────────────────
+   Each HTML file sets CSS custom properties on :root to theme it.
+   Required variables: --accent, --accent-bg, --heading-color,
+   --title-color, --answer-key-color
+   Optional: --page-gap, --page-padding, --line-color, --frame-bg
+
+   New writing components:
+   - .write-lines with .write-lines-sentence / .write-lines-paragraph for ruled writing space
+   - .fix-it-sentence for editing a sentence and rewriting it correctly below
+   - .frame-box for sentence frames with inline blanks
+   - .label-row / .label-chip for parts-of-speech labeling
+   - .sort-cols / .sort-col / .sort-slot for noun/verb/adjective sorting
+   - .plan-grid / .plan-box for simple paragraph or story planning
+   ─────────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fffdf7; color: #333; }
+
+.page { width: 210mm; min-height: 297mm; margin: 0 auto 10mm; padding: var(--page-padding, 12mm 16mm); background: #fff; border: 1px solid #ddd; page-break-after: always; display: flex; flex-direction: column; gap: var(--page-gap, 12px); }
+.page-header { text-align: center; }
+.page-header h1 { font-size: var(--h1-size, 20px); color: var(--heading-color); }
+.page-header p, .page-num { font-size: 11px; color: #777; }
+.page-header .page-sub { font-size: 12px; color: #999; }
+.page-num { text-align: right; margin-top: -8px; }
+
+.exercise { border: 2px solid var(--accent); border-radius: 12px; padding: 10px 14px; background: var(--accent-bg); }
+.exercise-title { font-size: 13px; font-weight: bold; color: var(--title-color); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.exercise-title .badge { background: var(--accent); color: #fff; border-radius: 20px; padding: 1px 9px; font-size: 11px; }
+.exercise-instruction { font-size: 11px; color: #555; margin-bottom: 8px; font-style: italic; }
+
+.blank, .blank-wide { display: inline-block; border-bottom: 2px solid #333; height: 22px; vertical-align: middle; }
+.blank { width: 64px; }
+.blank-wide { width: 120px; }
+.fill-box { display: inline-block; width: 42px; height: 34px; border-bottom: 3px solid #333; text-align: center; font-size: 18px; margin: 0 3px; }
+
+.word-bank { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
+.bank-word { background: #fff; border: 1.5px solid var(--accent); border-radius: 6px; padding: 2px 10px; font-size: 13px; font-weight: bold; color: var(--title-color); }
+
+.write-lines { border: 1.5px solid #e0c9a6; border-radius: 10px; background:
+  repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 30px,
+    var(--line-color, #d7b98f) 30px,
+    var(--line-color, #d7b98f) 32px
+  );
+  background-color: #fffefb;
+  padding: 8px 10px 0;
+}
+.write-lines-sentence { min-height: 72px; }
+.write-lines-paragraph { min-height: 208px; }
+.write-lines-tall { min-height: 260px; }
+
+.fix-it-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.fix-it-sentence { background: #fff; border: 1.5px dashed var(--accent); border-radius: 10px; padding: 8px 10px; }
+.fix-it-text { font-size: 15px; margin-bottom: 6px; }
+.fix-it-label { font-size: 11px; color: #777; margin-bottom: 4px; }
+
+.frame-box { background: var(--frame-bg, #fff); border: 2px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: 16px; line-height: 1.9; }
+.frame-box .frame-label { color: var(--title-color); font-weight: bold; }
+
+.sort-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.sort-col { border: 2px solid var(--accent); border-radius: 8px; padding: 8px; background: #fff; }
+.sort-col h4 { font-size: 12px; color: var(--title-color); text-align: center; margin-bottom: 4px; }
+.sort-slot { border-bottom: 1.5px solid var(--title-color); height: 22px; margin-bottom: 6px; }
+
+.label-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; background: #fff; border: 1.5px dashed var(--accent); border-radius: 10px; padding: 8px 10px; }
+.label-chip { border: 1.5px solid var(--accent); border-radius: 14px; padding: 2px 10px; font-size: 12px; color: var(--title-color); background: #fff8ef; }
+
+.plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.plan-box { border: 2px dashed var(--accent); border-radius: 10px; background: #fff; padding: 8px; }
+.plan-box h4 { text-align: center; font-size: 12px; color: var(--title-color); margin-bottom: 6px; }
+.plan-box .write-lines { min-height: 92px; }
+
+.match-list, .sentence-list, .check-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.match-list li, .sentence-list li, .check-list li { background: #fff; border-radius: 8px; padding: 7px 10px; border: 1.5px solid #f2d3ac; font-size: 14px; }
+.two-col { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.three-col { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+.table-simple { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; }
+.table-simple th, .table-simple td { border: 1px solid #f0d7b0; padding: 8px; font-size: 13px; vertical-align: top; }
+.table-simple th { background: #fff7eb; color: var(--title-color); text-align: left; }
+
+.scene-box { border: 2px dashed var(--accent); border-radius: 12px; background: linear-gradient(180deg, #fff8ef, #fff); padding: 12px; font-size: 14px; line-height: 1.6; }
+.scene-box strong { color: var(--title-color); }
+
+.answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 10px; color: #888; }
+.answer-key strong { color: var(--answer-key-color, var(--title-color)); }
+
+@page { size: A4; margin: 0; }
+@media print {
+  body { background: #fff; }
+  .page { border: none; margin: 0; min-height: auto; }
+  .page:last-child { page-break-after: avoid; }
+  .answer-key,
+  .sample-answer,
+  .teacher-note { display: none !important; visibility: hidden !important; height: 0 !important; padding: 0 !important; margin: 0 !important; border: 0 !important; }
+}

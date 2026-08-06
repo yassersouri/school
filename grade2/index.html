@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Grade 2 — Practice Sheets</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fffdf5; color: #333; min-height: 100vh; }
+    .container { max-width: 720px; margin: 0 auto; padding: 32px 20px; }
+    .breadcrumb { font-size: 12px; color: #aaa; margin-bottom: 16px; }
+    .breadcrumb a { color: #e05c00; text-decoration: none; }
+    .breadcrumb a:hover { text-decoration: underline; }
+    h1 { font-size: 26px; text-align: center; color: #e05c00; margin-bottom: 4px; }
+    .subtitle { text-align: center; font-size: 13px; color: #888; margin-bottom: 28px; }
+    .card-grid { display: flex; flex-direction: column; gap: 16px; }
+    .card { display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: #fff; border: 2px solid #f0c040; border-radius: 14px; text-decoration: none; color: #333; transition: transform .12s, box-shadow .12s; }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+    .card-icon { font-size: 36px; flex-shrink: 0; }
+    .card-body { flex: 1; }
+    .card-title { font-size: 18px; font-weight: bold; }
+    .card-desc { font-size: 12px; color: #777; margin-top: 2px; }
+    .card-arrow { font-size: 22px; color: #ccc; flex-shrink: 0; }
+    .card-math .card-title { color: #5e35b1; }
+    .card-math { border-color: #b39ddb; }
+    .card-reading .card-title { color: #c2185b; }
+    .card-reading { border-color: #f48fb1; }
+    .card-writing .card-title { color: #ef6c00; }
+    .card-writing { border-color: #ffcc80; }
+    footer { text-align: center; margin-top: 40px; font-size: 11px; color: #bbb; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="breadcrumb"><a href="../index.html">Home</a> › Grade 2</div>
+    <h1>📝 Grade 2</h1>
+    <p class="subtitle">Choose a subject to practice</p>
+
+    <div class="card-grid">
+      <a class="card card-math" href="math/index.html">
+        <span class="card-icon">🧮</span>
+        <div class="card-body">
+          <div class="card-title">Math</div>
+          <div class="card-desc">Place value, regrouping, and intro multiplication</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+
+      <a class="card card-reading" href="reading/index.html">
+        <span class="card-icon">📖</span>
+        <div class="card-body">
+          <div class="card-title">Reading</div>
+          <div class="card-desc">Syllables, prefixes &amp; suffixes, and comprehension</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+
+      <a class="card card-writing" href="writing/index.html">
+        <span class="card-icon">✍️</span>
+        <div class="card-body">
+          <div class="card-title">Writing</div>
+          <div class="card-desc">Sentences, grammar, and paragraph writing</div>
+        </div>
+        <span class="card-arrow">›</span>
+      </a>
+    </div>
+
+    <footer>Open educational resources — print and practice!</footer>
+  </div>
+</body>
+</html>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Comparing, Ordering, 10 More & 10 Less</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #5e35b1;
+      --accent: #7e57c2;
+      --accent-bg: #efe8fb;
+      --title-color: #512da8;
+      --answer-key-color: #512da8;
+    }
+    .compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .compare-card { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 10px; text-align: center; font-size: 20px; font-weight: bold; color: var(--heading-color); }
+    .symbol-blank { display: inline-block; width: 42px; border-bottom: 3px solid #333; height: 22px; vertical-align: middle; }
+    .order-list { display: flex; flex-direction: column; gap: 8px; }
+    .order-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; font-size: 15px; }
+    .tenmore-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .ten-card { background: #fff; border: 2px solid #c7b9ea; border-radius: 10px; padding: 10px; text-align: center; }
+    .ten-card .big { font-size: 24px; font-weight: bold; color: var(--heading-color); }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header">
+    <h1>⚖️ Compare and Order</h1>
+    <p>Be a number detective!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Compare the numbers 🐻</div>
+    <div class="exercise-instruction">Write <, >, or = in each blank.</div>
+    <div class="compare-grid">
+      <div class="compare-card">34 <span class="symbol-blank"></span> 29</div>
+      <div class="compare-card">51 <span class="symbol-blank"></span> 51</div>
+      <div class="compare-card">67 <span class="symbol-blank"></span> 76</div>
+      <div class="compare-card">42 <span class="symbol-blank"></span> 39</div>
+      <div class="compare-card">88 <span class="symbol-blank"></span> 80</div>
+      <div class="compare-card">25 <span class="symbol-blank"></span> 52</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Least to greatest 🌈</div>
+    <div class="exercise-instruction">Order the numbers from smallest to largest.</div>
+    <div class="order-list">
+      <div class="order-card">a) 43, 17, 29, 35 → <span class="blank-wide"></span></div>
+      <div class="order-card">b) 62, 58, 71, 60 → <span class="blank-wide"></span></div>
+      <div class="order-card">c) 90, 45, 54, 9 → <span class="blank-wide"></span></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Greatest to least ⛰️</div>
+    <div class="exercise-instruction">Order the numbers from largest to smallest.</div>
+    <div class="order-list">
+      <div class="order-card">a) 31, 13, 40, 22 → <span class="blank-wide"></span></div>
+      <div class="order-card">b) 86, 68, 80, 78 → <span class="blank-wide"></span></div>
+      <div class="order-card">c) 57, 75, 55, 50 → <span class="blank-wide"></span></div>
+    </div>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 1) >, =, <, >, >, < &nbsp;|&nbsp; 2) a) 17, 29, 35, 43 b) 58, 60, 62, 71 c) 9, 45, 54, 90 &nbsp;|&nbsp; 3) a) 40, 31, 22, 13 b) 86, 80, 78, 68 c) 75, 57, 55, 50</div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h1>⚖️ Compare and Order</h1>
+    <p>Now jump by tens!</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Find 10 more and 10 less 🚀</div>
+    <div class="exercise-instruction">Fill in the chart.</div>
+    <div class="tenmore-grid">
+      <div class="ten-card"><div>10 less</div><div class="big"><span class="blank"></span></div><div>35</div><div class="big"><span class="blank"></span></div><div>10 more</div></div>
+      <div class="ten-card"><div>10 less</div><div class="big"><span class="blank"></span></div><div>62</div><div class="big"><span class="blank"></span></div><div>10 more</div></div>
+      <div class="ten-card"><div>10 less</div><div class="big"><span class="blank"></span></div><div>48</div><div class="big"><span class="blank"></span></div><div>10 more</div></div>
+      <div class="ten-card"><div>10 less</div><div class="big"><span class="blank"></span></div><div>79</div><div class="big"><span class="blank"></span></div><div>10 more</div></div>
+      <div class="ten-card"><div>10 less</div><div class="big"><span class="blank"></span></div><div>90</div><div class="big"><span class="blank"></span></div><div>10 more</div></div>
+      <div class="ten-card"><div>10 less</div><div class="big"><span class="blank"></span></div><div>14</div><div class="big"><span class="blank"></span></div><div>10 more</div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Which number belongs? 🎈</div>
+    <div class="exercise-instruction">Circle the number that fits the clue.</div>
+    <ul class="word-problem-list">
+      <li>Which number is greater than 46 but less than 50? 44, 48, 53</li>
+      <li>Which number is 10 more than 27? 17, 37, 47</li>
+      <li>Which number is the smallest? 63, 36, 30</li>
+      <li>Which number is the greatest? 72, 27, 70</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Fill the number line 🛝</div>
+    <div class="exercise-instruction">Write the missing numbers.</div>
+    <div class="number-line">
+      <div class="nl-num">20</div><div class="nl-num"><span class="blank"></span></div><div class="nl-num">22</div><div class="nl-num"><span class="blank"></span></div><div class="nl-num">24</div><div class="nl-num">25</div><div class="nl-num"><span class="blank"></span></div><div class="nl-num">27</div><div class="nl-num"><span class="blank"></span></div><div class="nl-num">29</div>
+    </div>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 4) 25 and 45; 52 and 72; 38 and 58; 69 and 89; 80 and 100; 4 and 24 &nbsp;|&nbsp; 5) 48, 37, 30, 72 &nbsp;|&nbsp; 6) 21, 23, 26, 28</div>
+</div>
+</body>
+</html>

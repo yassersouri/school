@@ -1,0 +1,53 @@
+/* ── Grade 2 Math — Shared Index / Navigation Styles ──────────────
+   Used by math/index.html and subdirectory index pages.
+   Theme variables: --heading-color, --link-color, --link-border,
+   --num-bg, --title-color, --tip-bg, --tip-border
+   ─────────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfaff; color: #333; min-height: 100vh; }
+
+:root {
+  --heading-color: #5e35b1;
+  --link-color: #673ab7;
+  --link-border: #b39ddb;
+  --num-bg: #7e57c2;
+  --title-color: #5e35b1;
+  --tip-bg: #f3eefb;
+  --tip-border: #b39ddb;
+}
+
+.container { max-width: 720px; margin: 0 auto; padding: 32px 20px; }
+.breadcrumb { font-size: 12px; color: #aaa; margin-bottom: 16px; }
+.breadcrumb a { color: var(--link-color, #673ab7); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+h1 { font-size: 26px; text-align: center; color: var(--heading-color, #5e35b1); margin-bottom: 4px; }
+.subtitle { text-align: center; font-size: 13px; color: #888; margin-bottom: 28px; }
+.section-label { font-size: 13px; font-weight: bold; color: #8a7bb8; text-transform: uppercase; letter-spacing: 1px; margin: 24px 0 10px 4px; }
+.section-label:first-of-type { margin-top: 0; }
+
+.sheet-list { display: flex; flex-direction: column; gap: 10px; }
+.sheet-link { display: flex; align-items: center; gap: 14px; padding: 14px 18px; background: #fff; border: 2px solid var(--link-border, #b39ddb); border-radius: 12px; text-decoration: none; color: #333; transition: transform .12s, box-shadow .12s; }
+.sheet-link:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.sheet-num { width: 32px; height: 32px; background: var(--num-bg, #7e57c2); color: #fff; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: bold; flex-shrink: 0; }
+.sheet-title { font-size: 15px; font-weight: bold; color: var(--title-color, #5e35b1); }
+.sheet-pages { font-size: 11px; color: #aaa; margin-top: 1px; }
+.sheet-arrow { margin-left: auto; font-size: 20px; color: #ccc; flex-shrink: 0; }
+.print-tip { margin-top: 28px; padding: 12px 16px; background: var(--tip-bg, #f3eefb); border: 1.5px dashed var(--tip-border, #b39ddb); border-radius: 10px; font-size: 12px; color: #777; text-align: center; }
+
+.card-grid { display: flex; flex-direction: column; gap: 12px; }
+.card { display: flex; align-items: center; gap: 16px; padding: 16px 20px; background: #fff; border-radius: 14px; text-decoration: none; color: #333; transition: transform .12s, box-shadow .12s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.card.purple { border: 2px solid #b39ddb; }
+.card.indigo { border: 2px solid #9fa8da; }
+.card.violet { border: 2px solid #ce93d8; }
+.card-icon { font-size: 32px; flex-shrink: 0; }
+.card-body { flex: 1; }
+.card-title { font-size: 17px; font-weight: bold; }
+.card-title.purple { color: #5e35b1; }
+.card-title.indigo { color: #3949ab; }
+.card-title.violet { color: #8e24aa; }
+.card-desc { font-size: 12px; color: #777; margin-top: 2px; }
+.card-arrow { font-size: 22px; color: #ccc; flex-shrink: 0; }
+
+footer { text-align: center; margin-top: 40px; font-size: 11px; color: #bbb; }

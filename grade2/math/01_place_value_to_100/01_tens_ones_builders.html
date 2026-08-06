@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tens and Ones Builders</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #5e35b1;
+      --accent: #7e57c2;
+      --accent-bg: #ede7f6;
+      --title-color: #512da8;
+      --answer-key-color: #512da8;
+    }
+    .base10-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .base10-card { background: #fff; border: 2px solid var(--accent); border-radius: 12px; padding: 10px; }
+    .base10-top { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 8px; }
+    .tens-stack, .ones-stack { display: flex; gap: 6px; flex-wrap: wrap; align-items: flex-start; }
+    .rod { width: 18px; height: 90px; border-radius: 4px; background: #b39ddb; border: 2px solid #673ab7; }
+    .cube { width: 18px; height: 18px; border-radius: 4px; background: #d1c4e9; border: 2px solid #7e57c2; }
+    .ones-stack { max-width: 88px; }
+    .base10-lines { font-size: 14px; color: #4a3b7a; line-height: 1.8; }
+    .train-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+    .train-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; text-align: center; }
+    .train-title { font-size: 13px; color: var(--title-color); font-weight: bold; margin-bottom: 8px; }
+    .pv-mini { width: 100%; border-collapse: collapse; }
+    .pv-mini th, .pv-mini td { border: 1.5px solid #c7b9ea; padding: 4px; text-align: center; }
+    .pv-mini th { background: #f4effc; font-size: 11px; color: var(--title-color); }
+    .pv-mini td { font-size: 18px; font-weight: bold; color: var(--heading-color); }
+    .write-row { display: flex; flex-direction: column; gap: 8px; }
+    .write-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px 12px; font-size: 15px; }
+  </style>
+</head>
+<body>
+<div class="page">
+  <div class="page-header">
+    <h1>🧱 Tens and Ones Builders</h1>
+    <p>Build numbers like a place-value architect!</p>
+  </div>
+  <div class="page-num">Page 1 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">1) Look at the base-10 blocks 👀</div>
+    <div class="exercise-instruction">Write how many tens, how many ones, and the total number.</div>
+    <div class="base10-grid">
+      <div class="base10-card">
+        <div class="base10-top"><div class="tens-stack"><span class="rod"></span><span class="rod"></span></div><div class="ones-stack"><span class="cube"></span><span class="cube"></span><span class="cube"></span><span class="cube"></span></div></div>
+        <div class="base10-lines">Tens: <span class="blank"></span> &nbsp; Ones: <span class="blank"></span><br/>Number: <span class="blank"></span></div>
+      </div>
+      <div class="base10-card">
+        <div class="base10-top"><div class="tens-stack"><span class="rod"></span><span class="rod"></span><span class="rod"></span><span class="rod"></span></div><div class="ones-stack"><span class="cube"></span><span class="cube"></span><span class="cube"></span></div></div>
+        <div class="base10-lines">Tens: <span class="blank"></span> &nbsp; Ones: <span class="blank"></span><br/>Number: <span class="blank"></span></div>
+      </div>
+      <div class="base10-card">
+        <div class="base10-top"><div class="tens-stack"><span class="rod"></span><span class="rod"></span><span class="rod"></span><span class="rod"></span><span class="rod"></span></div><div class="ones-stack"><span class="cube"></span><span class="cube"></span><span class="cube"></span><span class="cube"></span><span class="cube"></span><span class="cube"></span></div></div>
+        <div class="base10-lines">Tens: <span class="blank"></span> &nbsp; Ones: <span class="blank"></span><br/>Number: <span class="blank"></span></div>
+      </div>
+      <div class="base10-card">
+        <div class="base10-top"><div class="tens-stack"><span class="rod"></span><span class="rod"></span><span class="rod"></span><span class="rod"></span><span class="rod"></span><span class="rod"></span></div><div class="ones-stack"><span class="cube"></span><span class="cube"></span></div></div>
+        <div class="base10-lines">Tens: <span class="blank"></span> &nbsp; Ones: <span class="blank"></span><br/>Number: <span class="blank"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">2) Fill in the train tables 🚂</div>
+    <div class="exercise-instruction">Each train car carries tens and ones. Write the number.</div>
+    <div class="train-row">
+      <div class="train-card"><div class="train-title">a)</div><table class="pv-mini"><tr><th>Tens</th><th>Ones</th></tr><tr><td>3</td><td>5</td></tr></table><div style="margin-top:8px;">Number: <span class="blank"></span></div></div>
+      <div class="train-card"><div class="train-title">b)</div><table class="pv-mini"><tr><th>Tens</th><th>Ones</th></tr><tr><td>7</td><td>1</td></tr></table><div style="margin-top:8px;">Number: <span class="blank"></span></div></div>
+      <div class="train-card"><div class="train-title">c)</div><table class="pv-mini"><tr><th>Tens</th><th>Ones</th></tr><tr><td>4</td><td>8</td></tr></table><div style="margin-top:8px;">Number: <span class="blank"></span></div></div>
+      <div class="train-card"><div class="train-title">d)</div><table class="pv-mini"><tr><th>Tens</th><th>Ones</th></tr><tr><td>9</td><td>0</td></tr></table><div style="margin-top:8px;">Number: <span class="blank"></span></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Write the matching tens and ones ✍️</div>
+    <div class="exercise-instruction">Break each number into tens and ones.</div>
+    <div class="write-row">
+      <div class="write-card">27 = <span class="blank"></span> tens and <span class="blank"></span> ones</div>
+      <div class="write-card">43 = <span class="blank"></span> tens and <span class="blank"></span> ones</div>
+      <div class="write-card">58 = <span class="blank"></span> tens and <span class="blank"></span> ones</div>
+      <div class="write-card">64 = <span class="blank"></span> tens and <span class="blank"></span> ones</div>
+      <div class="write-card">39 = <span class="blank"></span> tens and <span class="blank"></span> ones</div>
+    </div>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 1) a) 2 tens, 4 ones, 24 b) 4 tens, 3 ones, 43 c) 5 tens, 6 ones, 56 d) 6 tens, 2 ones, 62 &nbsp;|&nbsp; 2) a) 35 b) 71 c) 48 d) 90 &nbsp;|&nbsp; 3) 27=2 tens 7 ones, 43=4 tens 3 ones, 58=5 tens 8 ones, 64=6 tens 4 ones, 39=3 tens 9 ones</div>
+</div>
+
+<div class="page">
+  <div class="page-header">
+    <h1>🧱 Tens and Ones Builders</h1>
+    <p>Now you build the numbers!</p>
+  </div>
+  <div class="page-num">Page 2 of 2</div>
+
+  <div class="exercise">
+    <div class="exercise-title">4) Show the number with blocks 🎨</div>
+    <div class="exercise-instruction">Draw tens rods and ones cubes in each box, then fill in the table.</div>
+    <div class="place-value-grid">
+      <div class="pv-card"><div class="pv-problem">18</div><table class="pv-table"><tr><th>Tens</th><th>Ones</th></tr><tr><td><span class="pv-blank"></span></td><td><span class="pv-blank"></span></td></tr></table><div style="margin-top:8px; height:90px; border:2px dashed #c7b9ea; border-radius:8px;"></div></div>
+      <div class="pv-card"><div class="pv-problem">42</div><table class="pv-table"><tr><th>Tens</th><th>Ones</th></tr><tr><td><span class="pv-blank"></span></td><td><span class="pv-blank"></span></td></tr></table><div style="margin-top:8px; height:90px; border:2px dashed #c7b9ea; border-radius:8px;"></div></div>
+      <div class="pv-card"><div class="pv-problem">67</div><table class="pv-table"><tr><th>Tens</th><th>Ones</th></tr><tr><td><span class="pv-blank"></span></td><td><span class="pv-blank"></span></td></tr></table><div style="margin-top:8px; height:90px; border:2px dashed #c7b9ea; border-radius:8px;"></div></div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">5) Which number am I? 🕵️</div>
+    <div class="exercise-instruction">Read the clue and write the number.</div>
+    <ul class="word-problem-list">
+      <li>I have 5 tens and 9 ones. My number is <span class="blank"></span>.</li>
+      <li>I have 8 tens and 4 ones. My number is <span class="blank"></span>.</li>
+      <li>I have 2 tens and 0 ones. My number is <span class="blank"></span>.</li>
+      <li>I have 7 tens and 6 ones. My number is <span class="blank"></span>.</li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">6) Circle the true statement ✅</div>
+    <div class="exercise-instruction">Decide which statement matches the number.</div>
+    <div class="tf-grid">
+      <div class="tf-card">34 has 3 tens and 4 ones <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">52 has 2 tens and 5 ones <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">80 has 8 tens and 0 ones <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+      <div class="tf-card">19 has 9 tens and 1 one <div class="tf-circles"><div class="tf-circle">T</div><div class="tf-circle">F</div></div></div>
+    </div>
+  </div>
+
+  <div class="answer-key"><strong>Answers:</strong> 4) 18 = 1 ten 8 ones; 42 = 4 tens 2 ones; 67 = 6 tens 7 ones &nbsp;|&nbsp; 5) 59, 84, 20, 76 &nbsp;|&nbsp; 6) True, False, True, False</div>
+</div>
+</body>
+</html>

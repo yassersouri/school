@@ -1,0 +1,72 @@
+/* ── Grade 2 Math — Shared Practice Sheet Styles ───────────────────
+   Each HTML file sets CSS custom properties on :root to theme it.
+   Required variables: --accent, --accent-bg, --heading-color,
+   --title-color, --answer-key-color
+   Optional: --page-gap (default 12px), --page-padding (default 12mm 16mm)
+   ─────────────────────────────────────────────────────────────── */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfaff; color: #333; }
+
+.page { width: 210mm; min-height: 297mm; margin: 0 auto 10mm; padding: var(--page-padding, 12mm 16mm); background: #fff; border: 1px solid #ddd; page-break-after: always; display: flex; flex-direction: column; gap: var(--page-gap, 12px); }
+.page-header { text-align: center; }
+.page-header h1 { font-size: var(--h1-size, 20px); color: var(--heading-color); }
+.page-header p, .page-num { font-size: 11px; color: #777; }
+.page-header .page-sub { font-size: 12px; color: #999; }
+.page-num { text-align: right; margin-top: -8px; }
+
+.exercise { border: 2px solid var(--accent); border-radius: 12px; padding: 10px 14px; background: var(--accent-bg); }
+.exercise-title { font-size: 13px; font-weight: bold; color: var(--title-color); margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+.exercise-title .badge { background: var(--accent); color: #fff; border-radius: 20px; padding: 1px 9px; font-size: 11px; }
+.exercise-instruction { font-size: 11px; color: #555; margin-bottom: 8px; font-style: italic; }
+
+.problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.problem-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.problem-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.problem-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; text-align: center; font-size: 22px; font-weight: bold; color: var(--heading-color); min-height: 60px; display: flex; align-items: center; justify-content: center; }
+
+.blank { display: inline-block; border-bottom: 2px solid #333; width: 40px; height: 22px; }
+.blank-wide { display: inline-block; border-bottom: 2px solid #333; width: 80px; height: 22px; }
+.fill-box { display: inline-block; width: 42px; height: 34px; border-bottom: 3px solid #333; text-align: center; font-size: 18px; margin: 0 3px; }
+
+.vertical-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
+.vertical-problem { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 10px; display: flex; flex-direction: column; align-items: flex-end; font-size: 22px; font-weight: bold; color: var(--heading-color); }
+.vertical-problem .vp-op { display: flex; gap: 6px; }
+.vertical-problem .vp-line { width: 100%; border-top: 2px solid #333; margin: 4px 0; }
+.vertical-problem .vp-ans { min-height: 28px; }
+
+.tf-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.tf-card { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 8px 12px; font-size: 16px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; }
+.tf-circles { display: flex; gap: 6px; }
+.tf-circle { width: 28px; height: 28px; border: 2px solid var(--title-color); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; color: var(--title-color); }
+
+.word-problem-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.word-problem-list li { font-size: 14px; padding: 8px 10px; border-left: 4px solid var(--accent); background: var(--wp-bg, #f7f1ff); border-radius: 4px; display: flex; flex-direction: column; gap: 4px; }
+.wp-answer { font-size: 13px; color: #555; }
+
+.tip-box { background: var(--tip-bg, #ede7f6); border: 2px solid var(--accent); border-radius: 10px; padding: 10px 14px; font-size: 12px; color: var(--title-color); margin-bottom: 4px; }
+.tip-box strong { color: var(--heading-color); }
+
+.number-line { display: flex; align-items: center; justify-content: center; gap: 0; margin: 10px 0; }
+.nl-num { width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; border: 1.5px solid var(--accent); background: var(--accent-bg); }
+.nl-num:first-child { border-radius: 8px 0 0 8px; }
+.nl-num:last-child { border-radius: 0 8px 8px 0; }
+
+.match-container { display: grid; grid-template-columns: 1fr auto 1fr; gap: 10px; align-items: start; }
+.match-col { display: flex; flex-direction: column; gap: 8px; }
+.match-item { background: #fff; border: 2px solid var(--accent); border-radius: 8px; padding: 6px 12px; font-size: 16px; font-weight: bold; text-align: center; }
+.match-dots { display: flex; flex-direction: column; gap: 8px; align-items: center; justify-content: center; }
+
+.place-value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.pv-card { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 10px; text-align: center; }
+.pv-card .pv-problem { font-size: 16px; font-weight: bold; color: var(--heading-color); margin-bottom: 8px; }
+.pv-table { width: 100%; border-collapse: collapse; }
+.pv-table th { font-size: 11px; color: var(--title-color); border-bottom: 2px solid var(--accent); padding: 2px 6px; }
+.pv-table td { font-size: 18px; font-weight: bold; color: var(--heading-color); padding: 4px 6px; text-align: center; border-bottom: 1px dashed #ccc; }
+.pv-table .pv-blank { border-bottom: 2px solid #333; display: inline-block; width: 24px; height: 18px; }
+
+.answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 10px; color: #888; }
+.answer-key strong { color: var(--answer-key-color, var(--title-color)); }
+
+@page { size: A4; margin: 0; }
+@media print { body { background: #fff; } .page { border: none; margin: 0; min-height: auto; } .page:last-child { page-break-after: avoid; } }
