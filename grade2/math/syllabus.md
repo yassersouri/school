@@ -10,16 +10,17 @@ The school year is divided into four terms. Pacing is flexible — slow down, re
 
 ## Strands and Big Ideas
 
-Grade 2 math is organized around eight strands:
+Grade 2 math is organized around nine strands:
 
 1. **Number Sense** — counting, place value, comparing, representing, and naming numbers.
 2. **Operations** — addition, subtraction, and the relationship between them, to 100.
 3. **Patterning & Algebra** — repeating and growing patterns, equality, missing numbers, and simple rules.
-4. **Measurement** — length (core BC Grade 2), plus mass, capacity, area, time, temperature, and money as everyday enrichment.
+4. **Measurement** — length (core BC Grade 2), plus mass, capacity, area, time, and temperature as everyday enrichment.
 5. **Geometry & Spatial Sense** — 2-D shapes, 3-D objects, partitions, symmetry, and position.
 6. **Data Management** — collecting, organizing, graphing, and interpreting data.
-7. **Probability** — describing likelihood with everyday language.
-8. **🌟 Enrichment (BC Grade 3 preview)** — early multiplication, early division, and fractions of sets and wholes. Optional, not required BC Grade 2 content.
+7. **Probability** — describing likelihood with everyday language (BC Grade 2 core).
+8. **Financial Literacy** — counting Canadian coins and solving simple money problems (BC Grade 2 core).
+9. **🌟 Enrichment (BC Grade 3 preview)** — early multiplication, early division, and fractions of sets and wholes. Optional, not required BC Grade 2 content.
 
 Each term revisits multiple strands so learning spirals through the year.
 
@@ -105,8 +106,10 @@ Each term revisits multiple strands so learning spirals through the year.
 
 ### 6. Measurement — Time and Money (intro) *(time is general enrichment; money/coins is BC Grade 2 core)*
 - Tell time to the hour, half hour, and quarter hour. **(needs exercises)** *(general enrichment)*
-- Count collections of Canadian coins with values to $2.00 *(BC Grade 2 core: financial literacy — coin combinations to 100 cents, extended here to $2.00)*. **(needs exercises)**
+- Count collections of Canadian coins with values to $2.00 *(BC Grade 2 core: financial literacy — coin combinations to 100 cents, extended here to $2.00)*.
 - Connect number words for coin names with [Reading Syllabus — Thematic Word Sets](../reading/syllabus.md#6-thematic-word-sets--introductory-categories).
+
+📂 **Repo materials:** [Financial Literacy — index](07_financial_literacy/index.html) — [Canadian Coins and Their Values](07_financial_literacy/01_canadian_coins_and_values.html).
 
 ---
 
@@ -188,16 +191,19 @@ The three items below are officially **BC Grade 3** content (confirmed against c
 
 **(needs exercises)**
 
-### 3. Probability
+### 3. Probability *(BC Grade 2 core)*
 - Use language such as always, sometimes, never, likely, unlikely, equally likely.
 - Compare likely outcomes in simple classroom games.
+- Bonus vocabulary — certain and impossible *(general enrichment — beyond BC's explicit Grade 2 list, but a natural pairing with likely/unlikely)*.
 
-**(needs exercises)**
+📂 **Repo materials:** [Probability Language — index](06_probability_language/index.html) — [Always, Sometimes, Never](06_probability_language/01_always_sometimes_never.html), [Likely, Unlikely, Equally Likely](06_probability_language/02_likely_unlikely_equally_likely.html), [Probability Games and Predictions](06_probability_language/03_probability_games_and_predictions.html).
 
-### 4. Financial Literacy
+### 4. Financial Literacy *(BC Grade 2 core)*
 - Recognize and count Canadian coins and simple combinations of bills and coins.
 - Make small amounts of money in different ways.
-- Solve simple money stories involving buying and change. **(needs exercises)**
+- Solve simple money stories involving buying and change.
+
+📂 **Repo materials:** [Financial Literacy — index](07_financial_literacy/index.html) — [Canadian Coins and Their Values](07_financial_literacy/01_canadian_coins_and_values.html), [Counting Coin Collections](07_financial_literacy/02_counting_coin_collections.html), [Making Amounts, Spending, and Change](07_financial_literacy/03_making_amounts_spending_change.html).
 
 ### 5. Review and Integrated Problem Solving
 - Combine place value, operations, geometry, measurement, and data in mixed review tasks (plus multiplication/fraction enrichment if it was explored).
@@ -249,16 +255,14 @@ By the end of Grade 2, the learner should be able to:
 
 To support topics above that don't yet have practice sheets, future folders under `grade2/math/` might include:
 
-- `06_counting_patterns_to_1000/`
-- `07_mental_math_strategies/`
-- `08_missing_number_equations/`
-- `09_measurement_mass_capacity_area_temp/`
-- `10_time_money/`
-- `11_symmetry_spatial_language/`
-- `12_patterning_algebra/`
-- `13_data_management_graphing/`
-- `14_probability_language/`
-- `15_financial_literacy_canadian_money/`
+- `08_counting_patterns_to_1000/`
+- `09_mental_math_strategies/`
+- `10_missing_number_equations/`
+- `11_measurement_mass_capacity_area_temp/`
+- `12_time/`
+- `13_symmetry_spatial_language/`
+- `14_patterning_algebra/`
+- `15_data_management_graphing/`
 - `16_mixed_review_and_problem_solving/`
 - `17_enrichment_intro_division_equal_sharing/` *(🌟 Grade 3 preview)*
 - `18_enrichment_fractions_halves_thirds_fourths/` *(🌟 Grade 3 preview)*

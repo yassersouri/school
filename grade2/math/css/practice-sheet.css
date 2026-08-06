@@ -13,10 +13,13 @@
    - .number-line for simple number strips
    - .match-container / .match-col / .match-item / .match-dots for draw-a-line matching
    - .place-value-grid / .pv-card / .pv-table for place-value and mini tables
-   - .sort-cols / .sort-col / .sort-slot for printed sort-and-write activities
+   - .sort-cols / .sort-cols-3 / .sort-col / .sort-slot for printed sort-and-write activities
    - .label-row / .label-chip for word banks or category labels
    - .attr-table as a generic attribute table alias matching .pv-table styling
    - .ruler for inline SVG ruler containers and .draw-box for free-draw spaces
+   - .coin-row for rows of inline coin icons in money activities
+   - .blank-unit wraps a blank + trailing unit (e.g. ¢) so they stay on one
+     line inside flex-column contexts like .word-problem-list li
    ─────────────────────────────────────────────────────────────── */
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,6 +44,7 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfa
 
 .blank { display: inline-block; border-bottom: 2px solid #333; width: 40px; height: 22px; }
 .blank-wide { display: inline-block; border-bottom: 2px solid #333; width: 80px; height: 22px; }
+.blank-unit { display: inline-block; white-space: nowrap; }
 .fill-box { display: inline-block; width: 42px; height: 34px; border-bottom: 3px solid #333; text-align: center; font-size: 18px; margin: 0 3px; }
 
 .vertical-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 12px; }
@@ -82,6 +86,7 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfa
 .attr-table td:first-child, .attr-table th:first-child { text-align: left; font-size: 14px; }
 
 .sort-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.sort-cols-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .sort-col { border: 2px solid var(--accent); border-radius: 8px; padding: 8px; background: #fff; }
 .sort-col h4 { font-size: 12px; color: var(--title-color); text-align: center; margin-bottom: 4px; }
 .sort-slot { border-bottom: 1.5px solid var(--title-color); height: 22px; margin-bottom: 8px; }
@@ -100,6 +105,7 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fcfa
 .icon-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; text-align: center; }
 .icon-card svg { display: block; margin: 0 auto 6px; }
 .object-note { font-size: 11px; color: #666; }
+.coin-row { display: flex; gap: 6px; align-items: center; flex-wrap: wrap; }
 
 .answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 10px; color: #888; }
 .answer-key strong { color: var(--answer-key-color, var(--title-color)); }
