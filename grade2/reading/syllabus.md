@@ -4,13 +4,13 @@ A complete year-long reading syllabus aimed at a Canadian Grade 2 level (ages 7�
 
 The school year is divided into four terms. Pacing is flexible — slow down, repeat, or skip as needed.
 
-> **Curriculum alignment note:** Cross-checked against the official **BC Ministry of Education English Language Arts curriculum** (curriculum.gov.bc.ca, Grade 2). Unlike Math, BC's ELA curriculum for Grade 2 is holistic and competency-based rather than a checklist of named topics — its official content areas are broadly "Story/text elements," "Strategies and processes" (reading, oral language, metacognitive, writing), and "Language features, structures, and conventions" (word patterns/families, letter formation, sentence structure including compound sentences, punctuation, and capitalization). It does not name specific sub-skills like "syllable types" or "prefixes and suffixes" the way this syllabus does — those are a standard, developmentally appropriate breakdown of BC's "reading strategies" and "word patterns" strands used here for clarity and sequencing, not a mismatch with an official BC grade-level list the way multiplication was for Math.
+> **Curriculum alignment note:** Cross-checked against the official **BC Ministry of Education English Language Arts curriculum** (curriculum.gov.bc.ca, Grade 2). Unlike Math, BC's ELA curriculum for Grade 2 is holistic and competency-based rather than a checklist of named topics — its official content areas are broadly "Story/text elements" (including literary elements, poetic language, and figurative language), "Strategies and processes" (reading, **oral language**, metacognitive, writing), and "Language features, structures, and conventions" (word patterns/families, letter formation, sentence structure including compound sentences, punctuation, and capitalization). It does not name specific sub-skills like "syllable types," "prefixes and suffixes," or "rhyme and alliteration" the way this syllabus does — those are a standard, developmentally appropriate breakdown of BC's strands used here for clarity and sequencing, not a mismatch with an official BC grade-level list the way multiplication was for Math. BC's curricular competencies also explicitly call for **listening and speaking** ("comprehend and connect... reading, listening, viewing" / "create and communicate... writing, speaking, representing") and ask students to **show awareness of how story in First Peoples cultures connects people to family and community** — strands 8–9 below (Poetry & Wordplay, Oral Storytelling & Listening) build out this official but previously under-represented content.
 
 ---
 
 ## Strands and Big Ideas
 
-Grade 2 reading is built on seven interlocking strands:
+Grade 2 reading is built on nine interlocking strands:
 
 1. **Word Study & Decoding** — reading longer words using syllable types, syllable division, and known spelling patterns.
 2. **Morphology & Word Meaning** — using prefixes, suffixes, and base words to unlock new vocabulary.
@@ -19,8 +19,10 @@ Grade 2 reading is built on seven interlocking strands:
 5. **Vocabulary** — learning new words through context, discussion, and word relationships.
 6. **Comprehension** — understanding fiction and nonfiction texts, asking questions, and using evidence.
 7. **Writing Connection** — responding to reading in sentences, paragraphs, and short organized pieces.
+8. **Literary Appreciation & Poetic Language** — rhyme, alliteration, onomatopoeia, and comparisons that make writing playful and vivid (BC Grade 2 core: "Story/text" literary elements and poetic language).
+9. **Oral Language & Story Traditions** — active listening, speaking with expression, and the many purposes of oral storytelling, including First Peoples storytelling traditions (BC Grade 2 core: "Strategies and processes" oral language; "Comprehend and connect" listening).
 
-Each term below cycles through all seven strands so they grow together.
+Each term below revisits multiple strands so learning spirals through the year.
 
 ---
 
@@ -169,7 +171,21 @@ Each term below cycles through all seven strands so they grow together.
 - Explain main idea, details, sequence, cause/effect, and simple inference when appropriate. **(needs exercises)**
 - Use evidence language such as “The text says…” and “I think… because…”. **(needs exercises)**
 
-### 4. Writing Connection
+### 4. Literary Appreciation: Poetry & Wordplay *(BC Grade 2 core)*
+- Notice and create rhyme, alliteration, and onomatopoeia in short poems and sentences.
+- Use simple comparisons ("as ___ as ___", "like a ___") to describe things in a fresh, vivid way.
+- Talk about how word choice and sound play affect how a poem feels.
+
+📂 **Repo materials:** [Poetry & Wordplay — index](04_poetry_and_wordplay/index.html) — [Rhyming Words](04_poetry_and_wordplay/01_rhyming_words.html), [Alliteration & Onomatopoeia](04_poetry_and_wordplay/02_alliteration_and_onomatopoeia.html), [Comparing With Words: Similes](04_poetry_and_wordplay/03_comparing_with_words_similes.html).
+
+### 5. Oral Language: Storytelling & Listening *(BC Grade 2 core)*
+- Practice active listening: eyes on the speaker, asking clarifying questions, and taking turns in conversation.
+- Use tone, volume, pace, and gestures to tell a familiar story out loud with expression.
+- Learn that stories have long been passed down out loud to teach, share history, explain the world, and entertain — including First Peoples oral storytelling traditions in BC, where each Nation's stories belong to that Nation and its families.
+
+📂 **Repo materials:** [Oral Storytelling & Listening — index](05_oral_storytelling_and_listening/index.html) — [Listening & Discussion Skills](05_oral_storytelling_and_listening/01_listening_and_discussion_skills.html), [Telling a Story Out Loud](05_oral_storytelling_and_listening/02_telling_a_story_out_loud.html), [Stories Passed Down: Oral Storytelling Traditions](05_oral_storytelling_and_listening/03_stories_passed_down.html).
+
+### 6. Writing Connection
 - Write a short story response, informational response, or opinion response based on reading.
 - Revise for capitals, punctuation, spacing, and clearer word choice.
 - Link independent reading responses to longer writing pieces in [Writing Syllabus](../writing/syllabus.md). **(needs exercises)**
@@ -202,18 +218,26 @@ By the end of Grade 2, the learner should be able to:
 - Use context clues and word parts to understand unfamiliar words.
 - Read independently for enjoyment and learning for 20+ minutes a day.
 
+**Literary Appreciation**
+- Recognize and create rhyme, alliteration, onomatopoeia, and simple comparisons ("as ___ as ___", "like a ___") in poems and sentences.
+
+**Oral Language**
+- Listen actively, ask clarifying questions, and take turns in discussion.
+- Tell a familiar story out loud with clear expression, using tone, volume, pace, and gestures.
+- Understand that oral storytelling has long served to teach, share history, explain the world, and entertain, including First Peoples traditions in BC.
+
 ---
 
 ## Suggested Repo Folder Structure for Future Exercises
 
 To support the topics above that don't yet have practice sheets, future folders under `grade2/reading/` might include:
 
-- `04_high_frequency_words/` — Grade 2 sight-word sets in context
-- `05_fluency_passages/` — longer passages with phrasing, re-read goals, and expression practice
-- `06_compare_contrast/` — characters, texts, and topics
-- `07_cause_effect/` — fiction and nonfiction cause/effect work
-- `08_inference/` — clues + schema / background knowledge
-- `09_nonfiction_text_features/` — headings, captions, labels, diagrams, bold words, table of contents
-- `10_vocabulary_context_clues/` — using nearby words and sentence meaning
-- `11_story_elements_retelling/` — deeper fiction comprehension
-- `12_book_response/` — written reading responses and short paragraph frames
+- `06_high_frequency_words/` — Grade 2 sight-word sets in context
+- `07_fluency_passages/` — longer passages with phrasing, re-read goals, and expression practice
+- `08_compare_contrast/` — characters, texts, and topics
+- `09_cause_effect/` — fiction and nonfiction cause/effect work
+- `10_inference/` — clues + schema / background knowledge
+- `11_nonfiction_text_features/` — headings, captions, labels, diagrams, bold words, table of contents
+- `12_vocabulary_context_clues/` — using nearby words and sentence meaning
+- `13_story_elements_retelling/` — deeper fiction comprehension
+- `14_book_response/` — written reading responses and short paragraph frames

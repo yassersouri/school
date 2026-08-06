@@ -4,13 +4,13 @@ A complete year-long writing syllabus aimed at a Canadian Grade 2 level (ages 7�
 
 The year is organized into four terms. Pacing can stay flexible so students have time to plan, talk, draft, revise, and publish with confidence.
 
-> **Curriculum alignment note:** Cross-checked against the official **BC Ministry of Education English Language Arts curriculum** (curriculum.gov.bc.ca, Grade 2), which covers reading and writing together rather than as separate subjects. BC's explicit Grade 2 writing-related content is "letter formation" (legible printing with spacing), "sentence structure" (including compound sentences), and "conventions" (end punctuation and capitalization) plus general "writing processes" (revising, editing, considering audience) — it does not itemize specific grammar topics like "nouns/verbs/adjectives" the way this syllabus does. Those are a standard, developmentally appropriate breakdown used here for clarity and sequencing, not a mismatch with an official BC grade-level list the way multiplication was for Math.
+> **Curriculum alignment note:** Cross-checked against the official **BC Ministry of Education English Language Arts curriculum** (curriculum.gov.bc.ca, Grade 2), which covers reading and writing together rather than as separate subjects. BC's explicit Grade 2 writing-related content is "letter formation" (legible printing with spacing), "sentence structure" (including compound sentences), and "conventions" (end punctuation and capitalization) plus general "writing processes" (revising, editing, considering audience) — it does not itemize specific grammar topics like "nouns/verbs/adjectives" the way this syllabus does. Those are a standard, developmentally appropriate breakdown used here for clarity and sequencing, not a mismatch with an official BC grade-level list the way multiplication was for Math. BC's curricular competencies also explicitly pair writing with **speaking and representing** ("create and communicate... writing, speaking, representing") and call for exploring **oral storytelling processes** — strand 9 below (Oral Communication & Presenting) builds out this official but previously under-represented content.
 
 ---
 
 ## Strands and Big Ideas
 
-Grade 2 writing grows across eight connected strands:
+Grade 2 writing grows across nine connected strands:
 
 1. **Sentence Structure & Mechanics** — capitals, punctuation, complete sentences, and sentence types.
 2. **Grammar & Parts of Speech** — nouns, verbs, adjectives, pronouns, and simple tense patterns.
@@ -20,6 +20,7 @@ Grade 2 writing grows across eight connected strands:
 6. **Descriptive Writing** — adding sensory details and precise word choice.
 7. **Handwriting & Presentation** — neat printing, spacing, margins, and readable final copies.
 8. **The Writing Process** — planning, drafting, revising, editing, sharing, and reflecting.
+9. **Oral Communication & Presenting** — planning what to say, matching voice to punctuation, and asking/answering discussion questions (BC Grade 2 core: "create and communicate" speaking and representing).
 
 Writing instruction should connect naturally to reading, oral language, and content learning. Students benefit from seeing strong mentor sentences and short model paragraphs while also having many chances to write their own ideas.
 
@@ -164,6 +165,13 @@ Writing instruction should connect naturally to reading, oral language, and cont
 - Notice one strength and one next step in a finished piece. **(needs exercises)**
 - Celebrate growth from simple Grade 1-style sentence frames to fuller Grade 2 paragraphs and stories. **(needs exercises)**
 
+### 5. Speaking & Presenting *(BC Grade 2 core)*
+- Plan and write what to say about something to share, such as a Show & Tell item, then present it aloud.
+- Notice how end punctuation (period, question mark, exclamation mark) matches the voice used to read a sentence aloud.
+- Write clear discussion questions and thoughtful written answers for class conversations.
+
+📂 **Repo materials:** [Speaking & Presenting — index](04_speaking_and_presenting/index.html) — [Show & Tell Planner](04_speaking_and_presenting/01_show_and_tell_planner.html), [Punctuation & Your Voice](04_speaking_and_presenting/02_punctuation_and_your_voice.html), [Great Discussions: Asking & Answering](04_speaking_and_presenting/03_great_discussions.html).
+
 ---
 
 ## Year-End Expectations
@@ -175,7 +183,8 @@ By the end of Grade 2, most students should be able to:
 - write a short paragraph with a topic sentence and supporting details;
 - produce simple narrative, opinion, and descriptive pieces;
 - plan, draft, revise, and edit with support;
-- present writing neatly on lines so it is easy to read.
+- present writing neatly on lines so it is easy to read;
+- plan and present ideas out loud, matching voice to end punctuation, and ask or answer thoughtful discussion questions.
 
 ---
 
@@ -186,11 +195,12 @@ grade2/writing/
   01_sentence_basics/
   02_parts_of_speech/
   03_paragraph_writing/
-  04_pronouns/
-  05_descriptive_writing/
-  06_narrative_writing/
-  07_opinion_writing/
-  08_handwriting_and_presentation/
-  09_writing_process/
-  10_spelling_in_writing/
+  04_speaking_and_presenting/
+  05_pronouns/
+  06_descriptive_writing/
+  07_narrative_writing/
+  08_opinion_writing/
+  09_handwriting_and_presentation/
+  10_writing_process/
+  11_spelling_in_writing/
 ```
