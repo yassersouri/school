@@ -27,9 +27,14 @@
   .trace-line { flex: 1; border-bottom: 2px dotted #b9770e; height: 24px; }
 
   /* Write 3x rows */
-  .write-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .write-list li { background: #fff; border-radius: 8px; padding: 4px 10px; border: 1px solid #f4d03f; display: flex; align-items: center; gap: 8px; font-size: 14px; }
-  .write-line { flex: 1; border-bottom: 2px solid #333; height: 22px; min-width: 60px; }
+  .write-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .write-list li { background: #fff; border-radius: 8px; padding: 3px 10px; border: 1px solid #f4d03f; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .write-line { flex: 1; border-bottom: 2px solid #333; height: 20px; min-width: 60px; }
+
+  /* Count the letters rows */
+  .letter-count-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .letter-count-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #f4d03f; font-size: 15px; display: flex; justify-content: space-between; align-items: center; }
+  .lc-box { display: inline-block; width: 36px; height: 26px; border: 2px solid #9a6004; border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -67,6 +72,25 @@
       <li><span class="sw-label">we</span><span class="trace-word">we</span><span class="trace-line"></span></li>
     </ul>
   </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Count the Letters 🔢</div>
+    <div class="exercise-instruction">Look at each word above. Count the letters and write the number in the box.</div>
+    <ul class="letter-count-list">
+      <li><span class="sw-label">the</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">a</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">I</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">is</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">it</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">to</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">see</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">my</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">like</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">go</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">can</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">we</span><span class="lc-box"></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="page">
@@ -74,7 +98,7 @@
   <div class="page-num">Page 2 of 2</div>
 
   <div class="exercise">
-    <div class="exercise-title">3) Write Each Word 3 Times ✏️✏️✏️</div>
+    <div class="exercise-title">4) Write Each Word 3 Times ✏️✏️✏️</div>
     <div class="exercise-instruction">Read · Cover · Write · Check. Try to write each word from memory.</div>
     <ul class="write-list">
       <li><span class="sw-label">am</span><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></li>
@@ -99,7 +123,7 @@
   </div>
 
   <div class="exercise">
-    <div class="exercise-title">4) Read These Sentences 📖</div>
+    <div class="exercise-title">5) Read These Sentences 📖</div>
     <div class="exercise-instruction">Read each sentence out loud. Underline the sight words you see!</div>
     <ul class="blank-list" style="font-size:16px;">
       <li>1. I can see a big dog.</li>
@@ -112,7 +136,8 @@
   </div>
 
   <div class="answer-key">
-    <strong>Ex.4 sight words:</strong> 1) I, can, see, a · 2) She, said, yes, to, the · 3) We, like, to, go, up, the · 4) He, is, on, the · 5) Look, at, my · 6) Do, you, like, to.
+    <strong>Ex.3 letter counts:</strong> the=3, a=1, I=1, is=2, it=2, to=2, see=3, my=2, like=4, go=2, can=3, we=2 ·
+    <strong>Ex.5 sight words:</strong> 1) I, can, see, a · 2) She, said, yes, to, the · 3) We, like, to, go, up, the · 4) He, is, on, the · 5) Look, at, my · 6) Do, you, like, to.
   </div>
 </div>
 </body>

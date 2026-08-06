@@ -25,6 +25,9 @@
   .write-list { list-style:none; display:flex; flex-direction:column; gap:6px; }
   .write-list li { background:#fff; border-radius:8px; padding:4px 10px; border:1px solid #f4d03f; display:flex; align-items:center; gap:8px; font-size:14px; }
   .write-line { flex:1; border-bottom:2px solid #333; height:22px; min-width:60px; }
+  .letter-count-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .letter-count-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #f4d03f; font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+  .lc-box { display: inline-block; width: 36px; height: 26px; border: 2px solid #9a6004; border-radius: 6px; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -62,6 +65,25 @@
       <li><span class="sw-label">please</span><span class="trace-word">please</span><span class="trace-line"></span></li>
     </ul>
   </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Count the Letters 🔢</div>
+    <div class="exercise-instruction">Look at each word above. Count the letters and write the number in the box.</div>
+    <ul class="letter-count-list">
+      <li><span class="sw-label">because</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">before</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">after</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">around</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">another</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">every</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">never</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">only</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">other</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">over</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">under</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">please</span><span class="lc-box"></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="page">
@@ -69,7 +91,7 @@
   <div class="page-num">Page 2 of 2</div>
 
   <div class="exercise">
-    <div class="exercise-title">3) Write Each Word 3 Times ✏️✏️✏️</div>
+    <div class="exercise-title">4) Write Each Word 3 Times ✏️✏️✏️</div>
     <div class="exercise-instruction">Read · Cover · Write · Check.</div>
     <ul class="write-list">
       <li><span class="sw-label">thank</span><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></li>
@@ -91,7 +113,7 @@
   </div>
 
   <div class="exercise">
-    <div class="exercise-title">4) Read These Sentences 📖</div>
+    <div class="exercise-title">5) Read These Sentences 📖</div>
     <div class="exercise-instruction">Read each sentence out loud. Underline the Set 3 sight words you see!</div>
     <ul class="blank-list" style="font-size:16px;">
       <li>1. My friend and I walk to school every morning.</li>
@@ -103,7 +125,7 @@
     </ul>
   </div>
 
-  <div class="answer-key"><strong>Ex.4 sight words:</strong> 1) friend, school, every, morning · 2) Please, thank, family, today · 3) little, under, night · 4) Yesterday, tomorrow · 5) never, because · 6) new, over, next, old</div>
+  <div class="answer-key"><strong>Ex.3 letter counts:</strong> because=7, before=6, after=5, around=6, another=7, every=5, never=5, only=4, other=5, over=4, under=5, please=6 · <strong>Ex.5 sight words:</strong> 1) friend, school, every, morning · 2) Please, thank, family, today · 3) little, under, night · 4) Yesterday, tomorrow · 5) never, because · 6) new, over, next, old</div>
 </div>
 </body>
 </html>

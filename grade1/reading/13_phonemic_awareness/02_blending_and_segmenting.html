@@ -24,10 +24,12 @@
   .answer-line-sm { display: inline-block; border-bottom: 2px solid #333; width: 110px; height: 24px; }
 
   /* Empty boxes for segment exercise */
-  .seg-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-  .seg-list li { background: #fff; border-radius: 8px; padding: 8px 12px; border: 1px solid #f5b7b1; font-size: 18px; display: flex; align-items: center; gap: 14px; }
+  .seg-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .seg-list li { background: #fff; border-radius: 8px; padding: 5px 12px; border: 1px solid #f5b7b1; font-size: 18px; display: flex; align-items: center; gap: 14px; }
   .seg-word { font-weight: bold; color: #922b21; min-width: 80px; font-size: 22px; }
-  .seg-empty { display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; border: 2px dashed var(--accent); border-radius: 8px; background: #fff; }
+  .seg-empty { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border: 2px dashed var(--accent); border-radius: 8px; background: #fff; }
+  /* Local tightening for this page's blank-lists (page 2 has 3 exercises + answer key) */
+  .blank-list { gap: 4px; }
 
   /* Onset–rime split */
   .onset-list { list-style: none; display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }

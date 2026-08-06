@@ -35,6 +35,12 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fffd
 .blank-list li, .build-list li { font-size: 15px; }
 .blank { display: inline-block; border-bottom: 2px solid #333; width: 90px; height: 20px; }
 
+/* Letter-count exercise (word-family sheets) */
+.letter-count-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+.letter-count-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid var(--accent); font-size: 15px; display: flex; justify-content: space-between; align-items: center; gap: 6px; }
+.lc-word { font-weight: bold; color: var(--title-color); }
+.lc-box { display: inline-block; width: 36px; height: 26px; border: 2px solid var(--title-color); border-radius: 6px; flex-shrink: 0; }
+
 /* Sorting exercise */
 .sort-cols { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .sort-col { border: 2px solid #80deea; border-radius: 8px; padding: 6px; background: #e0f7fa; }
@@ -44,6 +50,13 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fffd
 /* Drawing exercise */
 .draw-row { display: flex; gap: 14px; align-items: flex-start; }
 .draw-box { width: 480px; height: 330px; border: 2px dashed var(--accent); border-radius: 8px; background: var(--draw-bg, var(--accent-bg)); display: flex; align-items: center; justify-content: center; color: #bbb; font-size: 13px; }
+
+/* When "Read and Draw" is on a light page, let it grow to fill leftover
+   space instead of leaving a big blank gap below it. Only expands (never
+   shrinks), so pages that already fill the sheet are unaffected. */
+.page > .exercise:has(.draw-row) { display: flex; flex-direction: column; flex: 1; }
+.page > .exercise:has(.draw-row) .draw-row { flex: 1; align-items: stretch; }
+.page > .exercise:has(.draw-row) .draw-box { height: auto; flex: 1; }
 
 /* Answer key */
 .answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 10px; color: #888; }

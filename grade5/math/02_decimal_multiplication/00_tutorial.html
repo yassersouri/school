@@ -46,8 +46,8 @@
     .vertical-demo-purple { color: #6a1b9a; background: #f8f0fa; }
     .vertical-demo .vd-line { width: 100%; border-top: 2px solid #333; margin: 4px 0; }
     .vertical-demo .vd-answer { color: #c62828; }
-    .example-row { display: flex; gap: 12px; flex-wrap: wrap; }
-    .example-row .example { flex: 1; min-width: 200px; }
+    .example-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .example-row .example { flex: 1; min-width: 180px; }
     .remember-box { background: #fce4ec; border: 2px solid #ef5350; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #c62828; margin: 6px 0; }
     .remember-box strong { color: #b71c1c; }
     .try-it { background: #f3e5f5; border: 2px solid #ab47bc; border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
@@ -311,6 +311,15 @@
     <div class="tip-box">
       <strong>💡 Tip:</strong> Count the zeros in 10, 100, or 1,000 — that tells you how many places to move! <strong>10</strong> has 1 zero, <strong>100</strong> has 2, <strong>1,000</strong> has 3.
     </div>
+
+    <div class="example example-orange">
+      <div class="example-label">✏️ Worked Example L — When You Run Out of Digits</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">2.3 × 1,000</span></div>
+      <div class="step"><span class="step-num">2</span> The rule says move the decimal <strong>3 places</strong> right, but <span class="math">2.3</span> only has 1 digit after the point.</div>
+      <div class="step"><span class="step-num">3</span> Add placeholder zeros so there's room to move: <span class="math">2.300</span></div>
+      <div class="step"><span class="step-num">4</span> Move the decimal 3 places right → <span class="math">2,300</span></div>
+      <div class="result">✅ Answer: <span class="math">2.3 × 1,000 = 2,300</span></div>
+    </div>
   </div>
 
   <!-- Try It -->
@@ -346,6 +355,15 @@
       <div class="step"><span class="step-num">3</span> <strong>Exact:</strong> 48 × 32 = 1,536. Need 2 decimal places → <span class="math">15.36</span></div>
       <div class="step"><span class="step-num">4</span> <strong>Check:</strong> 15.36 is close to our estimate of 15 ✓</div>
       <div class="result">✅ Answer: <span class="math">4.8 × 3.2 = 15.36</span></div>
+    </div>
+
+    <div class="example">
+      <div class="example-label">✏️ Worked Example K — Catching a Mistake</div>
+      <div class="step"><span class="step-num">1</span> Problem: <span class="math">6.3 × 2.9</span></div>
+      <div class="step"><span class="step-num">2</span> <strong>Estimate:</strong> Round 6.3 → 6 and 2.9 → 3, so about <span class="math">6 × 3 = 18</span></div>
+      <div class="step"><span class="step-num">3</span> <strong>Exact:</strong> 63 × 29 = 1,827. Need 2 decimal places → <span class="math">18.27</span></div>
+      <div class="step"><span class="step-num">4</span> <strong>Check:</strong> 18.27 is close to our estimate of 18 ✓ — but 1.827 or 182.7 would NOT be close, so we'd know to fix the decimal place.</div>
+      <div class="result">✅ Answer: <span class="math">6.3 × 2.9 = 18.27</span></div>
     </div>
 
     <div class="remember-box">

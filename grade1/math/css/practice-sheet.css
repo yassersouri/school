@@ -25,7 +25,7 @@ body { font-family: 'Comic Sans MS', 'Chalkboard SE', cursive; background: #fffd
 
 /* Problem grid & cards */
 .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-.problem-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; text-align: center; font-size: 22px; font-weight: bold; color: var(--heading-color); min-height: 60px; display: flex; align-items: center; justify-content: center; }
+.problem-card { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 10px; text-align: center; font-size: 22px; font-weight: bold; color: var(--heading-color); min-height: 60px; display: flex; flex-wrap: wrap; align-items: center; align-content: center; justify-content: center; }
 
 /* Blanks */
 .blank { display: inline-block; border-bottom: 2px solid #333; width: 40px; height: 22px; }

@@ -13,7 +13,7 @@
       --title-color: #922b21;
     }
     .page-header p { font-size: 12px; color: #777; }
-    .hop-row { display: flex; align-items: center; gap: 10px; font-size: 16px; margin-bottom: 8px; }
+    .hop-row { display: flex; align-items: center; gap: 10px; font-size: 16px; }
     .hop-row .label { font-weight: bold; min-width: 100px; }
     .chute-track { display: flex; gap: 0; justify-content: center; flex-wrap: wrap; margin: 8px 0; align-items: flex-start; }
     .chute-stop { display: flex; flex-direction: column; align-items: center; width: 56px; }
@@ -27,18 +27,17 @@
     .sub-bubble { width: 56px; height: 46px; border: 3px solid #2980b9; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #d6eaf8; }
     .sub-bubble.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
     .sub-arrow { font-size: 14px; color: #2980b9; margin-left: 58px; }
-    .elevator-shaft { display: flex; flex-direction: column; gap: 4px; margin: 8px auto; width: 260px; }
+    .elevator-shaft { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: repeat(6, auto); grid-auto-flow: column; column-gap: 40px; row-gap: 8px; margin: 8px auto; max-width: 420px; }
     .elevator-floor { display: flex; align-items: center; gap: 10px; }
     .floor-label { width: 70px; font-size: 12px; font-weight: bold; color: #7d3c98; text-align: right; }
-    .floor-num { width: 60px; height: 44px; border: 3px solid #8e44ad; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: bold; background: #e8daef; }
+    .floor-num { width: 60px; height: 36px; border: 2px solid #8e44ad; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #e8daef; }
     .floor-num.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
-    .floor-arrow { font-size: 18px; color: #8e44ad; margin-left: 80px; }
     .waterfall { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin: 8px 0; }
     .water-drop { width: 54px; height: 54px; border-radius: 0 50% 50% 50%; transform: rotate(45deg); border: 3px solid #3498db; display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: bold; background: #d4e6f1; }
     .water-drop span { transform: rotate(-45deg); }
     .water-drop.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
-    .space-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin: 8px 0; }
-    .planet { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid #e74c3c; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #f9e79f; }
+    .space-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin: 6px 0; }
+    .planet { width: 100%; max-width: 72px; aspect-ratio: 1; margin: 0 auto; border-radius: 50%; border: 3px solid #e74c3c; display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: bold; background: #f9e79f; }
     .planet.blank { background: #fff; border-style: dashed; border-color: #f39c12; }
     .planet.moon { border-color: #5dade2; background: #d6eaf8; }
   </style>
@@ -69,7 +68,6 @@
       <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
       <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
     </div>
-    <br/>
     <div class="chute-track">
       <div class="chute-stop"><div class="chute-icon">🪂</div><div class="chute-num">50</div></div>
       <div class="chute-stop"><div class="chute-arc">−2</div><div class="chute-num blank"></div></div>
@@ -117,30 +115,19 @@
   <!-- Exercise 3: Elevator by 10s -->
   <div class="exercise">
     <div class="exercise-title">3) Elevator Going Down — Count Back by 10s 🛗</div>
-    <div class="exercise-instruction">The elevator is going to the ground floor! Count back by 10s.</div>
+    <div class="exercise-instruction">The elevator is going to the ground floor! Each floor down is −10. Count back by 10s.</div>
     <div class="elevator-shaft">
       <div class="elevator-floor"><div class="floor-label">Floor 12:</div><div class="floor-num">120</div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 11:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 10:</div><div class="floor-num">100</div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 9:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 8:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 7:</div><div class="floor-num">70</div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 6:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 5:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 4:</div><div class="floor-num">40</div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 3:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Floor 2:</div><div class="floor-num blank"></div></div>
-      <div class="floor-arrow">⬇️ −10</div>
       <div class="elevator-floor"><div class="floor-label">Ground:</div><div class="floor-num">10</div></div>
     </div>
   </div>
@@ -180,7 +167,7 @@
   <div class="exercise">
     <div class="exercise-title">5) Mixed Skip Counting Backward 🎯</div>
     <div class="exercise-instruction">Fill in the blanks. Watch the rule — some go by 2s, 5s, or 10s!</div>
-    <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
       <div class="hop-row"><span class="label" style="color:#e74c3c;">🪂 by 2s: a)</span> 40, <span class="fill-box"></span>, <span class="fill-box"></span>, 34, <span class="fill-box"></span>, <span class="fill-box"></span>, 28</div>
       <div class="hop-row"><span class="label" style="color:#2980b9;">💧 by 5s: b)</span> 75, <span class="fill-box"></span>, <span class="fill-box"></span>, 60, <span class="fill-box"></span>, <span class="fill-box"></span>, 45</div>
       <div class="hop-row"><span class="label" style="color:#8e44ad;">🛗 by 10s: c)</span> 100, <span class="fill-box"></span>, <span class="fill-box"></span>, 70, <span class="fill-box"></span>, <span class="fill-box"></span>, 40</div>
@@ -193,7 +180,7 @@
   <div class="exercise">
     <div class="exercise-title">6) What's the Rule? 🕵️</div>
     <div class="exercise-instruction">Each row counts backward by a secret number. Figure out the rule, then fill in the blanks!</div>
-    <div style="display: flex; flex-direction: column; gap: 8px;">
+    <div style="display: flex; flex-direction: column; gap: 6px;">
       <div class="hop-row"><span class="label" style="color:#16a085;">🔍 a)</span> 50, 45, 40, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
       <div class="hop-row"><span class="label" style="color:#16a085;">🔍 b)</span> 24, 22, 20, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
       <div class="hop-row"><span class="label" style="color:#16a085;">🔍 c)</span> 90, 80, 70, <span class="fill-box"></span>, <span class="fill-box"></span>, <span class="fill-box"></span> &nbsp; <em style="font-size:11px; color:#888;">Rule: count back by ___</em></div>
@@ -205,26 +192,26 @@
   <div class="exercise">
     <div class="exercise-title">7) Rocket Countdown! 🚀</div>
     <div class="exercise-instruction">Count backward by 10s from 100 to blast off! Write each number, then shout "BLAST OFF!" at the end.</div>
-    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; margin:8px 0;">
+    <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap; justify-content:center; margin:6px 0;">
       <div style="font-size:22px; font-weight:bold; color:#e74c3c;">100</div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
-      <div class="fill-box" style="width:50px; height:40px; font-size:22px;"></div>
+      <div class="fill-box" style="width:50px; height:38px; font-size:22px;"></div>
       <div style="font-size:20px; color:#888;">→</div>
       <div style="font-size:22px; font-weight:bold; color:#e74c3c;">🚀 BLAST OFF!</div>
     </div>

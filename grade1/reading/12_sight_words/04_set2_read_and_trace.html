@@ -24,9 +24,13 @@
   .trace-word { color: #d6b85a; font-size: 22px; font-weight: bold; letter-spacing: 1px; }
   .trace-line { flex: 1; border-bottom: 2px dotted #b9770e; height: 24px; }
 
-  .write-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
-  .write-list li { background: #fff; border-radius: 8px; padding: 4px 10px; border: 1px solid #f4d03f; display: flex; align-items: center; gap: 8px; font-size: 14px; }
-  .write-line { flex: 1; border-bottom: 2px solid #333; height: 22px; min-width: 60px; }
+  .write-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .write-list li { background: #fff; border-radius: 8px; padding: 3px 10px; border: 1px solid #f4d03f; display: flex; align-items: center; gap: 8px; font-size: 14px; }
+  .write-line { flex: 1; border-bottom: 2px solid #333; height: 20px; min-width: 60px; }
+
+  .letter-count-list { list-style: none; display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .letter-count-list li { background: #fff; border-radius: 8px; padding: 6px 12px; border: 1px solid #f4d03f; font-size: 15px; display: flex; justify-content: space-between; align-items: center; }
+  .lc-box { display: inline-block; width: 36px; height: 26px; border: 2px solid #9a6004; border-radius: 6px; }
   </style>
 </head>
 <body>
@@ -64,6 +68,25 @@
       <li><span class="sw-label">there</span><span class="trace-word">there</span><span class="trace-line"></span></li>
     </ul>
   </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Count the Letters 🔢</div>
+    <div class="exercise-instruction">Look at each word above. Count the letters and write the number in the box.</div>
+    <ul class="letter-count-list">
+      <li><span class="sw-label">are</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">they</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">have</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">what</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">when</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">with</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">this</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">that</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">then</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">them</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">here</span><span class="lc-box"></span></li>
+      <li><span class="sw-label">there</span><span class="lc-box"></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="page">
@@ -71,7 +94,7 @@
   <div class="page-num">Page 2 of 2</div>
 
   <div class="exercise">
-    <div class="exercise-title">3) Write Each Word 3 Times ✏️✏️✏️</div>
+    <div class="exercise-title">4) Write Each Word 3 Times ✏️✏️✏️</div>
     <div class="exercise-instruction">Read · Cover · Write · Check. Try to write each word from memory.</div>
     <ul class="write-list">
       <li><span class="sw-label">where</span><span class="write-line"></span><span class="write-line"></span><span class="write-line"></span></li>
@@ -96,7 +119,7 @@
   </div>
 
   <div class="exercise">
-    <div class="exercise-title">4) Read These Sentences 📖</div>
+    <div class="exercise-title">5) Read These Sentences 📖</div>
     <div class="exercise-instruction">Read each sentence out loud. Underline the Set 2 sight words you see!</div>
     <ul class="blank-list" style="font-size:16px;">
       <li>1. They are here with our cat.</li>
@@ -109,7 +132,8 @@
   </div>
 
   <div class="answer-key">
-    <strong>Ex.4 sight words:</strong> 1) They, are, here, with, our · 2) What, want, make · 3) When, will, come, again · 4) This, about · 5) Where, they · 6) Some, them, are, very.
+    <strong>Ex.3 letter counts:</strong> are=3, they=4, have=4, what=4, when=4, with=4, this=4, that=4, then=4, them=4, here=4, there=5 ·
+    <strong>Ex.5 sight words:</strong> 1) They, are, here, with, our · 2) What, want, make · 3) When, will, come, again · 4) This, about · 5) Where, they · 6) Some, them, are, very.
   </div>
 </div>
 </body>

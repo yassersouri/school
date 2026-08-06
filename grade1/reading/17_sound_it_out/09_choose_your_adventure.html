@@ -245,6 +245,76 @@
     font-family: 'Comic Sans MS', cursive;
   }
   .reflect li::before { content: '🤔 '; }
+
+  /* Warm-up word practice */
+  .warmup {
+    background: #fff;
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .warmup h3 {
+    text-align: center;
+    font-size: 13px;
+    color: var(--title-color);
+    margin-bottom: 6px;
+  }
+  .warmup-list {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px 10px;
+  }
+  .warmup-list li {
+    background: var(--accent-bg);
+    border: 1.5px solid var(--accent);
+    border-radius: 6px;
+    padding: 5px 6px;
+    text-align: center;
+    font-weight: bold;
+    color: var(--title-color);
+    font-family: 'Comic Sans MS', cursive;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+  }
+
+  /* Story color key */
+  .legend {
+    background: var(--accent-bg);
+    border: 2px solid var(--accent);
+    border-radius: 10px;
+    padding: 10px 14px;
+  }
+  .legend h3 {
+    text-align: center;
+    font-size: 13px;
+    color: var(--title-color);
+    margin-bottom: 6px;
+  }
+  .legend-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .legend-list li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 1px solid var(--accent);
+    border-radius: 6px;
+    padding: 5px 10px;
+    font-size: 13px;
+    color: #333;
+  }
+  .legend-swatch {
+    display: inline-block;
+    width: 22px; height: 22px;
+    border: 2.5px solid;
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
   </style>
 </head>
 <body>
@@ -265,6 +335,31 @@
       <li>Keep going until you reach <strong>🏆 WIN!</strong> or <strong>💥 TRY AGAIN!</strong></li>
       <li>If you reach a TRY AGAIN, go back to #1 and pick a different path!</li>
     </ol>
+  </div>
+
+  <div class="warmup">
+    <h3>🎯 Warm-Up: Sound These Out First</h3>
+    <ul class="warmup-list">
+      <li>FAN·TAS·TIC</li>
+      <li>FOR·EST</li>
+      <li>RAB·BIT</li>
+      <li>SAND·WICH</li>
+      <li>DRAG·ON</li>
+      <li>JACK·POT</li>
+      <li>MAG·NET·IC</li>
+      <li>BOB·CAT</li>
+      <li>TIP·TOES</li>
+    </ul>
+  </div>
+
+  <div class="legend">
+    <h3>🎨 Story Color Key</h3>
+    <ul class="legend-list">
+      <li><span class="legend-swatch" style="background: var(--start-bg); border-color: var(--start-color);"></span> Purple = the START of the story</li>
+      <li><span class="legend-swatch" style="background: var(--left-bg); border-color: var(--left-color);"></span> Teal = the MEADOW path</li>
+      <li><span class="legend-swatch" style="background: var(--right-bg); border-color: var(--right-color);"></span> Orange = the CAVE path</li>
+      <li><span class="legend-swatch" style="background: var(--win-bg); border-color: var(--win-color);"></span> Green = a 🏆 WIN ending &nbsp;&nbsp; <span class="legend-swatch" style="background: var(--lose-bg); border-color: var(--lose-color);"></span> Red = a 💥 TRY AGAIN ending</li>
+    </ul>
   </div>
 
   <div class="story-map">
