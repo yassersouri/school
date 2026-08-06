@@ -52,6 +52,14 @@
   .check-word { font-weight: bold; color: var(--title-color); min-width: 70px; font-size: 22px; font-family: 'Comic Sans MS', cursive; }
   .check-circles { display: inline-flex; gap: 8px; margin-left: auto; }
   .check-circle { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; border-radius: 50%; border: 2px solid var(--accent); font-weight: bold; font-size: 13px; color: var(--title-color); background: #fff; }
+
+  /* Read it in a sentence */
+  .sentence-list { list-style: none; display: flex; flex-direction: column; gap: 6px; }
+  .sentence-list li { display: flex; align-items: center; gap: 10px; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 6px 12px; font-size: 14px; }
+  .sent-num { display: inline-flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: bold; font-size: 12px; flex-shrink: 0; }
+  .sent-text { flex: 1; }
+  .sent-text strong { color: var(--title-color); }
+  .sent-check { width: 20px; height: 20px; border: 2px dashed var(--accent); border-radius: 4px; flex-shrink: 0; }
   </style>
 </head>
 <body>
@@ -131,11 +139,23 @@
     </ul>
   </div>
 
+  <div class="exercise">
+    <div class="exercise-title">5) Read It in a Sentence 📖</div>
+    <div class="exercise-instruction">Read each sentence out loud. Sound out the bold word if you need to.</div>
+    <ul class="sentence-list">
+      <li><span class="sent-num">1</span><span class="sent-text">The pig ate a <strong>yam</strong> for lunch.</span><span class="sent-check"></span></li>
+      <li><span class="sent-num">2</span><span class="sent-text">I clipped a <strong>peg</strong> on the wet sock.</span><span class="sent-check"></span></li>
+      <li><span class="sent-num">3</span><span class="sent-text">Bees <strong>hum</strong> near the flowers.</span><span class="sent-check"></span></li>
+      <li><span class="sent-num">4</span><span class="sent-text">A spider spins a sticky <strong>web</strong>.</span><span class="sent-check"></span></li>
+    </ul>
+  </div>
+
   <div class="answer-key">
     <strong>Ex.1:</strong> yam, peg, hum, web, jot, fib ·
     <strong>Ex.2:</strong> m-u-g · r-i-b · p-u-p · v-a-t · h-e-x ·
     <strong>Ex.3:</strong> yam–C · web–A · fib–B · peg–F · jot–D · mug–E ·
-    <strong>Ex.4:</strong> pet=R · blig=S · yip=R · mun=S · jog=R · vop=S · lug=R · brid=S.
+    <strong>Ex.4:</strong> pet=R · blig=S · yip=R · mun=S · jog=R · vop=S · lug=R · brid=S ·
+    <strong>Ex.5:</strong> Read-aloud task, no fixed answer — listen for accurate sounding-out of each bold word.
   </div>
 </div>
 </body>

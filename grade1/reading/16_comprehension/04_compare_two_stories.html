@@ -22,7 +22,7 @@
   .mini-story p { margin-bottom: 4px; }
   /* 3-column compare chart */
   .cmp-cols { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-  .cmp-col { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 8px; min-height: 180px; }
+  .cmp-col { background: #fff; border: 2px solid var(--accent); border-radius: 10px; padding: 8px; min-height: 176px; }
   .cmp-col h4 { color: var(--title-color); text-align: center; font-size: 14px; margin-bottom: 6px; }
   .cmp-col .slot { border-bottom: 1.5px solid #aaa; height: 22px; margin-bottom: 6px; }
   /* Quick-match */
@@ -32,6 +32,11 @@
   .quick-pick { display: flex; gap: 8px; }
   .quick-circle { display: inline-flex; align-items: center; gap: 3px; font-size: 12px; font-weight: bold; color: var(--title-color); }
   .quick-circle .c { display: inline-block; width: 16px; height: 16px; border: 2px solid var(--title-color); border-radius: 50%; }
+  /* Vocabulary fill-in */
+  .word-bank { background: #fff; border: 2px dashed var(--accent); border-radius: 10px; padding: 6px 14px; margin-bottom: 6px; font-size: 14px; text-align: center; }
+  .fill-list { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+  .fill-list li { background: #fff; border: 1px solid #d2b4de; border-radius: 8px; padding: 5px 12px; font-size: 14px; }
+  .fill-list .blank { display: inline-block; min-width: 80px; border-bottom: 2px solid #333; }
   </style>
 </head>
 <body>
@@ -48,12 +53,14 @@
         <p>Lily got a new red bike. She rode it to the park.</p>
         <p>At the park, the bike chain came off. Lily was sad.</p>
         <p>Her dad came and fixed the chain. Lily rode home, smiling.</p>
+        <p>Now Lily always wears her helmet. The next day, she rode to her friend's house and was extra careful.</p>
       </div>
       <div class="mini-story">
         <span class="title">B · Tom's New Scooter</span>
         <p>Tom got a new blue scooter. He rode it to the park.</p>
         <p>At the park, a wheel got stuck. Tom was sad.</p>
         <p>His mom helped him fix it. Tom rode home, smiling.</p>
+        <p>Now Tom always locks his scooter. The next day, he rode to his friend's house and was extra careful too.</p>
       </div>
     </div>
   </div>
@@ -63,15 +70,29 @@
     <div class="exercise-instruction">Fill the chart. <em>Only A</em> goes left, <em>Only B</em> goes right, <em>Both</em> goes in the middle.</div>
     <div class="cmp-cols">
       <div class="cmp-col"><h4>Only Story A</h4>
-        <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
       </div>
       <div class="cmp-col" style="background: var(--col-bg);"><h4>Both Stories</h4>
-        <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
       </div>
       <div class="cmp-col"><h4>Only Story B</h4>
-        <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        <div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
       </div>
     </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Story Words 📝</div>
+    <div class="exercise-instruction">Fill in the blank. Use a word from the word bank.</div>
+    <div class="word-bank"><strong>Word Bank:</strong> bike · scooter · chain · wheel · dad · mom · helmet · friend's</div>
+    <ul class="fill-list">
+      <li>1. Lily's <span class="blank"></span> is red.</li>
+      <li>2. Tom's <span class="blank"></span> is blue.</li>
+      <li>3. The <span class="blank"></span> came off Lily's bike.</li>
+      <li>4. A <span class="blank"></span> got stuck on Tom's scooter.</li>
+      <li>5. Lily always wears her <span class="blank"></span> now.</li>
+      <li>6. Both kids rode to a <span class="blank"></span> house the next day.</li>
+    </ul>
   </div>
 </div>
 
@@ -80,7 +101,7 @@
   <div class="page-num">Page 2 of 2</div>
 
   <div class="exercise">
-    <div class="exercise-title">3) A, B, or Both? 🎯</div>
+    <div class="exercise-title">4) A, B, or Both? 🎯</div>
     <div class="exercise-instruction">Tick (✓) where each idea belongs.</div>
     <ul class="quick-list">
       <li><span class="quick-sent">The new toy is red.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
@@ -89,23 +110,28 @@
       <li><span class="quick-sent">The toy is a scooter.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
       <li><span class="quick-sent">The chain came off.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
       <li><span class="quick-sent">The kid rides home smiling.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
+      <li><span class="quick-sent">The rider wears a helmet.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
+      <li><span class="quick-sent">The rider locks their ride at the park.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
+      <li><span class="quick-sent">The next day, the rider visits a friend.</span><span class="quick-pick"><span class="quick-circle"><span class="c"></span>A</span><span class="quick-circle"><span class="c"></span>B</span><span class="quick-circle"><span class="c"></span>Both</span></span></li>
     </ul>
   </div>
 
   <div class="exercise">
-    <div class="exercise-title">4) Think and Write ✍️</div>
+    <div class="exercise-title">5) Think and Write ✍️</div>
     <div class="exercise-instruction">Use full sentences.</div>
     <ul class="quick-list">
       <li><span class="quick-sent" style="flex-direction: column; display: flex;"><strong>One thing the same:</strong><span style="border-bottom: 2px solid #333; height: 22px;"></span></span></li>
       <li><span class="quick-sent" style="flex-direction: column; display: flex;"><strong>One thing different:</strong><span style="border-bottom: 2px solid #333; height: 22px;"></span></span></li>
+      <li><span class="quick-sent" style="flex-direction: column; display: flex;"><strong>What lesson did both kids learn?</strong><span style="border-bottom: 2px solid #333; height: 22px;"></span></span></li>
       <li><span class="quick-sent" style="flex-direction: column; display: flex;"><strong>Which story do you like better, and why?</strong><span style="border-bottom: 2px solid #333; height: 22px;"></span><span style="border-bottom: 2px solid #333; height: 22px; margin-top:4px;"></span></span></li>
     </ul>
   </div>
 
   <div class="answer-key">
-    <strong>Ex.2 sample:</strong> Only A: red bike, dad helps, chain came off. Both: new toy, rides to park, sad at first, parent helps, smiling at end. Only B: blue scooter, mom helps, wheel got stuck. ·
-    <strong>Ex.3:</strong> A, Both, Both, B, A, Both ·
-    <strong>Ex.4:</strong> Personal answers (sample: Both kids got a new toy. / In A it's a bike, in B it's a scooter.).
+    <strong>Ex.2 sample:</strong> Only A: red bike, dad helps, chain came off, wears helmet. Both: new toy, rides to park, sad at first, parent helps, smiling at end, visits friend next day. Only B: blue scooter, mom helps, wheel got stuck, locks it. ·
+    <strong>Ex.3:</strong> bike, scooter, chain, wheel, helmet, friend's (dad, mom are extra words) ·
+    <strong>Ex.4:</strong> A, Both, Both, B, A, Both, A, B, Both ·
+    <strong>Ex.5:</strong> Personal answers (sample: Both kids got a new toy and learned to be careful. / In A it's a bike, in B it's a scooter.).
   </div>
 </div>
 </body>

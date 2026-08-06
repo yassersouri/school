@@ -13,18 +13,19 @@
       --title-color: #880e4f;
       --answer-key-color: #880e4f;
     }
-    .wp-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
-    .wp-item { padding: 10px 12px; border-left: 4px solid #f48fb1; background: #fff0f5; border-radius: 6px; display: flex; flex-direction: column; gap: 6px; }
+    .wp-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .wp-item { padding: 7px 10px; border-left: 4px solid #f48fb1; background: #fff0f5; border-radius: 6px; display: flex; flex-direction: column; gap: 4px; }
     .wp-story { font-size: 15px; line-height: 1.5; }
     .wp-story .emoji { font-size: 18px; }
     .wp-work { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
     .wp-work-label { font-size: 11px; color: #888; font-style: italic; }
     .wp-equation { font-size: 18px; font-weight: bold; color: #ad1457; }
     .wp-answer-line { border-bottom: 2px solid #ad1457; width: 140px; height: 22px; display: inline-block; }
-    .draw-and-solve { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-    .das-card { background: #fff; border: 2px solid #f48fb1; border-radius: 12px; padding: 10px; display: flex; flex-direction: column; gap: 6px; }
+    .wp-scratch { border: 1.5px dashed #f48fb1; border-radius: 6px; min-height: 34px; background: #fffafb; }
+    .draw-and-solve { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .das-card { background: #fff; border: 2px solid #f48fb1; border-radius: 12px; padding: 8px; display: flex; flex-direction: column; gap: 5px; }
     .das-card .das-story { font-size: 14px; line-height: 1.4; }
-    .das-card .das-draw { height: 70px; border: 2px dashed #f48fb1; border-radius: 8px; background: #fff8fa; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 11px; }
+    .das-card .das-draw { height: 50px; border: 2px dashed #f48fb1; border-radius: 8px; background: #fff8fa; display: flex; align-items: center; justify-content: center; color: #ccc; font-size: 11px; }
     .das-card .das-eq { font-size: 16px; font-weight: bold; color: #ad1457; text-align: center; }
   </style>
 </head>
@@ -36,7 +37,7 @@
     <h1>📖 Word Problems — Add &amp; Subtract to 20</h1>
     <p>Read each story carefully. Write the number sentence and solve!</p>
   </div>
-  <div class="page-num">Page 1 of 2</div>
+  <div class="page-num">Page 1 of 3</div>
 
   <!-- Exercise 1: Addition Word Problems -->
   <div class="exercise">
@@ -45,6 +46,8 @@
     <ul class="wp-list">
       <li class="wp-item">
         <div class="wp-story"><span class="emoji">🍪</span> 1. Mom baked 8 cookies. Then she baked 6 more. How many cookies did she bake in all?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
         <div class="wp-work">
           <span class="wp-work-label">Number sentence:</span>
           <span class="wp-equation"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></span>
@@ -53,6 +56,8 @@
       </li>
       <li class="wp-item">
         <div class="wp-story"><span class="emoji">🐸</span> 2. 9 frogs are sitting on a log. 5 more frogs hop on. How many frogs are on the log now?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
         <div class="wp-work">
           <span class="wp-work-label">Number sentence:</span>
           <span class="wp-equation"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></span>
@@ -61,6 +66,8 @@
       </li>
       <li class="wp-item">
         <div class="wp-story"><span class="emoji">📚</span> 3. Jack read 7 books last week and 9 books this week. How many books did he read altogether?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
         <div class="wp-work">
           <span class="wp-work-label">Number sentence:</span>
           <span class="wp-equation"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></span>
@@ -69,49 +76,11 @@
       </li>
       <li class="wp-item">
         <div class="wp-story"><span class="emoji">🎈</span> 4. There are 11 red balloons and 8 yellow balloons at the party. How many balloons are there in total?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
         <div class="wp-work">
           <span class="wp-work-label">Number sentence:</span>
           <span class="wp-equation"><span class="blank"></span> + <span class="blank"></span> = <span class="blank"></span></span>
-        </div>
-        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
-      </li>
-    </ul>
-  </div>
-
-  <!-- Exercise 2: Subtraction Word Problems -->
-  <div class="exercise">
-    <div class="exercise-title"><span class="badge">2</span> Subtraction Stories ➖📖</div>
-    <div class="exercise-instruction">Read the story, write the number sentence, and find the answer.</div>
-    <ul class="wp-list">
-      <li class="wp-item">
-        <div class="wp-story"><span class="emoji">🍬</span> 1. Zara has 14 candies. She shares 6 with her brother. How many candies does Zara have left?</div>
-        <div class="wp-work">
-          <span class="wp-work-label">Number sentence:</span>
-          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
-        </div>
-        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
-      </li>
-      <li class="wp-item">
-        <div class="wp-story"><span class="emoji">🐦</span> 2. There are 17 birds on a wire. 8 fly away. How many birds are still on the wire?</div>
-        <div class="wp-work">
-          <span class="wp-work-label">Number sentence:</span>
-          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
-        </div>
-        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
-      </li>
-      <li class="wp-item">
-        <div class="wp-story"><span class="emoji">🖍️</span> 3. A box has 20 crayons. Tim takes out 9. How many crayons are in the box?</div>
-        <div class="wp-work">
-          <span class="wp-work-label">Number sentence:</span>
-          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
-        </div>
-        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
-      </li>
-      <li class="wp-item">
-        <div class="wp-story"><span class="emoji">⚽</span> 4. The team scored 13 goals this season. Last year they scored 7. How many more goals did they score this year?</div>
-        <div class="wp-work">
-          <span class="wp-work-label">Number sentence:</span>
-          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
         </div>
         <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
       </li>
@@ -123,9 +92,66 @@
 <div class="page">
   <div class="page-header">
     <h1>📖 Word Problems — Add &amp; Subtract to 20</h1>
+    <p>Great work! Keep going! 💪</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <!-- Exercise 2: Subtraction Word Problems -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Subtraction Stories ➖📖</div>
+    <div class="exercise-instruction">Read the story, write the number sentence, and find the answer.</div>
+    <ul class="wp-list">
+      <li class="wp-item">
+        <div class="wp-story"><span class="emoji">🍬</span> 1. Zara has 14 candies. She shares 6 with her brother. How many candies does Zara have left?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
+        <div class="wp-work">
+          <span class="wp-work-label">Number sentence:</span>
+          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
+        </div>
+        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
+      </li>
+      <li class="wp-item">
+        <div class="wp-story"><span class="emoji">🐦</span> 2. There are 17 birds on a wire. 8 fly away. How many birds are still on the wire?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
+        <div class="wp-work">
+          <span class="wp-work-label">Number sentence:</span>
+          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
+        </div>
+        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
+      </li>
+      <li class="wp-item">
+        <div class="wp-story"><span class="emoji">🖍️</span> 3. A box has 20 crayons. Tim takes out 9. How many crayons are in the box?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
+        <div class="wp-work">
+          <span class="wp-work-label">Number sentence:</span>
+          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
+        </div>
+        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
+      </li>
+      <li class="wp-item">
+        <div class="wp-story"><span class="emoji">⚽</span> 4. The team scored 13 goals this season. Last year they scored 7. How many more goals did they score this year?</div>
+        <div class="wp-work"><span class="wp-work-label">Show your thinking (draw dots or tallies):</span></div>
+        <div class="wp-scratch"></div>
+        <div class="wp-work">
+          <span class="wp-work-label">Number sentence:</span>
+          <span class="wp-equation"><span class="blank"></span> − <span class="blank"></span> = <span class="blank"></span></span>
+        </div>
+        <div class="wp-work"><span class="wp-work-label">Answer:</span> <span class="wp-answer-line"></span></div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📖 Word Problems — Add &amp; Subtract to 20</h1>
     <p>Great work! Keep solving! 🏆</p>
   </div>
-  <div class="page-num">Page 2 of 2</div>
+  <div class="page-num">Page 3 of 3</div>
 
   <!-- Exercise 3: Mixed Word Problems -->
   <div class="exercise">

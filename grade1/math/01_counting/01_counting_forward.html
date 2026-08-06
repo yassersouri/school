@@ -31,10 +31,10 @@
     .nl-tick .num.blank-nl { border-bottom: 2px solid #e74c3c; color: transparent; min-width: 24px; display: inline-block; }
     .nl-line { width: 100%; height: 3px; background: #5dade2; margin-top: -32px; margin-bottom: 14px; border-radius: 2px; }
     .pond-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; margin: 8px 0; }
-    .lily { width: 100%; aspect-ratio: 1; border-radius: 50%; border: 3px solid #27ae60; background: #d5f5e3; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
+    .lily { width: 100%; max-width: 72px; aspect-ratio: 1; margin: 0 auto; border-radius: 50%; border: 3px solid #27ae60; background: #d5f5e3; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; }
     .lily.blank { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
-    .maze-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 4px; }
-    .maze-cell { aspect-ratio: 1; border: 2px solid #d5dbdb; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; background: #fafafa; }
+    .maze-grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 3px; max-width: 400px; margin: 0 auto; }
+    .maze-cell { aspect-ratio: 1; border: 2px solid #d5dbdb; border-radius: 5px; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: bold; background: #fafafa; }
     .maze-cell.path { background: #abebc6; border-color: #27ae60; }
     .maze-cell.blank-maze { background: #fef9e7; border-color: #f39c12; border-style: dashed; }
   </style>
@@ -89,7 +89,6 @@
       <div class="cat-segment blank"></div>
       <div class="cat-segment">30</div>
     </div>
-    <br/>
     <div class="caterpillar">
       <div class="cat-segment head">🐛 45</div>
       <div class="cat-segment blank"></div>

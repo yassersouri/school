@@ -45,6 +45,13 @@
   .check-word { font-weight: bold; color: var(--title-color); min-width: 70px; font-size: 20px; font-family: 'Comic Sans MS', cursive; }
   .check-circles { display: inline-flex; gap: 8px; margin-left: auto; }
   .check-circle { display: inline-flex; align-items: center; justify-content: center; width: 26px; height: 26px; border-radius: 50%; border: 2px solid var(--accent); font-weight: bold; font-size: 12px; color: var(--title-color); background: #fff; }
+
+  /* Circle the match */
+  .hunt-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .hunt-list li { display: flex; align-items: center; gap: 14px; background: #fff; border: 1px solid var(--accent); border-radius: 8px; padding: 8px 12px; }
+  .hunt-target { font-weight: bold; color: var(--title-color); font-size: 20px; font-family: 'Comic Sans MS', cursive; min-width: 64px; }
+  .hunt-row { display: flex; gap: 10px; flex: 1; justify-content: space-between; }
+  .hunt-opt { font-size: 16px; color: #333; padding: 3px 10px; border: 1.5px dashed #999; border-radius: 6px; font-family: 'Comic Sans MS', cursive; }
   </style>
 </head>
 <body>
@@ -66,6 +73,8 @@
       <li><span class="mystery-num">8</span><span class="mystery-boxes"><span class="mystery-letter">p</span><span class="mystery-letter">l</span><span class="mystery-letter">u</span><span class="mystery-letter">m</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
       <li><span class="mystery-num">9</span><span class="mystery-boxes"><span class="mystery-letter">d</span><span class="mystery-letter">e</span><span class="mystery-letter">n</span><span class="mystery-letter">t</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
       <li><span class="mystery-num">10</span><span class="mystery-boxes"><span class="mystery-letter">s</span><span class="mystery-letter">w</span><span class="mystery-letter">i</span><span class="mystery-letter">g</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">11</span><span class="mystery-boxes"><span class="mystery-letter">t</span><span class="mystery-letter">w</span><span class="mystery-letter">i</span><span class="mystery-letter">g</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
+      <li><span class="mystery-num">12</span><span class="mystery-boxes"><span class="mystery-letter">s</span><span class="mystery-letter">c</span><span class="mystery-letter">a</span><span class="mystery-letter">b</span></span><span class="arrow">→</span><span class="mystery-blank"></span></li>
     </ul>
   </div>
 
@@ -82,6 +91,17 @@
       <span>Try again — go faster!</span><span class="blank"></span>
     </div>
   </div>
+
+  <div class="exercise">
+    <div class="exercise-title">3) Circle the Match 👀</div>
+    <div class="exercise-instruction">Read the word on the left. Find it again in the row and circle it.</div>
+    <ul class="hunt-list">
+      <li><span class="hunt-target">snug</span><span class="hunt-row"><span class="hunt-opt">slug</span><span class="hunt-opt">snug</span><span class="hunt-opt">smug</span><span class="hunt-opt">snap</span></span></li>
+      <li><span class="hunt-target">plum</span><span class="hunt-row"><span class="hunt-opt">plus</span><span class="hunt-opt">glum</span><span class="hunt-opt">plum</span><span class="hunt-opt">plumb</span></span></li>
+      <li><span class="hunt-target">raft</span><span class="hunt-row"><span class="hunt-opt">raft</span><span class="hunt-opt">rift</span><span class="hunt-opt">raff</span><span class="hunt-opt">craft</span></span></li>
+      <li><span class="hunt-target">chub</span><span class="hunt-row"><span class="hunt-opt">club</span><span class="hunt-opt">chum</span><span class="hunt-opt">chub</span><span class="hunt-opt">crub</span></span></li>
+    </ul>
+  </div>
 </div>
 
 <div class="page">
@@ -89,7 +109,7 @@
   <div class="page-num">Page 2 of 2</div>
 
   <div class="exercise">
-    <div class="exercise-title">3) Sound Out and Match 🔍</div>
+    <div class="exercise-title">4) Sound Out and Match 🔍</div>
     <div class="exercise-instruction">Sound out each mystery word, then write the matching letter (A–F) in the box.</div>
     <ul class="match-list">
       <li><span class="match-word">snug</span><span class="match-meaning"><strong>A.</strong> a fruit with a pit, often purple</span><span class="match-blank"></span></li>
@@ -102,7 +122,7 @@
   </div>
 
   <div class="exercise">
-    <div class="exercise-title">4) Real Word or Silly Word? 🤔</div>
+    <div class="exercise-title">5) Real Word or Silly Word? 🤔</div>
     <div class="exercise-instruction">Sound out each one. Circle <strong>R</strong> for real or <strong>S</strong> for silly.</div>
     <ul class="check-list">
       <li><span class="check-word">drip</span><span class="check-circles"><span class="check-circle">R</span><span class="check-circle">S</span></span></li>
@@ -117,7 +137,7 @@
   </div>
 
   <div class="exercise">
-    <div class="exercise-title">5) Sound Out, Then Draw 🎨</div>
+    <div class="exercise-title">6) Sound Out, Then Draw 🎨</div>
     <div class="exercise-instruction">Sound out the new words in the sentence. Then draw a picture for it.</div>
     <div class="draw-row">
       <div style="flex:1;"><p style="font-size:16px;"><strong>"A snug pup sat on the raft and had a big gulp of milk."</strong></p></div>
@@ -126,9 +146,10 @@
   </div>
 
   <div class="answer-key">
-    <strong>Ex.1:</strong> yip, vex, snug, glob, raft, chub, math, plum, dent, swig ·
-    <strong>Ex.3:</strong> snug–B · raft–D · plum–A · gulp–F · mend–C · moth–E ·
-    <strong>Ex.4:</strong> drip=R · smug=R · flom=S · chig=S · hunt=R · zest=R · blod=S · prab=S.
+    <strong>Ex.1:</strong> yip, vex, snug, glob, raft, chub, math, plum, dent, swig, twig, scab ·
+    <strong>Ex.3:</strong> Each target word (snug, plum, raft, chub) appears once in its row — circle it. ·
+    <strong>Ex.4:</strong> snug–B · raft–D · plum–A · gulp–F · mend–C · moth–E ·
+    <strong>Ex.5:</strong> drip=R · smug=R · flom=S · chig=S · hunt=R · zest=R · blod=S · prab=S.
   </div>
 </div>
 </body>

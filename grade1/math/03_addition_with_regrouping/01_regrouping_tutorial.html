@@ -58,6 +58,13 @@
     .compact .vert-demo { font-size: 28px; padding: 8px 16px; border-width: 2px; border-radius: 10px; }
     .compact .vert-demo .vd-carry { font-size: 14px; }
     .compact .vert-demo .vd-line { margin: 4px 0; border-top-width: 3px; }
+    .step-box { border: 2px dashed #ce93d8; border-radius: 10px; padding: 8px 14px; background: #fff; margin: 6px 0; }
+    .step-box .step-label { font-size: 13px; font-weight: bold; color: #7b1fa2; }
+    .step-box .step-detail { font-size: 14px; color: #333; }
+    .compact .step-box { margin: 4px 0; padding: 6px 12px; }
+    .key-box { border: 3px solid #f48fb1; border-radius: 14px; padding: 14px 18px; background: #fce4ec; text-align: center; }
+    .key-box .kb-title { font-size: 16px; font-weight: bold; color: #c2185b; margin-bottom: 6px; }
+    .key-box .kb-text { font-size: 14px; color: #333; }
   </style>
 </head>
 <body>
@@ -281,6 +288,11 @@
       <span class="vis-eq">=</span>
       <span class="vis-result">13</span>
     </div>
+    <div class="step-box">
+      <span class="step-label">Step 1:</span> <span class="step-detail">Move 2 dots from 5 to fill the 8-frame → <strong>10</strong> ✅</span><br>
+      <span class="step-label">Step 2:</span> <span class="step-detail">5 − 2 = <strong>3</strong> dots left over</span><br>
+      <span class="step-label">Answer:</span> <span class="step-detail">1 ten and 3 ones = <strong>13</strong></span>
+    </div>
   </div>
 
   <!-- 9 + 6 ten-frame -->
@@ -353,6 +365,11 @@
       <span class="vis-eq">=</span>
       <span class="vis-result">15</span>
     </div>
+    <div class="step-box">
+      <span class="step-label">Step 1:</span> <span class="step-detail">Move 1 dot from 6 to fill the 9-frame → <strong>10</strong> ✅</span><br>
+      <span class="step-label">Step 2:</span> <span class="step-detail">6 − 1 = <strong>5</strong> dots left over</span><br>
+      <span class="step-label">Answer:</span> <span class="step-detail">1 ten and 5 ones = <strong>15</strong></span>
+    </div>
   </div>
 
   <!-- Vertical carrying -->
@@ -404,6 +421,16 @@
           <div class="vd-ans"><span class="carry-digit">1</span>8</div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- Quick checklist -->
+  <div class="key-box" style="margin-top:6px;">
+    <div class="kb-title">🧠 Remember</div>
+    <div class="kb-text" style="text-align:left;">
+      <strong>1.</strong> Add the <strong>ones</strong> first → is it 10 or more? 🔄 Time to regroup!<br>
+      <strong>2.</strong> Make a <strong>ten</strong> from the ones and carry it over to the tens.<br>
+      <strong>3.</strong> Add the tens, then attach the leftover ones for your answer!
     </div>
   </div>
 </div>
