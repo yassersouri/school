@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>اثبات تصویری — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #6a1b9a;
+      --accent: #ce93d8;
+      --accent-bg: #f3e5f5;
+      --title-color: #4a148c;
+      --answer-key-color: #4a148c;
+    }
+    .concept-box { border: 2.5px solid #6a1b9a; border-radius: 14px; padding: 16px 18px; background: #f3e5f5; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #4a148c; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .picture-proof { background: #fff; border: 2.5px solid #ce93d8; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px; }
+    .pp-title { font-size: 15px; font-weight: bold; color: #6a1b9a; margin-bottom: 4px; text-align: center; }
+    .pp-subtitle { font-size: 12px; color: #888; text-align: center; margin-bottom: 10px; font-style: italic; }
+
+    /* Staircase grid */
+    .staircase-area { display: flex; align-items: flex-end; justify-content: center; gap: 2px; margin: 8px 0; direction: ltr; unicode-bidi: isolate; }
+    .stair-col { display: flex; flex-direction: column; gap: 2px; }
+    .stair-cell { width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; }
+    .stair-cell.a { background: #6a1b9a; }
+    .stair-cell.b { background: #ab47bc; }
+    .stair-cell.c { background: #ce93d8; }
+    .stair-cell.mirror { background: #ff8a65; }
+
+    /* L-shape grid for odd numbers proof */
+    .square-grid { display: inline-grid; gap: 2px; margin: 8px; direction: ltr; unicode-bidi: isolate; }
+    .sq-cell { width: 24px; height: 24px; border-radius: 3px; }
+    .sq-cell.filled { background: #6a1b9a; }
+    .sq-cell.new { background: #e65100; border: 2px solid #bf360c; }
+    .sq-cell.empty { background: #f3e5f5; border: 1px dashed #ce93d8; }
+
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 8px; line-height: 1.5; }
+    .formula-box { text-align: center; font-size: 18px; font-weight: bold; color: #6a1b9a; padding: 8px; background: #fff; border: 2px solid #ce93d8; border-radius: 10px; margin: 8px 0; direction: ltr; unicode-bidi: isolate; }
+    .claim-card { background: #fff; border: 2px solid #ce93d8; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2.2; }
+    .draw-box { min-height: 100px; border: 2px dashed #ce93d8; border-radius: 10px; padding: 10px; margin: 8px 0; background: #faf5fc; }
+    .draw-label { font-size: 11px; color: #888; font-style: italic; }
+    .grid-row { display: flex; gap: 20px; justify-content: center; align-items: flex-end; flex-wrap: wrap; margin: 10px 0; direction: ltr; unicode-bidi: isolate; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 اثبات تصویری</h1>
+    <p>درس ۴ — حقایق ریاضی را با <strong>تصویر</strong> ثابت کن!</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۲</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 دیدن یعنی باور کردن (و اثبات کردن!)</div>
+    <div class="concept-text">
+      گاهی بهترین راه برای اثبات چیزی این است که <strong>یک تصویر بکشیم</strong>. یک تصویر خوب می‌تواند نشان دهد که یک فرمول چرا درست است — نه فقط اینکه درست است. به این‌ها <strong>اثبات‌های تصویری</strong> یا <strong>اثبات بدون کلمه</strong> می‌گوییم.
+    </div>
+  </div>
+
+  <!-- Picture Proof 1: Sum of first n odd numbers = n² -->
+  <div class="picture-proof">
+    <div class="pp-title">اثبات تصویری ۱: اعداد فرد، مربع‌های کامل می‌سازند</div>
+    <div class="pp-subtitle"><span class="ltr">۱ + ۳ + ۵ + ۷</span> + … = یک عدد مربعی!</div>
+
+    <div class="grid-row">
+      <!-- 1×1 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(1, 24px);">
+          <div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;"><strong>۱</strong> = ۱²</div>
+      </div>
+
+      <!-- 2×2 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(2, 24px);">
+          <div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell new"></div><div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;">۱+<strong>۳</strong> = ۲²</div>
+      </div>
+
+      <!-- 3×3 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(3, 24px);">
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell new"></div><div class="sq-cell new"></div><div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;">۱+۳+<strong>۵</strong> = ۳²</div>
+      </div>
+
+      <!-- 4×4 -->
+      <div style="text-align:center;">
+        <div class="square-grid" style="grid-template-columns: repeat(4, 24px);">
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell filled"></div><div class="sq-cell new"></div>
+          <div class="sq-cell new"></div><div class="sq-cell new"></div><div class="sq-cell new"></div><div class="sq-cell new"></div>
+        </div>
+        <div style="font-size:11px; color:#555; margin-top:4px;">۱+۳+۵+<strong>۷</strong> = ۴²</div>
+      </div>
+    </div>
+
+    <div class="proof-explain">
+      هر عدد فرد (شکل L نارنجی) دور مربع قبلی می‌پیچد و مربع بزرگ‌تری می‌سازد!<br>
+      عدد فرد <em>n</em>ام برابر است با ۲<em>n</em>−۱، و دقیقاً به اندازهٔ کافی اضافه می‌شود تا از (<em>n</em>−۱)² به <em>n</em>² برسیم.
+    </div>
+    <div class="formula-box">۱ + ۳ + ۵ + ۷ + ⋯ + (۲n−۱) = n²</div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> الگو را ادامه بده 🔲</div>
+    <div class="exercise-instruction">از الگوی شکل L استفاده کن تا بدون محاسبهٔ هر جمع، جواب را بیابی!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">۱ + ۳ + ۵ + ۷ + ۹ = <span class="blank"></span><br><span style="font-size:11px;color:#888;">این ۵ عدد فرد است ← <span class="blank"></span>²</span></div>
+      <div class="problem-card" style="font-size:14px;">۱ + ۳ + ۵ + ۷ + ۹ + ۱۱ = <span class="blank"></span><br><span style="font-size:11px;color:#888;">این ۶ عدد فرد است ← <span class="blank"></span>²</span></div>
+      <div class="problem-card" style="font-size:14px;">۱ + ۳ + ۵ + … + ۱۹ = <span class="blank"></span><br><span style="font-size:11px;color:#888;">این <span class="blank"></span> عدد فرد است ← <span class="blank"></span>²</span></div>
+      <div class="problem-card" style="font-size:14px;">۱ + ۳ + ۵ + … + ۹۹ = <span class="blank"></span><br><span style="font-size:11px;color:#888;">این <span class="blank"></span> عدد فرد است ← <span class="blank"></span>²</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 اثبات تصویری</h1>
+    <p>ترفند پله‌کان! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۲</div>
+
+  <!-- Picture Proof 2: Staircase sum 1+2+3+...+n = n(n+1)/2 -->
+  <div class="picture-proof">
+    <div class="pp-title">اثبات تصویری ۲: پله‌کان</div>
+    <div class="pp-subtitle"><span class="ltr">۱ + ۲ + ۳ + ۴</span> = ?&nbsp; دو پله‌کان را یک مستطیل کن!</div>
+
+    <div class="grid-row">
+      <!-- Staircase only -->
+      <div style="text-align:center;">
+        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">پله‌کان برای <span class="ltr">۱+۲+۳+۴</span></div>
+        <div class="staircase-area">
+          <div class="stair-col"><div class="stair-cell a"></div></div>
+          <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
+          <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
+          <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
+        </div>
+      </div>
+
+      <div style="font-size:24px; font-weight:bold; color:#333; align-self:center;">→</div>
+
+      <!-- Double staircase = rectangle -->
+      <div style="text-align:center;">
+        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">دو نسخه ← مستطیل <span class="ltr">۴ × ۵</span>!</div>
+        <div style="display:inline-grid; grid-template-columns: repeat(4, 28px); gap:2px;">
+          <div class="stair-cell a"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div>
+          <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div>
+          <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell mirror"></div>
+          <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div>
+          <div class="stair-cell mirror"></div><div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell a"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-explain">
+      پله‌کان دارای <span class="ltr">۱+۲+۳+۴ = ۱۰</span> مربع (بنفش) است.<br>
+      یک نسخه را برگردان (نارنجی) و کنار هم قرار بده ← مستطیل <span class="ltr">۴×۵ = ۲۰</span>.<br>
+      پله‌کان <strong>نصف</strong> مستطیل است: <span class="ltr">۲۰ ÷ ۲</span> = <strong>۱۰</strong> ✓
+    </div>
+    <div class="formula-box">۱ + ۲ + ۳ + ⋯ + n = n × (n + ۱) ÷ ۲</div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> از فرمول پله‌کان استفاده کن 📐</div>
+    <div class="exercise-instruction">از فرمول <span class="ltr">n × (n+۱) ÷ ۲</span> برای یافتن سریع هر مجموع استفاده کن!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">۱ + ۲ + ۳ + ۴ + ۵<br>n = ۵ ← ۵ × ۶ ÷ ۲ = <span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">۱ + ۲ + ۳ + … + ۱۰<br>n = ۱۰ ← ۱۰ × <span class="blank"></span> ÷ ۲ = <span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">۱ + ۲ + ۳ + … + ۲۰<br>n = ۲۰ ← <span class="blank"></span> × <span class="blank"></span> ÷ ۲ = <span class="blank"></span></div>
+      <div class="problem-card" style="font-size:14px;">۱ + ۲ + ۳ + … + ۱۰۰<br>n = ۱۰۰ ← <span class="blank"></span> × <span class="blank"></span> ÷ ۲ = <span class="blank"></span></div>
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> اثبات تصویری خودت را بکش ✏️</div>
+    <div class="exercise-instruction">پله‌کان را برای <span class="ltr">۱+۲+۳+۴+۵</span> بکش و نشان بده که دو نسخه یک مستطیل <span class="ltr">۵×۶</span> می‌سازند.</div>
+    <div class="draw-box">
+      <div class="draw-label">پله‌کانت را اینجا بکش:</div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۲۵ (۵²)، ۳۶ (۶²)، ۱۰۰ (۱۰ عدد فرد ← ۱۰²)، ۲۵۰۰ (۵۰ عدد فرد ← ۵۰²) —
+    ۲) ۱۵، ۵۵، ۲۱۰، ۵۰۵۰
+  </div>
+</div>
+
+</body>
+</html>

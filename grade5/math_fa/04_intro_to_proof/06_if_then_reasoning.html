@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>استدلال اگر-آنگاه — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #283593;
+      --accent: #9fa8da;
+      --accent-bg: #e8eaf6;
+      --title-color: #1a237e;
+      --answer-key-color: #1a237e;
+    }
+    .concept-box { border: 2.5px solid #283593; border-radius: 14px; padding: 16px 18px; background: #e8eaf6; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #1a237e; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .chain-box { background: #fff; border: 2.5px solid #9fa8da; border-radius: 14px; padding: 14px 16px; }
+    .chain-title { font-size: 15px; font-weight: bold; color: #283593; margin-bottom: 8px; text-align: center; }
+    .chain-steps { display: flex; flex-direction: column; gap: 4px; align-items: center; }
+    .chain-step { display: flex; align-items: center; gap: 10px; padding: 8px 16px; border-radius: 10px; font-size: 14px; font-weight: bold; max-width: 500px; width: 100%; }
+    .chain-step.given { background: #e8eaf6; border: 2px solid #5c6bc0; color: #283593; }
+    .chain-step.reason { background: #fff8e1; border: 2px solid #ffb74d; color: #e65100; }
+    .chain-step.result { background: #e8f5e9; border: 2px solid #81c784; color: #2e7d32; }
+    .chain-arrow { font-size: 20px; color: #9fa8da; }
+    .step-label { font-size: 10px; text-transform: uppercase; letter-spacing: .5px; flex-shrink: 0; min-width: 60px; }
+    .step-text { font-size: 13px; }
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 8px; line-height: 1.5; }
+    .claim-card { background: #fff; border: 2px solid #9fa8da; border-radius: 10px; padding: 14px; margin-bottom: 12px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
+    .work-area { font-size: 12px; color: #555; line-height: 2.2; }
+    .if-then-template { display: flex; flex-direction: column; gap: 6px; }
+    .it-row { display: flex; align-items: center; gap: 8px; }
+    .it-label { font-size: 12px; font-weight: bold; min-width: 70px; padding: 4px 8px; border-radius: 6px; text-align: center; }
+    .it-label.if { background: #e8eaf6; color: #283593; }
+    .it-label.then { background: #fff8e1; color: #e65100; }
+    .it-label.so { background: #e8f5e9; color: #2e7d32; }
+    .fill-chain { display: flex; flex-direction: column; gap: 4px; padding: 8px; }
+    .fc-step { display: flex; align-items: center; gap: 6px; font-size: 13px; color: #333; }
+    .fc-arrow { color: #9fa8da; font-size: 16px; padding-right: 30px; }
+    .match-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .match-card { background: #fff; border: 2px solid #9fa8da; border-radius: 10px; padding: 12px; }
+    .match-if { font-size: 13px; font-weight: bold; color: #283593; margin-bottom: 6px; }
+    .match-then { font-size: 13px; color: #555; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔗 استدلال اگر-آنگاه</h1>
+    <p>درس ۶ — ساختن <strong>زنجیرهٔ منطقی</strong> برای اثبات چیزها!</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۳</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 گزاره‌های اگر-آنگاه</div>
+    <div class="concept-text">
+      یک <strong>اثبات مستقیم</strong> با اتصال حقایق به هم در یک زنجیر کار می‌کند:<br><br>
+      <strong>«اگر</strong> چیزی درست باشد، <strong>آنگاه</strong> چیز دیگری هم باید درست باشد.»<br><br>
+      با اتصال چند گزارهٔ اگر-آنگاه به هم، می‌توانی چیزها را گام‌به‌گام ثابت کنی — مثل ساختن پلی از آنچه <em>می‌دانی</em> به آنچه می‌خواهی <em>نشان دهی</em>.
+    </div>
+  </div>
+
+  <!-- Worked Example 1 -->
+  <div class="chain-box">
+    <div class="chain-title">مثال ۱: اگر عددی بر ۱۰ بخش‌پذیر باشد، آنگاه بر ۵ هم بخش‌پذیر است</div>
+    <div class="chain-steps">
+      <div class="chain-step given">
+        <span class="step-label">شروع</span>
+        <span class="step-text">فرض کن عددی بر ۱۰ بخش‌پذیر است.</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">دلیل</span>
+        <span class="step-text">یعنی آن عدد برابر است با ۱۰ × (یک عدد). مثلاً <span class="ltr">۳۰ = ۱۰ × ۳</span>.</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">دلیل</span>
+        <span class="step-text">اما <span class="ltr">۱۰ = ۵ × ۲</span>، پس ۱۰ × (یک عدد) = <span class="ltr">۵ × ۲</span> × (یک عدد).</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step result">
+        <span class="step-label">ثابت شد!</span>
+        <span class="step-text">یعنی آن عدد برابر است با ۵ × (یک عدد)، پس بر ۵ بخش‌پذیر است. ✓</span>
+      </div>
+    </div>
+    <div class="proof-explain">هر گام به صورت منطقی از گام قبلی نتیجه می‌شود. این یک اثبات است!</div>
+  </div>
+
+  <!-- Worked Example 2 -->
+  <div class="chain-box">
+    <div class="chain-title">مثال ۲: اگر عددی بر ۶ بخش‌پذیر باشد، آنگاه بر ۳ هم بخش‌پذیر است</div>
+    <div class="chain-steps">
+      <div class="chain-step given">
+        <span class="step-label">شروع</span>
+        <span class="step-text">عدد بر ۶ بخش‌پذیر است.</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">دلیل</span>
+        <span class="step-text">پس برابر است با ۶ × (یک عدد).</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step reason">
+        <span class="step-label">دلیل</span>
+        <span class="step-text"><span class="ltr">۶ = ۳ × ۲</span>، پس ۶ × (یک عدد) = <span class="ltr">۳ × ۲</span> × (یک عدد).</span>
+      </div>
+      <div class="chain-arrow">⬇️</div>
+      <div class="chain-step result">
+        <span class="step-label">ثابت شد!</span>
+        <span class="step-text">آن عدد برابر است با ۳ × (یک عدد)، پس بر ۳ بخش‌پذیر است. ✓</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔗 استدلال اگر-آنگاه</h1>
+    <p>به ساختن زنجیرهٔ اثبات ادامه بده! 🔗</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۳</div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> زنجیرهٔ اگر-آنگاه را کامل کن 🔗</div>
+    <div class="exercise-instruction">گام‌های خالی را پر کن تا هر اثبات کامل شود.</div>
+
+    <div class="claim-card">
+      <div class="claim-text">اثبات کن: اگر عددی بر ۱۲ بخش‌پذیر باشد، آنگاه بر ۴ هم بخش‌پذیر است.</div>
+      <div class="fill-chain">
+        <div class="fc-step"><span class="it-label if">شروع</span> عدد بر ۱۲ بخش‌پذیر است.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">دلیل</span> پس برابر است با ۱۲ × (یک عدد).</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">دلیل</span> <span class="ltr">۱۲ = ۴</span> × <span class="blank"></span>، پس ۱۲ × (یک عدد) = <span class="blank-wide"></span></div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label so">ثابت شد!</span> <span class="blank-wide"></span></div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">اثبات کن: اگر یک عدد درست به ۰ ختم شود، آنگاه زوج است.</div>
+      <div class="fill-chain">
+        <div class="fc-step"><span class="it-label if">شروع</span> عدد به ۰ ختم می‌شود.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">دلیل</span> اعدادی که به ۰ ختم می‌شوند بر <span class="blank"></span> بخش‌پذیرند.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label then">دلیل</span> <span class="ltr">۱۰ = ۲</span> × <span class="blank"></span>، پس آن عدد بر <span class="blank"></span> بخش‌پذیر است.</div>
+        <div class="fc-arrow">⬇️</div>
+        <div class="fc-step"><span class="it-label so">ثابت شد!</span> <span class="blank-wide"></span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> جفت‌های اگر-آنگاه را پیدا کن 🔀</div>
+    <div class="exercise-instruction">یک خط بکش و هر «اگر» را به «آنگاه» درست وصل کن.</div>
+
+    <div class="match-grid">
+      <div class="match-card">
+        <div class="match-if">اگر عددی بر ۱۰۰ بخش‌پذیر باشد…</div>
+        <div class="match-then">آنگاه به ۵ یا ۰ ختم می‌شود.</div>
+      </div>
+      <div class="match-card">
+        <div class="match-if">اگر عددی بر ۹ بخش‌پذیر باشد…</div>
+        <div class="match-then">آنگاه بر ۵۰ بخش‌پذیر است.</div>
+      </div>
+      <div class="match-card">
+        <div class="match-if">اگر عددی مضربی از ۴ باشد…</div>
+        <div class="match-then">آنگاه مجموع ارقامش مضربی از ۹ است.</div>
+      </div>
+      <div class="match-card">
+        <div class="match-if">اگر عددی بر ۵ بخش‌پذیر باشد…</div>
+        <div class="match-then">آنگاه زوج است.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔗 استدلال اگر-آنگاه</h1>
+    <p>زنجیرهٔ اثبات خودت را بساز! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۳</div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> اثبات خودت را بنویس! ✍️</div>
+    <div class="exercise-instruction">یک ادعا انتخاب کن و با استدلال اگر-آنگاه آن را گام‌به‌گام ثابت کن.</div>
+
+    <div class="claim-card">
+      <div class="claim-text">یکی را برای اثبات انتخاب کن:</div>
+      <div style="font-size:13px; color:#555; margin-bottom:8px;">
+        الف) اگر عددی بر ۸ بخش‌پذیر باشد، آنگاه بر ۲ هم بخش‌پذیر است.<br>
+        ب) اگر عددی مضربی از ۱۵ باشد، آنگاه مضربی از ۵ هم هست.<br>
+        پ) اگر دو مضرب از ۳ را با هم جمع کنی، نتیجه هم مضربی از ۳ است.
+      </div>
+      <div class="work-area">
+        انتخاب کردم: <span class="blank"></span><br><br>
+        <span class="it-label if">شروع</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-right:20px;">⬇️</span><br>
+        <span class="it-label then">دلیل</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-right:20px;">⬇️</span><br>
+        <span class="it-label then">دلیل</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-right:20px;">⬇️</span><br>
+        <span class="it-label so">ثابت شد!</span> <span class="blank-wide"></span> <span class="blank-wide"></span>
+      </div>
+    </div>
+
+    <div class="claim-card" style="margin-top:12px;">
+      <div class="claim-text">🌟 چالش: یک ادعای دیگر را هم ثابت کن!</div>
+      <div style="font-size:13px; color:#555; margin-bottom:8px;">حرف دیگری (الف، ب یا پ) از بالا انتخاب کن و اینجا هم ثابت کن.</div>
+      <div class="work-area">
+        انتخاب کردم: <span class="blank"></span><br><br>
+        <span class="it-label if">شروع</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-right:20px;">⬇️</span><br>
+        <span class="it-label then">دلیل</span> <span class="blank-wide"></span> <span class="blank-wide"></span><br>
+        <span style="color:#9fa8da; font-size:14px; padding-right:20px;">⬇️</span><br>
+        <span class="it-label so">ثابت شد!</span> <span class="blank-wide"></span> <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Big takeaway -->
+  <div class="tip-box">
+    🎓 <strong>تبریک!</strong> تو ۵ روش اثبات یاد گرفتی:
+    <strong>بررسی مثال‌ها در برابر اثبات</strong>،
+    <strong>مثال نقض</strong>،
+    <strong>اثبات‌های تصویری/نقطه‌ای</strong>،
+    <strong>اثبات تصویری</strong>،
+    <strong>اثبات با بررسی حالت‌ها</strong>، و
+    <strong>استدلال اگر-آنگاه</strong>. مثل یک ریاضیدان واقعی فکر می‌کنی!
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱الف) <span class="ltr">۱۲=۴×۳</span>، <span class="ltr">۴×۳</span>×(یک عدد)، بر ۴ بخش‌پذیر است — ۱ب) بر ۱۰ بخش‌پذیر است، <span class="ltr">۱۰=۲×۵</span>، بر ۲ بخش‌پذیر است، عدد زوج است —
+    ۲) بر ۱۰۰ بخش‌پذیر ← بر ۵۰ بخش‌پذیر؛ بر ۹ بخش‌پذیر ← مجموع ارقام مضرب ۹ است؛ مضرب ۴ ← زوج؛ بر ۵ بخش‌پذیر ← به ۵ یا ۰ ختم می‌شود —
+    ۳) الف: <span class="ltr">۸=۲×۴</span>، پس <span class="ltr">۸×n=۲×۴×n</span>، بر ۲ بخش‌پذیر است؛ ب: <span class="ltr">۱۵=۵×۳</span>، پس <span class="ltr">۱۵×n=۵×۳×n</span>، بر ۵ بخش‌پذیر است؛ پ: <span class="ltr">۳a+۳b=۳</span><span class="ltr">(a+b)</span>، مضرب ۳ است
+  </div>
+</div>
+
+</body>
+</html>

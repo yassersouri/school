@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>الگوها و فرمول‌ها — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffcc80;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .sub-table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 13px; direction: ltr; unicode-bidi: isolate; }
+    .sub-table th { background: #e65100; color: #fff; padding: 5px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+    .sub-table td { border: 1.5px solid #ffcc80; padding: 5px 8px; text-align: center; }
+    .sub-table .highlight { background: #fff3e0; font-weight: bold; color: #bf360c; }
+    .pattern-row { display: flex; align-items: center; justify-content: center; gap: 4px; font-size: 15px; font-weight: bold; color: #e65100; margin: 4px 0; flex-wrap: wrap; direction: ltr; unicode-bidi: isolate; }
+    .pattern-num { background: #fff; border: 2px solid #ffcc80; border-radius: 6px; padding: 4px 8px; min-width: 32px; text-align: center; font-size: 14px; }
+    .pattern-num.mystery { background: #fff3e0; border-style: dashed; color: #bf360c; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; direction: rtl; unicode-bidi: isolate; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔢 الگوها و فرمول‌ها</h1>
+    <p>درس ۲ — از <strong>الگوها</strong> به <strong>فرمول‌ها</strong></p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۳</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 «…» یعنی چه؟</div>
+    <div class="concept-text">
+      وقتی سه نقطهٔ <strong>…</strong> را در ریاضی می‌بینی، یعنی <strong>«به همین الگو ادامه بده».</strong><br><br>
+      برای مثال:<br>
+      <strong>۱, ۲, ۳, …, ۱۰</strong> یعنی «۱، ۲، ۳، ۴، ۵، ۶، ۷، ۸، ۹، ۱۰» — همهٔ اعداد تا ۱۰.<br>
+      <strong>۲, ۴, ۶, …</strong> یعنی «۲، ۴، ۶، ۸، ۱۰، ۱۲، …» — تا بی‌نهایت به اندازهٔ ۲ ادامه بده!
+    </div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> بعدی چیست؟ 🔮</div>
+    <div class="exercise-instruction">الگو را پیدا کن، سپس سه عدد بعدی را بنویس.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">۱</span>
+          <span class="pattern-num">۲</span>
+          <span class="pattern-num">۳</span>
+          <span class="pattern-num">۴</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">قاعده: هر بار <span class="blank" style="width:30px;"></span> اضافه کن</div>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">۲</span>
+          <span class="pattern-num">۴</span>
+          <span class="pattern-num">۶</span>
+          <span class="pattern-num">۸</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">قاعده: هر بار <span class="blank" style="width:30px;"></span> اضافه کن</div>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">۱</span>
+          <span class="pattern-num">۳</span>
+          <span class="pattern-num">۵</span>
+          <span class="pattern-num">۷</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">قاعده: هر بار <span class="blank" style="width:30px;"></span> اضافه کن</div>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <div class="pattern-row" style="justify-content:flex-start;">
+          <span class="pattern-num">۵</span>
+          <span class="pattern-num">۱۰</span>
+          <span class="pattern-num">۱۵</span>
+          <span class="pattern-num">۲۰</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+          <span class="pattern-num mystery">?</span>
+        </div>
+        <div class="mini-label">قاعده: هر بار <span class="blank" style="width:30px;"></span> اضافه کن</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">🧩 از الگو به فرمول</div>
+    <div class="concept-text">
+      یک <strong>فرمول</strong> یک میان‌بر است که به تو اجازه می‌دهد مستقیم به <em>هر</em> عددی در الگو برسی — بدون اینکه همه را فهرست کنی!<br><br>
+      <strong>اعداد زوج:</strong> ۲، ۴، ۶، ۸، … → عدد زوج <em>n</em>ام = <strong><span class="ltr">۲ × n</span></strong>.<br>
+      <strong>اعداد فرد:</strong> ۱، ۳، ۵، ۷، … → عدد فرد <em>n</em>ام = <strong><span class="ltr">۲ × n − ۱</span></strong>.
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> فرمول‌ها را آزمایش کن 🧪</div>
+    <div class="exercise-instruction">از فرمول‌ها برای پر کردن جدول‌ها استفاده کن. بررسی کن که با الگوها یکی باشند!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:8px;">
+        <div style="text-align:center; font-weight:bold; color:#e65100; margin-bottom:4px; font-size:12px;">اعداد زوج: <span class="ltr">۲ × n</span></div>
+        <table class="sub-table" style="font-size:12px;">
+          <tr><th>n</th><th>۲ × n</th></tr>
+          <tr><td>۱</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۲</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۳</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۴</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۵</td><td><span class="blank" style="width:35px;"></span></td></tr>
+        </table>
+      </div>
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:8px;">
+        <div style="text-align:center; font-weight:bold; color:#e65100; margin-bottom:4px; font-size:12px;">اعداد فرد: <span class="ltr">۲ × n − ۱</span></div>
+        <table class="sub-table" style="font-size:12px;">
+          <tr><th>n</th><th>۲ × n − ۱</th></tr>
+          <tr><td>۱</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۲</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۳</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۴</td><td><span class="blank" style="width:35px;"></span></td></tr>
+          <tr><td>۵</td><td><span class="blank" style="width:35px;"></span></td></tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔢 الگوها و فرمول‌ها</h1>
+    <p>با فرمول‌ها جلو بپر — مثل یک ابرقدرت! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۳</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🚀 چرا فرمول‌ها قدرتمند هستند</div>
+    <div class="concept-text">
+      بدون فرمول، پیدا کردن صدمین عدد فرد یعنی باید همه را فهرست کنی:<br>
+      ۱، ۳، ۵، ۷، ۹، ۱۱، ۱۳، … (شمردن ۱۰۰ عدد — این خیلی طول می‌کشد!)<br><br>
+      با فرمول <strong><span class="ltr">۲ × n − ۱</span></strong>، مستقیم می‌رسی:<br>
+      <span class="ltr">۲ × ۱۰۰ − ۱ = ۲۰۰ − ۱</span> = <strong>۱۹۹</strong>. تمام! ⚡
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> جلو بپر! 🚀</div>
+    <div class="exercise-instruction">از فرمول برای پیدا کردن جواب استفاده کن — نیازی نیست همه را فهرست کنی!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        عدد زوج <strong>هفتم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n</span></span><br>
+        ۲ × ۷ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد زوج <strong>بیستم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n</span></span><br>
+        ۲ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد فرد <strong>هفتم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n − ۱</span></span><br>
+        ۲ × ۷ − ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد فرد <strong>بیستم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n − ۱</span></span><br>
+        ۲ × <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 4 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۴</span> فرمول را تطبیق بده 🎯</div>
+    <div class="exercise-instruction">هر الگوی زیر از یک فرمول پیروی می‌کند. فرمول را با n بنویس. اولی انجام شده است.</div>
+    <table class="sub-table">
+      <tr><th>الگو</th><th>اول</th><th>دوم</th><th>سوم</th><th>چهارم</th><th>پنجم</th><th>فرمول</th></tr>
+      <tr>
+        <td style="font-size:11px;">مضارب ۳</td>
+        <td>۳</td><td>۶</td><td>۹</td><td>۱۲</td><td>۱۵</td>
+        <td class="highlight">۳ × n</td>
+      </tr>
+      <tr>
+        <td style="font-size:11px;">مضارب ۴</td>
+        <td>۴</td><td>۸</td><td>۱۲</td><td>۱۶</td><td>۲۰</td>
+        <td><span class="blank"></span></td>
+      </tr>
+      <tr>
+        <td style="font-size:11px;">الگوی یک‌به‌یک</td>
+        <td>۲</td><td>۳</td><td>۴</td><td>۵</td><td>۶</td>
+        <td><span class="blank"></span></td>
+      </tr>
+      <tr>
+        <td style="font-size:11px;">مربع‌ها</td>
+        <td>۱</td><td>۴</td><td>۹</td><td>۱۶</td><td>۲۵</td>
+        <td><span class="blank"></span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Exercise 5 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۵</span> مسئله‌های کلامی با فرمول 🌍</div>
+    <div class="exercise-instruction">از هر فرمول برای حل مسئلهٔ واقعی استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        صندلی‌های اتوبوس = ۴ × ردیف‌ها<br>
+        اگر ردیف‌ها = ۸:<br>
+        ۴ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        هزینهٔ پست = ۲ × تمبرها (¢)<br>
+        اگر تمبرها = ۱۵:<br>
+        ۲ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        سن پسرعمو = <span class="ltr">n + ۳</span><br>
+        اگر <span class="ltr">n = ۹</span>:<br>
+        <span class="blank"></span> + ۳ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        پس‌انداز = ۵ × هفته‌ها<br>
+        اگر هفته‌ها = ۱۲:<br>
+        ۵ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔢 الگوها و فرمول‌ها</h1>
+    <p>با کلمات خودت بگو! 💬</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۳</div>
+
+  <!-- Exercise 6 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۶</span> با کلمات بگو 💬</div>
+    <div class="exercise-instruction">بنویس هر فرمول چه کاری انجام می‌دهد. اولی انجام شده است.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:12px;">
+        <strong>n + ۱۰</strong><br>
+        <em style="color:#888;">«۱۰ را به عدد اضافه کن.»</em>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:12px;">
+        <strong>۲ × n</strong><br>
+        <span class="mini-label">با کلمات تو:</span><br>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:12px;">
+        <strong>n × n</strong><br>
+        <span class="mini-label">با کلمات تو:</span><br>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:12px;">
+        <strong>۲ × n − ۱</strong><br>
+        <span class="mini-label">با کلمات تو:</span><br>
+        <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 7 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۷</span> اعداد بزرگ را پیدا کن 🌟</div>
+    <div class="exercise-instruction">از فرمول برای پیدا کردن هر جواب استفاده کن بدون اینکه همهٔ اعداد را بنویسی.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        عدد زوج <strong>پنجاهم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n</span></span><br>
+        ۲ × ۵۰ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد فرد <strong>پنجاهم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n − ۱</span></span><br>
+        ۲ × ۵۰ − ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد زوج <strong>صدم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n</span></span><br>
+        ۲ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد فرد <strong>صدم</strong><br>
+        <span class="mini-label">فرمول: <span class="ltr">۲ × n − ۱</span></span><br>
+        ۲ × <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 8 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۸</span> مسئله‌های داستانی با فرمول 📖</div>
+    <div class="exercise-instruction">از فرمول دو گامی برای حل هر مسئلهٔ داستانی استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        آرد = <span class="ltr">۲ × n + ۱</span> فنجان<br>
+        اگر <span class="ltr">n = ۵</span> دسته:<br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">۲ × ۵</span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> + ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        کرایه = <span class="ltr">۳ × n − ۱</span> تخفیف<br>
+        اگر <span class="ltr">n = ۶</span>:<br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">۳ × ۶</span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        ارتفاع = <span class="ltr">۴ × n + ۲</span> پایه<br>
+        اگر <span class="ltr">n = ۷</span>:<br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">۴ × ۷</span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> + ۲ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        کیف‌ها = <span class="ltr">۲ × n − ۳</span> گم‌شده<br>
+        اگر <span class="ltr">n = ۱۰</span>:<br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">۲ × ۱۰</span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> − ۳ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۵،۶،۷ (جمع ۱)؛ ۱۰،۱۲،۱۴ (جمع ۲)؛ ۹،۱۱،۱۳ (جمع ۲)؛ ۲۵،۳۰،۳۵ (جمع ۵) —
+    ۲) زوج: ۲،۴،۶،۸،۱۰ · فرد: ۱،۳،۵،۷،۹ —
+    ۳) ۱۴، ۴۰، ۱۳، ۳۹ —
+    ۴) <span class="ltr">۴×n</span>، <span class="ltr">n+۱</span>، <span class="ltr">n×n</span> —
+    ۵) اتوبوس: ۳۲؛ پست: ۳۰¢؛ پسرعمو: ۱۲؛ پس‌انداز: ۶۰ —
+    ۶) «عدد را دو برابر کن»؛ «عدد را در خودش ضرب کن»؛ «عدد را دو برابر کن و ۱ کم کن» —
+    ۷) ۱۰۰، ۹۹، ۲۰۰، ۱۹۹ —
+    ۸) آرد: ۱۱؛ کرایه: ۱۷؛ ارتفاع: ۳۰؛ کیف‌ها: ۱۷
+  </div>
+</div>
+</body>
+</html>

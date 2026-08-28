@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مثال نقض — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #c62828;
+      --accent: #ef9a9a;
+      --accent-bg: #ffebee;
+      --title-color: #b71c1c;
+      --answer-key-color: #b71c1c;
+    }
+    .concept-box { border: 2.5px solid #c62828; border-radius: 14px; padding: 12px 16px; background: #ffebee; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #b71c1c; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.5; }
+    .demo-box { background: #fff; border: 2.5px solid #ef9a9a; border-radius: 14px; padding: 10px 14px; }
+    .demo-claim { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 6px; border-bottom: 2px dashed #ef9a9a; padding-bottom: 6px; }
+    .demo-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: .5px; margin-top: 6px; margin-bottom: 3px; }
+    .demo-label.try { color: #1565c0; }
+    .demo-label.fail { color: #c62828; }
+    .demo-content { font-size: 13px; color: #555; line-height: 1.5; }
+    .demo-verdict { font-size: 14px; font-weight: bold; color: #c62828; margin-top: 6px; padding: 5px 10px; background: #ffcdd2; border-radius: 8px; text-align: center; }
+    .claim-card { background: #fff; border: 2px solid #ef9a9a; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; }
+    .claim-num { display: inline-block; background: #c62828; color: #fff; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; font-size: 12px; font-weight: bold; margin-left: 8px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 8px; }
+    .work-area { font-size: 12px; color: #555; line-height: 1.8; }
+    .verdict-row { display: flex; gap: 12px; margin-top: 8px; }
+    .verdict-option { flex: 1; border: 2px solid #ccc; border-radius: 8px; padding: 6px; text-align: center; font-size: 12px; font-weight: bold; color: #555; }
+    .detective-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .detective-card { background: #fff; border: 2px solid #ef9a9a; border-radius: 10px; padding: 12px; }
+    .detective-claim { font-size: 13px; font-weight: bold; color: #333; margin-bottom: 6px; }
+    .detective-hint { font-size: 11px; color: #888; font-style: italic; margin-bottom: 4px; }
+    .detective-answer { font-size: 12px; color: #555; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🚫 مثال نقض</h1>
+    <p>درس ۲ — فقط یک مثال کافی است تا یک ادعا را <strong>رد کنی</strong>!</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۲</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 مثال نقض چیست؟</div>
+    <div class="concept-text">
+      یک <strong>مثال نقض</strong> یک مثال تکی است که ثابت می‌کند یک ادعا <strong>نادرست</strong> است.<br><br>
+      اگر کسی بگوید «همهٔ قوها سفید هستند»، لازم نیست همهٔ قوهای دنیا را بررسی کنی. فقط کافی است <strong>یک قوی سیاه</strong> پیدا کنی — و ادعا رد می‌شود!<br><br>
+      در ریاضی هم همین‌طور است. اگر کسی ادعا کند چیزی همیشه درست است، پیدا کردن فقط <strong>یک حالت</strong> که درست نباشد، کافی است تا نادرست‌بودن آن را ثابت کنی.
+    </div>
+  </div>
+
+  <!-- Worked Example 1 -->
+  <div class="demo-box">
+    <div class="demo-claim">ادعا: «همهٔ اعداد اول، فرد هستند.»</div>
+    <div class="demo-label try">🧪 چند عدد اول را بررسی می‌کنیم:</div>
+    <div class="demo-content">۳ فرد است ✓ &nbsp;&nbsp; ۵ فرد است ✓ &nbsp;&nbsp; ۷ فرد است ✓ &nbsp;&nbsp; ۱۱ فرد است ✓ &nbsp;&nbsp; ۱۳ فرد است ✓</div>
+    <div class="demo-label fail">🔍 ولی صبر کن…</div>
+    <div class="demo-content"><strong>۲</strong> یک عدد اول است، و ۲ <strong>زوج</strong> است!</div>
+    <div class="demo-verdict">❌ مثال نقض: ۲ — ادعا نادرست است!</div>
+  </div>
+
+  <!-- Worked Example 2 -->
+  <div class="demo-box">
+    <div class="demo-claim">ادعا: «مجذور هر عددی از خودِ آن عدد بزرگ‌تر است.»</div>
+    <div class="demo-label try">🧪 بررسی می‌کنیم:</div>
+    <div class="demo-content"><span class="ltr">۳² = ۹ &gt; ۳</span> ✓ &nbsp;&nbsp; <span class="ltr">۵² = ۲۵ &gt; ۵</span> ✓ &nbsp;&nbsp; <span class="ltr">۱۰² = ۱۰۰ &gt; ۱۰</span> ✓</div>
+    <div class="demo-label fail">🔍 ولی صبر کن…</div>
+    <div class="demo-content"><strong><span class="ltr">۱² = ۱</span></strong>، و ۱ از ۱ بزرگ‌تر نیست! همچنین <strong><span class="ltr">۰² = ۰</span></strong>.</div>
+    <div class="demo-verdict">❌ مثال نقض: ۱ (یا ۰) — ادعا نادرست است!</div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> مثال نقض پیدا کن! 🔎</div>
+    <div class="exercise-instruction">هر ادعای زیر <strong>نادرست</strong> است. یک مثال نقض برای رد آن پیدا کن.</div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">الف</span>«همهٔ مضارب ۳، فرد هستند.»</div>
+      <div class="work-area">مثال نقض من: <span class="blank-wide"></span> چون <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">ب</span>«اگر دو عدد را از هم کم کنی، همیشه عددی کوچک‌تر به دست می‌آید.»</div>
+      <div class="work-area">مثال نقض من: <span class="blank-wide"></span> چون <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">پ</span>«همهٔ اعدادی که به ۵ ختم می‌شوند، بر ۱۰ بخش‌پذیرند.»</div>
+      <div class="work-area">مثال نقض من: <span class="blank-wide"></span> چون <span class="blank-wide"></span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🚫 مثال نقض</h1>
+    <p>کارآگاه ریاضی باش — اشکال را پیدا کن! 🕵️</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۲</div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> درست یا نادرست؟ تو تصمیم بگیر! ⚖️</div>
+    <div class="exercise-instruction">برای هر ادعا: اگر فکر می‌کنی <strong>درست</strong> است، دلیل بنویس. اگر فکر می‌کنی <strong>نادرست</strong> است، یک مثال نقض بیاور.</div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">الف</span>«هر عدد زوج بزرگ‌تر از ۲ را می‌توان بدون باقیمانده بر ۲ تقسیم کرد.»</div>
+      <div class="work-area">
+        جواب من: <span class="blank-wide"></span><br>
+        دلیل / مثال نقض: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">درست ✅</div>
+        <div class="verdict-option">نادرست ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">ب</span>«حاصل‌ضرب دو عدد فرد همیشه زوج است.»</div>
+      <div class="work-area">
+        جواب من: <span class="blank-wide"></span><br>
+        دلیل / مثال نقض: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">درست ✅</div>
+        <div class="verdict-option">نادرست ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">پ</span>«اگر عددی بر ۶ بخش‌پذیر باشد، بر ۳ هم بخش‌پذیر است.»</div>
+      <div class="work-area">
+        جواب من: <span class="blank-wide"></span><br>
+        دلیل / مثال نقض: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">درست ✅</div>
+        <div class="verdict-option">نادرست ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text"><span class="claim-num">ت</span>«اضافه کردن ۱ به یک عدد اول، همیشه یک عدد مرکب می‌دهد.»</div>
+      <div class="work-area">
+        جواب من: <span class="blank-wide"></span><br>
+        دلیل / مثال نقض: <span class="blank-wide"></span>
+      </div>
+      <div class="verdict-row">
+        <div class="verdict-option">درست ✅</div>
+        <div class="verdict-option">نادرست ❌</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Make your own -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> خودت یک ادعای نادرست بساز! 🎭</div>
+    <div class="exercise-instruction">یک ادعای ریاضی بنویس که به نظر درست می‌رسد ولی در واقع نادرست است. سپس مثال نقض بیاور.</div>
+    <div class="claim-card">
+      <div class="work-area">
+        ادعای نادرست من: <span class="blank-wide"></span><br>
+        مثال نقض: <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱الف) ۶ مضرب ۳ است و زوج است — ۱ب) <span class="ltr">۵ − ۵ = ۰</span>، کوچک‌تر نشد (یا <span class="ltr">۳ − ۷</span> = −۴) — ۱پ) ۱۵ به ۵ ختم می‌شود ولی <span class="ltr">۱۵ ÷ ۱۰ = ۱٫۵</span> —
+    ۲الف) درست (تعریف عدد زوج همین است) — ۲ب) نادرست (<span class="ltr">۳ × ۵ = ۱۵</span>، که فرد است) — ۲پ) درست (<span class="ltr">۶ = ۲ × ۳</span>، پس هر مضرب ۶ مضرب ۳ هم هست) — ۲ت) نادرست (<span class="ltr">۲ + ۱ = ۳</span>، که عدد اول است)
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>استفاده از فرمول‌های معروف — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #6a1b9a;
+      --accent: #ce93d8;
+      --accent-bg: #f3e5f5;
+      --title-color: #4a148c;
+      --answer-key-color: #4a148c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #6a1b9a; border-radius: 14px; padding: 10px 14px; background: #f3e5f5; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #4a148c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ce93d8; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #6a1b9a; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #6a1b9a; padding: 8px; background: #fff; border: 2px solid #ce93d8; border-radius: 10px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
+    .sub-table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 13px; direction: ltr; unicode-bidi: isolate; }
+    .sub-table th { background: #6a1b9a; color: #fff; padding: 5px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+    .sub-table td { border: 1.5px solid #ce93d8; padding: 5px 8px; text-align: center; }
+    .sub-table .highlight { background: #f3e5f5; font-weight: bold; color: #4a148c; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; direction: rtl; unicode-bidi: isolate; }
+    .step-by-step { background: #fff; border: 2px solid #ce93d8; border-radius: 10px; padding: 10px 14px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #6a1b9a; }
+    .recipe-card { background: #f3e5f5; border: 2.5px solid #6a1b9a; border-radius: 14px; padding: 10px 14px; margin: 6px 0; }
+    .recipe-title { font-size: 13px; font-weight: bold; color: #4a148c; margin-bottom: 4px; text-align: center; }
+    .recipe-steps { font-size: 12px; color: #333; line-height: 1.6; padding-right: 20px; }
+    .recipe-steps li { margin-bottom: 1px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🌟 استفاده از فرمول‌های معروف</h1>
+    <p>درس ۳ — تمرین با <strong>فرمول‌های واقعی ریاضی</strong> گام‌به‌گام</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۴</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 یک فرمول مثل یک دستور پخت است</div>
+    <div class="concept-text">
+      یک فرمول را مثل یک <strong>دستور پخت</strong> تصور کن. حرف، مادهٔ اولیه است (عددی که می‌گذاری)، و عملیات (×، +، −، ÷) مراحل پخت هستند.<br>
+      برای استفاده از هر فرمول: <strong>① آن را بخوان</strong> → <strong>② عدد را جای‌گذاری کن</strong> → <strong>③ گام‌به‌گام حساب کن</strong>.
+    </div>
+  </div>
+
+  <!-- Formula 1: n × n (n squared) -->
+  <div class="recipe-card">
+    <div class="recipe-title">📖 دستور فرمول شماره ۱: <span class="ltr">n × n</span> (n به‌توان ۲)</div>
+    <div class="recipe-steps">
+      <ol>
+        <li>عدد <em>n</em> را بردار</li>
+        <li>آن را در <strong>خودش</strong> ضرب کن</li>
+        <li>این جواب توست!</li>
+      </ol>
+    </div>
+  </div>
+  <div class="formula-box">
+    <span class="formula-name">به‌توان رساندن یک عدد</span>
+    <span class="ltr">n × n = n²</span>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">مثال حل‌شده</div>
+    <div class="step-by-step">
+      <div class="step">n² را وقتی <span class="ltr">n = ۴</span> پیدا کن:</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → <span class="ltr">n × n</span></div>
+      <div class="step"><strong>گام ۲:</strong> n را با ۴ جای‌گذاری کن → <span class="ltr">۴ × ۴</span></div>
+      <div class="step"><strong>گام ۳:</strong> حساب کن → <strong>۱۶</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> تمرین n² 🔲</div>
+    <div class="exercise-instruction">مراحل را دنبال کن تا n² را برای هر مقدار پیدا کنی.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        n = ۳ → ۳ × ۳ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        n = ۵ → <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        n = ۷ → <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        n = ۱۰ → <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> بررسی سریع: درست یا غلط؟ ✅</div>
+    <div class="exercise-instruction">درست یا غلط را برای هر جمله دور بزن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        ۵² = ۲۵<br>
+        <strong>درست&nbsp;&nbsp;/&nbsp;&nbsp;غلط</strong>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        ۸² = ۱۶<br>
+        <strong>درست&nbsp;&nbsp;/&nbsp;&nbsp;غلط</strong>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        ۱۰² = ۱۰۰<br>
+        <strong>درست&nbsp;&nbsp;/&nbsp;&nbsp;غلط</strong>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <span class="ltr">n × n</span> فقط وقتی n زوج است کار می‌کند<br>
+        <strong>درست&nbsp;&nbsp;/&nbsp;&nbsp;غلط</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🌟 استفاده از فرمول‌های معروف</h1>
+    <p>یک دستور بزرگ‌تر — جمع کردن اعداد! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۴</div>
+
+  <!-- Formula 2: n × (n + 1) ÷ 2 -->
+  <div class="recipe-card">
+    <div class="recipe-title">📖 دستور فرمول شماره ۲: <span class="ltr">n × (n + ۱) ÷ ۲</span></div>
+    <div class="recipe-steps">
+      <ol>
+        <li>عدد <em>n</em> را بردار</li>
+        <li>۱ به آن اضافه کن → این می‌شود <em><span class="ltr">n + ۱</span></em></li>
+        <li><em>n</em> را در <em><span class="ltr">n + ۱</span></em> ضرب کن</li>
+        <li>نتیجه را بر ۲ تقسیم کن</li>
+      </ol>
+    </div>
+  </div>
+  <div class="formula-box">
+    <span class="formula-name">جمع همهٔ اعداد از ۱ تا n</span>
+    <span class="ltr">۱ + ۲ + ۳</span> + ⋯ + <span class="ltr">n = n × (n + ۱) ÷ ۲</span>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">مثال حل‌شده</div>
+    <div class="step-by-step">
+      <div class="step"><span class="ltr">۱ + ۲ + ۳ + ۴ + ۵</span> را با فرمول پیدا کن <span class="ltr">(n = ۵)</span>:</div>
+      <div class="step"><strong>گام ۱:</strong> <span class="ltr">n + ۱ = ۵ + ۱ = ۶</span></div>
+      <div class="step"><strong>گام ۲:</strong> <span class="ltr">n × (n + ۱) = ۵ × ۶ = ۳۰</span></div>
+      <div class="step"><strong>گام ۳:</strong> بر ۲ تقسیم کن → <span class="ltr">۳۰ ÷ ۲</span> = <strong>۱۵</strong> ✓</div>
+      <div class="step" style="color:#888; font-style:italic;">بررسی: <span class="ltr">۱+۲+۳+۴+۵ = ۱۵</span> ✓ درست است!</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> تمرین <span class="ltr">n × (n + ۱) ÷ ۲</span> 📐</div>
+    <div class="exercise-instruction">مراحل دستور را برای هر مقدار n دنبال کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>n = ۴</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">n + ۱ = ۴ + ۱</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="ltr">n × (n+۱) = ۴</span> × <span class="blank" style="width:30px;"></span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۳:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>n = ۶</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">n + ۱</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="ltr">n × (n+۱)</span> = <span class="blank" style="width:30px;"></span> × <span class="blank" style="width:30px;"></span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۳:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>n = ۸</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">n + ۱</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="ltr">n × (n+۱)</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۳:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>n = ۱۰</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">n + ۱</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="ltr">n × (n+۱)</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۳:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🌟 استفاده از فرمول‌های معروف</h1>
+    <p>ارتباط فرمول‌ها با اثبات‌های تصویری! 🎨</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۴</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🎨 ارتباط با اثبات‌های تصویری</div>
+    <div class="concept-text">
+      یادت هست فرمول اعداد فرد: عدد فرد <em>n</em>ام برابر است با <strong><span class="ltr">۲n − ۱</span></strong>.<br><br>
+      یک حقیقت شگفت‌انگیز وجود دارد: اگر <strong>n عدد فرد اول را با هم جمع کنی</strong>، همیشه <strong>n²</strong> می‌شود!<br>
+      بیا گام‌به‌گام بررسی کنیم:
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۴</span> جمع اعداد فرد → مربع‌های کامل ✨</div>
+    <div class="exercise-instruction">هر ردیف را پر کن. الگوی ستون آخر را ببین!</div>
+    <table class="sub-table">
+      <tr><th>چند تا؟</th><th>کدام اعداد فرد؟</th><th>مجموع</th><th>آیا n² است؟</th></tr>
+      <tr>
+        <td>n = ۱</td>
+        <td>۱</td>
+        <td>۱</td>
+        <td class="highlight">۱² = ۱ ✓</td>
+      </tr>
+      <tr>
+        <td>n = ۲</td>
+        <td>۱ + ۳</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۲² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+      <tr>
+        <td>n = ۳</td>
+        <td>۱ + ۳ + ۵</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۳² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+      <tr>
+        <td>n = ۴</td>
+        <td>۱ + ۳ + ۵ + ۷</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۴² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+      <tr>
+        <td>n = ۵</td>
+        <td>۱ + ۳ + ۵ + ۷ + ۹</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۵² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+      <tr>
+        <td>n = ۶</td>
+        <td>۱ + ۳ + ۵ + ۷ + ۹ + ۱۱</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۶² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+      <tr>
+        <td>n = ۷</td>
+        <td>۱ + ۳ + ۵ + ۷ + ۹ + ۱۱ + ۱۳</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۷² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+      <tr>
+        <td>n = ۸</td>
+        <td>۱ + ۳ + ۵ + ۷ + ۹ + ۱۱ + ۱۳ + ۱۵</td>
+        <td><span class="blank" style="width:30px;"></span></td>
+        <td class="highlight">۸² = <span class="blank" style="width:30px;"></span></td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Exercise 5 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۵</span> بدون جمع کردن پیش‌بینی کن 🔮</div>
+    <div class="exercise-instruction">از الگویی که پیدا کردی (مجموع n عدد فرد اول = n²) برای رسیدن مستقیم به جواب استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        مجموع ۱۰ عدد فرد اول<br>
+        = ۱۰² = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مجموع ۱۲ عدد فرد اول<br>
+        = <span class="blank" style="width:30px;"></span>² = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مجموع ۷ عدد فرد اول<br>
+        = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مجموع ۲۰ عدد فرد اول<br>
+        = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🌟 استفاده از فرمول‌های معروف</h1>
+    <p>از میان‌برها استفاده کن — مثل یک قهرمان ریاضی! ⚡</p>
+  </div>
+  <div class="page-num">صفحهٔ ۴ از ۴</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۶</span> از میان‌بر استفاده کن! ⚡</div>
+    <div class="exercise-instruction">حالا که الگو را می‌دانی، از n² برای پیدا کردن فوری این مجموع‌ها استفاده کن!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        ۱ + ۳ + ۵ + … + ۱۷<br>
+        <span class="mini-label">این ۹ عدد فرد اول است</span><br>
+        <span class="mini-label">(چون <span class="ltr">۲×۹−۱ = ۱۷</span>)</span><br>
+        n = ۹ → ۹² = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        ۱ + ۳ + ۵ + … + ۳۹<br>
+        <span class="mini-label"><span class="ltr">۲ × n − ۱ = ۳۹</span> → n = <span class="blank" style="width:30px;"></span></span><br>
+        <span class="blank" style="width:30px;"></span>² = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        ۱ + ۲ + ۳ + … + ۲۰<br>
+        <span class="mini-label">از <span class="ltr">n × (n+۱) ÷ ۲</span> استفاده کن</span><br>
+        ۲۰ × ۲۱ ÷ ۲ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        ۱ + ۲ + ۳ + … + ۵۰<br>
+        <span class="mini-label">از <span class="ltr">n × (n+۱) ÷ ۲</span> استفاده کن</span><br>
+        ۵۰ × <span class="blank" style="width:30px;"></span> ÷ ۲ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 7: Mixed -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۷</span> فرمول درست را انتخاب کن 🧠</div>
+    <div class="exercise-instruction">تصمیم بگیر از کدام فرمول استفاده کنی، سپس حل کن!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <span class="ltr">۱ + ۲ + ۳</span> + … + ۱۲ چقدر است؟<br>
+        <span class="mini-label">فرمول:</span> <span class="blank-wide"></span><br>
+        <span class="mini-label">جواب:</span> <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <span class="ltr">۱ + ۳ + ۵</span> + … + ۲۳ چقدر است؟<br>
+        <span class="mini-label">چند عدد فرد؟</span> <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">جواب:</span> <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        ۸² چقدر است؟<br>
+        <span class="mini-label">فرمول:</span> <span class="ltr">n × n</span><br>
+        <span class="mini-label">جواب:</span> <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        عدد فرد پانزدهم چیست؟<br>
+        <span class="mini-label">فرمول:</span> <span class="ltr">۲ × n − ۱</span><br>
+        <span class="mini-label">جواب:</span> <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 8: Real-World Challenge -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۸</span> چالش دنیای واقعی 🌍</div>
+    <div class="exercise-instruction">از یک فرمول این درس برای حل هر مسئلهٔ واقعی استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        یک ورزشگاه ۱۲ ردیف دارد. ردیف ۱ یک صندلی، ردیف ۲ دو صندلی دارد و … تا ردیف ۱۲.<br>
+        مجموع صندلی‌ها = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        یک کف کاشی مربعی ۹ کاشی در ۹ کاشی دارد.<br>
+        مجموع کاشی‌ها = ۹² = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        یک پشتهٔ قوطی ۱ قوطی بالا، ۳ در ردیف دوم، ۵ در ردیف سوم، … تا ردیف ششم دارد.<br>
+        مجموع قوطی‌ها = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        کدام بزرگ‌تر است — ۶² یا <span class="ltr">۱ + ۲</span> + … + ۱۱؟<br>
+        دور بزن: <strong>۶²&nbsp;&nbsp;/&nbsp;&nbsp;مجموع</strong>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۹، ۲۵، ۴۹، ۱۰۰ —
+    ۲) درست، غلط <span class="ltr">(۸²=۶۴)</span>، درست، غلط —
+    ۳) ۵→۲۰→۱۰، ۷→۴۲→۲۱، ۹→۷۲→۳۶، ۱۱→۱۱۰→۵۵ —
+    ۴) ۴، ۴؛ ۹، ۹؛ ۱۶، ۱۶؛ ۲۵، ۲۵؛ ۳۶، ۳۶؛ ۴۹، ۴۹؛ ۶۴، ۶۴ —
+    ۵) ۱۰۰، ۱۴۴، ۴۹، ۴۰۰ —
+    ۶) ۸۱؛ <span class="ltr">n=۲۰</span>→۴۰۰؛ ۲۱۰؛ ۱۲۷۵ —
+    ۷) ۷۸؛ ۱۲ عدد فرد→۱۴۴؛ ۶۴؛ ۲۹ —
+    ۸) ۷۸، ۸۱، ۳۶، مجموع <span class="ltr">(۶۶ &gt; ۳۶)</span>
+  </div>
+</div>
+
+</body>
+</html>
