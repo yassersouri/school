@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>اثبات چیست؟ — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #1565c0;
+      --accent: #90caf9;
+      --accent-bg: #e3f2fd;
+      --title-color: #0d47a1;
+      --answer-key-color: #0d47a1;
+    }
+    .concept-box { border: 2.5px solid #1565c0; border-radius: 14px; padding: 16px 18px; background: #e3f2fd; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #0d47a1; margin-bottom: 8px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.6; }
+    .vs-row { display: flex; gap: 16px; justify-content: center; }
+    .vs-box { flex: 1; max-width: 280px; border-radius: 14px; padding: 14px; text-align: center; }
+    .vs-box.examples { background: #fff3e0; border: 2.5px solid #ffb74d; }
+    .vs-box.proof { background: #e8f5e9; border: 2.5px solid #81c784; }
+    .vs-box .vb-title { font-size: 14px; font-weight: bold; margin-bottom: 6px; }
+    .vs-box.examples .vb-title { color: #e65100; }
+    .vs-box.proof .vb-title { color: #2e7d32; }
+    .vs-box .vb-content { font-size: 12px; color: #555; line-height: 1.6; }
+    .claim-card { background: #fff; border: 2px solid #90caf9; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
+    .claim-label { font-size: 11px; font-weight: bold; color: #1565c0; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 4px; }
+    .claim-text { font-size: 15px; font-weight: bold; color: #333; margin-bottom: 8px; }
+    .claim-options { display: flex; gap: 12px; }
+    .claim-option { flex: 1; border: 2px solid #ccc; border-radius: 8px; padding: 8px; text-align: center; font-size: 13px; font-weight: bold; color: #555; }
+    .tf-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .thought-box { background: #fff; border: 2px solid #90caf9; border-radius: 10px; padding: 12px 14px; }
+    .thought-label { font-size: 12px; font-weight: bold; color: #1565c0; margin-bottom: 6px; }
+    .thought-lines { font-size: 13px; color: #333; line-height: 2.2; }
+    .example-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 6px 0; }
+    .example-chip { background: #fff; border: 1.5px solid #90caf9; border-radius: 20px; padding: 4px 14px; font-size: 13px; font-weight: bold; color: #1565c0; direction: ltr; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔍 اثبات چیست؟</h1>
+    <p>درس ۱ — یاد می‌گیریم تفاوت <strong>مثال‌ها</strong> و <strong>اثبات</strong> را بشناسیم</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۲</div>
+
+  <!-- Big idea -->
+  <div class="concept-box">
+    <div class="concept-title">💡 ایدهٔ اصلی</div>
+    <div class="concept-text">
+      در ریاضی، یک <strong>اثبات</strong> یک استدلال منطقی است که نشان می‌دهد چیزی <strong>همیشه</strong> درست است — نه فقط گاهی، نه فقط برای اعدادی که امتحان کردی، بلکه <strong>برای هر حالت ممکن</strong>.<br><br>
+      بررسی مثال‌ها می‌تواند کمک کند که چیزی را درست <em>باور کنی</em>، ولی هرگز نمی‌تواند ثابت کند که برای همهٔ اعداد درست است. فقط یک اثبات می‌تواند این کار را بکند!
+    </div>
+  </div>
+
+  <!-- Examples vs Proof -->
+  <div class="vs-row">
+    <div class="vs-box examples">
+      <div class="vb-title">🧪 بررسی مثال‌ها</div>
+      <div class="vb-content" style="direction: ltr; text-align: left;">
+        "۲ + ۴ = ۶ ✓<br>
+        ۳ + ۵ = ۸ ✓<br>
+        ۷ + ۱ = ۸ ✓<br>
+        پس <em>شاید</em> فرد + فرد = زوج؟"<br><br>
+        ❌ این ثابت نمی‌کند که همیشه درست است. اعدادی که امتحان نکردی چه؟
+      </div>
+    </div>
+    <div class="vs-box proof">
+      <div class="vb-title">✅ یک اثبات واقعی</div>
+      <div class="vb-content">
+        «هر عدد فرد وقتی نقطه‌هایش را جفت می‌کنیم، ۱ نقطه اضافه دارد. اگر دو عدد فرد را جمع کنیم، آن دو نقطهٔ اضافه با هم جفت می‌شوند — پس هیچ نقطه‌ای اضافه نمی‌ماند. یعنی نتیجه همیشه زوج است.»<br><br>
+        ✅ این برای همهٔ اعداد فرد، همیشه کار می‌کند!
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 1: Always, Sometimes, Never -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> همیشه، گاهی، یا هرگز؟ 🤔</div>
+    <div class="exercise-instruction">هر ادعا را بخوان. دور یکی از گزینه‌ها بکش: <strong>همیشه درست</strong>، <strong>گاهی درست</strong>، یا <strong>هرگز درست نیست</strong>.</div>
+
+    <div class="claim-card">
+      <div class="claim-label">ادعای الف</div>
+      <div class="claim-text">وقتی دو عدد زوج را جمع می‌کنیم، نتیجه زوج است.</div>
+      <div class="claim-options">
+        <div class="claim-option">همیشه درست</div>
+        <div class="claim-option">گاهی درست</div>
+        <div class="claim-option">هرگز درست نیست</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-label">ادعای ب</div>
+      <div class="claim-text">وقتی یک عدد را در ۲ ضرب می‌کنیم، نتیجه از عدد اصلی بزرگ‌تر است.</div>
+      <div class="claim-options">
+        <div class="claim-option">همیشه درست</div>
+        <div class="claim-option">گاهی درست</div>
+        <div class="claim-option">هرگز درست نیست</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-label">ادعای پ</div>
+      <div class="claim-text">مجموع سه عدد متوالی بر ۳ بخش‌پذیر است.</div>
+      <div class="claim-options">
+        <div class="claim-option">همیشه درست</div>
+        <div class="claim-option">گاهی درست</div>
+        <div class="claim-option">هرگز درست نیست</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-label">ادعای ت</div>
+      <div class="claim-text">عددی که به ۰ ختم می‌شود، فرد است.</div>
+      <div class="claim-options">
+        <div class="claim-option">همیشه درست</div>
+        <div class="claim-option">گاهی درست</div>
+        <div class="claim-option">هرگز درست نیست</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔍 اثبات چیست؟</h1>
+    <p>مثال‌ها می‌توانند فریبت بدهند — اثبات‌ها نمی‌دهند! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۲</div>
+
+  <!-- The danger of examples -->
+  <div class="concept-box">
+    <div class="concept-title">⚠️ وقتی مثال‌ها فریبت می‌دهند</div>
+    <div class="concept-text">
+      ادعا: «<strong>هر عددی که کمتر از ۴۰ است و به ۱، ۳، ۷، یا ۹ ختم می‌شود، اول است.</strong>»<br><br>
+      بررسی می‌کنیم: ۳ ✓، ۷ ✓، ۱۱ ✓، ۱۳ ✓، ۱۷ ✓، ۱۹ ✓، ۲۳ ✓، ۲۹ ✓، ۳۱ ✓، ۳۷ ✓ — واو، همه درست هستند!<br><br>
+      ولی صبر کن… آیا این همیشه درست است؟ <strong>۲۱</strong> را امتحان کن. آیا ۲۱ عدد اول است؟ <strong>نه!</strong> ۲۱ = ۳ × ۷.<br>
+      همچنین <strong>۲۷</strong> = ۳ × ۹، و <strong>۳۳</strong> = ۳ × ۱۱. پس ادعا <strong>نادرست</strong> است!
+    </div>
+  </div>
+
+  <!-- Exercise 2: Test the claim -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> ادعا را آزمایش کن 🧪</div>
+    <div class="exercise-instruction">برای هر ادعا، حداقل ۳ مثال امتحان کن. سپس تصمیم بگیر: فکر می‌کنی ادعا درست است یا نادرست؟</div>
+
+    <div class="claim-card">
+      <div class="claim-label">ادعای ث</div>
+      <div class="claim-text">اگر ۱ را به هر عدد زوجی اضافه کنیم، نتیجه همیشه فرد است.</div>
+      <div class="example-row">
+        <span class="example-chip"><span class="blank" style="width:20px;"></span> + ۱ = <span class="blank" style="width:20px;"></span></span>
+        <span class="example-chip"><span class="blank" style="width:20px;"></span> + ۱ = <span class="blank" style="width:20px;"></span></span>
+        <span class="example-chip"><span class="blank" style="width:20px;"></span> + ۱ = <span class="blank" style="width:20px;"></span></span>
+      </div>
+      <div class="claim-options">
+        <div class="claim-option">فکر می‌کنم درست است</div>
+        <div class="claim-option">فکر می‌کنم نادرست است</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-label">ادعای ج</div>
+      <div class="claim-text">دو برابر کردن یک عدد، همیشه عددی بزرگ‌تر از ۱۰ می‌دهد.</div>
+      <div class="example-row">
+        <span class="example-chip"><span class="blank" style="width:20px;"></span> × ۲ = <span class="blank" style="width:20px;"></span></span>
+        <span class="example-chip"><span class="blank" style="width:20px;"></span> × ۲ = <span class="blank" style="width:20px;"></span></span>
+        <span class="example-chip"><span class="blank" style="width:20px;"></span> × ۲ = <span class="blank" style="width:20px;"></span></span>
+      </div>
+      <div class="claim-options">
+        <div class="claim-option">فکر می‌کنم درست است</div>
+        <div class="claim-option">فکر می‌کنم نادرست است</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3: Write your own -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> نوبت توست! ✍️</div>
+    <div class="exercise-instruction">این جمله‌ها را دربارهٔ اثبات کامل کن.</div>
+    <div class="thought-box">
+      <div class="thought-lines">
+        یک <strong>اثبات</strong> نشان می‌دهد که چیزی برای <span class="blank-wide"></span> درست است.<br>
+        بررسی مثال‌ها کافی نیست، چون <span class="blank-wide"></span>.<br>
+        برای نشان دادن نادرست‌بودن یک ادعا، فقط به <span class="blank-wide"></span> نیاز داری.
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱الف) همیشه درست — ۱ب) گاهی درست (۰×۲=۰، بزرگ‌تر نیست) — ۱پ) همیشه درست (مثلاً ۴+۵+۶=۱۵) — ۱ت) هرگز درست نیست —
+    ۲ث) درست — ۲ج) نادرست (۳×۲=۶ &lt; ۱۰) —
+    ۳) همهٔ حالت‌ها / ممکن است حالتی را از دست بدهی که نادرست باشد / یک مثال نقض
+  </div>
+</div>
+
+</body>
+</html>

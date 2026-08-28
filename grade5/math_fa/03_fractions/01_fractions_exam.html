@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>آزمون کسرها — پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #1565c0;
+      --accent: #90caf9;
+      --accent-bg: #e3f2fd;
+      --title-color: #0d47a1;
+      --badge-bg: #1565c0;
+      --answer-key-color: #0d47a1;
+    }
+    .problem-card-tall { background: #fff; border: 1.5px solid #90caf9; border-radius: 8px; padding: 14px 10px; text-align: center; font-size: 18px; font-weight: 700; color: #1565c0; display: flex; flex-direction: column; align-items: center; gap: 6px; direction: ltr; }
+    .frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 18px; line-height: 1.1; direction: ltr; }
+    .frac .num { border-bottom: 2px solid #333; padding: 0 4px; min-width: 20px; }
+    .frac .den { padding: 0 4px; min-width: 20px; }
+    .frac-blank { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; margin: 0 3px; font-size: 18px; line-height: 1.1; direction: ltr; }
+    .frac-blank .num { border-bottom: 2px solid #333; padding: 0 4px; min-width: 28px; min-height: 20px; }
+    .frac-blank .den { padding: 0 4px; min-width: 28px; min-height: 20px; }
+    .mixed { display: inline-flex; align-items: center; gap: 2px; vertical-align: middle; direction: ltr; }
+    .mixed .whole { font-size: 22px; }
+    .arrow { font-size: 18px; color: #555; margin: 0 6px; }
+    .name-line { display: flex; justify-content: space-between; align-items: center; font-size: 13px; color: #555; margin-bottom: 4px; }
+    .name-line span { border-bottom: 1px solid #999; flex: 0 0 180px; height: 18px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ صفحهٔ 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📝 آزمون کسرها</h1>
+    <p>پایهٔ پنجم · آزمون جامع کسرها</p>
+  </div>
+  <div class="name-line">نام: <span></span> تاریخ: <span></span></div>
+  <div class="page-num">صفحهٔ ۱ از ۴</div>
+
+  <!-- بخش الف: تبدیل عدد مخلوط ↔ کسر بزرگ‌تر از واحد -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">الف</span> اعداد مخلوط و کسرهای بزرگ‌تر از واحد</div>
+    <div class="exercise-instruction">هر عدد مخلوط را به کسر بزرگ‌تر از واحد، یا هر کسر بزرگ‌تر از واحد را به عدد مخلوط تبدیل کن.</div>
+
+    <p style="font-size:12px; font-weight:700; color:#0d47a1; margin: 6px 0 4px;">تبدیل به کسر بزرگ‌تر از واحد:</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="mixed"><span class="whole">۲</span><span class="frac"><span class="num">۳</span><span class="den">۴</span></span></span>
+        <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="mixed"><span class="whole">۳</span><span class="frac"><span class="num">۱</span><span class="den">۵</span></span></span>
+        <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="mixed"><span class="whole">۵</span><span class="frac"><span class="num">۲</span><span class="den">۳</span></span></span>
+        <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="mixed"><span class="whole">۴</span><span class="frac"><span class="num">۵</span><span class="den">۸</span></span></span>
+        <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="mixed"><span class="whole">۱</span><span class="frac"><span class="num">۷</span><span class="den">۱۰</span></span></span>
+        <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="mixed"><span class="whole">۶</span><span class="frac"><span class="num">۱</span><span class="den">۲</span></span></span>
+        <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+    </div>
+
+    <p style="font-size:12px; font-weight:700; color:#0d47a1; margin: 10px 0 4px;">تبدیل به عدد مخلوط:</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱۱</span><span class="den">۴</span></span>
+        <span class="arrow">=</span>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱۹</span><span class="den">۵</span></span>
+        <span class="arrow">=</span>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲۳</span><span class="den">۶</span></span>
+        <span class="arrow">=</span>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱۷</span><span class="den">۳</span></span>
+        <span class="arrow">=</span>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲۹</span><span class="den">۸</span></span>
+        <span class="arrow">=</span>
+        <span class="blank-wide"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱۵</span><span class="den">۷</span></span>
+        <span class="arrow">=</span>
+        <span class="blank-wide"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ب: تبدیل کسر ↔ اعشار -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">ب</span> تبدیل کسر ↔ اعشار</div>
+    <div class="exercise-instruction">هر کسر را به اعشار، یا هر اعشار را به کسر در ساده‌ترین صورت تبدیل کن.</div>
+
+    <p style="font-size:12px; font-weight:700; color:#0d47a1; margin: 6px 0 4px;">تبدیل به اعشار:</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱</span><span class="den">۴</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۵</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۱۰</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۸</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۵</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۹</span><span class="den">۲۰</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۸</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱۱</span><span class="den">۲۵</span></span>
+        <span class="arrow">=</span>
+        <span class="blank"></span>
+      </div>
+    </div>
+
+    <p style="font-size:12px; font-weight:700; color:#0d47a1; margin: 10px 0 4px;">تبدیل به کسر در ساده‌ترین صورت:</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        ۰٫۵ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۷۵ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۲ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۳۵ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۱۲۵ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۶ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۰۸ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        ۰٫۴۵ <span class="arrow">=</span>
+        <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ صفحهٔ 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📝 آزمون کسرها</h1>
+    <p>پایهٔ پنجم · جمع و تفریق کسرها</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۴</div>
+
+  <!-- بخش پ: جمع و تفریق — مخرج یکسان -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">پ</span> جمع و تفریق — مخرج یکسان</div>
+    <div class="exercise-instruction">جمع یا تفریق کن. اگر می‌شود پاسخ را ساده کن.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۷</span></span>
+        + <span class="frac"><span class="num">۳</span><span class="den">۷</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۹</span></span>
+        + <span class="frac"><span class="num">۲</span><span class="den">۹</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱</span><span class="den">۶</span></span>
+        + <span class="frac"><span class="num">۳</span><span class="den">۶</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۸</span></span>
+        − <span class="frac"><span class="num">۳</span><span class="den">۸</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        − <span class="frac"><span class="num">۱</span><span class="den">۶</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۹</span><span class="den">۱۰</span></span>
+        − <span class="frac"><span class="num">۳</span><span class="den">۱۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۴</span><span class="den">۵</span></span>
+        + <span class="frac"><span class="num">۳</span><span class="den">۵</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱۱</span><span class="den">۱۲</span></span>
+        − <span class="frac"><span class="num">۵</span><span class="den">۱۲</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        + <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۱۰</span></span>
+        + <span class="frac"><span class="num">۴</span><span class="den">۱۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۱۱</span></span>
+        − <span class="frac"><span class="num">۳</span><span class="den">۱۱</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۸</span></span>
+        + <span class="frac"><span class="num">۵</span><span class="den">۸</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ت: جمع و تفریق — مخرج‌های مختلف -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">ت</span> جمع و تفریق — مخرج‌های مختلف</div>
+    <div class="exercise-instruction">ابتدا مخرج مشترک پیدا کن، سپس جمع یا تفریق کن. پاسخ را ساده کن.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱</span><span class="den">۲</span></span>
+        + <span class="frac"><span class="num">۱</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۳</span></span>
+        + <span class="frac"><span class="num">۱</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۵</span></span>
+        + <span class="frac"><span class="num">۱</span><span class="den">۱۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        − <span class="frac"><span class="num">۱</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        − <span class="frac"><span class="num">۱</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۸</span></span>
+        − <span class="frac"><span class="num">۲</span><span class="den">۵</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱</span><span class="den">۶</span></span>
+        + <span class="frac"><span class="num">۳</span><span class="den">۸</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۴</span><span class="den">۹</span></span>
+        + <span class="frac"><span class="num">۱</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        − <span class="frac"><span class="num">۳</span><span class="den">۱۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۵</span></span>
+        + <span class="frac"><span class="num">۱</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۸</span></span>
+        − <span class="frac"><span class="num">۱</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۷</span></span>
+        + <span class="frac"><span class="num">۱</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ صفحهٔ 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📝 آزمون کسرها</h1>
+    <p>پایهٔ پنجم · ضرب و تقسیم کسرها</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۴</div>
+
+  <!-- بخش ث: ضرب کسرها -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">ث</span> ضرب کسرها</div>
+    <div class="exercise-instruction">ضرب کن. پاسخ را در ساده‌ترین صورت بنویس.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱</span><span class="den">۲</span></span>
+        × <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۳</span></span>
+        × <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۵</span></span>
+        × <span class="frac"><span class="num">۲</span><span class="den">۷</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۴</span><span class="den">۹</span></span>
+        × <span class="frac"><span class="num">۳</span><span class="den">۸</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        × <span class="frac"><span class="num">۳</span><span class="den">۱۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۸</span></span>
+        × <span class="frac"><span class="num">۴</span><span class="den">۵</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۵</span></span>
+        × <span class="frac"><span class="num">۵</span><span class="den">۹</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        × <span class="frac"><span class="num">۲</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۶</span><span class="den">۷</span></span>
+        × <span class="frac"><span class="num">۷</span><span class="den">۱۲</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۷</span></span>
+        × <span class="frac"><span class="num">۲</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۴</span><span class="den">۱۱</span></span>
+        × <span class="frac"><span class="num">۳</span><span class="den">۸</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        × <span class="frac"><span class="num">۴</span><span class="den">۹</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- بخش ج: تقسیم کسرها -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">ج</span> تقسیم کسرها</div>
+    <div class="exercise-instruction">با ضرب در معکوس تقسیم کن. پاسخ را ساده کن.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card">
+        <span class="frac"><span class="num">۱</span><span class="den">۲</span></span>
+        ÷ <span class="frac"><span class="num">۱</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        ÷ <span class="frac"><span class="num">۱</span><span class="den">۲</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۳</span></span>
+        ÷ <span class="frac"><span class="num">۴</span><span class="den">۵</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        ÷ <span class="frac"><span class="num">۲</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۴</span><span class="den">۵</span></span>
+        ÷ <span class="frac"><span class="num">۳</span><span class="den">۱۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۸</span></span>
+        ÷ <span class="frac"><span class="num">۷</span><span class="den">۱۶</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۳</span><span class="den">۱۰</span></span>
+        ÷ <span class="frac"><span class="num">۹</span><span class="den">۲۰</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۹</span></span>
+        ÷ <span class="frac"><span class="num">۱</span><span class="den">۳</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۷</span></span>
+        ÷ <span class="frac"><span class="num">۴</span><span class="den">۷</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        ÷ <span class="frac"><span class="num">۳</span><span class="den">۴</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۷</span><span class="den">۱۰</span></span>
+        ÷ <span class="frac"><span class="num">۳</span><span class="den">۵</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+      <div class="problem-card">
+        <span class="frac"><span class="num">۲</span><span class="den">۹</span></span>
+        ÷ <span class="frac"><span class="num">۵</span><span class="den">۶</span></span>
+        = <span class="frac-blank"><span class="num"></span><span class="den"></span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ صفحهٔ 4 — کلید پاسخ‌ها ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📝 آزمون کسرها — کلید پاسخ‌ها</h1>
+    <p>پایهٔ پنجم · ویژهٔ معلم</p>
+  </div>
+  <div class="page-num">صفحهٔ ۴ از ۴</div>
+
+  <div class="exercise" style="background:#fff9c4; border-color:#fbc02d;">
+    <div class="exercise-title" style="color:#e65100;"><span class="badge" style="background:#e65100;">الف</span> اعداد مخلوط و کسرهای بزرگ‌تر از واحد</div>
+    <p style="font-size:12px; margin-bottom:4px;"><strong>تبدیل به کسر بزرگ‌تر از واحد:</strong></p>
+    <p style="font-size:13px; line-height:2;">
+      ۱) ۲¾ = <strong>۱۱/۴</strong> &nbsp;&nbsp;
+      ۲) ۳⅕ = <strong>۱۶/۵</strong> &nbsp;&nbsp;
+      ۳) ۵⅔ = <strong>۱۷/۳</strong> &nbsp;&nbsp;
+      ۴) ۴⅝ = <strong>۳۷/۸</strong> &nbsp;&nbsp;
+      ۵) ۱ ۷/۱۰ = <strong>۱۷/۱۰</strong> &nbsp;&nbsp;
+      ۶) ۶½ = <strong>۱۳/۲</strong>
+    </p>
+    <p style="font-size:12px; margin:6px 0 4px;"><strong>تبدیل به عدد مخلوط:</strong></p>
+    <p style="font-size:13px; line-height:2;">
+      ۷) ۱۱/۴ = <strong>۲¾</strong> &nbsp;&nbsp;
+      ۸) ۱۹/۵ = <strong>۳⅘</strong> &nbsp;&nbsp;
+      ۹) ۲۳/۶ = <strong>۳⅚</strong> &nbsp;&nbsp;
+      ۱۰) ۱۷/۳ = <strong>۵⅔</strong> &nbsp;&nbsp;
+      ۱۱) ۲۹/۸ = <strong>۳⅝</strong> &nbsp;&nbsp;
+      ۱۲) ۱۵/۷ = <strong>۲ ۱/۷</strong>
+    </p>
+  </div>
+
+  <div class="exercise" style="background:#fff9c4; border-color:#fbc02d;">
+    <div class="exercise-title" style="color:#e65100;"><span class="badge" style="background:#e65100;">ب</span> تبدیل کسر ↔ اعشار</div>
+    <p style="font-size:12px; margin-bottom:4px;"><strong>تبدیل به اعشار:</strong></p>
+    <p style="font-size:13px; line-height:2;">
+      ۱) ۱/۴ = <strong>۰٫۲۵</strong> &nbsp;&nbsp;
+      ۲) ۳/۵ = <strong>۰٫۶</strong> &nbsp;&nbsp;
+      ۳) ۷/۱۰ = <strong>۰٫۷</strong> &nbsp;&nbsp;
+      ۴) ۳/۸ = <strong>۰٫۳۷۵</strong> &nbsp;&nbsp;
+      ۵) ۲/۵ = <strong>۰٫۴</strong> &nbsp;&nbsp;
+      ۶) ۹/۲۰ = <strong>۰٫۴۵</strong> &nbsp;&nbsp;
+      ۷) ۵/۸ = <strong>۰٫۶۲۵</strong> &nbsp;&nbsp;
+      ۸) ۱۱/۲۵ = <strong>۰٫۴۴</strong>
+    </p>
+    <p style="font-size:12px; margin:6px 0 4px;"><strong>تبدیل به کسر:</strong></p>
+    <p style="font-size:13px; line-height:2;">
+      ۹) ۰٫۵ = <strong>۱/۲</strong> &nbsp;&nbsp;
+      ۱۰) ۰٫۷۵ = <strong>۳/۴</strong> &nbsp;&nbsp;
+      ۱۱) ۰٫۲ = <strong>۱/۵</strong> &nbsp;&nbsp;
+      ۱۲) ۰٫۳۵ = <strong>۷/۲۰</strong> &nbsp;&nbsp;
+      ۱۳) ۰٫۱۲۵ = <strong>۱/۸</strong> &nbsp;&nbsp;
+      ۱۴) ۰٫۶ = <strong>۳/۵</strong> &nbsp;&nbsp;
+      ۱۵) ۰٫۰۸ = <strong>۲/۲۵</strong> &nbsp;&nbsp;
+      ۱۶) ۰٫۴۵ = <strong>۹/۲۰</strong>
+    </p>
+  </div>
+
+  <div class="exercise" style="background:#fff9c4; border-color:#fbc02d;">
+    <div class="exercise-title" style="color:#e65100;"><span class="badge" style="background:#e65100;">پ</span> جمع و تفریق — مخرج یکسان</div>
+    <p style="font-size:13px; line-height:2;">
+      ۱) <strong>۵/۷</strong> &nbsp;&nbsp;
+      ۲) <strong>۷/۹</strong> &nbsp;&nbsp;
+      ۳) <strong>۲/۳</strong> &nbsp;&nbsp;
+      ۴) <strong>۱/۲</strong> &nbsp;&nbsp;
+      ۵) <strong>۲/۳</strong> &nbsp;&nbsp;
+      ۶) <strong>۳/۵</strong> &nbsp;&nbsp;
+      ۷) <strong>۱ ۲/۵</strong> &nbsp;&nbsp;
+      ۸) <strong>۱/۲</strong> &nbsp;&nbsp;
+      ۹) <strong>۱ ۱/۲</strong> &nbsp;&nbsp;
+      ۱۰) <strong>۷/۱۰</strong> &nbsp;&nbsp;
+      ۱۱) <strong>۴/۱۱</strong> &nbsp;&nbsp;
+      ۱۲) <strong>۱ ۱/۴</strong>
+    </p>
+  </div>
+
+  <div class="exercise" style="background:#fff9c4; border-color:#fbc02d;">
+    <div class="exercise-title" style="color:#e65100;"><span class="badge" style="background:#e65100;">ت</span> جمع و تفریق — مخرج‌های مختلف</div>
+    <p style="font-size:13px; line-height:2;">
+      ۱) <strong>۵/۶</strong> &nbsp;&nbsp;
+      ۲) <strong>۱۱/۱۲</strong> &nbsp;&nbsp;
+      ۳) <strong>۷/۱۰</strong> &nbsp;&nbsp;
+      ۴) <strong>۵/۱۲</strong> &nbsp;&nbsp;
+      ۵) <strong>۷/۱۲</strong> &nbsp;&nbsp;
+      ۶) <strong>۱۹/۴۰</strong> &nbsp;&nbsp;
+      ۷) <strong>۱۳/۲۴</strong> &nbsp;&nbsp;
+      ۸) <strong>۷/۹</strong> &nbsp;&nbsp;
+      ۹) <strong>۸/۱۵</strong> &nbsp;&nbsp;
+      ۱۰) <strong>۱۳/۲۰</strong> &nbsp;&nbsp;
+      ۱۱) <strong>۷/۲۴</strong> &nbsp;&nbsp;
+      ۱۲) <strong>۱۳/۲۱</strong>
+    </p>
+  </div>
+
+  <div class="exercise" style="background:#fff9c4; border-color:#fbc02d;">
+    <div class="exercise-title" style="color:#e65100;"><span class="badge" style="background:#e65100;">ث</span> ضرب کسرها</div>
+    <p style="font-size:13px; line-height:2;">
+      ۱) <strong>۳/۸</strong> &nbsp;&nbsp;
+      ۲) <strong>۵/۹</strong> &nbsp;&nbsp;
+      ۳) <strong>۶/۳۵</strong> &nbsp;&nbsp;
+      ۴) <strong>۱/۶</strong> &nbsp;&nbsp;
+      ۵) <strong>۱/۴</strong> &nbsp;&nbsp;
+      ۶) <strong>۷/۱۰</strong> &nbsp;&nbsp;
+      ۷) <strong>۲/۹</strong> &nbsp;&nbsp;
+      ۸) <strong>۱/۲</strong> &nbsp;&nbsp;
+      ۹) <strong>۱/۲</strong> &nbsp;&nbsp;
+      ۱۰) <strong>۱۰/۲۱</strong> &nbsp;&nbsp;
+      ۱۱) <strong>۳/۲۲</strong> &nbsp;&nbsp;
+      ۱۲) <strong>۱۰/۲۷</strong>
+    </p>
+  </div>
+
+  <div class="exercise" style="background:#fff9c4; border-color:#fbc02d;">
+    <div class="exercise-title" style="color:#e65100;"><span class="badge" style="background:#e65100;">ج</span> تقسیم کسرها</div>
+    <p style="font-size:13px; line-height:2;">
+      ۱) <strong>۲</strong> &nbsp;&nbsp;
+      ۲) <strong>۱ ۱/۲</strong> &nbsp;&nbsp;
+      ۳) <strong>۵/۶</strong> &nbsp;&nbsp;
+      ۴) <strong>۱ ۱/۴</strong> &nbsp;&nbsp;
+      ۵) <strong>۲ ۲/۳</strong> &nbsp;&nbsp;
+      ۶) <strong>۲</strong> &nbsp;&nbsp;
+      ۷) <strong>۲/۳</strong> &nbsp;&nbsp;
+      ۸) <strong>۱ ۲/۳</strong> &nbsp;&nbsp;
+      ۹) <strong>۱/۲</strong> &nbsp;&nbsp;
+      ۱۰) <strong>۱ ۱/۹</strong> &nbsp;&nbsp;
+      ۱۱) <strong>۱ ۱/۶</strong> &nbsp;&nbsp;
+      ۱۲) <strong>۴/۱۵</strong>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

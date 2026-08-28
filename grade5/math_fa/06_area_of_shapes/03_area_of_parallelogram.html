@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مساحت متوازی‌الاضلاع — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .warn-box { background: #fff8e1; border: 2px dashed #ffb74d; border-radius: 10px; padding: 8px 12px; font-size: 12px; color: #555; margin: 6px 0; }
+    .warn-box strong { color: #bf360c; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔶 مساحت متوازی‌الاضلاع</h1>
+    <p>درس ۳ — یک مستطیل کج، با یک ترفند هوشمند! ✂️</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۳</div>
+
+  <div class="concept-box" style="margin-bottom:auto;">
+    <div class="concept-title">💡 متوازی‌الاضلاع چیست؟</div>
+    <div class="concept-text">
+      <strong>متوازی‌الاضلاع</strong> یک شکل ۴ ضلعی است که <strong>ضلع‌های روبه‌رو موازی و مساوی</strong> هستند. مستطیل یک متوازی‌الاضلاع ویژه با زوایای قائمه است — اما اکثر متوازی‌الاضلاع‌ها به یک طرف <em>کج</em> هستند.<br><br>
+      یک ضلع را به عنوان <strong>قاعده</strong> (<em>b</em>) انتخاب می‌کنیم. <strong>ارتفاع</strong> (<em>h</em>) فاصلهٔ <em>عمود</em> از قاعده تا ضلع روبه‌رو است — مستقیم به بالا، نه در امتداد ضلع مایل!
+    </div>
+  </div>
+
+  <div class="example-box" style="margin-bottom:auto;">
+    <div class="example-title">مستطیل در برابر متوازی‌الاضلاع</div>
+    <div class="shape-figure">
+      <!-- Rectangle: height = side -->
+      <svg width="180" height="140" viewBox="0 0 180 140">
+        <rect x="30" y="20" width="120" height="80" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- right-angle marker at top-left corner -->
+        <polyline points="38,28 38,20 30,20" fill="none" stroke="#bf360c" stroke-width="1.5"/>
+        <polyline points="30,28 38,28" fill="none" stroke="#bf360c" stroke-width="1.5"/>
+        <!-- height arrow along left side -->
+        <line x1="20" y1="20" x2="20" y2="100" stroke="#1565c0" stroke-width="2"/>
+        <polygon points="17,24 23,24 20,18" fill="#1565c0"/>
+        <polygon points="17,96 23,96 20,102" fill="#1565c0"/>
+        <text x="14" y="64" font-size="11" fill="#1565c0" font-weight="bold" text-anchor="end">h</text>
+        <text x="90" y="115" font-size="11" fill="#888" text-anchor="middle">قاعده (b)</text>
+        <text x="90" y="132" font-size="10" fill="#bf360c" text-anchor="middle" font-weight="bold">مستطیل — h = ضلع</text>
+      </svg>
+      <!-- Parallelogram: height ≠ slanted side -->
+      <svg width="240" height="140" viewBox="0 0 240 140">
+        <!-- Vertices: bottom-left (30,100), top-left (80,20), top-right (200,20), bottom-right (150,100) -->
+        <polygon points="30,100 80,20 200,20 150,100" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- slanted side highlighted in red (left edge) -->
+        <line x1="30" y1="100" x2="80" y2="20" stroke="#c62828" stroke-width="2.5"/>
+        <!-- perpendicular height (blue dashed) from interior point on top edge straight down to base -->
+        <line x1="130" y1="20" x2="130" y2="100" stroke="#1565c0" stroke-width="2" stroke-dasharray="5,3"/>
+        <!-- right-angle marker where height meets base -->
+        <polyline points="130,92 138,92 138,100" fill="none" stroke="#1565c0" stroke-width="1.5"/>
+        <!-- height label -->
+        <text x="136" y="64" font-size="11" fill="#1565c0" font-weight="bold">h</text>
+        <!-- slanted side label (red), placed to the left of the slanted side with a small leader -->
+        <text x="14" y="48" font-size="10" fill="#c62828" font-weight="bold">مایل</text>
+        <line x1="32" y1="46" x2="46" y2="56" stroke="#c62828" stroke-width="1"/>
+        <!-- base label -->
+        <text x="90" y="115" font-size="11" fill="#888" text-anchor="middle">قاعده (b)</text>
+        <text x="115" y="132" font-size="10" fill="#bf360c" text-anchor="middle" font-weight="bold">متوازی‌الاضلاع — h ≠ مایل</text>
+      </svg>
+    </div>
+    <div class="shape-caption"><span style="color:#1565c0;font-weight:bold;">خط آبی نقطه‌چین</span> ارتفاع است — همیشه <strong>عمود</strong> بر قاعده، نه <span style="color:#c62828;font-weight:bold;">ضلع مایل قرمز</span>!</div>
+  </div>
+
+  <div class="example-box" style="margin-bottom:auto;">
+    <div class="example-title">⭐ بررسی سریع</div>
+    <div class="concept-text">
+      مستطیل و مربع هر دو متوازی‌الاضلاع ویژه هستند — وقتی همهٔ زاویه‌ها قائمه باشند، ارتفاع همان طول ضلع است. اما برای متوازی‌الاضلاع <em>کج</em>، همیشه مستقیم از قاعده به بالا اندازه بگیر تا <em>h</em> را پیدا کنی، نه در امتداد ضلع مایل.
+    </div>
+  </div>
+
+  <div class="warn-box">
+    ⚠️ <strong>مراقب باش:</strong> اگر مسئله طول <em>ضلع مایل</em> را هم داد، از آن برای مساحت استفاده نکن! فقط <strong>ارتفاع</strong> عمودی در فرمول می‌رود.
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔶 مساحت متوازی‌الاضلاع</h1>
+    <p>چرا فرمول فقط <strong>قاعده × ارتفاع</strong> است ✂️</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۳</div>
+
+  <div class="concept-box" style="margin-bottom:auto;">
+    <div class="concept-title">✂️ ببُر و بلغزان → مستطیل!</div>
+    <div class="concept-text">
+      یک مثلث از یک طرف متوازی‌الاضلاع ببُر، آن را به طرف دیگر بلغزان، و یک <strong>مستطیل</strong> با همان قاعده و ارتفاع به دست می‌آوری!<br>
+      پس متوازی‌الاضلاع <em>همان مساحت</em> مستطیلی با طول <em>b</em> و عرض <em>h</em> را دارد.
+    </div>
+  </div>
+
+  <div class="example-box" style="margin-bottom:auto;">
+    <div class="example-title">ترفند برش و لغزش</div>
+    <div class="shape-figure" style="gap:6px;">
+      <!-- Step 1: parallelogram with the triangle to be cut shaded differently -->
+      <svg width="150" height="120" viewBox="0 0 170 120">
+        <!-- main body of parallelogram (the part that stays) -->
+        <polygon points="50,20 150,20 120,90 20,90" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- triangle to cut off on the left, highlighted -->
+        <polygon points="20,90 50,20 50,90" fill="#ffcc80" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+        <!-- scissors emoji on the cut line -->
+        <text x="32" y="58" font-size="14">✂️</text>
+        <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">۱. مثلث را ببُر</text>
+      </svg>
+      <div style="font-size:22px; color:#e65100; font-weight:bold;">→</div>
+      <!-- Step 2: slide arrow showing the triangle moving to the right -->
+      <svg width="150" height="120" viewBox="0 0 170 120">
+        <polygon points="50,20 150,20 120,90 20,90" fill="#fff3e0" stroke="#e65100" stroke-width="2" stroke-dasharray="3,3"/>
+        <polygon points="20,90 50,20 50,90" fill="#ffcc80" stroke="#e65100" stroke-width="2" opacity="0.4"/>
+        <!-- slide arrow -->
+        <line x1="55" y1="55" x2="135" y2="55" stroke="#1565c0" stroke-width="2.5"/>
+        <polygon points="135,50 145,55 135,60" fill="#1565c0"/>
+        <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">۲. آن را بلغزان</text>
+      </svg>
+      <div style="font-size:22px; color:#e65100; font-weight:bold;">→</div>
+      <!-- Step 3: resulting rectangle, with a faint dashed seam showing where the triangle was reattached -->
+      <svg width="150" height="120" viewBox="0 0 170 120">
+        <!-- Clean rectangle: same base (100) and same height (70) as the original parallelogram -->
+        <rect x="50" y="20" width="100" height="70" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <!-- Faint dashed seam where the slid triangle was reattached (matches the original right slant) -->
+        <line x1="120" y1="90" x2="150" y2="20" stroke="#bf360c" stroke-width="1" stroke-dasharray="3,3" opacity="0.6"/>
+        <!-- Lightly tint the slid-in triangle so it's visible -->
+        <polygon points="120,90 150,20 150,90" fill="#ffcc80" opacity="0.4"/>
+        <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">۳. مستطیل می‌شود!</text>
+      </svg>
+    </div>
+    <div class="shape-caption">همان <strong>قاعده</strong>، همان <strong>ارتفاع</strong>، همان <strong>مساحت</strong> — فقط جابه‌جا شده! به همین دلیل مساحت = b × h.</div>
+  </div>
+
+  <div class="formula-box" style="margin-bottom:auto;">
+    <span class="formula-name">مساحت متوازی‌الاضلاع</span>
+    مساحت = قاعده × ارتفاع = b × h
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">مثال حل‌شده</div>
+    <div class="step-by-step">
+      <div class="step">مساحت متوازی‌الاضلاعی با قاعده ۹ سانتی‌متر و ارتفاع ۵ سانتی‌متر را پیدا کن:</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = b × h</div>
+      <div class="step"><strong>گام ۲:</strong> اعداد را جایگزین کن → ۹ × ۵</div>
+      <div class="step"><strong>گام ۳:</strong> حساب کن → <strong>۴۵ سانتی‌متر مربع</strong> ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔶 مساحت متوازی‌الاضلاع</h1>
+    <p>تمرین — مراقب اعداد تله‌دار باش! 🧠</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۳</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> از فرمول استفاده کن 📐</div>
+    <div class="exercise-instruction">مساحت را با فرمول مساحت = b × h پیدا کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        b = ۶ سانتی‌متر، h = ۴ سانتی‌متر<br>
+        مساحت = ۶ × ۴ = <span class="blank"></span> سانتی‌متر مربع
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        b = ۸ متر، h = ۳ متر<br>
+        مساحت = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> متر مربع
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        b = ۱۰ سانتی‌متر، h = ۷ سانتی‌متر<br>
+        مساحت = <span class="blank"></span> سانتی‌متر مربع
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        b = ۱۲ متر، h = ۹ متر<br>
+        مساحت = <span class="blank"></span> متر مربع
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> تله را پیدا کن 🕵️</div>
+    <div class="exercise-instruction">هر مسئله <strong>اطلاعات اضافه</strong> دارد. قاعده و ارتفاع درست را انتخاب کن!</div>
+    <ul class="word-problem-list">
+      <li>
+        متوازی‌الاضلاعی با قاعده ۱۰ سانتی‌متر، ارتفاع ۶ سانتی‌متر و ضلع مایل ۷ سانتی‌متر.
+        <span class="wp-answer">مساحت = <span class="blank"></span> سانتی‌متر مربع <span class="mini-label">(از ۷ استفاده نکن!)</span></span>
+      </li>
+      <li>
+        متوازی‌الاضلاعی با قاعده ۱۲ متر، ارتفاع ۵ متر و ضلع مایل ۸ متر.
+        <span class="wp-answer">مساحت = <span class="blank"></span> متر مربع</span>
+      </li>
+      <li>
+        متوازی‌الاضلاعی با قاعده ۱۵ سانتی‌متر، ضلع مایل ۱۰ سانتی‌متر و ارتفاع ۴ سانتی‌متر.
+        <span class="wp-answer">مساحت = <span class="blank"></span> سانتی‌متر مربع</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> عدد گمشده را پیدا کن 🔍</div>
+    <div class="exercise-instruction">مساحت = b × h، پس b = مساحت ÷ h و h = مساحت ÷ b.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        مساحت = ۴۰ سانتی‌متر مربع، b = ۸ سانتی‌متر → h = <span class="blank"></span> سانتی‌متر
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مساحت = ۵۴ متر مربع، h = ۶ متر → b = <span class="blank"></span> متر
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مساحت = ۶۳ سانتی‌متر مربع، b = ۹ سانتی‌متر → h = <span class="blank"></span> سانتی‌متر
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مساحت = ۳۲ متر مربع، h = ۴ متر → b = <span class="blank"></span> متر
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۲۴؛ ۸×۳=۲۴؛ ۷۰؛ ۱۰۸ —
+    ۲) ۶۰ سانتی‌متر مربع؛ ۶۰ متر مربع؛ ۶۰ سانتی‌متر مربع —
+    ۳) ۵، ۹، ۷، ۸
+  </div>
+</div>
+
+</body>
+</html>

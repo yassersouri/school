@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>اثبات با بررسی حالت‌ها — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffcc80;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 12px 16px; background: #fff3e0; }
+    .concept-title { font-size: 17px; font-weight: bold; color: #bf360c; margin-bottom: 6px; text-align: center; }
+    .concept-text { font-size: 13px; color: #333; line-height: 1.5; }
+    .case-proof { background: #fff; border: 2.5px solid #ffcc80; border-radius: 14px; padding: 12px 16px; }
+    .case-title { font-size: 15px; font-weight: bold; color: #e65100; margin-bottom: 3px; text-align: center; }
+    .case-subtitle { font-size: 12px; color: #888; text-align: center; margin-bottom: 8px; font-style: italic; }
+    .case-table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 6px 0; }
+    .case-table th { background: #e65100; color: #fff; padding: 5px 10px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; text-align: center; }
+    .case-table td { border: 1.5px solid #ffcc80; padding: 5px 10px; text-align: center; }
+    .case-table tr:nth-child(even) td { background: #fff8f0; }
+    .case-table .check { color: #2e7d32; font-weight: bold; }
+    .case-table .cross { color: #c62828; font-weight: bold; }
+    .case-verdict { font-size: 14px; font-weight: bold; color: #2e7d32; margin-top: 6px; padding: 6px 12px; background: #e8f5e9; border: 2px solid #81c784; border-radius: 8px; text-align: center; }
+    .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 6px; line-height: 1.4; }
+    .claim-card { background: #fff; border: 2px solid #ffcc80; border-radius: 10px; padding: 7px 12px; margin-bottom: 5px; }
+    .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 4px; }
+    .claim-hint { font-size: 11px; color: #888; font-style: italic; margin-bottom: 3px; }
+    .work-area { font-size: 12px; color: #555; line-height: 1.5; }
+    .verdict-row { display: flex; gap: 10px; margin-top: 3px; }
+    .verdict-option { flex: 1; border: 2px solid #ccc; border-radius: 8px; padding: 3px; text-align: center; font-size: 12px; font-weight: bold; color: #555; }
+    .mini-table { width: 100%; border-collapse: collapse; font-size: 12px; margin: 3px 0; }
+    .mini-table th { background: #ffcc80; color: #bf360c; padding: 2px 8px; font-size: 9px; text-transform: uppercase; }
+    .mini-table td { border: 1px solid #ffe0b2; padding: 1px 6px; text-align: center; height: 15px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📋 اثبات با بررسی حالت‌ها</h1>
+    <p>درس ۵ — وقتی می‌توانی همهٔ حالت‌ها را بررسی کنی، آن خودش یک اثبات است!</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۲</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 همهٔ حالت‌ها را بررسی کن!</div>
+    <div class="concept-text">
+      گاهی یک ادعا دربارهٔ مجموعه‌ای <strong>کوچک و محدود</strong> از چیزهاست. وقتی فقط چند حالت وجود دارد، می‌توانی ادعا را با <strong>بررسی تک‌تک آن‌ها</strong> ثابت کنی.<br><br>
+      به این روش <strong>اثبات با بررسی جامع</strong> (یا اثبات با بررسی حالت‌ها) می‌گوییم — تمام حالت‌های ممکن را «بررسی» می‌کنی!<br><br>
+      ⚠️ این روش فقط زمانی کار می‌کند که تعداد حالت‌ها <strong>آنقدر کم باشد که بررسی کنی</strong>.
+    </div>
+  </div>
+
+  <!-- Worked Example 1 -->
+  <div class="case-proof">
+    <div class="case-title">مثال: هر عدد اول یک‌رقمی بزرگ‌تر از ۲ فرد است</div>
+    <div class="case-subtitle">اعداد اول یک‌رقمی: ۲، ۳، ۵، ۷ — فقط ۴ حالت برای بررسی!</div>
+    <table class="case-table">
+      <tr><th>عدد اول</th><th>آیا &gt; ۲ است؟</th><th>زوج یا فرد؟</th><th>ادعا برقرار است؟</th></tr>
+      <tr><td>۲</td><td>خیر (رد می‌شود)</td><td>زوج</td><td>—</td></tr>
+      <tr><td>۳</td><td>بله</td><td>فرد</td><td class="check">✓</td></tr>
+      <tr><td>۵</td><td>بله</td><td>فرد</td><td class="check">✓</td></tr>
+      <tr><td>۷</td><td>بله</td><td>فرد</td><td class="check">✓</td></tr>
+    </table>
+    <div class="case-verdict">✅ هر ۳ حالت درست است — ادعا ثابت شد!</div>
+    <div class="proof-explain">ما فقط چند مثال نزدیم — همهٔ حالت‌ها را بررسی کردیم. این یک اثبات است!</div>
+  </div>
+
+  <!-- Worked Example 2 -->
+  <div class="case-proof">
+    <div class="case-title">مثال: مربع هر عدد یک‌رقمی کوچک‌تر یا مساوی ۸۱ است</div>
+    <div class="case-subtitle">اعداد یک‌رقمی: ۱، ۲، ۳، ۴، ۵، ۶، ۷، ۸، ۹ — همهٔ ۹ حالت را بررسی کن!</div>
+    <table class="case-table">
+      <tr><th>n</th><th>n²</th><th>≤ ۸۱؟</th></tr>
+      <tr><td>۱</td><td>۱</td><td class="check">✓</td></tr>
+      <tr><td>۲</td><td>۴</td><td class="check">✓</td></tr>
+      <tr><td>۳</td><td>۹</td><td class="check">✓</td></tr>
+      <tr><td>۴</td><td>۱۶</td><td class="check">✓</td></tr>
+      <tr><td>۵</td><td>۲۵</td><td class="check">✓</td></tr>
+      <tr><td>۶</td><td>۳۶</td><td class="check">✓</td></tr>
+      <tr><td>۷</td><td>۴۹</td><td class="check">✓</td></tr>
+      <tr><td>۸</td><td>۶۴</td><td class="check">✓</td></tr>
+      <tr><td>۹</td><td>۸۱</td><td class="check">✓</td></tr>
+    </table>
+    <div class="case-verdict">✅ هر ۹ حالت درست است — با بررسی جامع ثابت شد!</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>📋 اثبات با بررسی حالت‌ها</h1>
+    <p>نوبت توست — همهٔ حالت‌ها را بررسی کن! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۲</div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> با بررسی همهٔ حالت‌ها ثابت کن ✅</div>
+    <div class="exercise-instruction">جدول را کامل کن تا هر ادعا را ثابت (یا رد) کنی.</div>
+
+    <div class="claim-card">
+      <div class="claim-text">ادعا: «هر عدد زوج از ۲ تا ۱۲ را می‌توان به صورت مجموع دو عدد اول نوشت.»</div>
+      <div class="claim-hint">راهنما: اعداد زوج عبارت‌اند از ۲، ۴، ۶، ۸، ۱۰، ۱۲</div>
+      <table class="mini-table">
+        <tr><th>عدد زوج</th><th>دو عدد اولی که مجموعشان می‌شود</th><th>درست؟</th></tr>
+        <tr><td>۲</td><td></td><td></td></tr>
+        <tr><td>۴</td><td>۲ + ۲</td><td>✓</td></tr>
+        <tr><td>۶</td><td></td><td></td></tr>
+        <tr><td>۸</td><td></td><td></td></tr>
+        <tr><td>۱۰</td><td></td><td></td></tr>
+        <tr><td>۱۲</td><td></td><td></td></tr>
+      </table>
+      <div class="verdict-row">
+        <div class="verdict-option">ثابت شد ✅</div>
+        <div class="verdict-option">رد شد ❌</div>
+      </div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">ادعا: «برای هر عدد درست از ۱ تا ۶، مقدار n² + n همیشه زوج است.»</div>
+      <table class="mini-table">
+        <tr><th>n</th><th>n²</th><th>n² + n</th><th>زوج؟</th></tr>
+        <tr><td>۱</td><td>۱</td><td>۲</td><td>✓</td></tr>
+        <tr><td>۲</td><td>۴</td><td></td><td></td></tr>
+        <tr><td>۳</td><td></td><td></td><td></td></tr>
+        <tr><td>۴</td><td></td><td></td><td></td></tr>
+        <tr><td>۵</td><td></td><td></td><td></td></tr>
+        <tr><td>۶</td><td></td><td></td><td></td></tr>
+      </table>
+      <div class="verdict-row">
+        <div class="verdict-option">ثابت شد ✅</div>
+        <div class="verdict-option">رد شد ❌</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> آیا می‌توان از اثبات با حالت‌ها استفاده کرد؟ 🤔</div>
+    <div class="exercise-instruction">برای هر ادعا تصمیم بگیر: آیا می‌توان با بررسی همهٔ حالت‌ها آن را ثابت کرد؟ چرا؟</div>
+
+    <div class="claim-card">
+      <div class="claim-text">الف) «هر ماه از سال حداقل ۲۸ روز دارد.»</div>
+      <div class="work-area">آیا می‌توانی همهٔ حالت‌ها را بررسی کنی؟ <span class="blank-wide"></span><br>چند حالت وجود دارد؟ <span class="blank"></span> &nbsp; پاسخ: <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">ب) «هر عدد زوج بر ۲ بخش‌پذیر است.»</div>
+      <div class="work-area">آیا می‌توانی همهٔ حالت‌ها را بررسی کنی؟ <span class="blank-wide"></span><br>چرا یا چرا نه؟ <span class="blank-wide"></span></div>
+    </div>
+
+    <div class="claim-card">
+      <div class="claim-text">پ) «هر عدد مربعی دو‌رقمی کوچک‌تر از ۱۰۰ است.»</div>
+      <div class="work-area">آیا می‌توانی همهٔ حالت‌ها را بررسی کنی؟ <span class="blank-wide"></span><br>اعداد مربعی دو‌رقمی عبارت‌اند از: <span class="blank-wide"></span></div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱-ادعای ۱) ۲ = امکان‌پذیر نیست با دو عدد اول (نکته! — ۲ را نمی‌توان به صورت مجموع دو عدد اول نوشت چون ۱ عدد اول نیست؛ حدس گلدباخ از ۴ شروع می‌شود)؛ ۴=۲+۲، ۶=۳+۳، ۸=۳+۵، ۱۰=۵+۵ یا ۳+۷، ۱۲=۵+۷. —
+    ۱-ادعای ۲) همه زوج‌اند: ۲، ۶، ۱۲، ۲۰، ۳۰، ۴۲ — ثابت شد —
+    ۲الف) بله، ۱۲ ماه — ثابت شد — ۲ب) خیر! اعداد زوج بی‌نهایت هستند — به اثبات دیگری نیاز است — ۲پ) بله! ۱۶،۲۵،۳۶،۴۹،۶۴،۸۱ — همه &lt; ۱۰۰ ✓
+  </div>
+</div>
+
+</body>
+</html>

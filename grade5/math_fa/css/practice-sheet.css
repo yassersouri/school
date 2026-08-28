@@ -1,0 +1,76 @@
+/* ── ریاضی پایهٔ پنجم (فارسی) — سبک مشترک برگه‌های تمرین ───────────
+   Persian (RTL) version of ../../math/css/practice-sheet.css.
+   Each HTML file sets CSS custom properties on :root to theme it.
+   Required variables: --accent, --accent-bg, --heading-color,
+   --title-color, --answer-key-color
+   Math expressions keep `direction: ltr` so equations are not
+   reordered by the bidirectional algorithm.
+   ─────────────────────────────────────────────────────────────── */
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Vazirmatn', 'IRANSans', 'Iranian Sans', Tahoma, 'Noto Sans Arabic', 'Segoe UI', Arial, sans-serif; background: #f8f9fa; color: #333; direction: rtl; }
+
+/* A4 page layout */
+.page { width: 210mm; min-height: 297mm; margin: 0 auto 10mm; padding: 14mm 18mm; background: #fff; border: 1px solid #ddd; page-break-after: always; display: flex; flex-direction: column; gap: var(--page-gap, 14px); }
+.page-header { text-align: center; }
+.page-header h1 { font-size: 22px; color: var(--heading-color); margin-bottom: 2px; }
+.page-header p { font-size: 11px; color: #888; }
+.page-num { font-size: 11px; color: #aaa; text-align: left; margin-top: -8px; }
+
+/* Exercise card */
+.exercise { border: 2px solid var(--accent); border-radius: 10px; padding: 12px 14px; background: var(--accent-bg); }
+.exercise-title { font-size: 14px; font-weight: 700; color: var(--title-color); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.exercise-title .badge { background: var(--badge-bg, var(--heading-color)); color: #fff; border-radius: 20px; padding: 2px 10px; font-size: 11px; }
+.exercise-instruction { font-size: 11px; color: #555; margin-bottom: 10px; font-style: italic; }
+
+/* Problem grid & cards */
+.problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.problem-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.problem-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.problem-card { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 8px; text-align: center; font-size: 20px; font-weight: 700; color: var(--heading-color); direction: ltr; }
+
+/* Blanks */
+.blank { display: inline-block; border-bottom: 2px solid #333; width: 50px; height: 20px; }
+.blank-wide { display: inline-block; border-bottom: 2px solid #333; width: 100px; height: 20px; }
+
+/* Vertical problems */
+.vertical-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
+.vertical-problem { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 10px; display: flex; flex-direction: column; align-items: flex-end; font-size: 22px; font-weight: 700; color: var(--heading-color); font-family: Tahoma, 'Noto Sans Arabic', 'Courier New', monospace; font-variant-numeric: tabular-nums; direction: ltr; }
+.vertical-problem .vp-line { width: 100%; border-top: 2px solid #333; margin: 5px 0; }
+.vertical-problem .vp-ans { min-height: 28px; }
+
+/* Number line */
+.number-line { display: flex; align-items: center; justify-content: center; gap: 0; margin: 8px 0; direction: ltr; }
+.nl-num { min-width: 32px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; border: 1px solid var(--accent); background: var(--accent-bg); }
+.nl-num:first-child { border-radius: 6px 0 0 6px; }
+.nl-num:last-child { border-radius: 0 6px 6px 0; }
+
+/* Place value table */
+.place-value-table { width: 100%; border-collapse: collapse; font-size: 16px; font-weight: 700; direction: ltr; }
+.place-value-table th { background: var(--heading-color); color: #fff; padding: 6px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+.place-value-table td { border: 1.5px solid var(--accent); padding: 8px; text-align: center; height: 38px; }
+.place-value-table .pvt-op { background: var(--accent-bg); font-size: 14px; width: 30px; }
+.place-value-table .pvt-line { border-top: 3px solid #333; }
+
+/* Compare grid */
+.compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.compare-card { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 10px; text-align: center; font-size: 18px; font-weight: 700; color: var(--heading-color); direction: ltr; }
+.circle-box { display: inline-block; width: 28px; height: 28px; border: 2px solid var(--title-color); border-radius: 50%; text-align: center; line-height: 24px; margin: 0 4px; font-size: 14px; }
+
+/* Word problems */
+.word-problem-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.word-problem-list li { font-size: 14px; padding: 10px 12px; border-right: 4px solid var(--accent); background: var(--wp-bg, #f5f9ff); border-radius: 4px; display: flex; flex-direction: column; gap: 4px; }
+.wp-answer { font-size: 13px; color: #555; }
+
+/* Tip box */
+.tip-box { background: #fff9c4; border: 2px solid #f9a825; border-radius: 8px; padding: 10px 14px; font-size: 12px; color: #555; margin-bottom: 10px; }
+.tip-box strong { color: #e65100; }
+
+/* Answer key */
+.answer-key { margin-top: auto; border-top: 2px dashed #ccc; padding-top: 6px; font-size: 9px; color: #999; }
+.answer-key strong { color: var(--answer-key-color, var(--title-color)); }
+
+/* Print */
+@page { size: A4; margin: 0; }
+@media print { body { background: #fff; } .page { border: none; margin: 0; min-height: auto; } .page:last-child { page-break-after: avoid; } }

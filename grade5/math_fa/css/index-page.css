@@ -1,0 +1,41 @@
+/* ── ریاضی پایهٔ پنجم (فارسی) — سبک مشترک صفحه‌های فهرست ──────────
+   Persian (RTL) version of ../../math/css/index-page.css.
+   Used by math_fa/index.html and subdirectory index pages.
+   Theme variables: --heading-color, --link-color
+   ─────────────────────────────────────────────────────────────── */
+
+/* Reset */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Vazirmatn', 'IRANSans', 'Iranian Sans', Tahoma, 'Noto Sans Arabic', 'Segoe UI', Arial, sans-serif; background: #f5f7fa; color: #333; min-height: 100vh; direction: rtl; }
+
+/* Layout */
+.container { max-width: 720px; margin: 0 auto; padding: 32px 20px; }
+.breadcrumb { font-size: 12px; color: #aaa; margin-bottom: 16px; }
+.breadcrumb a { color: var(--link-color, #00695c); text-decoration: none; }
+.breadcrumb a:hover { text-decoration: underline; }
+h1 { font-size: var(--h1-size, 26px); text-align: center; color: var(--heading-color, #00695c); margin-bottom: 4px; }
+.subtitle { text-align: center; font-size: 13px; color: #888; margin-bottom: 28px; }
+.section-label { font-size: 13px; font-weight: 700; color: #555; text-transform: uppercase; letter-spacing: .5px; margin: 20px 0 8px; padding-right: 4px; }
+.section-label:first-of-type { margin-top: 0; }
+
+/* Card grid */
+.card-grid { display: flex; flex-direction: column; gap: var(--card-gap, 16px); }
+.card { display: flex; align-items: center; gap: 16px; padding: 18px 22px; background: #fff; border: 2px solid var(--card-border, #80cbc4); border-radius: 14px; text-decoration: none; color: #333; transition: transform .12s, box-shadow .12s; }
+.card:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,.08); }
+.card-icon { font-size: var(--icon-size, 36px); flex-shrink: 0; }
+.card-body { flex: 1; }
+.card-title { font-size: var(--card-title-size, 18px); font-weight: bold; color: var(--heading-color, #00695c); }
+.card-desc { font-size: var(--card-desc-size, 12px); color: #777; margin-top: 2px; }
+.card-arrow { font-size: 22px; color: #ccc; flex-shrink: 0; }
+
+/* Color-themed cards */
+.card-add { border-color: #90caf9; }
+.card-add .card-title { color: #1565c0; }
+.card-sub { border-color: #ef9a9a; }
+.card-sub .card-title { color: #c62828; }
+.card-mix { border-color: #ffcc80; }
+.card-mix .card-title { color: #e65100; }
+.card-wp { border-color: #80cbc4; }
+.card-wp .card-title { color: #00695c; }
+
+footer { text-align: center; margin-top: 40px; font-size: 11px; color: #bbb; }

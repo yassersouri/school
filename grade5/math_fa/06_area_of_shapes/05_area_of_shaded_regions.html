@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مساحت ناحیه‌های رنگی — پایهٔ پنجم ریاضی</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 15px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .recipe-card { background: #fff3e0; border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; margin: 6px 0; }
+    .recipe-title { font-size: 13px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .recipe-steps { font-size: 12px; color: #333; line-height: 1.6; padding-right: 20px; }
+    .recipe-steps li { margin-bottom: 1px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 مساحت ناحیه‌های رنگی</h1>
+    <p>درس ۵ — ایدهٔ اصلی: <strong>بخش سفید را کم کن</strong>! 🕳️</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۴</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 «ناحیهٔ رنگی» چیست؟</div>
+    <div class="concept-text">
+      گاهی یک تصویر یک بخش رنگی (سایه‌دار) و یک بخش سفید (بدون رنگ) دارد. از تو می‌پرسند: <em>«مساحت بخش <strong>رنگی</strong> چقدر است؟»</em><br><br>
+      راهکار: سعی نکن شکل عجیب رنگی را مستقیم اندازه بگیری. به جای آن، با <em>شکل‌های ساده‌ای</em> که در تصویر پنهان هستند کار کن!
+    </div>
+  </div>
+
+  <div class="recipe-card" style="margin:0;">
+    <div class="recipe-title">📖 دستورالعمل: بخش سفید را کم کن</div>
+    <div class="recipe-steps">
+      <ol>
+        <li>مساحت <strong>شکل بزرگ بیرونی</strong> را حساب کن.</li>
+        <li>مساحت <strong>شکل سفید (بدون رنگ)</strong> داخل را حساب کن.</li>
+        <li><strong>کم کن:</strong> ناحیهٔ رنگی = بزرگ − سفید.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="formula-box" style="margin:0;">
+    مساحت رنگی = مساحت بیرونی − مساحت داخلی
+  </div>
+
+  <div class="example-box" style="margin:0;">
+    <div class="example-title">مثال حل‌شده: مستطیل با یک سوراخ مربعی</div>
+    <div class="shape-figure">
+      <svg width="220" height="130" viewBox="0 0 220 130">
+        <rect x="10" y="15" width="200" height="100" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+        <rect x="80" y="40" width="60" height="60" fill="#fff" stroke="#e65100" stroke-width="2"/>
+        <text x="110" y="125" font-size="11" text-anchor="middle" fill="#888">بیرونی: ۲۰ × ۱۰ &nbsp;·&nbsp; داخلی: ۶ × ۶</text>
+      </svg>
+    </div>
+    <div class="step-by-step">
+      <div class="step">مستطیلی به ابعاد ۲۰ سانتی‌متر × ۱۰ سانتی‌متر دارای یک مربع ۶ سانتی‌متر × ۶ سانتی‌متر بریده‌شده است. ناحیهٔ رنگی را حساب کن.</div>
+      <div class="step"><strong>گام ۱:</strong> مساحت بیرونی = ۲۰ × ۱۰ = <strong>۲۰۰ سانتی‌متر مربع</strong></div>
+      <div class="step"><strong>گام ۲:</strong> مساحت داخلی = ۶ × ۶ = <strong>۳۶ سانتی‌متر مربع</strong></div>
+      <div class="step"><strong>گام ۳:</strong> ناحیهٔ رنگی = ۲۰۰ − ۳۶ = <strong>۱۶۴ سانتی‌متر مربع</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="example-box" style="margin:0;">
+    <div class="example-title">مثال حل‌شده: مستطیل با یک سوراخ مثلثی</div>
+    <div class="shape-figure">
+      <svg width="285" height="150" viewBox="0 0 285 150">
+        <!-- outer rectangle, shaded -->
+        <rect x="30" y="30" width="200" height="70" fill="#ffb74d" stroke="#333" stroke-width="2"/>
+        <!-- white triangle cut out, base on bottom edge -->
+        <polygon points="55,100 205,100 130,30" fill="#fff" stroke="#333" stroke-width="2"/>
+        <!-- top brace + label "12 cm" -->
+        <path d="M30,22 Q30,14 38,14 L122,14 M138,14 L222,14 Q230,14 230,22" fill="none" stroke="#333" stroke-width="1"/>
+        <text x="130" y="18" font-size="12" text-anchor="middle" fill="#333">۱۲ سانتی‌متر</text>
+        <!-- right side label "4 cm" -->
+        <text x="240" y="69" font-size="12" fill="#333">۴ سانتی‌متر</text>
+        <!-- bottom brace + label "9 cm" under triangle base -->
+        <path d="M55,108 Q55,116 63,116 L125,116 M135,116 L197,116 Q205,116 205,108" fill="none" stroke="#333" stroke-width="1"/>
+        <text x="130" y="120" font-size="12" text-anchor="middle" fill="#333">۹ سانتی‌متر</text>
+      </svg>
+    </div>
+    <div class="step-by-step">
+      <div class="step">مستطیلی ۱۲ سانتی‌متر × ۴ سانتی‌متر با یک مثلث (قاعده ۹ سانتی‌متر، ارتفاع ۴ سانتی‌متر) بریده شده است. ناحیهٔ رنگی را حساب کن.</div>
+      <div class="step"><strong>گام ۱:</strong> مستطیل بیرونی = ۱۲ × ۴ = <strong>۴۸ سانتی‌متر مربع</strong></div>
+      <div class="step"><strong>گام ۲:</strong> مثلث = (۹ × ۴) ÷ ۲ = ۳۶ ÷ ۲ = <strong>۱۸ سانتی‌متر مربع</strong></div>
+      <div class="step"><strong>گام ۳:</strong> ناحیهٔ رنگی = ۴۸ − ۱۸ = <strong>۳۰ سانتی‌متر مربع</strong> ✓</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 مساحت ناحیه‌های رنگی</h1>
+    <p>راهبرد دیگر: <strong>تکه‌ها را جمع کن</strong> ➕</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۴</div>
+
+  <div class="concept-box" style="margin-bottom:auto;">
+    <div class="concept-title">💡 وقتی شکل از تکه‌ها ساخته شده</div>
+    <div class="concept-text">
+      گاهی ناحیهٔ رنگی از شکل‌های ساده‌تر <em>ترکیب شده</em> — مثل شکل L که از دو مستطیل تشکیل می‌شود. در این حالت کم نمی‌کنیم — بلکه <strong>جمع می‌کنیم</strong>!
+    </div>
+  </div>
+
+  <div class="recipe-card" style="margin-bottom:auto;">
+    <div class="recipe-title">📖 دستورالعمل: تکه‌ها را جمع کن</div>
+    <div class="recipe-steps">
+      <ol>
+        <li>شکل را به مستطیل‌ها، مربع‌ها، مثلث‌ها یا متوازی‌الاضلاع‌ها تقسیم کن.</li>
+        <li>مساحت <strong>هر تکه</strong> را حساب کن.</li>
+        <li>همه را <strong>جمع</strong> کن.</li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="example-box" style="margin-bottom:auto;">
+    <div class="example-title">مثال حل‌شده: شکل L</div>
+    <div class="shape-figure">
+      <svg width="200" height="160" viewBox="0 0 200 160">
+        <polygon points="20,20 100,20 100,80 180,80 180,140 20,140" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+        <line x1="100" y1="80" x2="20" y2="80" stroke="#e65100" stroke-width="1" stroke-dasharray="4,3"/>
+        <text x="55" y="55" font-size="11" fill="#bf360c" font-weight="bold">الف</text>
+        <text x="100" y="115" font-size="11" fill="#bf360c" font-weight="bold">ب</text>
+      </svg>
+    </div>
+    <div class="step-by-step">
+      <div class="step">شکل L به مستطیل <strong>الف</strong> (۸ سانتی‌متر × ۶ سانتی‌متر در بالا) و مستطیل <strong>ب</strong> (۱۶ سانتی‌متر × ۶ سانتی‌متر در پایین) تقسیم می‌شود.</div>
+      <div class="step"><strong>گام ۱:</strong> مساحت الف = ۸ × ۶ = <strong>۴۸ سانتی‌متر مربع</strong></div>
+      <div class="step"><strong>گام ۲:</strong> مساحت ب = ۱۶ × ۶ = <strong>۹۶ سانتی‌متر مربع</strong></div>
+      <div class="step"><strong>گام ۳:</strong> مساحت کل رنگی = ۴۸ + ۹۶ = <strong>۱۴۴ سانتی‌متر مربع</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    💡 <strong>نکته:</strong> گاهی <em>هر دو</em> روش کار می‌کنند! می‌توانی شکل L را به ۲ مستطیل تقسیم کنی (جمع) یا مستطیل بزرگ کامل را تصور کنی و گوشهٔ کم‌شده را کم کنی (تفریق). هر دو را امتحان کن و بررسی کن که جواب‌ها یکسان هستند!
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 مساحت ناحیه‌های رنگی</h1>
+    <p>تمرین ترکیبی — راهبرد مناسب را انتخاب کن! 🧠</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۴</div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> بخش سفید را کم کن 🕳️</div>
+    <div class="exercise-instruction">مساحت بیرونی − مساحت داخلی = ناحیهٔ رنگی.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        مستطیل بیرونی ۱۰ × ۸، مربع داخلی ۳ × ۳<br>
+        بیرونی = <span class="blank" style="width:30px;"></span> &nbsp; داخلی = <span class="blank" style="width:30px;"></span><br>
+        رنگی = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        مربع بیرونی ۱۲ × ۱۲، مستطیل داخلی ۵ × ۴<br>
+        بیرونی = <span class="blank" style="width:30px;"></span> &nbsp; داخلی = <span class="blank" style="width:30px;"></span><br>
+        رنگی = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        مستطیل بیرونی ۱۵ × ۱۰، مثلث داخلی b=۶ h=۴<br>
+        بیرونی = <span class="blank" style="width:30px;"></span> &nbsp; داخلی = <span class="blank" style="width:30px;"></span><br>
+        رنگی = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        مربع بیرونی ۹ × ۹، مربع داخلی ۴ × ۴<br>
+        بیرونی = <span class="blank" style="width:30px;"></span> &nbsp; داخلی = <span class="blank" style="width:30px;"></span><br>
+        رنگی = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> تکه‌ها را جمع کن ➕</div>
+    <div class="exercise-instruction">هر شکل را به مستطیل‌ها تقسیم کن، سپس جمع بزن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        شکل L: تکهٔ الف = ۵ × ۳، تکهٔ ب = ۸ × ۴<br>
+        الف = <span class="blank" style="width:30px;"></span> &nbsp; ب = <span class="blank" style="width:30px;"></span><br>
+        جمع کل = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        شکل T: بالا ۱۰ × ۲، ساقه ۴ × ۶<br>
+        بالا = <span class="blank" style="width:30px;"></span> &nbsp; ساقه = <span class="blank" style="width:30px;"></span><br>
+        جمع کل = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> مسائل کلامی 📝</div>
+    <div class="exercise-instruction">تصمیم بگیر که باید کم کنی یا جمع کنی!</div>
+    <ul class="word-problem-list">
+      <li>
+        یک فرش مستطیلی ۶ متر در ۴ متر است. در وسط آن یک میز مربعی ۲ متر × ۲ متر قرار دارد. چه مقدار از فرش هنوز دیده می‌شود؟
+        <span class="wp-answer">ناحیهٔ رنگی = <span class="blank"></span> متر مربع</span>
+      </li>
+      <li>
+        یک دیوار مستطیلی ۱۰ متر × ۳ متر است. یک پنجرهٔ ۲ متر × ۱ متر در آن تعبیه شده. چند مترمربع از دیوار نیاز به رنگ‌آمیزی دارد؟
+        <span class="wp-answer">ناحیهٔ رنگ‌شده = <span class="blank"></span> متر مربع</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۸۰، ۹، ۷۱ · ۱۴۴، ۲۰، ۱۲۴ · ۱۵۰، ۱۲، ۱۳۸ · ۸۱، ۱۶، ۶۵ —
+    ۲) ۱۵، ۳۲، ۴۷ · ۲۰، ۲۴، ۴۴ —
+    ۳) ۲۴ − ۴ = ۲۰ متر مربع؛ ۳۰ − ۲ = ۲۸ متر مربع
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🎨 مساحت ناحیه‌های رنگی</h1>
+    <p>مسائل تصویری — ناحیهٔ رنگی را از روی شکل پیدا کن! 🖼️</p>
+  </div>
+  <div class="page-num">صفحهٔ ۴ از ۴</div>
+
+  <div class="concept-box">
+    <div class="concept-title">👀 تصویر را با دقت بخوان</div>
+    <div class="concept-text">
+      برای هر تصویر: <strong>بخش رنگی</strong> همان چیزی است که باید پیدا کنی. به ابعاد بیرونی نگاه کن، مساحت کل شکل بیرونی را حساب کن، مساحت شکل سفید داخلی را پیدا کن و <strong>کم کن</strong>.
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۴</span> ناحیهٔ رنگی را پیدا کن 🖼️</div>
+    <div class="exercise-instruction">هر تصویر یک مستطیل با یک شکل سفید بریده‌شده نشان می‌دهد. از ابعاد داده‌شده برای یافتن ناحیهٔ رنگی استفاده کن.</div>
+
+    <div class="problem-grid-2">
+
+      <!-- Picture A: rectangle 12×4 with triangle base 9 height 4 -->
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="20" y="25" width="200" height="60" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="45,85 195,85 120,25" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">۱۲ سانتی‌متر</text>
+            <text x="213" y="59" font-size="11" fill="#333">۴ سانتی‌متر</text>
+            <text x="120" y="106" font-size="11" text-anchor="middle" fill="#333">۹ سانتی‌متر</text>
+          </svg>
+        </div>
+        <strong>الف.</strong> مستطیل = ۱۲ × ۴ = <span class="blank" style="width:30px;"></span><br>
+        مثلث = (۹ × ۴) ÷ ۲ = <span class="blank" style="width:30px;"></span><br>
+        <strong>رنگی = <span class="blank"></span> سانتی‌متر مربع</strong>
+      </div>
+
+      <!-- Picture B: rectangle 10×6 with triangle base 10 height 6 (covers full base) -->
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="30" y="25" width="180" height="80" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="30,105 210,105 120,25" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">۱۰ سانتی‌متر</text>
+            <text x="210" y="68" font-size="11" fill="#333">۶ سانتی‌متر</text>
+            <text x="120" y="122" font-size="11" text-anchor="middle" fill="#333">۱۰ سانتی‌متر</text>
+          </svg>
+        </div>
+        <strong>ب.</strong> مستطیل = ۱۰ × ۶ = <span class="blank" style="width:30px;"></span><br>
+        مثلث = (۱۰ × ۶) ÷ ۲ = <span class="blank" style="width:30px;"></span><br>
+        <strong>رنگی = <span class="blank"></span> سانتی‌متر مربع</strong>
+      </div>
+
+      <!-- Picture C: rectangle 14×5 with small white rectangle 6×3 inside -->
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="20" y="25" width="200" height="70" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <rect x="80" y="45" width="80" height="30" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">۱۴ سانتی‌متر</text>
+            <text x="213" y="63" font-size="11" fill="#333">۵ سانتی‌متر</text>
+            <text x="120" y="63" font-size="10" text-anchor="middle" fill="#888">۶×۳</text>
+            <text x="120" y="113" font-size="9" text-anchor="middle" fill="#333">داخلی: ۶ سانتی‌متر × ۳ سانتی‌متر</text>
+          </svg>
+        </div>
+        <strong>پ.</strong> مستطیل = ۱۴ × ۵ = <span class="blank" style="width:30px;"></span><br>
+        داخلی = ۶ × ۳ = <span class="blank" style="width:30px;"></span><br>
+        <strong>رنگی = <span class="blank"></span> سانتی‌متر مربع</strong>
+      </div>
+
+      <!-- Picture D: square 8×8 with two triangles cut from bottom corners -->
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="50" y="20" width="140" height="80" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="50,100 110,100 50,60" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <polygon points="130,100 190,100 190,60" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="14" font-size="11" text-anchor="middle" fill="#333">۸ سانتی‌متر</text>
+            <text x="196" y="63" font-size="11" fill="#333">۸ سانتی‌متر</text>
+            <text x="80" y="117" font-size="10" text-anchor="middle" fill="#888">b=۶, h=۴</text>
+            <text x="160" y="117" font-size="10" text-anchor="middle" fill="#888">b=۶, h=۴</text>
+          </svg>
+        </div>
+        <strong>ت.</strong> مربع = ۸ × ۸ = <span class="blank" style="width:30px;"></span><br>
+        هر مثلث = (۶ × ۴) ÷ ۲ = <span class="blank" style="width:30px;"></span><br>
+        دو مثلث = <span class="blank" style="width:30px;"></span><br>
+        <strong>رنگی = <span class="blank"></span> سانتی‌متر مربع</strong>
+      </div>
+
+      <!-- Picture E: rectangle 16×6 with two triangles (one each end), each base 4 height 6 -->
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <rect x="20" y="25" width="200" height="75" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="20,25 70,25 20,100" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <polygon points="170,25 220,25 220,100" fill="#fff" stroke="#e65100" stroke-width="2"/>
+            <text x="120" y="16" font-size="11" text-anchor="middle" fill="#333">۱۶ سانتی‌متر</text>
+            <text x="213" y="66" font-size="11" fill="#333">۶ سانتی‌متر</text>
+            <text x="45" y="117" font-size="10" text-anchor="middle" fill="#888">b=۴, h=۶</text>
+            <text x="195" y="117" font-size="10" text-anchor="middle" fill="#888">b=۴, h=۶</text>
+          </svg>
+        </div>
+        <strong>ث.</strong> مستطیل = ۱۶ × ۶ = <span class="blank" style="width:30px;"></span><br>
+        هر مثلث = (۴ × ۶) ÷ ۲ = <span class="blank" style="width:30px;"></span><br>
+        دو مثلث = <span class="blank" style="width:30px;"></span><br>
+        <strong>رنگی = <span class="blank"></span> سانتی‌متر مربع</strong>
+      </div>
+
+      <!-- Picture F: square 10×10 with smaller square 4×4 in corner removed (L-shape) -->
+      <div class="problem-card" style="font-size:12px; text-align:right; padding:10px;">
+        <div style="text-align:center;">
+          <svg width="240" height="130" viewBox="0 0 240 130">
+            <polygon points="60,20 180,20 180,68 108,68 108,100 60,100" fill="#ffb74d" stroke="#e65100" stroke-width="2"/>
+            <polygon points="108,68 180,68 180,100 108,100" fill="#fff" stroke="#e65100" stroke-width="2" stroke-dasharray="3,3"/>
+            <text x="120" y="14" font-size="11" text-anchor="middle" fill="#333">۱۰ سانتی‌متر</text>
+            <text x="186" y="63" font-size="11" fill="#333">۱۰ سانتی‌متر</text>
+            <text x="144" y="88" font-size="10" text-anchor="middle" fill="#888">برش ۴×۴</text>
+          </svg>
+        </div>
+        <strong>ج.</strong> مربع کامل = ۱۰ × ۱۰ = <span class="blank" style="width:30px;"></span><br>
+        گوشهٔ بریده‌شده = ۴ × ۴ = <span class="blank" style="width:30px;"></span><br>
+        <strong>رنگی = <span class="blank"></span> سانتی‌متر مربع</strong>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    الف) ۴۸، ۱۸، ۳۰ سانتی‌متر مربع ·
+    ب) ۶۰، ۳۰، ۳۰ سانتی‌متر مربع ·
+    پ) ۷۰، ۱۸، ۵۲ سانتی‌متر مربع ·
+    ت) ۶۴، ۱۲، ۲۴، ۴۰ سانتی‌متر مربع ·
+    ث) ۹۶، ۱۲، ۲۴، ۷۲ سانتی‌متر مربع ·
+    ج) ۱۰۰، ۱۶، ۸۴ سانتی‌متر مربع
+  </div>
+</div>
+
+</body>
+</html>

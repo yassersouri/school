@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>متغیر چیست؟ — ریاضی پایهٔ پنجم</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #00695c;
+      --accent: #80cbc4;
+      --accent-bg: #e0f2f1;
+      --title-color: #004d40;
+      --answer-key-color: #004d40;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #00695c; border-radius: 14px; padding: 10px 14px; background: #e0f2f1; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #004d40; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #80cbc4; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #00695c; margin-bottom: 4px; text-align: center; }
+    .example-content { font-size: 12px; color: #333; line-height: 1.6; }
+    .sub-table { width: 100%; border-collapse: collapse; margin: 6px 0; font-size: 13px; direction: ltr; }
+    .sub-table th { background: #00695c; color: #fff; padding: 5px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
+    .sub-table td { border: 1.5px solid #80cbc4; padding: 5px 8px; text-align: center; }
+    .sub-table .highlight { background: #e0f2f1; font-weight: bold; color: #004d40; }
+    .arrow-explain { display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 15px; font-weight: bold; color: #00695c; margin: 4px 0; direction: ltr; }
+    .arrow-explain .step { background: #fff; border: 2px solid #80cbc4; border-radius: 10px; padding: 5px 12px; }
+    .arrow-explain .arrow { font-size: 20px; color: #888; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔤 متغیر چیست؟</h1>
+    <p>درس ۱ — حروفی که به‌جای <strong>عدد</strong> هستند</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۳</div>
+
+  <div class="concept-box">
+    <div class="concept-title">💡 متغیر یک جای‌خالی است</div>
+    <div class="concept-text">
+      در ریاضی، <strong>متغیر</strong> یک حرف است (مانند <em>n</em>، <em>x</em> یا <em>a</em>) که به‌جای یک عدد می‌نشیند. مثل یک جعبهٔ خالی است — می‌توانی عددهای مختلف را درونش بگذاری!<br><br>
+      وقتی کسی می‌نویسد <strong>n + ۳</strong>، منظورش این است:
+      «هر عددی را انتخاب کن، آن را <em>n</em> بنام، و ۳ را به آن اضافه کن.»
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">مثال: n + ۳ یعنی چه؟</div>
+    <div class="example-content">
+      <div class="arrow-explain">
+        <div class="step">n = ۱</div>
+        <div class="arrow">→</div>
+        <div class="step">۱ + ۳ = <strong>۴</strong></div>
+      </div>
+      <div class="arrow-explain">
+        <div class="step">n = ۵</div>
+        <div class="arrow">→</div>
+        <div class="step">۵ + ۳ = <strong>۸</strong></div>
+      </div>
+      <div class="arrow-explain">
+        <div class="step">n = ۱۰</div>
+        <div class="arrow">→</div>
+        <div class="step">۱۰ + ۳ = <strong>۱۳</strong></div>
+      </div>
+      <div style="text-align:center; font-size:11px; color:#888; margin-top:4px; font-style:italic;">
+        هر بار که <em>n</em> را با یک عدد جای‌گذاری کنی، جواب جدیدی به‌دست می‌آید!
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> عدد را جای‌گذاری کن 🔌</div>
+    <div class="exercise-instruction">حرف را با عدد داده‌شده عوض کن و نتیجه را حساب کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        n + ۵ &nbsp; وقتی n = ۲<br>
+        <span class="mini-label">n را با ۲ جای‌گذاری کن:</span><br>
+        ۲ + ۵ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        n + ۵ &nbsp; وقتی n = ۱۰<br>
+        <span class="mini-label">n را با ۱۰ جای‌گذاری کن:</span><br>
+        <span class="blank"></span> + ۵ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        n − ۱ &nbsp; وقتی n = ۷<br>
+        <span class="mini-label">n را با ۷ جای‌گذاری کن:</span><br>
+        <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        n − ۱ &nbsp; وقتی n = ۲۰<br>
+        <span class="mini-label">n را با ۲۰ جای‌گذاری کن:</span><br>
+        <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Concept: Multiplying with a variable -->
+  <div class="concept-box">
+    <div class="concept-title">✖️ ضرب با متغیر</div>
+    <div class="concept-text">
+      وقتی <strong>۲ × n</strong> (یا فقط <strong>۲n</strong>) می‌بینی، یعنی «عدد را دو برابر کن».<br>
+      وقتی <strong>۳ × n</strong> (یا <strong>۳n</strong>) می‌بینی، یعنی «عدد را سه برابر کن».
+      عددی که کنار حرف است نشان می‌دهد <em>چند بار</em> باید ضرب کنی!
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> ضرب کن ✖️</div>
+    <div class="exercise-instruction">n را با عدد داده‌شده جای‌گذاری کن، سپس ضرب کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        ۲ × n &nbsp; وقتی n = ۳<br>
+        ۲ × ۳ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        ۲ × n &nbsp; وقتی n = ۷<br>
+        ۲ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        ۳ × n &nbsp; وقتی n = ۴<br>
+        ۳ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        ۵ × n &nbsp; وقتی n = ۶<br>
+        <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔤 متغیر چیست؟</h1>
+    <p>ترکیب عملیات — گام‌به‌گام! ⭐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۳</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🧩 دو گام: اول ضرب، سپس جمع یا تفریق</div>
+    <div class="concept-text">
+      گاهی یک فرمول <strong>دو عملیات</strong> دارد. مثلاً:<br>
+      <strong>۲ × n + ۱</strong> یعنی «n را دو برابر کن، سپس ۱ اضافه کن».<br>
+      <strong>۲ × n − ۱</strong> یعنی «n را دو برابر کن، سپس ۱ کم کن».<br><br>
+      همیشه اول <strong>ضرب</strong> را انجام بده، بعد جمع یا تفریق.
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">مثال: ۲ × n − ۱</div>
+    <div class="example-content">
+      <table class="sub-table">
+        <tr><th>n</th><th>گام ۱: ۲ × n</th><th>گام ۲: تفریق ۱</th><th>نتیجه</th></tr>
+        <tr><td>۱</td><td>۲ × ۱ = ۲</td><td>۲ − ۱</td><td class="highlight">۱</td></tr>
+        <tr><td>۲</td><td>۲ × ۲ = ۴</td><td>۴ − ۱</td><td class="highlight">۳</td></tr>
+        <tr><td>۳</td><td>۲ × ۳ = ۶</td><td>۶ − ۱</td><td class="highlight">۵</td></tr>
+      </table>
+      <div style="text-align:center; font-size:11px; color:#888; margin-top:4px; font-style:italic;">
+        نتیجه‌ها ۱، ۳، ۵ هستند — اعداد فرد! ادامه بده: n=۴→۷، n=۵→۹.
+        فرمول <strong>۲n − ۱</strong> عدد فرد <em>n</em>ام را می‌دهد.
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> فرمول‌های دو گامی 🪜</div>
+    <div class="exercise-instruction">مراحل را دنبال کن: اول ضرب، سپس جمع یا تفریق.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۲ × n + ۱</strong> وقتی n = ۳<br>
+        <span class="mini-label">گام ۱:</span> ۲ × ۳ = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> + ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۲ × n + ۱</strong> وقتی n = ۵<br>
+        <span class="mini-label">گام ۱:</span> ۲ × <span class="blank"></span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> + ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۲ × n − ۱</strong> وقتی n = ۶<br>
+        <span class="mini-label">گام ۱:</span> ۲ × ۶ = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۲ × n − ۱</strong> وقتی n = ۱۰<br>
+        <span class="mini-label">گام ۱:</span> ۲ × <span class="blank"></span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 4 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۴</span> جدول را کامل کن 📋</div>
+    <div class="exercise-instruction">از فرمول <strong>۲ × n − ۱</strong> برای پر کردن مقادیر ناقص استفاده کن.</div>
+    <table class="sub-table">
+      <tr><th>n</th><th>۲ × n</th><th>۲ × n − ۱</th></tr>
+      <tr><td>۱</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+      <tr><td>۲</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+      <tr><td>۳</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+      <tr><td>۴</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+      <tr><td>۵</td><td><span class="blank"></span></td><td><span class="blank"></span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔤 متغیر چیست؟</h1>
+    <p>از فرمول‌ها استفاده کن تا مستقیم به جواب برسی! ⚡</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۳</div>
+
+  <!-- Exercise 5 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۵</span> عدد فرد پنجاهم چیست؟ 🤔</div>
+    <div class="exercise-instruction">از فرمول <strong>۲ × n − ۱</strong> استفاده کن تا بدون فهرست کردن همهٔ اعداد فرد جواب را پیدا کنی!</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:14px;">
+        عدد فرد <strong>پنجاهم</strong>:<br>
+        n = ۵۰ → ۲ × ۵۰ − ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:14px;">
+        عدد فرد <strong>صدم</strong>:<br>
+        n = ۱۰۰ → ۲ × <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 6 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۶</span> تمرین ترکیبی 🎯</div>
+    <div class="exercise-instruction">از فرمول و مقدار داده‌شده برای پیدا کردن جواب استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        <strong>n + ۷</strong> وقتی n = ۱۵<br>
+        <span class="blank"></span> + ۷ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۴ × n</strong> وقتی n = ۸<br>
+        ۴ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۲ × n + ۱</strong> وقتی n = ۱۲<br>
+        <span class="mini-label">گام ۱:</span> ۲ × ۱۲ = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> + ۱ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        <strong>۲ × n − ۱</strong> وقتی n = ۲۵<br>
+        <span class="mini-label">گام ۱:</span> ۲ × <span class="blank"></span> = <span class="blank"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank"></span> − ۱ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">🌟 چرا فرمول‌ها قدرتمند هستند</div>
+    <div class="concept-text">
+      یک فرمول مانند <strong>۲ × n − ۱</strong> به تو امکان می‌دهد مستقیم به <em>هر</em> جوابی برسی — حتی یک عدد بزرگ مثل هزارمین عدد فرد — بدون اینکه همهٔ اعداد قبل از آن را بنویسی. فرمول‌ها در خارج از کلاس ریاضی هم هستند: مغازه‌ها، دستورهای غذایی و سفرها همه از آن‌ها استفاده می‌کنند!
+    </div>
+  </div>
+
+  <!-- Exercise 7 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۷</span> فرمول‌های دنیای واقعی 🌍</div>
+    <div class="exercise-instruction">از هر فرمول برای حل مسئلهٔ واقعی استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        هزینه = ۳ × بلیت‌ها<br>
+        اگر بلیت‌ها = ۶:<br>
+        ۳ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مسافت = ۵ × ساعت‌ها<br>
+        اگر ساعت‌ها = ۴:<br>
+        ۵ × <span class="blank"></span> = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        مجموع = n + ۲ کتاب رایگان<br>
+        اگر n = ۹:<br>
+        <span class="blank"></span> + ۲ = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        سن برادر = n − ۴<br>
+        اگر n = ۱۳:<br>
+        <span class="blank"></span> − ۴ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exercise 8 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۸</span> فرمول خودت را بنویس ✏️</div>
+    <div class="exercise-instruction">هر برچسب ۲ دلار قیمت دارد. یک فرمول برای هزینهٔ کل بنویس، سپس از آن استفاده کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        فرمول من:<br>
+        هزینه = <span class="blank"></span> × برچسب‌ها
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        فرمولت را برای ۶ برچسب به‌کار ببر:<br>
+        هزینه = <span class="blank"></span> × ۶ = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۷، ۱۵، ۶، ۱۹ —
+    ۲) ۶، ۱۴، ۱۲، ۳۰ —
+    ۳) ۶→۷، ۱۰→۱۱، ۱۲→۱۱، ۲۰→۱۹ —
+    ۴) ۲→۱، ۴→۳، ۶→۵، ۸→۷، ۱۰→۹ —
+    ۵) ۹۹، ۱۹۹ —
+    ۶) ۲۲، ۳۲، ۲۴→۲۵، ۵۰→۴۹ —
+    ۷) ۶→۱۸، ۴→۲۰، ۹→۱۱، ۱۳→۹ —
+    ۸) هزینه = ۲ × برچسب‌ها؛ ۲ × ۶ = ۱۲.
+  </div>
+</div>
+
+</body>
+</html>

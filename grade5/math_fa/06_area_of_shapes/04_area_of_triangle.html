@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>مساحت مثلث — پایهٔ پنجم ریاضی</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #e65100;
+      --accent: #ffb74d;
+      --accent-bg: #fff3e0;
+      --title-color: #bf360c;
+      --answer-key-color: #bf360c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #e65100; border-radius: 14px; padding: 10px 14px; background: #fff3e0; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #bf360c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
+    .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
+    .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
+    .step-by-step .step strong { color: #e65100; }
+    .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
+    .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔺 مساحت مثلث</h1>
+    <p>درس ۴ — هر مثلث در واقع <strong>نصف یک مستطیل</strong> است!</p>
+  </div>
+  <div class="page-num">صفحهٔ ۱ از ۳</div>
+
+  <div class="concept-box" style="margin-bottom:auto;">
+    <div class="concept-title">💡 ایدهٔ نصف‌مستطیل</div>
+    <div class="concept-text">
+      هر مثلثی را در نظر بگیر. اگر یک <em>نسخهٔ کپی</em> از آن بسازی، آن را وارونه کنی و کنار مثلث اول بچسبانی، همیشه یک <strong>مستطیل</strong> (یا متوازی‌الاضلاع) به دست می‌آید.<br><br>
+      پس هر مثلث <strong>دقیقاً نصف</strong> مساحت آن مستطیل است!
+    </div>
+  </div>
+
+  <div class="example-box" style="margin-bottom:auto;">
+    <div class="shape-figure">
+      <svg width="170" height="110" viewBox="0 0 170 110">
+        <polygon points="20,90 150,90 90,20" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <line x1="90" y1="20" x2="90" y2="90" stroke="#1565c0" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <text x="95" y="60" font-size="10" fill="#1565c0">h</text>
+        <text x="80" y="105" font-size="10" fill="#888">b</text>
+      </svg>
+      <div style="font-size:22px; color:#e65100; font-weight:bold;">+ کپی ←</div>
+      <svg width="170" height="110" viewBox="0 0 170 110">
+        <polygon points="20,90 150,90 90,20" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+        <polygon points="20,90 150,90 150,20 20,20" fill="none" stroke="#e65100" stroke-width="2" stroke-dasharray="4,3"/>
+        <text x="55" y="55" font-size="10" fill="#888">مستطیل</text>
+      </svg>
+    </div>
+    <div class="shape-caption">مساحت مثلث = (مساحت مستطیل) ÷ ۲ = (b × h) ÷ ۲</div>
+  </div>
+
+  <div class="concept-box" style="margin-bottom:auto;">
+    <div class="concept-title">🔄 هر ضلعی می‌تواند قاعده باشد!</div>
+    <div class="concept-text">
+      یک مثلث <strong>سه</strong> ضلع دارد، پس می‌توانی <em>هر کدام</em> را به عنوان قاعده انتخاب کنی — فقط ارتفاع عمود از آن ضلع تا گوشهٔ مقابل را اندازه بگیر. هر ضلعی که انتخاب کنی، مساحت به‌دست‌آمده همیشه <strong>یکسان</strong> خواهد بود، چون یک مثلث تنها یک مساحت دارد!
+    </div>
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">📏 قاعده و ارتفاع</div>
+    <div class="concept-text">
+      هر ضلع مثلث را به عنوان <strong>قاعده</strong> (<em>b</em>) انتخاب کن. <strong>ارتفاع</strong> (<em>h</em>) فاصلهٔ <em>عمود</em> از آن قاعده تا گوشهٔ مقابل است — کاملاً مستقیم به بالا، نه در امتداد ضلع مایل.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔺 مساحت مثلث</h1>
+    <p>فرمول — و یک مثال حل‌شده! 📐</p>
+  </div>
+  <div class="page-num">صفحهٔ ۲ از ۳</div>
+
+  <div class="formula-box">
+    <span class="formula-name">مساحت مثلث</span>
+    مساحت = (قاعده × ارتفاع) ÷ ۲ = (b × h) ÷ ۲
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">مثال حل‌شده</div>
+    <div class="step-by-step">
+      <div class="step">مساحت مثلثی با قاعدهٔ ۱۰ سانتی‌متر و ارتفاع ۶ سانتی‌متر را حساب کن:</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس ← مساحت = (b × h) ÷ ۲</div>
+      <div class="step"><strong>گام ۲:</strong> اعداد را جایگذاری کن ← (۱۰ × ۶) ÷ ۲</div>
+      <div class="step"><strong>گام ۳:</strong> اول ضرب کن ← ۶۰ ÷ ۲</div>
+      <div class="step"><strong>گام ۴:</strong> تقسیم کن ← <strong>۳۰ سانتی‌متر مربع</strong> ✓</div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۱</span> از فرمول استفاده کن 📐</div>
+    <div class="exercise-instruction">قاعده × ارتفاع را ضرب کن، سپس بر ۲ تقسیم کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>b = ۸ سانتی‌متر, h = ۴ سانتی‌متر</strong><br>
+        <span class="mini-label">گام ۱:</span> ۸ × ۴ = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span> سانتی‌متر مربع
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>b = ۱۲ m, h = ۵ m</strong><br>
+        <span class="mini-label">گام ۱:</span> ۱۲ × ۵ = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span> متر مربع
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>b = ۹ سانتی‌متر, h = ۶ سانتی‌متر</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank" style="width:30px;"></span> سانتی‌متر مربع
+      </div>
+      <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
+        <strong>b = ۱۴ m, h = ۱۰ m</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="blank" style="width:30px;"></span> متر مربع
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۲</span> تمرین سریع ⚡</div>
+    <div class="exercise-instruction">مساحت را در یک خط حساب کن.</div>
+    <div class="problem-grid-3">
+      <div class="problem-card" style="font-size:13px;">
+        b = ۶, h = ۸<br>
+        مساحت = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = ۲۰, h = ۷<br>
+        مساحت = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = ۱۱, h = ۴<br>
+        مساحت = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = ۱۶, h = ۵<br>
+        مساحت = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = ۹, h = ۸<br>
+        مساحت = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        b = ۱۳, h = ۶<br>
+        مساحت = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔺 مساحت مثلث</h1>
+    <p>مثلث قائم‌الزاویه، مسائل کلامی و تمرین ترکیبی! 🧠</p>
+  </div>
+  <div class="page-num">صفحهٔ ۳ از ۳</div>
+
+  <div class="concept-box">
+    <div class="concept-title">📐 مثلث قائم‌الزاویه آسان است</div>
+    <div class="concept-text">
+      در یک <strong>مثلث قائم‌الزاویه</strong>، دو ضلعی که در زاویهٔ قائمه به هم می‌رسند (پاها) به‌طور خودکار قاعده و ارتفاع هستند — چون از قبل بر هم عمودند!
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۳</span> مثلث‌های قائم‌الزاویه 📐</div>
+    <div class="exercise-instruction">دو ضلع کوچک‌تر، قاعده و ارتفاع هستند. مساحت را حساب کن.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        پاها ۳ سانتی‌متر و ۴ سانتی‌متر<br>
+        مساحت = (۳ × ۴) ÷ ۲ = <span class="blank"></span> سانتی‌متر مربع
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        پاها ۵ متر و ۱۲ متر<br>
+        مساحت = <span class="blank"></span> متر مربع
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        پاها ۸ سانتی‌متر و ۱۵ سانتی‌متر<br>
+        مساحت = <span class="blank"></span> سانتی‌متر مربع
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        پاها ۷ متر و ۶ متر<br>
+        مساحت = <span class="blank"></span> متر مربع
+      </div>
+    </div>
+  </div>
+
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">۴</span> مسائل کلامی 📝</div>
+    <div class="exercise-instruction">از فرمول مساحت = (b × h) ÷ ۲ استفاده کن.</div>
+    <ul class="word-problem-list">
+      <li>
+        یک پرچم مثلثی قاعده‌ای به طول ۳۰ سانتی‌متر و ارتفاع ۲۰ سانتی‌متر دارد. مساحت آن چقدر است؟
+        <span class="wp-answer">مساحت = <span class="blank"></span> سانتی‌متر مربع</span>
+      </li>
+      <li>
+        باغچه‌ای به شکل مثلث با قاعدهٔ ۸ متر و ارتفاع ۵ متر است. چند مترمربع مساحت دارد؟
+        <span class="wp-answer">مساحت = <span class="blank"></span> متر مربع</span>
+      </li>
+      <li>
+        بادبان مثلثی یک قایق قاعده‌ای به طول ۱۲ متر و ارتفاع ۹ متر دارد. مساحت آن چقدر است؟
+        <span class="wp-answer">مساحت = <span class="blank"></span> متر مربع</span>
+      </li>
+      <li>
+        مساحت مثلثی ۲۴ سانتی‌متر مربع و قاعدهٔ آن ۸ سانتی‌متر است. ارتفاع آن چقدر است؟
+        <span class="wp-answer"><span class="mini-label">راهنما: (۸ × h) ÷ ۲ = ۲۴ ← ۸ × h = ۴۸</span><br>ارتفاع = <span class="blank"></span> سانتی‌متر</span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="answer-key">
+    <strong>کلید پاسخ‌ها:</strong>
+    ۱) ۳۲←۱۶؛ ۶۰←۳۰؛ ۵۴←۲۷؛ ۱۴۰←۷۰ —
+    ۲) ۲۴، ۷۰، ۲۲، ۴۰، ۳۶، ۳۹ —
+    ۳) ۶، ۳۰، ۶۰، ۲۱ —
+    ۴) ۳۰۰ سانتی‌متر مربع؛ ۲۰ متر مربع؛ ۵۴ متر مربع؛ ۶ سانتی‌متر
+  </div>
+</div>
+
+</body>
+</html>
