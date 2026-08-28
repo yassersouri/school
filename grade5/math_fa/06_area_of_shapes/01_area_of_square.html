@@ -19,14 +19,14 @@
     .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
     .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
     .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
-    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
     .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
     .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
     .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
     .step-by-step .step strong { color: #e65100; }
     .shape-figure { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; margin: 8px 0; }
     .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
-    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; direction: rtl; unicode-bidi: isolate; }
   </style>
 </head>
 <body>
@@ -65,7 +65,7 @@
           </g>
           <text x="60" y="125" font-size="11" text-anchor="middle" fill="#888">۴ واحد</text>
         </svg>
-        <div class="shape-caption">مربع ۴ × ۴ دارای <strong>۱۶</strong> واحد مربع است → مساحت = ۱۶ واحد مربع</div>
+        <div class="shape-caption">مربع <span class="ltr">۴ × ۴</span> دارای <strong>۱۶</strong> واحد مربع است → مساحت = ۱۶ واحد مربع</div>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
             <line x1="6" y1="32" x2="58" y2="32"/>
           </g>
         </svg><br>
-        مربع ۲ × ۲<br>
+        مربع <span class="ltr">۲ × ۲</span><br>
         <span class="mini-label">واحد مربع داخل:</span><br>
         مساحت = <span class="blank"></span> واحد مربع
       </div>
@@ -96,7 +96,7 @@
             <line x1="6" y1="46" x2="66" y2="46"/>
           </g>
         </svg><br>
-        مربع ۳ × ۳<br>
+        مربع <span class="ltr">۳ × ۳</span><br>
         <span class="mini-label">واحد مربع داخل:</span><br>
         مساحت = <span class="blank"></span> واحد مربع
       </div>
@@ -114,7 +114,7 @@
             <line x1="6" y1="62" x2="76" y2="62"/>
           </g>
         </svg><br>
-        مربع ۵ × ۵<br>
+        مربع <span class="ltr">۵ × ۵</span><br>
         <span class="mini-label">واحد مربع داخل:</span><br>
         مساحت = <span class="blank"></span> واحد مربع
       </div>
@@ -140,26 +140,26 @@
 
   <div class="formula-box" style="margin-bottom:auto;">
     <span class="formula-name">مساحت مربع با ضلع s</span>
-    مساحت = s × s = s²
+    مساحت = <span class="ltr">s × s = s²</span>
   </div>
 
   <div class="example-box" style="margin-bottom:auto;">
     <div class="example-title">مثال حل‌شده</div>
     <div class="step-by-step">
       <div class="step">مساحت مربعی با ضلع ۶ سانتی‌متر را پیدا کن:</div>
-      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = s × s</div>
-      <div class="step"><strong>گام ۲:</strong> s را با ۶ جایگزین کن → ۶ × ۶</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = <span class="ltr">s × s</span></div>
+      <div class="step"><strong>گام ۲:</strong> s را با ۶ جایگزین کن → <span class="ltr">۶ × ۶</span></div>
       <div class="step"><strong>گام ۳:</strong> حساب کن → <strong>۳۶ سانتی‌متر مربع</strong> ✓</div>
     </div>
   </div>
 
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۲</span> از فرمول استفاده کن 📐</div>
-    <div class="exercise-instruction">مساحت هر مربع را با فرمول مساحت = s × s پیدا کن.</div>
+    <div class="exercise-instruction">مساحت هر مربع را با فرمول مساحت = <span class="ltr">s × s</span> پیدا کن.</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:14px;">
         ضلع = ۴ سانتی‌متر<br>
-        مساحت = ۴ × ۴ = <span class="blank"></span> سانتی‌متر مربع
+        مساحت = <span class="ltr">۴ × ۴</span> = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
         ضلع = ۷ متر<br>
@@ -197,7 +197,7 @@
     <div class="concept-title">🔁 برعکس حل کردن</div>
     <div class="concept-text">
       اگر <strong>مساحت</strong> مربع را بدانی ولی ضلع را ندانی، بپرس: <em>چه عددی ضرب‌در خودش این مساحت را می‌دهد؟</em><br>
-      مثال: مساحت = ۲۵ سانتی‌متر مربع → ضلع × ضلع = ۲۵ → ضلع = <strong>۵ سانتی‌متر</strong> (چون ۵ × ۵ = ۲۵).
+      مثال: مساحت = ۲۵ سانتی‌متر مربع → ضلع × ضلع = ۲۵ → ضلع = <strong>۵ سانتی‌متر</strong> (چون <span class="ltr">۵ × ۵ = ۲۵</span>).
     </div>
   </div>
 
@@ -222,7 +222,7 @@
 
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۴</span> مسائل کلامی 📝</div>
-    <div class="exercise-instruction">با دقت بخوان، سپس از فرمول مساحت = s × s استفاده کن.</div>
+    <div class="exercise-instruction">با دقت بخوان، سپس از فرمول مساحت = <span class="ltr">s × s</span> استفاده کن.</div>
     <ul class="word-problem-list">
       <li>
         یک باغ مربعی ضلع‌هایی به اندازهٔ ۸ متر دارد. مساحت آن چقدر است؟
@@ -246,7 +246,7 @@
   <div class="answer-key">
     <strong>کلید پاسخ‌ها:</strong>
     ۱) ۴، ۹، ۲۵ —
-    ۲) ۱۶؛ ۷×۷=۴۹؛ ۹×۹=۸۱؛ ۱۲×۱۲=۱۴۴؛ ۱۰۰؛ ۲۲۵ —
+    ۲) ۱۶؛ <span class="ltr">۷×۷=۴۹</span>؛ <span class="ltr">۹×۹=۸۱</span>؛ <span class="ltr">۱۲×۱۲=۱۴۴</span>؛ ۱۰۰؛ ۲۲۵ —
     ۳) ۴، ۷، ۹، ۱۰ —
     ۴) ۶۴ متر مربع؛ ۴۰۰ سانتی‌متر مربع؛ ۱۲۱ متر مربع؛ ۸ سانتی‌متر
   </div>

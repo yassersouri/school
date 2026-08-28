@@ -34,7 +34,7 @@
     .thought-label { font-size: 12px; font-weight: bold; color: #1565c0; margin-bottom: 6px; }
     .thought-lines { font-size: 13px; color: #333; line-height: 2.2; }
     .example-row { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 6px 0; }
-    .example-chip { background: #fff; border: 1.5px solid #90caf9; border-radius: 20px; padding: 4px 14px; font-size: 13px; font-weight: bold; color: #1565c0; direction: ltr; }
+    .example-chip { background: #fff; border: 1.5px solid #90caf9; border-radius: 20px; padding: 4px 14px; font-size: 13px; font-weight: bold; color: #1565c0; direction: ltr; unicode-bidi: isolate; }
   </style>
 </head>
 <body>
@@ -60,10 +60,10 @@
   <div class="vs-row">
     <div class="vs-box examples">
       <div class="vb-title">🧪 بررسی مثال‌ها</div>
-      <div class="vb-content" style="direction: ltr; text-align: left;">
-        "۲ + ۴ = ۶ ✓<br>
-        ۳ + ۵ = ۸ ✓<br>
-        ۷ + ۱ = ۸ ✓<br>
+      <div class="vb-content">
+        "<span class="ltr">۲ + ۴ = ۶</span> ✓<br>
+        <span class="ltr">۳ + ۵ = ۸</span> ✓<br>
+        <span class="ltr">۷ + ۱ = ۸</span> ✓<br>
         پس <em>شاید</em> فرد + فرد = زوج؟"<br><br>
         ❌ این ثابت نمی‌کند که همیشه درست است. اعدادی که امتحان نکردی چه؟
       </div>
@@ -138,8 +138,8 @@
     <div class="concept-text">
       ادعا: «<strong>هر عددی که کمتر از ۴۰ است و به ۱، ۳، ۷، یا ۹ ختم می‌شود، اول است.</strong>»<br><br>
       بررسی می‌کنیم: ۳ ✓، ۷ ✓، ۱۱ ✓، ۱۳ ✓، ۱۷ ✓، ۱۹ ✓، ۲۳ ✓، ۲۹ ✓، ۳۱ ✓، ۳۷ ✓ — واو، همه درست هستند!<br><br>
-      ولی صبر کن… آیا این همیشه درست است؟ <strong>۲۱</strong> را امتحان کن. آیا ۲۱ عدد اول است؟ <strong>نه!</strong> ۲۱ = ۳ × ۷.<br>
-      همچنین <strong>۲۷</strong> = ۳ × ۹، و <strong>۳۳</strong> = ۳ × ۱۱. پس ادعا <strong>نادرست</strong> است!
+      ولی صبر کن… آیا این همیشه درست است؟ <strong>۲۱</strong> را امتحان کن. آیا ۲۱ عدد اول است؟ <strong>نه!</strong> <span class="ltr">۲۱ = ۳ × ۷</span>.<br>
+      همچنین <strong>۲۷</strong> = <span class="ltr">۳ × ۹</span>، و <strong>۳۳</strong> = <span class="ltr">۳ × ۱۱</span>. پس ادعا <strong>نادرست</strong> است!
     </div>
   </div>
 
@@ -192,8 +192,8 @@
 
   <div class="answer-key">
     <strong>کلید پاسخ‌ها:</strong>
-    ۱الف) همیشه درست — ۱ب) گاهی درست (۰×۲=۰، بزرگ‌تر نیست) — ۱پ) همیشه درست (مثلاً ۴+۵+۶=۱۵) — ۱ت) هرگز درست نیست —
-    ۲ث) درست — ۲ج) نادرست (۳×۲=۶ &lt; ۱۰) —
+    ۱الف) همیشه درست — ۱ب) گاهی درست (<span class="ltr">۰×۲=۰</span>، بزرگ‌تر نیست) — ۱پ) همیشه درست (مثلاً <span class="ltr">۴+۵+۶=۱۵</span>) — ۱ت) هرگز درست نیست —
+    ۲ث) درست — ۲ج) نادرست <span class="ltr">(۳×۲=۶ &lt; ۱۰)</span> —
     ۳) همهٔ حالت‌ها / ممکن است حالتی را از دست بدهی که نادرست باشد / یک مثال نقض
   </div>
 </div>

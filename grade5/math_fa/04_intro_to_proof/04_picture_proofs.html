@@ -21,7 +21,7 @@
     .pp-subtitle { font-size: 12px; color: #888; text-align: center; margin-bottom: 10px; font-style: italic; }
 
     /* Staircase grid */
-    .staircase-area { display: flex; align-items: flex-end; justify-content: center; gap: 2px; margin: 8px 0; direction: ltr; }
+    .staircase-area { display: flex; align-items: flex-end; justify-content: center; gap: 2px; margin: 8px 0; direction: ltr; unicode-bidi: isolate; }
     .stair-col { display: flex; flex-direction: column; gap: 2px; }
     .stair-cell { width: 28px; height: 28px; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #fff; }
     .stair-cell.a { background: #6a1b9a; }
@@ -30,19 +30,19 @@
     .stair-cell.mirror { background: #ff8a65; }
 
     /* L-shape grid for odd numbers proof */
-    .square-grid { display: inline-grid; gap: 2px; margin: 8px; direction: ltr; }
+    .square-grid { display: inline-grid; gap: 2px; margin: 8px; direction: ltr; unicode-bidi: isolate; }
     .sq-cell { width: 24px; height: 24px; border-radius: 3px; }
     .sq-cell.filled { background: #6a1b9a; }
     .sq-cell.new { background: #e65100; border: 2px solid #bf360c; }
     .sq-cell.empty { background: #f3e5f5; border: 1px dashed #ce93d8; }
 
     .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 8px; line-height: 1.5; }
-    .formula-box { text-align: center; font-size: 18px; font-weight: bold; color: #6a1b9a; padding: 8px; background: #fff; border: 2px solid #ce93d8; border-radius: 10px; margin: 8px 0; direction: ltr; }
+    .formula-box { text-align: center; font-size: 18px; font-weight: bold; color: #6a1b9a; padding: 8px; background: #fff; border: 2px solid #ce93d8; border-radius: 10px; margin: 8px 0; direction: ltr; unicode-bidi: isolate; }
     .claim-card { background: #fff; border: 2px solid #ce93d8; border-radius: 10px; padding: 12px 14px; margin-bottom: 10px; }
     .work-area { font-size: 12px; color: #555; line-height: 2.2; }
     .draw-box { min-height: 100px; border: 2px dashed #ce93d8; border-radius: 10px; padding: 10px; margin: 8px 0; background: #faf5fc; }
     .draw-label { font-size: 11px; color: #888; font-style: italic; }
-    .grid-row { display: flex; gap: 20px; justify-content: center; align-items: flex-end; flex-wrap: wrap; margin: 10px 0; direction: ltr; }
+    .grid-row { display: flex; gap: 20px; justify-content: center; align-items: flex-end; flex-wrap: wrap; margin: 10px 0; direction: ltr; unicode-bidi: isolate; }
   </style>
 </head>
 <body>
@@ -65,7 +65,7 @@
   <!-- Picture Proof 1: Sum of first n odd numbers = n² -->
   <div class="picture-proof">
     <div class="pp-title">اثبات تصویری ۱: اعداد فرد، مربع‌های کامل می‌سازند</div>
-    <div class="pp-subtitle">۱ + ۳ + ۵ + ۷ + … = یک عدد مربعی!</div>
+    <div class="pp-subtitle"><span class="ltr">۱ + ۳ + ۵ + ۷</span> + … = یک عدد مربعی!</div>
 
     <div class="grid-row">
       <!-- 1×1 -->
@@ -138,12 +138,12 @@
   <!-- Picture Proof 2: Staircase sum 1+2+3+...+n = n(n+1)/2 -->
   <div class="picture-proof">
     <div class="pp-title">اثبات تصویری ۲: پله‌کان</div>
-    <div class="pp-subtitle">۱ + ۲ + ۳ + ۴ = ?&nbsp; دو پله‌کان را یک مستطیل کن!</div>
+    <div class="pp-subtitle"><span class="ltr">۱ + ۲ + ۳ + ۴</span> = ?&nbsp; دو پله‌کان را یک مستطیل کن!</div>
 
     <div class="grid-row">
       <!-- Staircase only -->
       <div style="text-align:center;">
-        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">پله‌کان برای ۱+۲+۳+۴</div>
+        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">پله‌کان برای <span class="ltr">۱+۲+۳+۴</span></div>
         <div class="staircase-area">
           <div class="stair-col"><div class="stair-cell a"></div></div>
           <div class="stair-col"><div class="stair-cell a"></div><div class="stair-cell a"></div></div>
@@ -156,7 +156,7 @@
 
       <!-- Double staircase = rectangle -->
       <div style="text-align:center;">
-        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">دو نسخه ← مستطیل ۴ × ۵!</div>
+        <div style="font-size:12px; font-weight:bold; color:#6a1b9a; margin-bottom:4px;">دو نسخه ← مستطیل <span class="ltr">۴ × ۵</span>!</div>
         <div style="display:inline-grid; grid-template-columns: repeat(4, 28px); gap:2px;">
           <div class="stair-cell a"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div>
           <div class="stair-cell a"></div><div class="stair-cell a"></div><div class="stair-cell mirror"></div><div class="stair-cell mirror"></div>
@@ -168,9 +168,9 @@
     </div>
 
     <div class="proof-explain">
-      پله‌کان دارای ۱+۲+۳+۴ = ۱۰ مربع (بنفش) است.<br>
-      یک نسخه را برگردان (نارنجی) و کنار هم قرار بده ← مستطیل ۴×۵ = ۲۰.<br>
-      پله‌کان <strong>نصف</strong> مستطیل است: ۲۰ ÷ ۲ = <strong>۱۰</strong> ✓
+      پله‌کان دارای <span class="ltr">۱+۲+۳+۴ = ۱۰</span> مربع (بنفش) است.<br>
+      یک نسخه را برگردان (نارنجی) و کنار هم قرار بده ← مستطیل <span class="ltr">۴×۵ = ۲۰</span>.<br>
+      پله‌کان <strong>نصف</strong> مستطیل است: <span class="ltr">۲۰ ÷ ۲</span> = <strong>۱۰</strong> ✓
     </div>
     <div class="formula-box">۱ + ۲ + ۳ + ⋯ + n = n × (n + ۱) ÷ ۲</div>
   </div>
@@ -178,7 +178,7 @@
   <!-- Exercise 2 -->
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۲</span> از فرمول پله‌کان استفاده کن 📐</div>
-    <div class="exercise-instruction">از فرمول n × (n+۱) ÷ ۲ برای یافتن سریع هر مجموع استفاده کن!</div>
+    <div class="exercise-instruction">از فرمول <span class="ltr">n × (n+۱) ÷ ۲</span> برای یافتن سریع هر مجموع استفاده کن!</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:14px;">۱ + ۲ + ۳ + ۴ + ۵<br>n = ۵ ← ۵ × ۶ ÷ ۲ = <span class="blank"></span></div>
       <div class="problem-card" style="font-size:14px;">۱ + ۲ + ۳ + … + ۱۰<br>n = ۱۰ ← ۱۰ × <span class="blank"></span> ÷ ۲ = <span class="blank"></span></div>
@@ -190,7 +190,7 @@
   <!-- Exercise 3 -->
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۳</span> اثبات تصویری خودت را بکش ✏️</div>
-    <div class="exercise-instruction">پله‌کان را برای ۱+۲+۳+۴+۵ بکش و نشان بده که دو نسخه یک مستطیل ۵×۶ می‌سازند.</div>
+    <div class="exercise-instruction">پله‌کان را برای <span class="ltr">۱+۲+۳+۴+۵</span> بکش و نشان بده که دو نسخه یک مستطیل <span class="ltr">۵×۶</span> می‌سازند.</div>
     <div class="draw-box">
       <div class="draw-label">پله‌کانت را اینجا بکش:</div>
     </div>

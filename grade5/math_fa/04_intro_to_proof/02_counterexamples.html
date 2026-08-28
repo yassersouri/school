@@ -21,7 +21,7 @@
     .demo-label { font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: .5px; margin-top: 6px; margin-bottom: 3px; }
     .demo-label.try { color: #1565c0; }
     .demo-label.fail { color: #c62828; }
-    .demo-content { font-size: 13px; color: #555; line-height: 1.5; direction: ltr; text-align: left; }
+    .demo-content { font-size: 13px; color: #555; line-height: 1.5; }
     .demo-verdict { font-size: 14px; font-weight: bold; color: #c62828; margin-top: 6px; padding: 5px 10px; background: #ffcdd2; border-radius: 8px; text-align: center; }
     .claim-card { background: #fff; border: 2px solid #ef9a9a; border-radius: 10px; padding: 10px 14px; margin-bottom: 8px; }
     .claim-num { display: inline-block; background: #c62828; color: #fff; border-radius: 50%; width: 24px; height: 24px; text-align: center; line-height: 24px; font-size: 12px; font-weight: bold; margin-left: 8px; }
@@ -69,9 +69,9 @@
   <div class="demo-box">
     <div class="demo-claim">ادعا: «مجذور هر عددی از خودِ آن عدد بزرگ‌تر است.»</div>
     <div class="demo-label try">🧪 بررسی می‌کنیم:</div>
-    <div class="demo-content">۳² = ۹ &gt; ۳ ✓ &nbsp;&nbsp; ۵² = ۲۵ &gt; ۵ ✓ &nbsp;&nbsp; ۱۰² = ۱۰۰ &gt; ۱۰ ✓</div>
+    <div class="demo-content"><span class="ltr">۳² = ۹ &gt; ۳</span> ✓ &nbsp;&nbsp; <span class="ltr">۵² = ۲۵ &gt; ۵</span> ✓ &nbsp;&nbsp; <span class="ltr">۱۰² = ۱۰۰ &gt; ۱۰</span> ✓</div>
     <div class="demo-label fail">🔍 ولی صبر کن…</div>
-    <div class="demo-content"><strong>۱² = ۱</strong>، و ۱ از ۱ بزرگ‌تر نیست! همچنین <strong>۰² = ۰</strong>.</div>
+    <div class="demo-content"><strong><span class="ltr">۱² = ۱</span></strong>، و ۱ از ۱ بزرگ‌تر نیست! همچنین <strong><span class="ltr">۰² = ۰</span></strong>.</div>
     <div class="demo-verdict">❌ مثال نقض: ۱ (یا ۰) — ادعا نادرست است!</div>
   </div>
 
@@ -173,8 +173,8 @@
 
   <div class="answer-key">
     <strong>کلید پاسخ‌ها:</strong>
-    ۱الف) ۶ مضرب ۳ است و زوج است — ۱ب) ۵ − ۵ = ۰، کوچک‌تر نشد (یا ۳ − ۷ = −۴) — ۱پ) ۱۵ به ۵ ختم می‌شود ولی ۱۵ ÷ ۱۰ = ۱٫۵ —
-    ۲الف) درست (تعریف عدد زوج همین است) — ۲ب) نادرست (۳ × ۵ = ۱۵، که فرد است) — ۲پ) درست (۶ = ۲ × ۳، پس هر مضرب ۶ مضرب ۳ هم هست) — ۲ت) نادرست (۲ + ۱ = ۳، که عدد اول است)
+    ۱الف) ۶ مضرب ۳ است و زوج است — ۱ب) <span class="ltr">۵ − ۵ = ۰</span>، کوچک‌تر نشد (یا <span class="ltr">۳ − ۷</span> = −۴) — ۱پ) ۱۵ به ۵ ختم می‌شود ولی <span class="ltr">۱۵ ÷ ۱۰ = ۱٫۵</span> —
+    ۲الف) درست (تعریف عدد زوج همین است) — ۲ب) نادرست (<span class="ltr">۳ × ۵ = ۱۵</span>، که فرد است) — ۲پ) درست (<span class="ltr">۶ = ۲ × ۳</span>، پس هر مضرب ۶ مضرب ۳ هم هست) — ۲ت) نادرست (<span class="ltr">۲ + ۱ = ۳</span>، که عدد اول است)
   </div>
 </div>
 

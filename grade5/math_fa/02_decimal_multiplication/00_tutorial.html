@@ -36,12 +36,12 @@
     .example-green .step .step-num { background: #2e7d32; }
     .example-purple .step .step-num { background: #6a1b9a; }
     .example-orange .step .step-num { background: #e65100; }
-    .math { font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: #1565c0; direction: ltr; }
+    .math { font-family: 'Courier New', monospace; font-size: 15px; font-weight: 700; color: #1565c0; direction: ltr; unicode-bidi: isolate; }
     .example-green .math { color: #2e7d32; }
     .example-purple .math { color: #6a1b9a; }
     .example-orange .math { color: #e65100; }
     .result { font-size: 15px; font-weight: 700; margin-top: 6px; }
-    .vertical-demo { display: inline-flex; flex-direction: column; align-items: flex-end; font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700; color: #1565c0; background: #f0f7ff; border-radius: 8px; padding: 10px 18px; margin: 6px 0; direction: ltr; }
+    .vertical-demo { display: inline-flex; flex-direction: column; align-items: flex-end; font-family: 'Courier New', monospace; font-size: 18px; font-weight: 700; color: #1565c0; background: #f0f7ff; border-radius: 8px; padding: 10px 18px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
     .vertical-demo-green { color: #2e7d32; background: #f0f9f0; }
     .vertical-demo-purple { color: #6a1b9a; background: #f8f0fa; }
     .vertical-demo .vd-line { width: 100%; border-top: 2px solid #333; margin: 4px 0; }
@@ -53,7 +53,7 @@
     .try-it { background: #f3e5f5; border: 2px solid #ab47bc; border-radius: 8px; padding: 10px 14px; margin: 8px 0; }
     .try-it-label { font-size: 12px; font-weight: 700; color: #6a1b9a; margin-bottom: 6px; text-transform: uppercase; }
     .try-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-    .try-card { background: #fff; border: 1.5px solid #ce93d8; border-radius: 8px; padding: 10px 8px; text-align: center; font-size: 16px; font-weight: 700; color: #6a1b9a; direction: ltr; }
+    .try-card { background: #fff; border: 1.5px solid #ce93d8; border-radius: 8px; padding: 10px 8px; text-align: center; font-size: 16px; font-weight: 700; color: #6a1b9a; direction: ltr; unicode-bidi: isolate; }
     .nav-link { display: inline-block; margin-top: 8px; font-size: 12px; color: #1565c0; text-decoration: none; }
     .nav-link:hover { text-decoration: underline; }
   </style>
@@ -102,22 +102,22 @@
 
     <div class="example">
       <div class="example-label">✏️ مثال حل‌شده الف — دهم × درست</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۲٫۴ × ۳</span></div>
-      <div class="step"><span class="step-num">۲</span> ممیز را نادیده بگیر — ضرب کن: <span class="math">۲۴ × ۳ = ۷۲</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۲٫۴ × ۳</span></span></div>
+      <div class="step"><span class="step-num">۲</span> ممیز را نادیده بگیر — ضرب کن: <span class="math"><span class="ltr">۲۴ × ۳ = ۷۲</span></span></div>
       <div class="step"><span class="step-num">۳</span> <span class="math">۲٫۴</span> دارای <strong>۱ رقم اعشار</strong> است. پس ۱ رقم اعشار در پاسخ بگذار.</div>
-      <div class="result">✅ پاسخ: <span class="math">۲٫۴ × ۳ = ۷٫۲</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۲٫۴ × ۳ = ۷٫۲</span></span></div>
     </div>
 
     <div class="example">
       <div class="example-label">✏️ مثال حل‌شده ب — صدم × درست</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۱٫۲۵ × ۴</span></div>
-      <div class="step"><span class="step-num">۲</span> ممیز را نادیده بگیر — ضرب کن: <span class="math">۱۲۵ × ۴ = ۵۰۰</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۱٫۲۵ × ۴</span></span></div>
+      <div class="step"><span class="step-num">۲</span> ممیز را نادیده بگیر — ضرب کن: <span class="math"><span class="ltr">۱۲۵ × ۴ = ۵۰۰</span></span></div>
       <div class="step"><span class="step-num">۳</span> <span class="math">۱٫۲۵</span> دارای <strong>۲ رقم اعشار</strong> است. پس ۲ رقم اعشار در پاسخ بگذار.</div>
-      <div class="result">✅ پاسخ: <span class="math">۱٫۲۵ × ۴ = ۵٫۰۰</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۱٫۲۵ × ۴ = ۵٫۰۰</span></span></div>
     </div>
 
     <div class="tip-box">
-      <strong>💡 نکته:</strong> یک عدد درست <strong>۰ رقم اعشار</strong> دارد. پس در <span class="math">۲٫۴ × ۳</span>، فقط ۱ رقم اعشار از ۲٫۴ را می‌شماری.
+      <strong>💡 نکته:</strong> یک عدد درست <strong>۰ رقم اعشار</strong> دارد. پس در <span class="math"><span class="ltr">۲٫۴ × ۳</span></span>، فقط ۱ رقم اعشار از ۲٫۴ را می‌شماری.
     </div>
   </div>
 </div>
@@ -135,7 +135,7 @@
     <div class="section-title" style="margin-bottom: 4px;">📐 شکل عمودی — مثل ضرب بلند تنظیم کن</div>
     <div style="display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
       <div>
-        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">مثال: ۳٫۶ × ۴</div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">مثال: <span class="ltr">۳٫۶ × ۴</span></div>
         <div class="vertical-demo" style="font-size: 15px; padding: 5px 12px; margin: 3px 0;">
           <div>&nbsp;&nbsp;۳٫۶</div>
           <div>× &nbsp;۴</div>
@@ -145,7 +145,7 @@
         <div style="font-size: 10px; color: #888;">↑ ۱ رقم اعشار</div>
       </div>
       <div>
-        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">مثال: ۵٫۲۴ × ۳</div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">مثال: <span class="ltr">۵٫۲۴ × ۳</span></div>
         <div class="vertical-demo" style="font-size: 15px; padding: 5px 12px; margin: 3px 0;">
           <div>&nbsp;۵٫۲۴</div>
           <div>× &nbsp;&nbsp;۳</div>
@@ -155,7 +155,7 @@
         <div style="font-size: 10px; color: #888;">↑ ۲ رقم اعشار</div>
       </div>
       <div>
-        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">مثال: ۰٫۰۸ × ۷</div>
+        <div style="font-size: 11px; color: #555; margin-bottom: 2px;">مثال: <span class="ltr">۰٫۰۸ × ۷</span></div>
         <div class="vertical-demo" style="font-size: 15px; padding: 5px 12px; margin: 3px 0;">
           <div>&nbsp;۰٫۰۸</div>
           <div>× &nbsp;&nbsp;۷</div>
@@ -190,25 +190,25 @@
     <div class="rule-box">
       <div class="rule-label">🔑 قانون کلیدی</div>
       <p><span class="highlight">تعداد کل رقم‌های اعشار در پاسخ = رقم‌های اعشار عدد اول + رقم‌های اعشار عدد دوم.</span></p>
-      <p>مثال: <span class="math">۰٫۳ × ۰٫۴</span> → ۱ رقم + ۱ رقم = <strong>۲ رقم اعشار</strong> در پاسخ.</p>
+      <p>مثال: <span class="math"><span class="ltr">۰٫۳ × ۰٫۴</span></span> → ۱ رقم + ۱ رقم = <strong>۲ رقم اعشار</strong> در پاسخ.</p>
     </div>
 
     <div class="example example-green">
       <div class="example-label">✏️ مثال حل‌شده پ — دهم × دهم</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۰٫۶ × ۰٫۳</span></div>
-      <div class="step"><span class="step-num">۲</span> ممیزها را نادیده بگیر — ضرب کن: <span class="math">۶ × ۳ = ۱۸</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۰٫۶ × ۰٫۳</span></span></div>
+      <div class="step"><span class="step-num">۲</span> ممیزها را نادیده بگیر — ضرب کن: <span class="math"><span class="ltr">۶ × ۳ = ۱۸</span></span></div>
       <div class="step"><span class="step-num">۳</span> بشمار: <span class="math">۰٫۶</span> دارد ۱ رقم + <span class="math">۰٫۳</span> دارد ۱ رقم = <strong>۲ رقم در کل</strong></div>
       <div class="step"><span class="step-num">۴</span> ممیز را بگذار: ۱۸ ← <span class="math">۰٫۱۸</span></div>
-      <div class="result">✅ پاسخ: <span class="math">۰٫۶ × ۰٫۳ = ۰٫۱۸</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۰٫۶ × ۰٫۳ = ۰٫۱۸</span></span></div>
     </div>
 
     <div class="example example-green">
       <div class="example-label">✏️ مثال حل‌شده ت — دهم‌های بزرگ‌تر</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۱٫۲ × ۳٫۴</span></div>
-      <div class="step"><span class="step-num">۲</span> ممیزها را نادیده بگیر — ضرب کن: <span class="math">۱۲ × ۳۴ = ۴۰۸</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۱٫۲ × ۳٫۴</span></span></div>
+      <div class="step"><span class="step-num">۲</span> ممیزها را نادیده بگیر — ضرب کن: <span class="math"><span class="ltr">۱۲ × ۳۴ = ۴۰۸</span></span></div>
       <div class="step"><span class="step-num">۳</span> بشمار: <span class="math">۱٫۲</span> دارد ۱ رقم + <span class="math">۳٫۴</span> دارد ۱ رقم = <strong>۲ رقم در کل</strong></div>
       <div class="step"><span class="step-num">۴</span> ممیز را بگذار: ۴۰۸ ← <span class="math">۴٫۰۸</span></div>
-      <div class="result">✅ پاسخ: <span class="math">۱٫۲ × ۳٫۴ = ۴٫۰۸</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۱٫۲ × ۳٫۴ = ۴٫۰۸</span></span></div>
     </div>
   </div>
 </div>
@@ -230,20 +230,20 @@
 
     <div class="example example-purple">
       <div class="example-label">✏️ مثال حل‌شده ث — صدم × درست</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۰٫۱۵ × ۶</span></div>
-      <div class="step"><span class="step-num">۲</span> ضرب کن: <span class="math">۱۵ × ۶ = ۹۰</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۰٫۱۵ × ۶</span></span></div>
+      <div class="step"><span class="step-num">۲</span> ضرب کن: <span class="math"><span class="ltr">۱۵ × ۶ = ۹۰</span></span></div>
       <div class="step"><span class="step-num">۳</span> <span class="math">۰٫۱۵</span> دارای ۲ رقم اعشار است + عدد درست دارای ۰ رقم = <strong>۲ رقم</strong></div>
       <div class="step"><span class="step-num">۴</span> ممیز را بگذار: ۹۰ ← <span class="math">۰٫۹۰</span></div>
-      <div class="result">✅ پاسخ: <span class="math">۰٫۱۵ × ۶ = ۰٫۹۰</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۰٫۱۵ × ۶ = ۰٫۹۰</span></span></div>
     </div>
 
     <div class="example example-purple">
       <div class="example-label">✏️ مثال حل‌شده ج — صدم × دهم</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۰٫۲۵ × ۰٫۴</span></div>
-      <div class="step"><span class="step-num">۲</span> ضرب کن: <span class="math">۲۵ × ۴ = ۱۰۰</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۰٫۲۵ × ۰٫۴</span></span></div>
+      <div class="step"><span class="step-num">۲</span> ضرب کن: <span class="math"><span class="ltr">۲۵ × ۴ = ۱۰۰</span></span></div>
       <div class="step"><span class="step-num">۳</span> <span class="math">۰٫۲۵</span> دارای ۲ رقم + <span class="math">۰٫۴</span> دارای ۱ رقم = <strong>۳ رقم</strong></div>
       <div class="step"><span class="step-num">۴</span> ممیز را بگذار: ۱۰۰ ← <span class="math">۰٫۱۰۰</span></div>
-      <div class="result">✅ پاسخ: <span class="math">۰٫۲۵ × ۰٫۴ = ۰٫۱۰۰ = ۰٫۱</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۰٫۲۵ × ۰٫۴ = ۰٫۱۰۰ = ۰٫۱</span></span></div>
     </div>
 
     <div class="remember-box">
@@ -314,11 +314,11 @@
 
     <div class="example example-orange">
       <div class="example-label">✏️ مثال حل‌شده ی — وقتی رقم کم می‌آوری</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۲٫۳ × ۱٬۰۰۰</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۲٫۳ × ۱٬۰۰۰</span></span></div>
       <div class="step"><span class="step-num">۲</span> قانون می‌گوید ممیز را <strong>۳ خانه</strong> به راست ببر، ولی <span class="math">۲٫۳</span> فقط ۱ رقم بعد از ممیز دارد.</div>
       <div class="step"><span class="step-num">۳</span> صفرهای جای‌خالی اضافه کن تا جا داشته باشی: <span class="math">۲٫۳۰۰</span></div>
       <div class="step"><span class="step-num">۴</span> ممیز را ۳ خانه به راست ببر: <span class="math">۲٬۳۰۰</span></div>
-      <div class="result">✅ پاسخ: <span class="math">۲٫۳ × ۱٬۰۰۰ = ۲٬۳۰۰</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۲٫۳ × ۱٬۰۰۰ = ۲٬۳۰۰</span></span></div>
     </div>
   </div>
 
@@ -350,20 +350,20 @@
 
     <div class="example">
       <div class="example-label">✏️ مثال حل‌شده ک — تخمین و بررسی</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۴٫۸ × ۳٫۲</span></div>
-      <div class="step"><span class="step-num">۲</span> <strong>تخمین:</strong> ۴٫۸ را گرد کن به ۵ و ۳٫۲ را به ۳، پس حدوداً <span class="math">۵ × ۳ = ۱۵</span></div>
-      <div class="step"><span class="step-num">۳</span> <strong>دقیق:</strong> ۴۸ × ۳۲ = ۱٬۵۳۶. به ۲ رقم اعشار نیاز داریم ← <span class="math">۱۵٫۳۶</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۴٫۸ × ۳٫۲</span></span></div>
+      <div class="step"><span class="step-num">۲</span> <strong>تخمین:</strong> ۴٫۸ را گرد کن به ۵ و ۳٫۲ را به ۳، پس حدوداً <span class="math"><span class="ltr">۵ × ۳ = ۱۵</span></span></div>
+      <div class="step"><span class="step-num">۳</span> <strong>دقیق:</strong> <span class="ltr">۴۸ × ۳۲ = ۱٬۵۳۶</span>. به ۲ رقم اعشار نیاز داریم ← <span class="math">۱۵٫۳۶</span></div>
       <div class="step"><span class="step-num">۴</span> <strong>بررسی:</strong> ۱۵٫۳۶ به تخمین ۱۵ ما نزدیک است ✓</div>
-      <div class="result">✅ پاسخ: <span class="math">۴٫۸ × ۳٫۲ = ۱۵٫۳۶</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۴٫۸ × ۳٫۲ = ۱۵٫۳۶</span></span></div>
     </div>
 
     <div class="example">
       <div class="example-label">✏️ مثال حل‌شده گ — پیدا کردن اشتباه</div>
-      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math">۶٫۳ × ۲٫۹</span></div>
-      <div class="step"><span class="step-num">۲</span> <strong>تخمین:</strong> ۶٫۳ را گرد کن به ۶ و ۲٫۹ را به ۳، پس حدوداً <span class="math">۶ × ۳ = ۱۸</span></div>
-      <div class="step"><span class="step-num">۳</span> <strong>دقیق:</strong> ۶۳ × ۲۹ = ۱٬۸۲۷. به ۲ رقم اعشار نیاز داریم ← <span class="math">۱۸٫۲۷</span></div>
+      <div class="step"><span class="step-num">۱</span> مسئله: <span class="math"><span class="ltr">۶٫۳ × ۲٫۹</span></span></div>
+      <div class="step"><span class="step-num">۲</span> <strong>تخمین:</strong> ۶٫۳ را گرد کن به ۶ و ۲٫۹ را به ۳، پس حدوداً <span class="math"><span class="ltr">۶ × ۳ = ۱۸</span></span></div>
+      <div class="step"><span class="step-num">۳</span> <strong>دقیق:</strong> <span class="ltr">۶۳ × ۲۹ = ۱٬۸۲۷</span>. به ۲ رقم اعشار نیاز داریم ← <span class="math">۱۸٫۲۷</span></div>
       <div class="step"><span class="step-num">۴</span> <strong>بررسی:</strong> ۱۸٫۲۷ به تخمین ۱۸ ما نزدیک است ✓ — ولی ۱٫۸۲۷ یا ۱۸۲٫۷ نزدیک نبودند، پس می‌فهمیدیم که باید ممیز را درست کنیم.</div>
-      <div class="result">✅ پاسخ: <span class="math">۶٫۳ × ۲٫۹ = ۱۸٫۲۷</span></div>
+      <div class="result">✅ پاسخ: <span class="math"><span class="ltr">۶٫۳ × ۲٫۹ = ۱۸٫۲۷</span></span></div>
     </div>
 
     <div class="remember-box">
@@ -407,33 +407,33 @@
         <tbody>
           <tr>
             <td style="padding: 8px; border: 1px solid #e0e0e0;">اعشاری × درست</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۲٫۴ × ۳</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0;">۱ + ۰ = ۱</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۷٫۲</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۲٫۴ × ۳</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;"><span class="ltr">۱ + ۰ = ۱</span></td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۷٫۲</td>
           </tr>
           <tr style="background: #f5f5f5;">
             <td style="padding: 8px; border: 1px solid #e0e0e0;">دهم × دهم</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۰٫۶ × ۰٫۳</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0;">۱ + ۱ = ۲</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۰٫۱۸</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۰٫۶ × ۰٫۳</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;"><span class="ltr">۱ + ۱ = ۲</span></td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۰٫۱۸</td>
           </tr>
           <tr>
             <td style="padding: 8px; border: 1px solid #e0e0e0;">صدم × درست</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۰٫۱۵ × ۶</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0;">۲ + ۰ = ۲</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۰٫۹۰</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۰٫۱۵ × ۶</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;"><span class="ltr">۲ + ۰ = ۲</span></td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۰٫۹۰</td>
           </tr>
           <tr style="background: #f5f5f5;">
             <td style="padding: 8px; border: 1px solid #e0e0e0;">صدم × دهم</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۰٫۲۵ × ۰٫۴</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0;">۲ + ۱ = ۳</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۰٫۱۰۰</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۰٫۲۵ × ۰٫۴</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0;"><span class="ltr">۲ + ۱ = ۳</span></td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۰٫۱۰۰</td>
           </tr>
           <tr>
             <td style="padding: 8px; border: 1px solid #e0e0e0;">× ۱۰ / ۱۰۰ / ۱٬۰۰۰</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۳٫۴۵ × ۱۰۰</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۳٫۴۵ × ۱۰۰</td>
             <td style="padding: 8px; border: 1px solid #e0e0e0;">۲ خانه به راست</td>
-            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr;">۳۴۵</td>
+            <td style="padding: 8px; border: 1px solid #e0e0e0; font-family: monospace; font-weight: 700; direction: ltr; unicode-bidi: isolate;">۳۴۵</td>
           </tr>
         </tbody>
       </table>
@@ -456,27 +456,27 @@
     <div class="section-title" style="color: #555;">🔓 کلید پاسخ‌ها — تمرین‌های «خودت امتحان کن»</div>
     <div class="section-text" style="font-size: 11px; color: #777;">
       <p><strong>صفحهٔ ۲ — اعشاری × عدد درست:</strong><br/>
-        ۰٫۷ × ۵ = <strong>۳٫۵</strong> &nbsp;|&nbsp;
-        ۳٫۲ × ۴ = <strong>۱۲٫۸</strong> &nbsp;|&nbsp;
-        ۱٫۰۵ × ۶ = <strong>۶٫۳۰</strong> &nbsp;|&nbsp;
-        ۴٫۸ × ۳ = <strong>۱۴٫۴</strong> &nbsp;|&nbsp;
-        ۰٫۲۵ × ۸ = <strong>۲٫۰۰</strong> &nbsp;|&nbsp;
-        ۶٫۱۵ × ۲ = <strong>۱۲٫۳۰</strong></p>
+        <span class="ltr">۰٫۷ × ۵</span> = <strong>۳٫۵</strong> &nbsp;|&nbsp;
+        <span class="ltr">۳٫۲ × ۴</span> = <strong>۱۲٫۸</strong> &nbsp;|&nbsp;
+        <span class="ltr">۱٫۰۵ × ۶</span> = <strong>۶٫۳۰</strong> &nbsp;|&nbsp;
+        <span class="ltr">۴٫۸ × ۳</span> = <strong>۱۴٫۴</strong> &nbsp;|&nbsp;
+        <span class="ltr">۰٫۲۵ × ۸</span> = <strong>۲٫۰۰</strong> &nbsp;|&nbsp;
+        <span class="ltr">۶٫۱۵ × ۲</span> = <strong>۱۲٫۳۰</strong></p>
       <p><strong>صفحهٔ ۳ — اعشاری × اعشاری:</strong><br/>
-        ۰٫۴ × ۰٫۵ = <strong>۰٫۲۰</strong> &nbsp;|&nbsp;
-        ۱٫۳ × ۲٫۱ = <strong>۲٫۷۳</strong> &nbsp;|&nbsp;
-        ۰٫۱۲ × ۵ = <strong>۰٫۶۰</strong> &nbsp;|&nbsp;
-        ۰٫۷ × ۰٫۹ = <strong>۰٫۶۳</strong> &nbsp;|&nbsp;
-        ۲٫۵ × ۱٫۴ = <strong>۳٫۵۰</strong> &nbsp;|&nbsp;
-        ۰٫۳۵ × ۰٫۲ = <strong>۰٫۰۷۰</strong></p>
+        <span class="ltr">۰٫۴ × ۰٫۵</span> = <strong>۰٫۲۰</strong> &nbsp;|&nbsp;
+        <span class="ltr">۱٫۳ × ۲٫۱</span> = <strong>۲٫۷۳</strong> &nbsp;|&nbsp;
+        <span class="ltr">۰٫۱۲ × ۵</span> = <strong>۰٫۶۰</strong> &nbsp;|&nbsp;
+        <span class="ltr">۰٫۷ × ۰٫۹</span> = <strong>۰٫۶۳</strong> &nbsp;|&nbsp;
+        <span class="ltr">۲٫۵ × ۱٫۴</span> = <strong>۳٫۵۰</strong> &nbsp;|&nbsp;
+        <span class="ltr">۰٫۳۵ × ۰٫۲</span> = <strong>۰٫۰۷۰</strong></p>
       <p><strong>صفحهٔ ۴ — توان‌های ۱۰:</strong><br/>
-        ۲٫۷ × ۱۰ = <strong>۲۷</strong> &nbsp;|&nbsp;
-        ۰٫۴۵ × ۱۰۰ = <strong>۴۵</strong> &nbsp;|&nbsp;
-        ۱٫۳۰۶ × ۱٬۰۰۰ = <strong>۱٬۳۰۶</strong></p>
+        <span class="ltr">۲٫۷ × ۱۰</span> = <strong>۲۷</strong> &nbsp;|&nbsp;
+        <span class="ltr">۰٫۴۵ × ۱۰۰</span> = <strong>۴۵</strong> &nbsp;|&nbsp;
+        <span class="ltr">۱٫۳۰۶ × ۱٬۰۰۰</span> = <strong>۱٬۳۰۶</strong></p>
       <p><strong>صفحهٔ ۵ — تخمین و دقیق:</strong><br/>
-        ۳٫۹ × ۲٫۱ ≈ ۴ × ۲ = <strong>۸</strong>، دقیق = <strong>۸٫۱۹</strong> &nbsp;|&nbsp;
-        ۵٫۱ × ۱٫۸ ≈ ۵ × ۲ = <strong>۱۰</strong>، دقیق = <strong>۹٫۱۸</strong> &nbsp;|&nbsp;
-        ۰٫۷۵ × ۴ ≈ ۱ × ۴ = <strong>۴</strong>، دقیق = <strong>۳٫۰۰</strong></p>
+        <span class="ltr">۳٫۹ × ۲٫۱ ≈ ۴ × ۲</span> = <strong>۸</strong>، دقیق = <strong>۸٫۱۹</strong> &nbsp;|&nbsp;
+        <span class="ltr">۵٫۱ × ۱٫۸ ≈ ۵ × ۲</span> = <strong>۱۰</strong>، دقیق = <strong>۹٫۱۸</strong> &nbsp;|&nbsp;
+        <span class="ltr">۰٫۷۵ × ۴ ≈ ۱ × ۴</span> = <strong>۴</strong>، دقیق = <strong>۳٫۰۰</strong></p>
     </div>
   </div>
 

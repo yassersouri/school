@@ -19,14 +19,14 @@
     .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
     .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
     .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
-    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
     .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
     .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
     .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
     .step-by-step .step strong { color: #e65100; }
     .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
     .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
-    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; direction: rtl; unicode-bidi: isolate; }
   </style>
 </head>
 <body>
@@ -62,7 +62,7 @@
         <text x="55" y="55" font-size="10" fill="#888">مستطیل</text>
       </svg>
     </div>
-    <div class="shape-caption">مساحت مثلث = (مساحت مستطیل) ÷ ۲ = (b × h) ÷ ۲</div>
+    <div class="shape-caption">مساحت مثلث = (مساحت مستطیل) ÷ <span class="ltr">۲ = (b × h) ÷ ۲</span></div>
   </div>
 
   <div class="concept-box" style="margin-bottom:auto;">
@@ -90,16 +90,16 @@
 
   <div class="formula-box">
     <span class="formula-name">مساحت مثلث</span>
-    مساحت = (قاعده × ارتفاع) ÷ ۲ = (b × h) ÷ ۲
+    مساحت = (قاعده × ارتفاع) ÷ <span class="ltr">۲ = (b × h) ÷ ۲</span>
   </div>
 
   <div class="example-box">
     <div class="example-title">مثال حل‌شده</div>
     <div class="step-by-step">
       <div class="step">مساحت مثلثی با قاعدهٔ ۱۰ سانتی‌متر و ارتفاع ۶ سانتی‌متر را حساب کن:</div>
-      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس ← مساحت = (b × h) ÷ ۲</div>
-      <div class="step"><strong>گام ۲:</strong> اعداد را جایگذاری کن ← (۱۰ × ۶) ÷ ۲</div>
-      <div class="step"><strong>گام ۳:</strong> اول ضرب کن ← ۶۰ ÷ ۲</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس ← مساحت = <span class="ltr">(b × h) ÷ ۲</span></div>
+      <div class="step"><strong>گام ۲:</strong> اعداد را جایگذاری کن ← <span class="ltr">(۱۰ × ۶) ÷ ۲</span></div>
+      <div class="step"><strong>گام ۳:</strong> اول ضرب کن ← <span class="ltr">۶۰ ÷ ۲</span></div>
       <div class="step"><strong>گام ۴:</strong> تقسیم کن ← <strong>۳۰ سانتی‌متر مربع</strong> ✓</div>
     </div>
   </div>
@@ -109,17 +109,17 @@
     <div class="exercise-instruction">قاعده × ارتفاع را ضرب کن، سپس بر ۲ تقسیم کن.</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
-        <strong>b = ۸ سانتی‌متر, h = ۴ سانتی‌متر</strong><br>
-        <span class="mini-label">گام ۱:</span> ۸ × ۴ = <span class="blank" style="width:30px;"></span><br>
-        <span class="mini-label">گام ۲:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span> سانتی‌متر مربع
+        <strong><span class="ltr">b = ۸</span> سانتی‌متر, <span class="ltr">h = ۴</span> سانتی‌متر</strong><br>
+        <span class="mini-label">گام ۱:</span> <span class="ltr">۸ × ۴</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="ltr">÷ ۲ =</span> <span class="blank" style="width:30px;"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
         <strong>b = ۱۲ m, h = ۵ m</strong><br>
-        <span class="mini-label">گام ۱:</span> ۱۲ × ۵ = <span class="blank" style="width:30px;"></span><br>
-        <span class="mini-label">گام ۲:</span> ÷ ۲ = <span class="blank" style="width:30px;"></span> متر مربع
+        <span class="mini-label">گام ۱:</span> <span class="ltr">۱۲ × ۵</span> = <span class="blank" style="width:30px;"></span><br>
+        <span class="mini-label">گام ۲:</span> <span class="ltr">÷ ۲ =</span> <span class="blank" style="width:30px;"></span> متر مربع
       </div>
       <div class="problem-card" style="font-size:13px; text-align:right; padding:10px;">
-        <strong>b = ۹ سانتی‌متر, h = ۶ سانتی‌متر</strong><br>
+        <strong><span class="ltr">b = ۹</span> سانتی‌متر, <span class="ltr">h = ۶</span> سانتی‌متر</strong><br>
         <span class="mini-label">گام ۱:</span> <span class="blank" style="width:30px;"></span><br>
         <span class="mini-label">گام ۲:</span> <span class="blank" style="width:30px;"></span> سانتی‌متر مربع
       </div>
@@ -184,7 +184,7 @@
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:13px;">
         پاها ۳ سانتی‌متر و ۴ سانتی‌متر<br>
-        مساحت = (۳ × ۴) ÷ ۲ = <span class="blank"></span> سانتی‌متر مربع
+        مساحت = <span class="ltr">(۳ × ۴) ÷ ۲</span> = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:13px;">
         پاها ۵ متر و ۱۲ متر<br>
@@ -203,7 +203,7 @@
 
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۴</span> مسائل کلامی 📝</div>
-    <div class="exercise-instruction">از فرمول مساحت = (b × h) ÷ ۲ استفاده کن.</div>
+    <div class="exercise-instruction">از فرمول مساحت = <span class="ltr">(b × h) ÷ ۲</span> استفاده کن.</div>
     <ul class="word-problem-list">
       <li>
         یک پرچم مثلثی قاعده‌ای به طول ۳۰ سانتی‌متر و ارتفاع ۲۰ سانتی‌متر دارد. مساحت آن چقدر است؟
@@ -219,7 +219,7 @@
       </li>
       <li>
         مساحت مثلثی ۲۴ سانتی‌متر مربع و قاعدهٔ آن ۸ سانتی‌متر است. ارتفاع آن چقدر است؟
-        <span class="wp-answer"><span class="mini-label">راهنما: (۸ × h) ÷ ۲ = ۲۴ ← ۸ × h = ۴۸</span><br>ارتفاع = <span class="blank"></span> سانتی‌متر</span>
+        <span class="wp-answer"><span class="mini-label">راهنما: <span class="ltr">(۸ × h) ÷ ۲ = ۲۴</span> ← <span class="ltr">۸ × h = ۴۸</span></span><br>ارتفاع = <span class="blank"></span> سانتی‌متر</span>
       </li>
     </ul>
   </div>

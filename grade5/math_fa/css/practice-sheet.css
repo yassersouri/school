@@ -28,7 +28,10 @@ body { font-family: 'Vazirmatn', 'IRANSans', 'Iranian Sans', Tahoma, 'Noto Sans 
 .problem-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
 .problem-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
 .problem-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-.problem-card { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 8px; text-align: center; font-size: 20px; font-weight: 700; color: var(--heading-color); direction: ltr; }
+/* Inline math inside Persian text: keep the expression left-to-right. */
+.ltr { direction: ltr; unicode-bidi: isolate; }
+
+.problem-card { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 8px; text-align: center; font-size: 20px; font-weight: 700; color: var(--heading-color); direction: ltr; unicode-bidi: isolate; }
 
 /* Blanks */
 .blank { display: inline-block; border-bottom: 2px solid #333; width: 50px; height: 20px; }
@@ -36,18 +39,18 @@ body { font-family: 'Vazirmatn', 'IRANSans', 'Iranian Sans', Tahoma, 'Noto Sans 
 
 /* Vertical problems */
 .vertical-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 14px; }
-.vertical-problem { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 10px; display: flex; flex-direction: column; align-items: flex-end; font-size: 22px; font-weight: 700; color: var(--heading-color); font-family: Tahoma, 'Noto Sans Arabic', 'Courier New', monospace; font-variant-numeric: tabular-nums; direction: ltr; }
+.vertical-problem { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 12px 10px; display: flex; flex-direction: column; align-items: flex-end; font-size: 22px; font-weight: 700; color: var(--heading-color); font-family: Tahoma, 'Noto Sans Arabic', 'Courier New', monospace; font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
 .vertical-problem .vp-line { width: 100%; border-top: 2px solid #333; margin: 5px 0; }
 .vertical-problem .vp-ans { min-height: 28px; }
 
 /* Number line */
-.number-line { display: flex; align-items: center; justify-content: center; gap: 0; margin: 8px 0; direction: ltr; }
+.number-line { display: flex; align-items: center; justify-content: center; gap: 0; margin: 8px 0; direction: ltr; unicode-bidi: isolate; }
 .nl-num { min-width: 32px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; border: 1px solid var(--accent); background: var(--accent-bg); }
 .nl-num:first-child { border-radius: 6px 0 0 6px; }
 .nl-num:last-child { border-radius: 0 6px 6px 0; }
 
 /* Place value table */
-.place-value-table { width: 100%; border-collapse: collapse; font-size: 16px; font-weight: 700; direction: ltr; }
+.place-value-table { width: 100%; border-collapse: collapse; font-size: 16px; font-weight: 700; direction: ltr; unicode-bidi: isolate; }
 .place-value-table th { background: var(--heading-color); color: #fff; padding: 6px 8px; font-size: 11px; text-transform: uppercase; letter-spacing: .5px; }
 .place-value-table td { border: 1.5px solid var(--accent); padding: 8px; text-align: center; height: 38px; }
 .place-value-table .pvt-op { background: var(--accent-bg); font-size: 14px; width: 30px; }
@@ -55,7 +58,7 @@ body { font-family: 'Vazirmatn', 'IRANSans', 'Iranian Sans', Tahoma, 'Noto Sans 
 
 /* Compare grid */
 .compare-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
-.compare-card { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 10px; text-align: center; font-size: 18px; font-weight: 700; color: var(--heading-color); direction: ltr; }
+.compare-card { background: #fff; border: 1.5px solid var(--accent); border-radius: 8px; padding: 10px; text-align: center; font-size: 18px; font-weight: 700; color: var(--heading-color); direction: ltr; unicode-bidi: isolate; }
 .circle-box { display: inline-block; width: 28px; height: 28px; border: 2px solid var(--title-color); border-radius: 50%; text-align: center; line-height: 24px; margin: 0 4px; font-size: 14px; }
 
 /* Word problems */

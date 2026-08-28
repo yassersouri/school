@@ -19,14 +19,14 @@
     .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
     .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
     .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
-    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
     .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
     .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
     .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
     .step-by-step .step strong { color: #e65100; }
     .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
     .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
-    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; direction: rtl; unicode-bidi: isolate; }
   </style>
 </head>
 <body>
@@ -48,7 +48,7 @@
   </div>
 
   <div class="example-box" style="margin-bottom:auto;">
-    <div class="example-title">مستطیل ۵ × ۳ — ردیف‌ها را بشمار!</div>
+    <div class="example-title">مستطیل <span class="ltr">۵ × ۳</span> — ردیف‌ها را بشمار!</div>
     <div class="shape-figure">
       <svg width="320" height="180" viewBox="0 0 320 180">
         <!-- length label, top -->
@@ -94,7 +94,7 @@
         <!-- Outer border on top -->
         <rect x="30" y="30" width="260" height="120" fill="none" stroke="#bf360c" stroke-width="2.5"/>
         <!-- Bottom equation hint -->
-        <text x="160" y="170" font-size="12" text-anchor="middle" fill="#bf360c" font-weight="bold">۳ ردیف × ۵ = ۱۵ مربع</text>
+        <text x="160" y="170" font-size="12" text-anchor="middle" fill="#bf360c" font-weight="bold">۳ ردیف <tspan style="direction: ltr; unicode-bidi: isolate;">× ۵ = ۱۵</tspan> مربع</text>
       </svg>
     </div>
     <div class="shape-caption"><strong>۳ ردیف</strong> × <strong>۵ مربع در هر ردیف</strong> = <strong>۱۵</strong> واحد مربع → مساحت = <strong>۱۵ واحد مربع</strong></div>
@@ -102,15 +102,15 @@
 
   <div class="formula-box" style="margin-bottom:auto;">
     <span class="formula-name">مساحت مستطیل</span>
-    مساحت = طول × عرض = l × w
+    مساحت = طول × عرض = <span class="ltr">l × w</span>
   </div>
 
   <div class="example-box">
     <div class="example-title">مثال حل‌شده</div>
     <div class="step-by-step">
       <div class="step">مساحت مستطیلی با طول ۸ سانتی‌متر و عرض ۴ سانتی‌متر را پیدا کن:</div>
-      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = l × w</div>
-      <div class="step"><strong>گام ۲:</strong> اعداد را جایگزین کن → ۸ × ۴</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = <span class="ltr">l × w</span></div>
+      <div class="step"><strong>گام ۲:</strong> اعداد را جایگزین کن → <span class="ltr">۸ × ۴</span></div>
       <div class="step"><strong>گام ۳:</strong> حساب کن → <strong>۳۲ سانتی‌متر مربع</strong> ✓</div>
     </div>
   </div>
@@ -126,30 +126,30 @@
 
   <div class="exercise" style="margin-bottom:auto;">
     <div class="exercise-title"><span class="badge">۱</span> مساحت را پیدا کن 📐</div>
-    <div class="exercise-instruction">برای هر مستطیل از فرمول مساحت = l × w استفاده کن.</div>
+    <div class="exercise-instruction">برای هر مستطیل از فرمول مساحت = <span class="ltr">l × w</span> استفاده کن.</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:14px;">
-        l = ۶ سانتی‌متر، w = ۲ سانتی‌متر<br>
-        مساحت = ۶ × ۲ = <span class="blank"></span> سانتی‌متر مربع
+        <span class="ltr">l = ۶</span> سانتی‌متر، <span class="ltr">w = ۲</span> سانتی‌متر<br>
+        مساحت = <span class="ltr">۶ × ۲</span> = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        l = ۹ متر، w = ۴ متر<br>
+        <span class="ltr">l = ۹</span> متر، <span class="ltr">w = ۴</span> متر<br>
         مساحت = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        l = ۱۰ سانتی‌متر، w = ۷ سانتی‌متر<br>
+        <span class="ltr">l = ۱۰</span> سانتی‌متر، <span class="ltr">w = ۷</span> سانتی‌متر<br>
         مساحت = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        l = ۱۲ متر، w = ۵ متر<br>
+        <span class="ltr">l = ۱۲</span> متر، <span class="ltr">w = ۵</span> متر<br>
         مساحت = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        l = ۱۵ سانتی‌متر، w = ۸ سانتی‌متر<br>
+        <span class="ltr">l = ۱۵</span> سانتی‌متر، <span class="ltr">w = ۸</span> سانتی‌متر<br>
         مساحت = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        l = ۲۰ متر، w = ۱۱ متر<br>
+        <span class="ltr">l = ۲۰</span> متر، <span class="ltr">w = ۱۱</span> متر<br>
         مساحت = <span class="blank"></span> متر مربع
       </div>
     </div>
@@ -159,8 +159,8 @@
     <div class="concept-title">🔁 برعکس حل کردن</div>
     <div class="concept-text">
       اگر مساحت و یک ضلع را بدانی، تقسیم کن!<br>
-      مساحت = l × w &nbsp;⇒&nbsp; l = مساحت ÷ w &nbsp;و&nbsp; w = مساحت ÷ l<br>
-      مثال: مساحت = ۲۴ سانتی‌متر مربع، طول = ۶ سانتی‌متر → عرض = ۲۴ ÷ ۶ = <strong>۴ سانتی‌متر</strong>.
+      مساحت = <span class="ltr">l × w</span> &nbsp;⇒&nbsp; l = مساحت ÷ w &nbsp;و&nbsp; w = مساحت ÷ l<br>
+      مثال: مساحت = ۲۴ سانتی‌متر مربع، طول = ۶ سانتی‌متر → عرض = <span class="ltr">۲۴ ÷ ۶</span> = <strong>۴ سانتی‌متر</strong>.
     </div>
   </div>
 
@@ -169,16 +169,16 @@
     <div class="exercise-instruction">از تقسیم برای پیدا کردن طول یا عرض گمشده استفاده کن.</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۳۰ سانتی‌متر مربع، l = ۵ سانتی‌متر → w = <span class="blank"></span> سانتی‌متر
+        مساحت = ۳۰ سانتی‌متر مربع، <span class="ltr">l = ۵</span> سانتی‌متر → w = <span class="blank"></span> سانتی‌متر
       </div>
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۴۸ متر مربع، w = ۶ متر → l = <span class="blank"></span> متر
+        مساحت = ۴۸ متر مربع، <span class="ltr">w = ۶</span> متر → l = <span class="blank"></span> متر
       </div>
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۵۶ سانتی‌متر مربع، l = ۸ سانتی‌متر → w = <span class="blank"></span> سانتی‌متر
+        مساحت = ۵۶ سانتی‌متر مربع، <span class="ltr">l = ۸</span> سانتی‌متر → w = <span class="blank"></span> سانتی‌متر
       </div>
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۷۲ متر مربع، w = ۹ متر → l = <span class="blank"></span> متر
+        مساحت = ۷۲ متر مربع، <span class="ltr">w = ۹</span> متر → l = <span class="blank"></span> متر
       </div>
     </div>
   </div>
@@ -222,13 +222,13 @@
   <div class="concept-box" style="margin-top:auto;">
     <div class="concept-title">⭐ بررسی سریع</div>
     <div class="concept-text">
-      مربع یک مستطیل ویژه است که طول = عرض. پس فرمول مساحت = s × s همان l × w است با l = w!
+      مربع یک مستطیل ویژه است که طول = عرض. پس فرمول مساحت = <span class="ltr">s × s</span> همان <span class="ltr">l × w</span> است با <span class="ltr">l = w</span>!
     </div>
   </div>
 
   <div class="answer-key">
     <strong>کلید پاسخ‌ها:</strong>
-    ۱) ۱۲؛ ۹×۴=۳۶؛ ۱۰×۷=۷۰؛ ۱۲×۵=۶۰؛ ۱۲۰؛ ۲۲۰ —
+    ۱) ۱۲؛ <span class="ltr">۹×۴=۳۶</span>؛ <span class="ltr">۱۰×۷=۷۰</span>؛ <span class="ltr">۱۲×۵=۶۰</span>؛ ۱۲۰؛ ۲۲۰ —
     ۲) ۶، ۸، ۷، ۸ —
     ۳) ۵۴ متر مربع؛ ۴۵۰ سانتی‌متر مربع؛ ۶ متر؛ ۴۲ متر مربع؛ ۲۰ سانتی‌متر
   </div>

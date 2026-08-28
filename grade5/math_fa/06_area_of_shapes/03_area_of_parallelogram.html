@@ -19,14 +19,14 @@
     .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
     .example-box { background: #fff; border: 2px solid #ffb74d; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
     .example-title { font-size: 13px; font-weight: bold; color: #e65100; margin-bottom: 4px; text-align: center; }
-    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; }
+    .formula-box { text-align: center; font-size: 16px; font-weight: bold; color: #e65100; padding: 8px; background: #fff; border: 2px solid #ffb74d; border-radius: 10px; margin: 6px 0; direction: ltr; unicode-bidi: isolate; }
     .formula-box .formula-name { font-size: 11px; color: #888; font-weight: normal; display: block; margin-bottom: 2px; direction: rtl; }
     .step-by-step { background: #fff; border: 2px solid #ffb74d; border-radius: 10px; padding: 10px 14px; margin: 6px 0; }
     .step-by-step .step { font-size: 12px; color: #333; line-height: 1.8; }
     .step-by-step .step strong { color: #e65100; }
     .shape-figure { display: flex; justify-content: center; align-items: center; gap: 18px; flex-wrap: wrap; margin: 8px 0; }
     .shape-caption { font-size: 11px; color: #888; font-style: italic; text-align: center; margin-top: 2px; }
-    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; direction: rtl; unicode-bidi: isolate; }
     .warn-box { background: #fff8e1; border: 2px dashed #ffb74d; border-radius: 10px; padding: 8px 12px; font-size: 12px; color: #555; margin: 6px 0; }
     .warn-box strong { color: #bf360c; }
   </style>
@@ -152,20 +152,20 @@
         <text x="85" y="108" font-size="10" fill="#888" text-anchor="middle">۳. مستطیل می‌شود!</text>
       </svg>
     </div>
-    <div class="shape-caption">همان <strong>قاعده</strong>، همان <strong>ارتفاع</strong>، همان <strong>مساحت</strong> — فقط جابه‌جا شده! به همین دلیل مساحت = b × h.</div>
+    <div class="shape-caption">همان <strong>قاعده</strong>، همان <strong>ارتفاع</strong>، همان <strong>مساحت</strong> — فقط جابه‌جا شده! به همین دلیل مساحت = <span class="ltr">b × h</span>.</div>
   </div>
 
   <div class="formula-box" style="margin-bottom:auto;">
     <span class="formula-name">مساحت متوازی‌الاضلاع</span>
-    مساحت = قاعده × ارتفاع = b × h
+    مساحت = قاعده × ارتفاع = <span class="ltr">b × h</span>
   </div>
 
   <div class="example-box">
     <div class="example-title">مثال حل‌شده</div>
     <div class="step-by-step">
       <div class="step">مساحت متوازی‌الاضلاعی با قاعده ۹ سانتی‌متر و ارتفاع ۵ سانتی‌متر را پیدا کن:</div>
-      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = b × h</div>
-      <div class="step"><strong>گام ۲:</strong> اعداد را جایگزین کن → ۹ × ۵</div>
+      <div class="step"><strong>گام ۱:</strong> فرمول را بنویس → مساحت = <span class="ltr">b × h</span></div>
+      <div class="step"><strong>گام ۲:</strong> اعداد را جایگزین کن → <span class="ltr">۹ × ۵</span></div>
       <div class="step"><strong>گام ۳:</strong> حساب کن → <strong>۴۵ سانتی‌متر مربع</strong> ✓</div>
     </div>
   </div>
@@ -181,22 +181,22 @@
 
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۱</span> از فرمول استفاده کن 📐</div>
-    <div class="exercise-instruction">مساحت را با فرمول مساحت = b × h پیدا کن.</div>
+    <div class="exercise-instruction">مساحت را با فرمول مساحت = <span class="ltr">b × h</span> پیدا کن.</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:14px;">
-        b = ۶ سانتی‌متر، h = ۴ سانتی‌متر<br>
-        مساحت = ۶ × ۴ = <span class="blank"></span> سانتی‌متر مربع
+        <span class="ltr">b = ۶</span> سانتی‌متر، <span class="ltr">h = ۴</span> سانتی‌متر<br>
+        مساحت = <span class="ltr">۶ × ۴</span> = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        b = ۸ متر، h = ۳ متر<br>
+        <span class="ltr">b = ۸</span> متر، <span class="ltr">h = ۳</span> متر<br>
         مساحت = <span class="blank"></span> × <span class="blank"></span> = <span class="blank"></span> متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        b = ۱۰ سانتی‌متر، h = ۷ سانتی‌متر<br>
+        <span class="ltr">b = ۱۰</span> سانتی‌متر، <span class="ltr">h = ۷</span> سانتی‌متر<br>
         مساحت = <span class="blank"></span> سانتی‌متر مربع
       </div>
       <div class="problem-card" style="font-size:14px;">
-        b = ۱۲ متر، h = ۹ متر<br>
+        <span class="ltr">b = ۱۲</span> متر، <span class="ltr">h = ۹</span> متر<br>
         مساحت = <span class="blank"></span> متر مربع
       </div>
     </div>
@@ -223,26 +223,26 @@
 
   <div class="exercise">
     <div class="exercise-title"><span class="badge">۳</span> عدد گمشده را پیدا کن 🔍</div>
-    <div class="exercise-instruction">مساحت = b × h، پس b = مساحت ÷ h و h = مساحت ÷ b.</div>
+    <div class="exercise-instruction">مساحت = <span class="ltr">b × h</span>، پس b = مساحت ÷ h و h = مساحت ÷ b.</div>
     <div class="problem-grid-2">
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۴۰ سانتی‌متر مربع، b = ۸ سانتی‌متر → h = <span class="blank"></span> سانتی‌متر
+        مساحت = ۴۰ سانتی‌متر مربع، <span class="ltr">b = ۸</span> سانتی‌متر → h = <span class="blank"></span> سانتی‌متر
       </div>
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۵۴ متر مربع، h = ۶ متر → b = <span class="blank"></span> متر
+        مساحت = ۵۴ متر مربع، <span class="ltr">h = ۶</span> متر → b = <span class="blank"></span> متر
       </div>
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۶۳ سانتی‌متر مربع، b = ۹ سانتی‌متر → h = <span class="blank"></span> سانتی‌متر
+        مساحت = ۶۳ سانتی‌متر مربع، <span class="ltr">b = ۹</span> سانتی‌متر → h = <span class="blank"></span> سانتی‌متر
       </div>
       <div class="problem-card" style="font-size:13px;">
-        مساحت = ۳۲ متر مربع، h = ۴ متر → b = <span class="blank"></span> متر
+        مساحت = ۳۲ متر مربع، <span class="ltr">h = ۴</span> متر → b = <span class="blank"></span> متر
       </div>
     </div>
   </div>
 
   <div class="answer-key">
     <strong>کلید پاسخ‌ها:</strong>
-    ۱) ۲۴؛ ۸×۳=۲۴؛ ۷۰؛ ۱۰۸ —
+    ۱) ۲۴؛ <span class="ltr">۸×۳=۲۴</span>؛ ۷۰؛ ۱۰۸ —
     ۲) ۶۰ سانتی‌متر مربع؛ ۶۰ متر مربع؛ ۶۰ سانتی‌متر مربع —
     ۳) ۵، ۹، ۷، ۸
   </div>

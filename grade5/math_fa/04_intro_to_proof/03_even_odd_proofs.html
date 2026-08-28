@@ -17,8 +17,8 @@
     .concept-title { font-size: 17px; font-weight: bold; color: #004d40; margin-bottom: 6px; text-align: center; }
     .concept-text { font-size: 13px; color: #333; line-height: 1.5; }
     .dot-proof { background: #fff; border: 2.5px solid #80cbc4; border-radius: 14px; padding: 10px 14px; }
-    .dot-proof-title { font-size: 15px; font-weight: bold; color: #00695c; margin-bottom: 6px; text-align: center; direction: ltr; }
-    .dot-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 6px 0; flex-wrap: wrap; direction: ltr; }
+    .dot-proof-title { font-size: 15px; font-weight: bold; color: #00695c; margin-bottom: 6px; text-align: center; direction: ltr; unicode-bidi: isolate; }
+    .dot-row { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 6px 0; flex-wrap: wrap; direction: ltr; unicode-bidi: isolate; }
     .dot-group { display: flex; flex-direction: column; gap: 4px; align-items: center; }
     .dot-pair-row { display: flex; gap: 4px; }
     .dot { width: 18px; height: 18px; border-radius: 50%; display: inline-block; }
@@ -29,20 +29,20 @@
     .dot.purple { background: #7b1fa2; }
     .dot.leftover { border: 2px dashed #c62828; background: #ffcdd2; }
     .dot.paired { opacity: 0.6; }
-    .dot-label { font-size: 12px; font-weight: bold; color: #555; margin-top: 4px; direction: ltr; }
+    .dot-label { font-size: 12px; font-weight: bold; color: #555; margin-top: 4px; direction: ltr; unicode-bidi: isolate; }
     .arrow-label { font-size: 22px; color: #333; font-weight: bold; }
     .result-tag { display: inline-block; padding: 4px 14px; border-radius: 20px; font-size: 13px; font-weight: bold; }
     .result-tag.even { background: #c8e6c9; color: #2e7d32; }
     .result-tag.odd { background: #ffcdd2; color: #c62828; }
     .proof-explain { font-size: 12px; color: #555; text-align: center; font-style: italic; margin-top: 4px; line-height: 1.4; }
-    .rule-box { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px; background: #fff; border: 2px solid #80cbc4; border-radius: 10px; margin-bottom: 6px; direction: ltr; }
+    .rule-box { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 7px; background: #fff; border: 2px solid #80cbc4; border-radius: 10px; margin-bottom: 6px; direction: ltr; unicode-bidi: isolate; }
     .rule-text { font-size: 16px; font-weight: bold; color: #00695c; }
     .claim-card { background: #fff; border: 2px solid #80cbc4; border-radius: 10px; padding: 10px 12px; margin-bottom: 8px; }
     .claim-text { font-size: 14px; font-weight: bold; color: #333; margin-bottom: 6px; }
     .work-area { font-size: 12px; color: #555; line-height: 2.2; }
     .proof-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
     .proof-card { background: #fff; border: 2px solid #80cbc4; border-radius: 10px; padding: 10px; }
-    .proof-card-title { font-size: 13px; font-weight: bold; color: #00695c; margin-bottom: 4px; direction: ltr; }
+    .proof-card-title { font-size: 13px; font-weight: bold; color: #00695c; margin-bottom: 4px; }
   </style>
 </head>
 <body>
@@ -195,7 +195,7 @@
     <div class="exercise-instruction">از نقطه‌ها استفاده کن تا هر گزاره را اثبات کنی. نقطه‌های جفت را رسم کن و نقطهٔ اضافه را مشخص کن.</div>
     <div class="proof-grid">
       <div class="proof-card">
-        <div class="proof-card-title">ثابت کن: ۸ + ۶ زوج است</div>
+        <div class="proof-card-title">ثابت کن: <span class="ltr">۸ + ۶</span> زوج است</div>
         <div class="work-area" style="min-height: 80px;">
           نقطه‌های ۸ را رسم کن: <br><br>
           نقطه‌های ۶ را رسم کن: <br><br>
@@ -203,7 +203,7 @@
         </div>
       </div>
       <div class="proof-card">
-        <div class="proof-card-title">ثابت کن: ۷ + ۵ زوج است</div>
+        <div class="proof-card-title">ثابت کن: <span class="ltr">۷ + ۵</span> زوج است</div>
         <div class="work-area" style="min-height: 80px;">
           نقطه‌های ۷ را رسم کن: <br><br>
           نقطه‌های ۵ را رسم کن: <br><br>
@@ -211,7 +211,7 @@
         </div>
       </div>
       <div class="proof-card">
-        <div class="proof-card-title">ثابت کن: ۶ + ۳ فرد است</div>
+        <div class="proof-card-title">ثابت کن: <span class="ltr">۶ + ۳</span> فرد است</div>
         <div class="work-area" style="min-height: 80px;">
           نقطه‌های ۶ را رسم کن: <br><br>
           نقطه‌های ۳ را رسم کن: <br><br>
@@ -219,7 +219,7 @@
         </div>
       </div>
       <div class="proof-card">
-        <div class="proof-card-title">ثابت کن: ۹ + ۹ زوج است</div>
+        <div class="proof-card-title">ثابت کن: <span class="ltr">۹ + ۹</span> زوج است</div>
         <div class="work-area" style="min-height: 80px;">
           نقطه‌های ۹ را رسم کن: <br><br>
           نقطه‌های ۹ را رسم کن: <br><br>
