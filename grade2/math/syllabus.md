@@ -255,7 +255,7 @@ By the end of Grade 2, the learner should be able to:
 
 To support topics above that don't yet have practice sheets, future folders under `grade2/math/` might include:
 
-- `08_counting_patterns_to_1000/`
+- `08_place_value_to_1000/` — started: [Expanded Form with Hundreds](08_place_value_to_1000/01_expanded_form_hundreds.html); counting patterns to 1000 still needed
 - `09_mental_math_strategies/`
 - `10_missing_number_equations/`
 - `11_measurement_mass_capacity_area_temp/`
