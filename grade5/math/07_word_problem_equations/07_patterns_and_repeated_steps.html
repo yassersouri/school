@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Patterns &amp; Repeated Steps — Grade 5 Math</title>
+  <link rel="stylesheet" href="../css/practice-sheet.css">
+  <style>
+    :root {
+      --heading-color: #6a1b9a;
+      --accent: #ce93d8;
+      --accent-bg: #f3e5f5;
+      --title-color: #4a148c;
+      --answer-key-color: #4a148c;
+      --page-gap: 10px;
+    }
+    .concept-box { border: 2.5px solid #6a1b9a; border-radius: 14px; padding: 10px 14px; background: #f3e5f5; }
+    .concept-title { font-size: 15px; font-weight: bold; color: #4a148c; margin-bottom: 4px; text-align: center; }
+    .concept-text { font-size: 12px; color: #333; line-height: 1.5; }
+    .example-box { background: #fff; border: 2px solid #ce93d8; border-radius: 12px; padding: 10px 14px; margin: 6px 0; }
+    .example-title { font-size: 13px; font-weight: bold; color: #6a1b9a; margin-bottom: 4px; text-align: center; }
+    .example-content { font-size: 12px; color: #333; line-height: 1.6; }
+    .mini-label { font-size: 11px; color: #888; font-style: italic; }
+    .step-line { font-family: 'Courier New', monospace; background: #f9f5fb; border-left: 3px solid #ce93d8; padding: 3px 8px; margin: 3px 0; }
+    .seq-track { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; margin: 8px 0; font-size: 12px; }
+    .seq-track .n { border: 1.5px solid #ccc; border-radius: 6px; padding: 3px 7px; background: #fff; }
+    .seq-track .n.sub { border-color: #e53935; color: #e53935; font-weight: bold; }
+    .seq-track .n.add { border-color: #43a047; color: #43a047; font-weight: bold; }
+    .seq-track .n.zero { border-color: #4a148c; color: #4a148c; font-weight: bold; background: #f3e5f5; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔁 Patterns &amp; Repeated Steps</h1>
+    <p>Lesson 7 — Subtract, add, subtract, add... until zero</p>
+  </div>
+  <div class="page-num">Page 1 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🔁 A Repeating Pattern</div>
+    <div class="concept-text">
+      Some problems describe a number that gets <strong>smaller</strong>, then a bit <strong>bigger</strong>, then smaller again — over and over — following the same two steps each time. The question asks: how many steps until we hit exactly <strong>0</strong>?
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Warm-Up Example</div>
+    <div class="example-content">
+      Start at 20. Subtract 8, then add 4. Repeat. How many steps until we reach 0?
+      <div class="seq-track">
+        <span class="n">20</span>
+        <span class="n sub">−8→ 12</span>
+        <span class="n add">+4→ 16</span>
+        <span class="n sub">−8→ 8</span>
+        <span class="n add">+4→ 12</span>
+        <span class="n sub">−8→ 4</span>
+        <span class="n add">+4→ 8</span>
+        <span class="n zero sub">−8→ 0 🎉</span>
+      </div>
+      <span class="mini-label">Counting every arrow: that's 7 steps total, and we land exactly on 0 right after a subtraction.</span>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Why not just list every step?</strong> For small numbers, listing works fine! But if the answer takes 49 steps, listing them all would take forever — and it's easy to miscount. We need a faster, smarter way.
+  </div>
+
+  <div class="concept-box">
+    <div class="concept-title">🔎 The Shortcut: Watch Only the "After-Subtract" Numbers</div>
+    <div class="concept-text">
+      Look only at the values <strong>right after each subtraction</strong> (ignore the "add" steps in between): <strong>12, 8, 4, 0</strong>.<br><br>
+      Notice something neat: each one is exactly <strong>4 less</strong> than the one before (that's 8 − 4, the subtract amount minus the add amount). This is a simple shrinking pattern — and we can count how many subtractions it takes to hit 0 without writing out the "add" steps at all!
+    </div>
+  </div>
+
+  <div class="example-box">
+    <div class="example-title">Using the Shortcut</div>
+    <div class="example-content">
+      <strong>Step 1 — find the shrink amount:</strong> subtract − add = 8 − 4 = 4<br>
+      <strong>Step 2 — find the first after-subtract value:</strong> 20 − 8 = 12<br>
+      <strong>Step 3 — label every after-subtract value with its subtraction number,</strong> counting down by the shrink amount until you hit 0:
+      <div class="seq-track">
+        <span class="n sub">12 (sub #1)</span>
+        <span class="n sub">8 (sub #2)</span>
+        <span class="n sub">4 (sub #3)</span>
+        <span class="n zero sub">0 (sub #4)</span>
+      </div>
+      The label on the 0 tells us there were <strong>4 subtractions</strong> in total.<br>
+      <strong>Step 4 — total steps</strong> = subtractions + adds. There's always one fewer "add" than "subtract" (we stop right after the last subtraction): 4 subtractions + 3 adds = <strong>7 steps</strong> ✓ matches our full list above!
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>⚠️ Careful — a common mistake:</strong> Count how many numbers are in the after-subtract list (that's the number of subtractions), <em>not</em> how many arrows connect them! The list "12, 8, 4, 0" has <strong>4 numbers</strong> (4 subtractions), even though there are only 3 arrows between them.
+  </div>
+
+  <!-- Exercise 1 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">1</span> Find the Shrink Amount 🔎</div>
+    <div class="exercise-instruction">For each pattern, find the "shrink amount" (subtract − add) and the first after-subtract value (start − subtract).</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:13px;">
+        Start 20, subtract 8, add 5.<br>
+        Shrink amount = <span class="blank"></span> &nbsp; First value = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Start 25, subtract 9, add 5.<br>
+        Shrink amount = <span class="blank"></span> &nbsp; First value = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Start 30, subtract 9, add 2.<br>
+        Shrink amount = <span class="blank"></span> &nbsp; First value = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:13px;">
+        Start 35, subtract 10, add 5.<br>
+        Shrink amount = <span class="blank"></span> &nbsp; First value = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔁 Patterns &amp; Repeated Steps</h1>
+    <p>Counting the jumps to zero</p>
+  </div>
+  <div class="page-num">Page 2 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🧮 Count the Numbers in the List, Then the Total Steps</div>
+    <div class="concept-text">
+      Write out the after-subtract values, counting down by the shrink amount, until you reach 0. <strong>How many numbers are in that list (including the 0)</strong> — that's the number of <strong>subtractions</strong>. Since the pattern always ends right after a subtraction, the number of <strong>adds</strong> is always one less.<br><br>
+      <strong>Total steps = subtractions + adds = subtractions + (subtractions − 1)</strong>
+    </div>
+  </div>
+
+  <!-- Exercise 2 -->
+  <div class="exercise">
+    <div class="exercise-title"><span class="badge">2</span> Full Count-Down 🧮</div>
+    <div class="exercise-instruction">Continue each pattern from Exercise 1: list the after-subtract values down to 0, then find the total number of steps.</div>
+    <div class="problem-grid-2">
+      <div class="problem-card" style="font-size:12px;">
+        Start 20, subtract 8, add 5.<br>
+        (first value 12, shrink 3)<br>
+        12, 9, 6, 3, 0 → <span class="blank"></span> subtractions<br>
+        Total steps = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:12px;">
+        Start 25, subtract 9, add 5.<br>
+        (first value 16, shrink 4)<br>
+        16, 12, 8, 4, 0 → <span class="blank"></span> subtractions<br>
+        Total steps = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:12px;">
+        Start 30, subtract 9, add 2.<br>
+        (first value 21, shrink 7)<br>
+        21, 14, 7, 0 → <span class="blank"></span> subtractions<br>
+        Total steps = <span class="blank"></span>
+      </div>
+      <div class="problem-card" style="font-size:12px;">
+        Start 35, subtract 10, add 5.<br>
+        (first value 25, shrink 5)<br>
+        25, 20, 15, 10, 5, 0 → <span class="blank"></span> subtractions<br>
+        Total steps = <span class="blank"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Double-check tip:</strong> The last step should always be a <em>subtraction</em> that lands exactly on 0. If you ever land on a negative number, the pattern would have stopped one step earlier — recheck your numbers!
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3 ═══════════════════════ -->
+<div class="page">
+  <div class="page-header">
+    <h1>🔁 Patterns &amp; Repeated Steps</h1>
+    <p>Word problems</p>
+  </div>
+  <div class="page-num">Page 3 of 3</div>
+
+  <div class="concept-box">
+    <div class="concept-title">🌍 Reading the Pattern from a Story</div>
+    <div class="concept-text">
+      In word problems, look for the phrase "repeat this" or "keep doing this until." Identify the <strong>start number</strong>, the <strong>subtract amount</strong>, and the <strong>add amount</strong> — then use the shortcut method.
+    </div>
+  </div>
+
+  <!-- Exercise 3 -->
+  <div class="word-problem-list">
+    <div class="exercise-title" style="margin-bottom:2px;"><span class="badge">3</span> Word Problems 🌍</div>
+    <li>
+      A frog is on step 16 of a staircase. Every round, it hops down 4 steps, then up 1 step. It keeps repeating this. How many hops (total) until it lands on step 0?<br>
+      Shrink amount = <span class="blank"></span> &nbsp; First value = <span class="blank"></span> &nbsp; Subtractions = <span class="blank"></span> &nbsp; Total steps = <span class="blank"></span>
+    </li>
+    <li>
+      A tank has 20 liters of water. Every round, 5 liters are drained out, then 2 liters are poured back in. This repeats. How many rounds of draining and pouring (total actions) until the tank has exactly 0 liters?<br>
+      Shrink amount = <span class="blank"></span> &nbsp; First value = <span class="blank"></span> &nbsp; Subtractions = <span class="blank"></span> &nbsp; Total steps = <span class="blank"></span>
+    </li>
+  </div>
+
+  <div class="tip-box">
+    <strong>💡 Coming up:</strong> The "Reach Zero" challenge set — including a version with much bigger numbers where the shortcut method really saves the day!
+  </div>
+
+  <div class="answer-key">
+    <strong>Answer Key:</strong>
+    1) shrink=3,first=12; shrink=4,first=16; shrink=7,first=21; shrink=5,first=25 —
+    2) 5 subtractions, 9 steps; 5 subtractions, 9 steps; 4 subtractions, 7 steps; 6 subtractions, 11 steps —
+    3) Frog: shrink=3, first=12, list 12,9,6,3,0 = 5 subtractions, total=9 steps. Tank: shrink=3, first=15, list 15,12,9,6,3,0 = 6 subtractions, total=11 steps.
+  </div>
+</div>
+
+</body>
+</html>
