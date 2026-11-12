@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Story Sequencer — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .story { max-width: 640px; background: #fff7fa; border: 2px solid #f8bbd0; border-radius: 16px; padding: 14px 18px; font-size: clamp(17px, 2.6vw, 20px); line-height: 1.6; }
+    .story h2 { margin: 0 0 6px; color: var(--ia-accent); font-size: 22px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+    .story p { margin: 0; }
+    .story.hidden p { display: none; }
+    .slots { display: flex; flex-direction: column; gap: 8px; width: 100%; max-width: 640px; }
+    .slotrow { display: flex; align-items: stretch; gap: 8px; }
+    .slotrow .lbl { width: 92px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--ia-accent); color: #fff; border-radius: 12px; font-weight: bold; font-size: 15px; }
+    .slotrow .lbl b { font-size: 22px; }
+    .slotrow .ia-slot { flex: 1; min-height: 64px; justify-content: flex-start; padding: 4px; }
+    .card { font-size: clamp(16px, 2.6vw, 19px); background: #fff; border: 3px solid #d6cdb8; box-shadow: 0 3px 0 #d6cdb8; border-radius: 12px; padding: 10px 12px; min-height: 52px; display: flex; align-items: center; gap: 8px; text-align: left; width: 100%; }
+    .card .e { font-size: 26px; }
+    .card.placed { border-color: var(--ia-good); background: #e8f5e9; box-shadow: none; }
+    .pool { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 8px; width: 100%; max-width: 640px; }
+    .why { max-width: 640px; text-align: center; }
+    @media (max-width: 480px) { .slotrow .lbl { width: 72px; font-size: 12px; line-height: 1.1; text-align: center; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var STORIES = [
+    { title: 'Maya’s Snow Fort', emoji: '⛄',
+      text: 'Snow fell all night long. In the morning, Maya pulled on her boots and ran outside. She rolled three big snowballs and pushed them together into a wall. Her little brother Leo patted snow on top to make it strong. When the fort was done, Dad brought out two mugs of hot cocoa, and they sipped them inside the fort.',
+      events: [['🌨️', 'Snow fell all night long.'], ['⚪', 'Maya rolled three big snowballs.'], ['🧱', 'She pushed the snowballs together into a wall.'], ['🙌', 'Leo patted snow on top to make it strong.'], ['☕', 'They sipped hot cocoa inside the fort.']] },
+    { title: 'The Lost Mitten', emoji: '🧤',
+      text: 'Sam played at the park with his dog, Pepper. When it was time to go home, Sam saw that his red mitten was gone! He walked back to the swings, but it was not there. He looked by the slide, but it was not there either. Then Pepper ran to a snowbank, dug with her paws, and pulled out the red mitten. Sam gave Pepper a big hug.',
+      events: [['🐕', 'Sam played at the park with Pepper.'], ['😮', 'Sam saw that his mitten was gone.'], ['🔍', 'Sam looked by the swings and the slide.'], ['🐾', 'Pepper dug the mitten out of a snowbank.'], ['🤗', 'Sam gave Pepper a big hug.']] },
+    { title: 'Growing a Bean', emoji: '🌱',
+      text: 'Ms. Lee’s class wanted to grow a bean plant. First, they soaked a dry bean in water overnight. The next day, they planted it in a cup of soil and set it by a sunny window. They watered it a little each day. After one week, a tiny green sprout poked up. Two weeks later, the plant had big leaves!',
+      events: [['💧', 'The class soaked a bean in water overnight.'], ['🪴', 'They planted the bean in a cup of soil.'], ['🚿', 'They watered it a little each day.'], ['🌱', 'A tiny green sprout poked up.'], ['🍃', 'The plant grew big leaves.']] },
+    { title: 'Pancakes with Grandpa', emoji: '🥞',
+      text: 'On Saturday, Ava helped Grandpa make pancakes. She cracked two eggs into a bowl and stirred in the flour and milk. Grandpa poured the batter onto the hot pan. When bubbles popped on top, Ava flipped each pancake with a spatula. At last, they put blueberries and maple syrup on top and ate every bite.',
+      events: [['🥚', 'Ava cracked eggs into a bowl.'], ['🥣', 'She stirred in the flour and milk.'], ['🍳', 'Grandpa poured batter onto the hot pan.'], ['🔄', 'Ava flipped each pancake.'], ['🍁', 'They ate pancakes with blueberries and syrup.']] },
+    { title: 'Jun’s Windy Day', emoji: '🪁',
+      text: 'It was a windy day, so Jun took his new kite to the beach. He ran fast, and the wind lifted the kite high into the sky. Suddenly, the string got stuck in a tall tree! Jun’s mom used a long stick to gently pull the string free. Jun let the kite fly again, and it danced above the waves until dinner time.',
+      events: [['🏖️', 'Jun took his kite to the beach.'], ['💨', 'The wind lifted the kite into the sky.'], ['🌳', 'The string got stuck in a tall tree.'], ['🪵', 'Mom pulled the string free with a stick.'], ['🌊', 'The kite flew over the waves again.']] },
+    { title: 'Bear Gets Ready for Winter', emoji: '🐻',
+      text: 'All summer and fall, Bear ate berries, nuts, and fish to get fat and strong. When the leaves fell and the air got cold, Bear found a cozy cave on the hill. She curled up inside and fell into a long, deep sleep. Snow covered the hill all winter. When spring came and the snow melted, Bear woke up, stretched, and went looking for food.',
+      events: [['🫐', 'Bear ate berries, nuts, and fish.'], ['🕳️', 'Bear found a cozy cave.'], ['😴', 'Bear fell into a long, deep sleep.'], ['🌷', 'Spring came and Bear woke up.']] },
+    { title: 'Library Day', emoji: '📚',
+      text: 'On Tuesday, Omar went to the library with his dad. He picked a book about sharks. The librarian scanned his library card so he could take it home. That night, Omar read the shark book with his big sister before bed. One week later, he brought the book back and chose a new one about space.',
+      events: [['🦈', 'Omar picked a book about sharks.'], ['💳', 'The librarian scanned his library card.'], ['🛏️', 'Omar read the book with his sister at bedtime.'], ['🚀', 'He returned it and chose a book about space.']] },
+    { title: 'From Egg to Butterfly', emoji: '🦋',
+      text: 'A butterfly laid a tiny egg on a milkweed leaf. A few days later, a small caterpillar hatched out of the egg. The caterpillar ate and ate until it grew big and plump. Then it hung upside down and made a hard case called a chrysalis. After about two weeks, a monarch butterfly crawled out, dried its wings, and flew away.',
+      events: [['🥚', 'A butterfly laid an egg on a leaf.'], ['🐛', 'A caterpillar hatched and ate and ate.'], ['🫙', 'The caterpillar made a chrysalis.'], ['🦋', 'A butterfly crawled out and flew away.']] },
+    { title: 'Puddle Jumping', emoji: '☔',
+      text: 'Rain tapped on the window all morning. When it finally stopped, Zoe put on her yellow rain boots. She ran outside and found the biggest puddle on the street. She jumped in with a giant SPLASH! Her socks got soaking wet, so she went inside, put on dry socks, and warmed her toes by the fire.',
+      events: [['🌧️', 'Rain tapped on the window all morning.'], ['👢', 'Zoe put on her yellow rain boots.'], ['💦', 'She jumped into the biggest puddle.'], ['🧦', 'She went inside and put on dry socks.']] },
+    { title: 'The Class Garden Sale', emoji: '🥕',
+      text: 'In spring, Room 4 planted carrots and lettuce in the school garden. All summer, families took turns watering the plants. In September, the children pulled up the carrots and picked the lettuce. They washed the vegetables and sold them at a table by the front door. They used the money to buy new books for the class.',
+      events: [['🌱', 'Room 4 planted carrots and lettuce.'], ['🚿', 'Families took turns watering the plants.'], ['🥕', 'The children picked the vegetables.'], ['💵', 'They sold the vegetables at a table.'], ['📖', 'They bought new books with the money.']] }
+  ];
+  var LABELS5 = ['First', 'Next', 'Then', 'After that', 'Last'];
+  var LABELS4 = ['First', 'Next', 'Then', 'Last'];
+  var order = [];
+
+  IA.game({
+    id: 'g2r-story-sequencer',
+    title: 'Story Sequencer',
+    emoji: '🧵',
+    back: '../index.html',
+    instructions: 'Read or listen to the story. Then put the event cards in order!',
+    rounds: 8,
+    levelTitle: 'How do you want to play?',
+    levels: [
+      { label: '📖 Story stays', value: { hide: false }, desc: 'The story stays on the screen' },
+      { label: '🧠 Memory mode', value: { hide: true }, desc: 'Story hides — peek if you need it' }
+    ],
+    round: function (r) {
+      if (!order.length) order = IA.shuffle(STORIES);
+      var s = order.pop();
+      var labels = s.events.length === 5 ? LABELS5 : LABELS4;
+      var storyBox = IA.el('div', { class: 'story' }, [
+        IA.el('h2', {}, [s.emoji + ' ' + s.title, IA.speakButton(s.title + '. ' + s.text)]),
+        IA.el('p', {}, [s.text])
+      ]);
+      r.stage.appendChild(storyBox);
+      var area = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+      var go = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['I read it! Put it in order ➜']);
+      r.stage.appendChild(go);
+      r.stage.appendChild(area);
+      IA.say(s.title + '. ' + s.text);
+      go.addEventListener('click', function () {
+        IA.stopSpeech();
+        go.remove();
+        if (r.level.hide) {
+          storyBox.classList.add('hidden');
+          var peek = IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () {
+            var h = storyBox.classList.toggle('hidden'); peek.textContent = h ? '👀 Peek at the story' : '🙈 Hide the story';
+          } }, ['👀 Peek at the story']);
+          storyBox.querySelector('h2').appendChild(peek);
+        }
+        build();
+      });
+      function build() {
+        var why = IA.el('div', { class: 'ia-hint why', style: { display: 'none' } });
+        var slots = IA.el('div', { class: 'slots' });
+        var targets = labels.map(function (l, i) {
+          var t = IA.el('div', { class: 'ia-slot', 'data-i': i, 'aria-label': 'Slot ' + (i + 1) + ': ' + l });
+          slots.appendChild(IA.el('div', { class: 'slotrow' }, [IA.el('div', { class: 'lbl' }, [IA.el('b', {}, [String(i + 1)]), l]), t]));
+          return t;
+        });
+        var pool = IA.el('div', { class: 'pool' });
+        var cards = IA.shuffle(s.events.map(function (e, i) { return { e: e, i: i }; })).map(function (o) {
+          var c = IA.el('div', { class: 'card', 'data-i': o.i }, [IA.el('span', { class: 'e' }, [o.e[0]]), IA.el('span', {}, [o.e[1]])]);
+          pool.appendChild(c); return c;
+        });
+        area.appendChild(IA.el('div', { class: 'ia-sub' }, ['Drag a card to its spot — or tap a card, then tap a spot.']));
+        area.appendChild(pool);
+        area.appendChild(why);
+        area.appendChild(slots);
+        var left = cards.length;
+        IA.dragDrop({
+          items: cards, targets: targets,
+          onPick: function (c) { IA.say(c.textContent.replace(/^\S+\s*/, '')); },
+          accept: function (c, t) { return !t.querySelector('.card'); },
+          onDrop: function (c, t) {
+            var ci = +c.getAttribute('data-i'), ti = +t.getAttribute('data-i');
+            if (ci === ti) {
+              c.classList.add('placed', 'ia-locked'); c.removeAttribute('tabindex');
+              IA.sfx.good(); why.style.display = 'none';
+              IA.say(labels[ti] + ', ' + s.events[ci][1]);
+              left--;
+              if (left === 0) {
+                setTimeout(function () {
+                  var retell = labels.map(function (l, i) { return l + ', ' + s.events[i][1].charAt(0).toLowerCase() + s.events[i][1].slice(1); });
+                  IA.sayParts(retell, 200);
+                  r.answer(true, slots, 'The story is in order! 📚');
+                }, 600);
+              }
+              return true;
+            }
+            why.style.display = '';
+            why.textContent = ci < ti ? '💡 That happened EARLIER in the story. Try a spot higher up.' : '💡 That happened LATER in the story. Try a spot lower down.';
+            IA.say(why.textContent.replace('💡', ''));
+            r.answer(false, c, 'Not that spot!');
+            return false;
+          }
+        });
+      }
+    },
+    delay: 3500
+  });
+</script>
+</body>
+</html>

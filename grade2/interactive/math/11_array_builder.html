@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Array Builder — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .bonus { display: inline-block; background: #fff3e0; color: #e65100; border: 2px solid #ffcc80; border-radius: 999px; padding: 2px 12px; font-size: 14px; font-weight: bold; }
+    .q { font-size: clamp(20px, 4vw, 28px); font-weight: bold; text-align: center; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .q .big { color: var(--ia-accent); font-size: 1.3em; }
+    .grid { display: grid; gap: 6px; touch-action: none; user-select: none; -webkit-user-select: none; padding: 8px; background: #faf7ff; border: 3px solid #d1c4e9; border-radius: 16px; cursor: pointer; }
+    .grid:focus-visible { outline: 4px solid #1a6fbd; outline-offset: 2px; }
+    .cell { width: clamp(44px, 11vw, 56px); height: clamp(44px, 11vw, 56px); border: 2px dashed #d1c4e9; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: clamp(24px, 6vw, 32px); background: #fff; }
+    .cell span { transform: scale(0); transition: transform .15s ease; }
+    .cell.on { border-style: solid; border-color: #9575cd; background: #ede7f6; }
+    .cell.on span { transform: scale(1); }
+    .row-hl { box-shadow: 0 0 0 3px #f0c040; }
+    .readout { display: flex; flex-direction: column; gap: 4px; align-items: center; font-size: clamp(18px, 3.6vw, 24px); font-weight: bold; min-height: 3.6em; text-align: center; }
+    .readout .mul { color: var(--ia-accent); font-size: 1.25em; }
+    .arr { display: inline-grid; gap: 6px; font-size: clamp(28px, 6vw, 38px); padding: 10px; background: #faf7ff; border: 3px solid #d1c4e9; border-radius: 16px; }
+    .arr .rowlbl { font-size: 14px; color: #888; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var EMO = ['🍎', '🍓', '⭐', '🐞', '🧁', '🌸', '🍪', '🐟', '🦆', '🍩'];
+  var GR = 5, GC = 6;
+  function rep(n, times) { var a = []; for (var i = 0; i < times; i++) a.push(n); return a.join(' + '); }
+  function sentenceParts(R, C) {
+    return { words: R + ' row' + (R > 1 ? 's' : '') + ' of ' + C, add: rep(C, R) + ' = ' + R * C, mul: R + ' × ' + C + ' = ' + R * C };
+  }
+
+  function buildRound(r) {
+    var emo = IA.pick(EMO), R, C;
+    do { R = IA.rand(2, GR); C = IA.rand(2, GC); } while (R === C && Math.random() < 0.6);
+    var rows = 0, cols = 0;
+    var q = 'Make ' + R + ' rows of ' + C + '.';
+    r.stage.appendChild(IA.el('div', { class: 'q' }, ['Make', IA.el('span', { class: 'big' }, [R + ' rows']), 'of', IA.el('span', { class: 'big' }, [C + ' ' + emo]), IA.speakButton(q + ' Rows go across.')]));
+    IA.say(q + ' Rows go across.');
+    r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Tap or drag on the grid. Rows go across ➡️']));
+    var grid = IA.el('div', { class: 'grid', tabindex: '0', role: 'application', 'aria-label': 'Array grid. Use arrow keys to change rows and columns.' });
+    grid.style.gridTemplateColumns = 'repeat(' + GC + ', auto)';
+    var cells = [];
+    for (var i = 0; i < GR; i++) for (var j = 0; j < GC; j++) {
+      var c = IA.el('div', { class: 'cell' }, [IA.el('span', {}, [emo])]); c.dataset.r = i; c.dataset.c = j; cells.push(c); grid.appendChild(c);
+    }
+    var readout = IA.el('div', { class: 'readout', 'aria-live': 'polite' });
+    var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+    r.stage.appendChild(grid); r.stage.appendChild(readout);
+    function set(nr, nc) {
+      nr = Math.max(0, Math.min(GR, nr)); nc = Math.max(0, Math.min(GC, nc));
+      if (nr === rows && nc === cols) return;
+      rows = nr; cols = nc; IA.sfx.tap();
+      cells.forEach(function (c) { c.classList.toggle('on', +c.dataset.r < rows && +c.dataset.c < cols); });
+      IA.clear(readout);
+      if (rows && cols) {
+        var s = sentenceParts(rows, cols);
+        readout.appendChild(IA.el('div', {}, [s.words]));
+        readout.appendChild(IA.el('div', {}, [s.add]));
+        readout.appendChild(IA.el('div', { class: 'mul' }, [s.mul]));
+      }
+      hint.style.display = 'none';
+    }
+    function cellAt(e) {
+      var el = document.elementFromPoint(e.clientX, e.clientY);
+      el = el && el.closest ? el.closest('.cell') : null;
+      return el && grid.contains(el) ? el : null;
+    }
+    var pid = null;
+    grid.addEventListener('pointerdown', function (e) {
+      var c = cellAt(e); if (!c) return;
+      pid = e.pointerId; try { grid.setPointerCapture(pid); } catch (err) {}
+      set(+c.dataset.r + 1, +c.dataset.c + 1);
+    });
+    grid.addEventListener('pointermove', function (e) { if (pid !== e.pointerId) return; var c = cellAt(e); if (c) set(+c.dataset.r + 1, +c.dataset.c + 1); });
+    grid.addEventListener('pointerup', function () { pid = null; });
+    grid.addEventListener('pointercancel', function () { pid = null; });
+    grid.addEventListener('keydown', function (e) {
+      var k = e.key;
+      if (k === 'ArrowDown') set(rows + 1, Math.max(cols, 1)); else if (k === 'ArrowUp') set(rows - 1, cols);
+      else if (k === 'ArrowRight') set(Math.max(rows, 1), cols + 1); else if (k === 'ArrowLeft') set(rows, cols - 1);
+      else return;
+      e.preventDefault();
+    });
+    var check = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['Check ✔']);
+    check.addEventListener('click', function () {
+      if (rows === R && cols === C) { r.answer(true, check, sentenceParts(R, C).mul + ' 🎉'); IA.say(R + ' rows of ' + C + ' is ' + R * C + '. ' + R + ' times ' + C + ' equals ' + R * C); return; }
+      var t;
+      if (!rows || !cols) t = 'Tap a square on the grid to build your array.';
+      else if (rows === C && cols === R && R !== C) t = 'You made ' + rows + ' rows of ' + cols + '. Rows go across ➡️. Make ' + R + ' rows going across, with ' + C + ' in each row.';
+      else t = 'You made ' + rows + ' row' + (rows > 1 ? 's' : '') + ' of ' + cols + '. We need ' + R + ' rows going across, with ' + C + ' in each row.';
+      hint.textContent = '💡 ' + t; hint.style.display = ''; IA.say(t.replace(/➡️/g, ''));
+      r.answer(false, check);
+    });
+    r.stage.appendChild(check); r.stage.appendChild(hint);
+  }
+
+  function arrayPicture(R, C, emo) {
+    var g = IA.el('div', { class: 'arr', role: 'img', 'aria-label': R + ' rows of ' + C });
+    g.style.gridTemplateColumns = 'repeat(' + C + ', auto)';
+    for (var i = 0; i < R * C; i++) g.appendChild(IA.el('span', {}, [emo]));
+    return g;
+  }
+  function quizRound(r) {
+    var emo = IA.pick(EMO), R = IA.rand(2, 5), C = IA.rand(2, 6);
+    var isMul = r.index % 2 === 0;
+    function matches(a, b) { return (a === R && b === C) || (a === C && b === R); }
+    var correct, opts = [], seen = {};
+    function add(s) { if (!seen[s]) { seen[s] = true; opts.push(s); } }
+    if (isMul) {
+      correct = R + ' × ' + C + ' = ' + R * C; add(correct);
+      IA.shuffle([[R + 1, C], [R, C + 1], [R - 1, C], [R, C - 1], [C + 1, R], [R + 2, C]]).forEach(function (p) {
+        if (opts.length < 4 && p[0] >= 1 && p[1] >= 1 && !matches(p[0], p[1])) add(p[0] + ' × ' + p[1] + ' = ' + p[0] * p[1]);
+      });
+      if (opts.length < 4) add(R + ' + ' + C + ' = ' + (R + C));
+    } else {
+      correct = rep(C, R) + ' = ' + R * C; add(correct);
+      var cands = [[C, R + 1], [C + 1, R], [C, R - 1], [C - 1, R]].filter(function (p) { return p[1] >= 2 && p[0] >= 1 && !matches(p[1], p[0]); });
+      IA.shuffle(cands).forEach(function (p) { if (opts.length < 3) add(rep(p[0], p[1]) + ' = ' + p[0] * p[1]); });
+      add(R + ' + ' + C + ' = ' + (R + C));
+    }
+    var q = isMul ? 'Which multiplication sentence matches the array?' : 'Which addition sentence matches the array?';
+    r.stage.appendChild(IA.el('div', { class: 'q' }, [q, IA.speakButton(q)]));
+    IA.say(q);
+    r.stage.appendChild(arrayPicture(R, C, emo));
+    var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+    var tip = 'Count the rows going across: ' + R + '. Count how many in each row: ' + C + '. ' + R + ' rows of ' + C + ' → ' + (isMul ? R + ' × ' + C : rep(C, R)) + ' = ' + R * C + '.';
+    var rr = { answer: function (ok, el) { if (!ok) { hint.textContent = '💡 ' + tip; hint.style.display = ''; IA.say(tip.replace('→', 'is')); } return r.answer(ok, el); } };
+    IA.choices(rr, r.stage, IA.shuffle(opts), correct, { cls: 'wide' });
+    r.stage.appendChild(hint);
+  }
+
+  IA.game({
+    id: 'g2m-array-builder',
+    title: 'Array Builder',
+    emoji: '🍎',
+    back: '../index.html',
+    instructions: 'Bonus — Grade 3 preview! Build arrays in rows and see repeated addition become multiplication.',
+    rounds: 10,
+    levelTitle: '🌟 Bonus: Grade 3 preview — choose a level',
+    levels: [
+      { label: 'Build arrays', value: 'build', desc: 'Tap or drag to make rows of things' },
+      { label: 'Match the sentence', value: 'quiz', desc: 'Pick the number sentence for an array' },
+      { label: 'Mixed', value: 'mix', desc: 'Build and match' }
+    ],
+    round: function (r) {
+      var mode = r.level === 'mix' ? (r.index % 2 ? 'quiz' : 'build') : r.level;
+      (mode === 'build' ? buildRound : quizRound)(r);
+    }
+  });
+  // Mark the page header as a bonus preview.
+  document.querySelector('.ia-title').appendChild(IA.el('span', { class: 'bonus', style: { marginLeft: '8px', verticalAlign: 'middle' } }, ['Bonus · Grade 3 preview']));
+</script>
+</body>
+</html>

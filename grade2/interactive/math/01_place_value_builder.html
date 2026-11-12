@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Place Value Builder — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .target { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .target .ia-big { color: var(--ia-accent); }
+    .palette { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .pal { display: flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 12px; min-width: 96px; min-height: 96px; border-radius: 16px; border: 3px solid #d1c4e9; background: #faf7ff; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: bold; color: #4527a0; box-shadow: 0 3px 0 #d1c4e9; }
+    .pal:hover { background: var(--ia-accent-2); }
+    .pal .pic { min-height: 54px; display: flex; align-items: center; justify-content: center; }
+    .mat { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; width: 100%; max-width: 720px; border-radius: 18px; }
+    .mat.two { grid-template-columns: repeat(2, 1fr); max-width: 520px; }
+    .col { border: 3px dashed #b39ddb; border-radius: 16px; background: #fbf9ff; min-height: 220px; display: flex; flex-direction: column; align-items: stretch; }
+    .col h3 { margin: 0; padding: 6px 4px; text-align: center; font-size: clamp(14px, 2.6vw, 18px); color: #fff; background: var(--ia-accent); border-radius: 12px 12px 0 0; }
+    .col.h h3 { background: #8e24aa; } .col.t h3 { background: #1e88e5; } .col.o h3 { background: #43a047; }
+    .col .count { text-align: center; font-size: 26px; font-weight: bold; color: #333; padding: 2px; }
+    .col .blocks { flex: 1; display: flex; flex-wrap: wrap; gap: 5px; align-content: flex-start; justify-content: center; padding: 6px; min-height: 120px; }
+    .col .tools { display: flex; gap: 4px; justify-content: center; flex-wrap: wrap; padding: 6px; }
+    .col .tools .ia-btn { font-size: 13px; padding: 4px 8px; min-height: 44px; }
+    /* base-ten blocks */
+    .flat { width: 54px; height: 54px; border: 2px solid #6a1b9a; background-color: #ce93d8; background-image: linear-gradient(#6a1b9a55 1px, transparent 1px), linear-gradient(90deg, #6a1b9a55 1px, transparent 1px); background-size: 5px 5px; border-radius: 3px; }
+    .rod { width: 12px; height: 60px; border: 2px solid #1565c0; background-color: #90caf9; background-image: linear-gradient(#1565c066 1px, transparent 1px); background-size: 100% 5.6px; border-radius: 2px; }
+    .cube { width: 14px; height: 14px; border: 2px solid #2e7d32; background: #a5d6a7; border-radius: 2px; }
+    .blocks > .b { cursor: pointer; border-radius: 4px; padding: 3px; background: none; border: none; display: inline-flex; touch-action: manipulation; }
+    .blocks > .b:hover { background: #fde4e4; }
+    @keyframes popin { from { transform: scale(.2); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+    .blocks > .b.new { animation: popin .3s ease; }
+    .readout { font-size: clamp(18px, 3.6vw, 26px); text-align: center; font-weight: bold; }
+    .readout .exp { color: var(--ia-accent); }
+    .readout .sm { display: block; font-size: 15px; font-weight: normal; color: #666; }
+    .tip { font-size: 14px; color: #777; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var ID = 'g2m-place-value-builder';
+  var NAMES = { h: ['hundred', 'hundreds'], t: ['ten', 'tens'], o: ['one', 'ones'] };
+  var VAL = { h: 100, t: 10, o: 1 };
+  var MAXN = 30; // keep each column readable
+
+  function blockEl(kind) {
+    return IA.el('span', { class: kind === 'h' ? 'flat' : kind === 't' ? 'rod' : 'cube' });
+  }
+
+  /** Builds a place-value mat. opts: {hundreds:bool, explore:bool, onChange(total)} */
+  function buildMat(stage, opts) {
+    var cols = opts.hundreds ? ['h', 't', 'o'] : ['t', 'o'];
+    var counts = { h: 0, t: 0, o: 0 };
+    var colEls = {};
+    var palette = IA.el('div', { class: 'palette' });
+    var mat = IA.el('div', { class: 'mat' + (opts.hundreds ? '' : ' two'), 'aria-label': 'Place value mat' });
+    var readout = IA.el('div', { class: 'readout', 'aria-live': 'polite' });
+
+    cols.forEach(function (k) {
+      var count = IA.el('div', { class: 'count' }, ['0']);
+      var blocks = IA.el('div', { class: 'blocks' });
+      var tools = IA.el('div', { class: 'tools' });
+      if (opts.explore && k !== 'o') {
+        tools.appendChild(IA.el('button', { class: 'ia-btn small', type: 'button', title: 'Trade 1 ' + NAMES[k][0] + ' for 10 ' + NAMES[k === 'h' ? 't' : 'o'][1],
+          onclick: function () { trade(k); } }, ['🔨 Break 1']));
+      }
+      if (opts.explore && k !== 'h' && (opts.hundreds || k === 'o')) {
+        tools.appendChild(IA.el('button', { class: 'ia-btn small', type: 'button', title: 'Group 10 ' + NAMES[k][1] + ' into 1 ' + NAMES[k === 'o' ? 't' : 'h'][0],
+          onclick: function () { group(k); } }, ['📦 Group 10']));
+      }
+      var col = IA.el('div', { class: 'col ' + k }, [IA.el('h3', {}, [NAMES[k][1].charAt(0).toUpperCase() + NAMES[k][1].slice(1)]), count, blocks, tools]);
+      colEls[k] = { col: col, count: count, blocks: blocks };
+      mat.appendChild(col);
+
+      var pal = IA.el('button', { class: 'pal', type: 'button', 'aria-label': 'Add a ' + NAMES[k][0] },
+        [IA.el('span', { class: 'pic' }, [blockEl(k)]), '+ 1 ' + NAMES[k][0] + ' (' + VAL[k] + ')']);
+      pal.dataset.kind = k;
+      pal.addEventListener('click', function () {
+        if (pal._suppressClick) return;
+        add(k, 1); setTimeout(function () { dd.deselect(); }, 0);
+      });
+      palette.appendChild(pal);
+    });
+
+    stage.appendChild(palette);
+    stage.appendChild(IA.el('div', { class: 'tip' }, ['Tap a block to add it (or drag it onto the mat). Tap a block on the mat to take it away.']));
+    stage.appendChild(mat);
+    stage.appendChild(readout);
+
+    var dd = IA.dragDrop({ items: palette.querySelectorAll('.pal'), targets: [mat], keepInPlace: true,
+      onDrop: function (item) { add(item.dataset.kind, 1); } });
+
+    function add(k, n, quiet) {
+      if (counts[k] + n > MAXN) { IA.toast('That column is full! Try grouping.', true); return false; }
+      for (var i = 0; i < n; i++) {
+        var b = IA.el('button', { class: 'b new', type: 'button', 'aria-label': 'Remove a ' + NAMES[k][0] }, [blockEl(k)]);
+        b.addEventListener('click', function (e) { e.stopPropagation(); remove(k, this); });
+        colEls[k].blocks.appendChild(b);
+      }
+      counts[k] += n;
+      if (!quiet) { IA.sfx.tap(); IA.say(VAL[k] === 1 ? 'one' : String(VAL[k])); }
+      update();
+      return true;
+    }
+    function remove(k, el) {
+      if (counts[k] <= 0) return;
+      (el || colEls[k].blocks.lastChild).remove();
+      counts[k]--; IA.sfx.tap(); update();
+    }
+    function removeN(k, n) { for (var i = 0; i < n; i++) { colEls[k].blocks.lastChild.remove(); } counts[k] -= n; }
+    function trade(k) {
+      var to = k === 'h' ? 't' : 'o';
+      if (!counts[k]) { IA.toast('No ' + NAMES[k][1] + ' to break!', true); return; }
+      if (counts[to] + 10 > MAXN) { IA.toast('Too many ' + NAMES[to][1] + '! Group some first.', true); return; }
+      removeN(k, 1); add(to, 10, true);
+      IA.say('1 ' + NAMES[k][0] + ' is the same as 10 ' + NAMES[to][1] + '!');
+      if (opts.onTrade) opts.onTrade();
+    }
+    function group(k) {
+      var to = k === 'o' ? 't' : 'h';
+      if (counts[k] < 10) { IA.toast('You need 10 ' + NAMES[k][1] + ' to make 1 ' + NAMES[to][0] + '.', true); return; }
+      if (counts[to] + 1 > MAXN) { IA.toast('That column is full!', true); return; }
+      removeN(k, 10); add(to, 1, true);
+      IA.say('10 ' + NAMES[k][1] + ' make 1 ' + NAMES[to][0] + '!');
+      if (opts.onTrade) opts.onTrade();
+    }
+    function total() { return counts.h * 100 + counts.t * 10 + counts.o; }
+    function update() {
+      cols.forEach(function (k) { colEls[k].count.textContent = counts[k]; });
+      var parts = [], words = [];
+      cols.forEach(function (k) {
+        if (counts[k]) { parts.push(counts[k] * VAL[k]); words.push(counts[k] + ' ' + NAMES[k][counts[k] === 1 ? 0 : 1]); }
+      });
+      IA.clear(readout);
+      var tot = total();
+      readout.appendChild(IA.el('span', {}, ['Total: ' + tot]));
+      if (parts.length > 1) readout.appendChild(IA.el('span', { class: 'exp' }, [' = ' + parts.join(' + ')]));
+      readout.appendChild(IA.el('span', { class: 'sm' }, [words.length ? words.join(', ') : 'The mat is empty.']));
+      if (opts.onChange) opts.onChange(tot);
+    }
+    update();
+    return { counts: counts, total: total, add: add };
+  }
+
+  function expanded(n) {
+    var h = Math.floor(n / 100), t = Math.floor(n / 10) % 10, o = n % 10, p = [];
+    if (h) p.push(h * 100); if (t) p.push(t * 10); if (o) p.push(o);
+    return p.join(' + ');
+  }
+
+  var exploreDone = 0;
+  IA.game({
+    id: ID,
+    title: 'Place Value Builder',
+    emoji: '🧱',
+    back: '../index.html',
+    instructions: 'Build the number with hundreds, tens and ones blocks!',
+    rounds: 10,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Numbers to 100', value: { max: 99, min: 11, hundreds: false }, desc: 'Tens and ones' },
+      { label: 'Numbers to 1000', value: { max: 999, min: 100, hundreds: true }, desc: 'Hundreds, tens and ones' },
+      { label: '🔍 Explore & trade', value: { explore: true, hundreds: true }, desc: 'Free play: break and group blocks' }
+    ],
+    round: function (r) {
+      var lv = r.level;
+      if (lv.explore) return explore(r);
+      var n;
+      do { n = IA.rand(lv.min, lv.max); } while (lv.hundreds && r.index < 3 && n % 10 === 0 && Math.random() < 0.7);
+      if (lv.hundreds && r.index >= 6 && Math.random() < 0.5) n = IA.rand(1, 9) * 100 + (Math.random() < 0.5 ? IA.rand(1, 9) : IA.rand(1, 9) * 10); // zeros
+      var say = 'Build ' + n;
+      r.stage.appendChild(IA.el('div', { class: 'target' }, [
+        IA.el('span', { class: 'ia-prompt' }, ['Build']), IA.el('span', { class: 'ia-big' }, [String(n)]), IA.speakButton(say)
+      ]));
+      IA.say(say);
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      var mat = buildMat(r.stage, { hundreds: lv.hundreds });
+      var check = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['Check ✔']);
+      check.addEventListener('click', function () {
+        var have = mat.total();
+        if (have === n) {
+          hint.style.display = 'none';
+          r.answer(true, check, n + ' = ' + expanded(n) + ' 🎉');
+          IA.say(n + ' is ' + expanded(n).replace(/\+/g, 'plus'));
+          return;
+        }
+        var need = { h: Math.floor(n / 100), t: Math.floor(n / 10) % 10, o: n % 10 };
+        var msgs = [];
+        ['h', 't', 'o'].forEach(function (k) {
+          if (!lv.hundreds && k === 'h') return;
+          var d = need[k] - mat.counts[k];
+          if (d > 0) msgs.push('add ' + d + ' ' + NAMES[k][d === 1 ? 0 : 1]);
+          if (d < 0) msgs.push('take away ' + (-d) + ' ' + NAMES[k][d === -1 ? 0 : 1]);
+        });
+        hint.textContent = 'You built ' + have + '. ' + n + ' has ' + (lv.hundreds ? need.h + ' hundreds, ' : '') + need.t + ' tens and ' + need.o + ' ones. Try: ' + msgs.join(', ') + '.';
+        hint.style.display = '';
+        r.answer(false, check);
+      });
+      r.stage.appendChild(check);
+      r.stage.appendChild(hint);
+    }
+  });
+
+  function explore(r) {
+    r.shell.setScore('');
+    r.shell.setProgress(0);
+    r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Explore! 🔍 ', IA.speakButton('Add blocks, then break a ten into 10 ones, or a hundred into 10 tens. The total stays the same!')]));
+    r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Break a ten into 10 ones, or a hundred into 10 tens. Watch the total — does it change?']));
+    var mat = buildMat(r.stage, { hundreds: true, explore: true, onTrade: function () {
+      exploreDone++;
+      r.shell.setProgress(Math.min(1, exploreDone / 5));
+      if (exploreDone === 5) { IA.setStars(ID, 1); IA.toast('Trading expert! ⭐'); }
+    } });
+    mat.add('h', 1, true); mat.add('t', 2, true); mat.add('o', 4, true);
+    r.stage.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { location.reload(); } }, ['🎚️ Change level']));
+  }
+</script>
+</body>
+</html>

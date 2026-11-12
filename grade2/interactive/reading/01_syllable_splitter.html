@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syllable Splitter — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .word { --n: 6; display: flex; flex-wrap: nowrap; align-items: stretch; justify-content: center; max-width: 100%; }
+    .word .lt { --w: min(56px, calc((100vw - 90px) / (var(--n) * 1.55))); width: var(--w); height: calc(var(--w) * 1.35); font-size: calc(var(--w) * 0.72);
+      display: flex; align-items: center; justify-content: center; font-weight: bold; background: #fff; border: 3px solid #f8bbd0; border-radius: 10px; color: #333; transition: background .2s, transform .2s; }
+    .word .lt.sylA { background: #fce4ec; }
+    .word .lt.sylB { background: #e3f0fb; border-color: #9ec9f0; }
+    .word .lt.sylC { background: #fff3c4; border-color: #f0c040; }
+    .word .lt.on { transform: translateY(-6px) scale(1.08); }
+    .gap { --w: min(56px, calc((100vw - 90px) / (var(--n) * 1.55))); width: calc(var(--w) * 0.55); min-width: 18px; position: relative; border: 0; background: transparent; cursor: pointer; padding: 0; touch-action: manipulation; }
+    .gap::before { content: ''; position: absolute; left: -6px; right: -6px; top: -14px; bottom: -14px; }
+    .gap::after { content: ''; position: absolute; left: 50%; top: 10%; bottom: 10%; width: 4px; margin-left: -2px; border-radius: 4px; background: #eadcc0; opacity: .6; transition: transform .15s, background .15s, opacity .15s; transform: scaleY(.45); }
+    .gap:hover::after { opacity: 1; background: #f48fb1; }
+    .gap.cut::after { background: var(--ia-accent); opacity: 1; transform: scaleY(1.25); width: 6px; margin-left: -3px; }
+    .gap:focus-visible { outline: 3px solid #1a6fbd; border-radius: 6px; }
+    .gap.missing::after { background: #2e7d32; opacity: 1; transform: scaleY(1.25); }
+    .gap.extra::after { background: #ef6c00; }
+    .split-out { font-size: clamp(26px, 6vw, 40px); font-weight: bold; color: var(--ia-accent); min-height: 1.3em; letter-spacing: 1px; }
+    .rule { max-width: 560px; text-align: center; }
+    .clap { font-size: 18px; color: #777; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Splits checked against standard dictionary syllabication (kid-friendly, unambiguous words only).
+  var RULES = {
+    vccv: { name: 'VC/CV', hint: 'Two consonants in the middle? Split between them: rab | bit.' },
+    vccv3: { name: 'Keep the ending together', hint: 'Three consonants in the middle: keep "mp" with the first part, then split: pump | kin.' },
+    vcv_open: { name: 'V/CV (open)', hint: 'One consonant in the middle? Try splitting BEFORE it. The first vowel says its name: ti | ger.' },
+    vcv_closed: { name: 'VC/V (closed)', hint: 'One consonant in the middle, but the vowel sounds short? Split AFTER the consonant: cab | in.' },
+    cle: { name: 'Consonant + le', hint: 'Count back 3 letters from the end. The consonant + le makes the last syllable: ta | ble.' },
+    multi: { name: 'Chunk it', hint: 'Find each vowel sound. Split between two middle consonants, and before a single one when the vowel is long.' }
+  };
+  var POOLS = {
+    vccv: [
+      ['rab','bit','🐰'], ['nap','kin','🧻'], ['pic','nic','🧺'], ['sun','set','🌅'], ['bas','ket','🧺'], ['kit','ten','🐱'],
+      ['mag','net','🧲'], ['muf','fin','🧁'], ['den','tist','🦷'], ['hel','met','⛑️'], ['win','ter','❄️'], ['cac','tus','🌵'],
+      ['pen','cil','✏️'], ['gob','lin','👺'], ['mit','ten','🧤'], ['pup','pet','🧸'], ['ten','nis','🎾'], ['zig','zag','〰️'], ['pump','kin','🎃', 'vccv3']
+    ],
+    vcv: [
+      ['ti','ger','🐯','vcv_open'], ['ro','bot','🤖','vcv_open'], ['ba','by','👶','vcv_open'], ['mu','sic','🎵','vcv_open'], ['pa','per','📄','vcv_open'],
+      ['spi','der','🕷️','vcv_open'], ['ze','ro','0️⃣','vcv_open'], ['ba','con','🥓','vcv_open'], ['o','pen','📖','vcv_open'], ['pi','lot','👩‍✈️','vcv_open'], ['so','fa','🛋️','vcv_open'],
+      ['cab','in','🛖','vcv_closed'], ['lem','on','🍋','vcv_closed'], ['rob','in','🐦','vcv_closed'], ['wag','on','🛒','vcv_closed'], ['sev','en','7️⃣','vcv_closed'],
+      ['plan','et','🪐','vcv_closed'], ['com','et','☄️','vcv_closed'], ['mel','on','🍈','vcv_closed']
+    ],
+    cle: [
+      ['ta','ble','🪑'], ['can','dle','🕯️'], ['pur','ple','🟣'], ['bub','ble','🫧'], ['ap','ple','🍎'], ['tur','tle','🐢'], ['puz','zle','🧩'],
+      ['lit','tle','🤏'], ['mid','dle','⏺️'], ['nee','dle','🪡'], ['sim','ple','👍'], ['bot','tle','🍼'], ['pad','dle','🛶'], ['ea','gle','🦅'], ['jun','gle','🌴'], ['ma','ple','🍁']
+    ],
+    multi: [
+      ['fan','tas','tic','🤩'], ['but','ter','fly','🦋'], ['um','brel','la','☂️'], ['di','no','saur','🦕'], ['kan','ga','roo','🦘'], ['to','ma','to','🍅'],
+      ['com','put','er','💻'], ['hos','pi','tal','🏥'], ['an','i','mal','🐾'], ['el','e','phant','🐘'], ['yes','ter','day','📅'], ['re','mem','ber','💭'], ['ad','ven','ture','🗺️']
+    ]
+  };
+  function toItem(arr, pool) {
+    var parts = [], emoji = '', rule = null;
+    arr.forEach(function (x) { if (/^[a-z]+$/.test(x)) parts.push(x); else if (RULES[x]) rule = x; else emoji = x; });
+    return { parts: parts, word: parts.join(''), emoji: emoji, rule: rule || pool };
+  }
+  var queue = {};
+  function nextItem(pool) {
+    if (!queue[pool] || !queue[pool].length) queue[pool] = IA.shuffle(POOLS[pool]);
+    return toItem(queue[pool].pop(), pool);
+  }
+
+  IA.game({
+    id: 'g2r-syllable-splitter',
+    title: 'Syllable Splitter',
+    emoji: '✂️',
+    back: '../index.html',
+    instructions: 'Tap the spaces between letters to split the word into syllables. Then press Check!',
+    rounds: 10,
+    delay: 2600,
+    levelTitle: 'Which kind of words?',
+    levels: [
+      { label: '🐰 rab | bit', value: { pools: ['vccv'] }, desc: 'Two consonants in the middle (VC/CV)' },
+      { label: '🐯 ti | ger', value: { pools: ['vcv'] }, desc: 'One consonant in the middle (V/CV, VC/V)' },
+      { label: '🪑 ta | ble', value: { pools: ['cle'] }, desc: 'Consonant + le endings' },
+      { label: '🦋 but | ter | fly', value: { pools: ['multi', 'multi', 'vccv', 'vcv', 'cle'] }, desc: 'Three syllables + a mix' }
+    ],
+    round: function (r) {
+      var item = nextItem(IA.pick(r.level.pools));
+      var word = item.word, n = word.length;
+      var correct = {}; var pos = 0;
+      item.parts.slice(0, -1).forEach(function (p) { pos += p.length; correct[pos] = true; });
+      var cuts = {}; var tries = 0; var done = false;
+
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, [IA.el('span', { class: 'ia-emoji' }, [item.emoji]), IA.speakButton(word)]));
+      r.stage.appendChild(IA.el('div', { class: 'clap' }, ['👏 Say it and clap: how many beats?']));
+      var wordEl = IA.el('div', { class: 'word' }); wordEl.style.setProperty('--n', n);
+      var letters = [], gaps = {};
+      for (var i = 0; i < n; i++) {
+        var lt = IA.el('span', { class: 'lt' }, [word[i]]); letters.push(lt); wordEl.appendChild(lt);
+        if (i < n - 1) {
+          (function (k) {
+            var g = IA.el('button', { class: 'gap', type: 'button', 'aria-label': 'Split after ' + word.slice(0, k), 'aria-pressed': 'false', onclick: function () {
+              if (done) return;
+              cuts[k] = !cuts[k]; g.classList.toggle('cut', !!cuts[k]); g.setAttribute('aria-pressed', cuts[k] ? 'true' : 'false');
+              wordEl.querySelectorAll('.gap').forEach(function (x) { x.classList.remove('missing', 'extra'); });
+              IA.sfx.tap(); showSplit();
+            } });
+            gaps[k] = g; wordEl.appendChild(g);
+          })(i + 1);
+        }
+      }
+      r.stage.appendChild(wordEl);
+      var out = IA.el('div', { class: 'split-out', 'aria-live': 'polite' });
+      r.stage.appendChild(out);
+      function chunks(set) {
+        var res = [], last = 0;
+        for (var k = 1; k < n; k++) if (set[k]) { res.push(word.slice(last, k)); last = k; }
+        res.push(word.slice(last)); return res;
+      }
+      function showSplit() { out.textContent = chunks(cuts).join(' | '); }
+      showSplit();
+      var hint = IA.el('div', { class: 'ia-hint rule', style: { display: 'none' } });
+      var check = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['Check ✔']);
+      r.stage.appendChild(check);
+      r.stage.appendChild(hint);
+      check.addEventListener('click', function () {
+        if (done) return;
+        var ok = true;
+        for (var k = 1; k < n; k++) if (!!cuts[k] !== !!correct[k]) ok = false;
+        if (ok) {
+          done = true; check.disabled = true;
+          var cls = ['sylA', 'sylB', 'sylC'], idx = 0, start = 0;
+          item.parts.forEach(function (p, pi) { for (var j = 0; j < p.length; j++) letters[start + j].classList.add(cls[pi % 3]); start += p.length; });
+          hint.style.display = ''; hint.textContent = '✅ ' + RULES[item.rule].name + ': ' + item.parts.join(' | ');
+          var ranges = []; start = 0; item.parts.forEach(function (p) { ranges.push([start, start + p.length]); start += p.length; });
+          IA.sayParts(item.parts.concat([word]), 250, { onpart: function (pi) {
+            letters.forEach(function (l) { l.classList.remove('on'); });
+            var rg = ranges[pi] || [0, n];
+            for (var j = rg[0]; j < rg[1]; j++) letters[j].classList.add('on');
+          }, onend: function () { letters.forEach(function (l) { l.classList.remove('on'); }); } });
+          r.answer(true, out, 'Yes! ' + item.parts.join(' - ') + ' 🎉');
+        } else {
+          tries++;
+          var nCuts = Object.keys(cuts).filter(function (k) { return cuts[k]; }).length;
+          var msg = nCuts < item.parts.length - 1 ? 'This word has ' + item.parts.length + ' syllables. ' : (nCuts > item.parts.length - 1 ? 'Too many splits! This word has ' + item.parts.length + ' syllables. ' : '');
+          hint.style.display = ''; hint.textContent = '💡 ' + msg + RULES[item.rule].hint;
+          if (tries >= 2) {
+            for (var k2 = 1; k2 < n; k2++) {
+              if (correct[k2] && !cuts[k2]) gaps[k2].classList.add('missing');
+              if (!correct[k2] && cuts[k2]) gaps[k2].classList.add('extra');
+            }
+            hint.textContent += ' Green lines show where to split.';
+          }
+          IA.say(RULES[item.rule].hint.replace(/\|/g, ''));
+          r.answer(false, wordEl);
+        }
+      });
+      setTimeout(function () { IA.say(word); }, 300);
+    }
+  });
+</script>
+</body>
+</html>

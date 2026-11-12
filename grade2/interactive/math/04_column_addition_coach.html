@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Column Addition Coach — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .sum { display: grid; grid-template-columns: 56px 76px 76px; gap: 6px 8px; align-items: center; justify-items: center; font-size: 56px; font-weight: bold; line-height: 1; }
+    .sum .hd { font-size: 14px; color: #4527a0; background: var(--ia-accent-2); border-radius: 8px; padding: 4px 6px; width: 100%; text-align: center; }
+    .sum .col-t { color: #1e88e5; } .sum .col-o { color: #43a047; }
+    .sum .rule { grid-column: 1 / span 3; height: 5px; width: 100%; background: #333; border-radius: 3px; }
+    .box { width: 70px; height: 70px; border: 3px dashed #b39ddb; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #fbf9ff; color: #333; font-size: 48px; }
+    .box.carry { width: 48px; height: 48px; font-size: 30px; border-color: #ef9a9a; background: #fff5f5; color: #c62828; }
+    .box.active { border-style: solid; border-color: var(--ia-accent); box-shadow: 0 0 0 4px #d1c4e9; transform: scale(1.06); }
+    .box.ok { border-style: solid; border-color: #2e7d32; background: #e8f5e9; }
+    .box.off { visibility: hidden; }
+    .hl { background: #fff4c2; border-radius: 10px; }
+    .coach { font-size: clamp(18px, 3.4vw, 24px); text-align: center; font-weight: bold; color: #4527a0; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; min-height: 2.4em; }
+    .pad { display: grid; grid-template-columns: repeat(5, 64px); gap: 8px; justify-content: center; }
+    .pad .ia-btn { min-width: 64px; font-size: 26px; padding: 6px; }
+    @media (max-width: 420px) { .pad { grid-template-columns: repeat(5, 56px); } .pad .ia-btn { min-width: 56px; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  function numpad(onDigit) {
+    var pad = IA.el('div', { class: 'pad', role: 'group', 'aria-label': 'Number pad' });
+    [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach(function (d) {
+      pad.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { onDigit(d); } }, [String(d)]));
+    });
+    return pad;
+  }
+
+  function makeProblem(lv) {
+    var a, b, ao, bo;
+    for (;;) {
+      var at = IA.rand(1, 8), bt = IA.rand(1, 8);
+      ao = IA.rand(0, 9); bo = IA.rand(1, 9);
+      var regroup = ao + bo >= 10;
+      if (lv.always && !regroup) continue;
+      if (at + bt + (regroup ? 1 : 0) > 9) continue;
+      a = at * 10 + ao; b = bt * 10 + bo;
+      return { a: a, b: b };
+    }
+  }
+
+  var keyHandler = null;
+  document.addEventListener('keydown', function (e) { if (keyHandler && /^[0-9]$/.test(e.key)) keyHandler(+e.key); });
+
+  IA.game({
+    id: 'g2m-column-addition-coach',
+    title: 'Column Addition Coach',
+    emoji: '➕',
+    back: '../index.html',
+    instructions: 'Add the ones first, then the tens. Carry a ten when the ones make 10 or more!',
+    rounds: 10,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Always regroup', value: { always: true }, desc: 'The ones always make 10 or more' },
+      { label: 'Mixed', value: { always: false }, desc: 'Sometimes you carry, sometimes not' }
+    ],
+    round: function (r) {
+      var p = makeProblem(r.level);
+      var at = Math.floor(p.a / 10), ao = p.a % 10, bt = Math.floor(p.b / 10), bo = p.b % 10;
+      var os = ao + bo, carry = os >= 10 ? 1 : 0, ts = at + bt + carry;
+      var g = IA.el('div', { class: 'sum', 'aria-label': p.a + ' plus ' + p.b });
+      var carryBox = IA.el('div', { class: 'box carry' + (carry ? '' : ' off'), 'aria-label': 'carry box' });
+      var tensBox = IA.el('div', { class: 'box', 'aria-label': 'tens answer' });
+      var onesBox = IA.el('div', { class: 'box', 'aria-label': 'ones answer' });
+      var cells = {
+        at: IA.el('div', { class: 'col-t' }, [String(at)]), ao: IA.el('div', { class: 'col-o' }, [String(ao)]),
+        bt: IA.el('div', { class: 'col-t' }, [String(bt)]), bo: IA.el('div', { class: 'col-o' }, [String(bo)])
+      };
+      [IA.el('div'), IA.el('div', { class: 'hd' }, ['Tens']), IA.el('div', { class: 'hd' }, ['Ones']),
+       IA.el('div'), carryBox, IA.el('div'),
+       IA.el('div'), cells.at, cells.ao,
+       IA.el('div', {}, ['+']), cells.bt, cells.bo,
+       IA.el('div', { class: 'rule' }),
+       IA.el('div'), tensBox, onesBox].forEach(function (c) { g.appendChild(c); });
+
+      var steps = [{ box: onesBox, want: os % 10, cols: ['ao', 'bo'],
+        prompt: 'Add the ones: ' + ao + ' + ' + bo + ' = ?',
+        say: 'Add the ones. ' + ao + ' plus ' + bo + '.',
+        hint: carry ? ao + ' + ' + bo + ' = ' + os + '. Write ' + (os % 10) + ', carry 1 ten.' : ao + ' + ' + bo + ' = ' + os + '. Write ' + os + ' in the ones place.' }];
+      if (carry) steps.push({ box: carryBox, want: 1, cols: [],
+        prompt: os + ' is 1 ten and ' + (os % 10) + ' ones. Carry the ten! Type it in the red box.',
+        say: os + ' is 1 ten and ' + (os % 10) + ' ones. Carry the 1 ten to the tens column.',
+        hint: 'Put a 1 in the carry box — that is the 1 ten from ' + os + '.' });
+      steps.push({ box: tensBox, want: ts, cols: ['at', 'bt'],
+        prompt: 'Add the tens: ' + (carry ? '1 + ' : '') + at + ' + ' + bt + ' = ?',
+        say: 'Now add the tens. ' + (carry ? '1 plus ' : '') + at + ' plus ' + bt + '.',
+        hint: (carry ? '1 + ' : '') + at + ' + ' + bt + ' = ' + ts + ' tens. Write ' + ts + '.' });
+
+      var coach = IA.el('div', { class: 'coach', 'aria-live': 'polite' });
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, [p.a + ' + ' + p.b, IA.speakButton(p.a + ' plus ' + p.b)]));
+      r.stage.appendChild(g);
+      r.stage.appendChild(coach);
+      r.stage.appendChild(hint);
+      var si = 0;
+      function show() {
+        var st = steps[si];
+        Object.keys(cells).forEach(function (k) { cells[k].classList.toggle('hl', st.cols.indexOf(k) >= 0); });
+        steps.forEach(function (s) { s.box.classList.toggle('active', s === st); });
+        IA.clear(coach); coach.appendChild(document.createTextNode(st.prompt)); coach.appendChild(IA.speakButton(st.say));
+        hint.style.display = 'none';
+        IA.say(st.say);
+      }
+      function digit(d) {
+        var st = steps[si];
+        if (!st) return;
+        if (d === st.want) {
+          st.box.textContent = String(d); st.box.classList.add('ok'); st.box.classList.remove('active');
+          si++;
+          if (si >= steps.length) {
+            keyHandler = null;
+            Object.keys(cells).forEach(function (k) { cells[k].classList.remove('hl'); });
+            IA.clear(coach); coach.appendChild(document.createTextNode(p.a + ' + ' + p.b + ' = ' + (p.a + p.b) + ' 🎉'));
+            hint.style.display = 'none';
+            r.answer(true, g);
+            IA.say(p.a + ' plus ' + p.b + ' equals ' + (p.a + p.b));
+          } else { IA.sfx.good(); show(); }
+        } else {
+          st.box.textContent = String(d);
+          setTimeout(function () { if (steps[si] === st) st.box.textContent = ''; }, 600);
+          hint.textContent = '💡 ' + st.hint; hint.style.display = '';
+          r.answer(false, st.box, 'Not quite — read the hint!');
+          IA.say(st.hint);
+        }
+      }
+      keyHandler = digit;
+      r.stage.appendChild(numpad(digit));
+      show();
+    }
+  });
+</script>
+</body>
+</html>

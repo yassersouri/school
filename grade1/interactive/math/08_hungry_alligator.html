@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hungry Alligator — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; }
+    .cmp { display: flex; align-items: center; justify-content: center; gap: clamp(8px, 3vw, 24px); width: 100%; }
+    .side { min-width: clamp(90px, 22vw, 170px); padding: 10px 12px; border-radius: 18px; background: #f6fbf4; border: 3px solid #c8e6c9; text-align: center; font-weight: bold; font-size: clamp(30px, 8vw, 56px); color: #1b5e20; }
+    .side.expr { font-size: clamp(24px, 6vw, 42px); }
+    .side.big { border-color: #f0c040; background: #fff8dc; }
+    .gator { width: clamp(90px, 20vw, 150px); height: clamp(76px, 17vw, 125px); display: flex; align-items: center; justify-content: center; }
+    .gator svg { width: 100%; height: 100%; overflow: visible; }
+    .gator.flip svg { transform: scaleX(-1); }
+    .jaw { transform-box: view-box; transform-origin: 18px 50px; transition: transform .45s cubic-bezier(.22,1,.36,1); }
+    .gator .up { transform: rotate(16deg); }
+    .gator .low { transform: rotate(-16deg); }
+    .gator.open .up, .gator.open .low { transform: rotate(0deg); }
+    .gator.chomp .up { animation: chompU .5s ease 2; }
+    .gator.chomp .low { animation: chompL .5s ease 2; }
+    @keyframes chompU { 50% { transform: rotate(10deg); } }
+    @keyframes chompL { 50% { transform: rotate(-10deg); } }
+    .symbol { font-size: clamp(34px, 8vw, 54px); font-weight: bold; color: var(--ia-accent); min-height: 1.2em; text-align: center; }
+    .sym-choices .ia-choice { font-size: clamp(34px, 8vw, 50px); }
+    .sym-choices { max-width: 480px; grid-template-columns: repeat(3, 1fr); }
+    @media (prefers-reduced-motion: reduce) { .jaw { transition: none; } .gator.chomp .up, .gator.chomp .low { animation: none; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var GATOR = '<svg viewBox="0 0 130 100" aria-hidden="true">' +
+    '<g class="jaw low"><path d="M18,52 L122,70 Q124,80 114,82 L24,70 Z" fill="#43a047" stroke="#1b5e20" stroke-width="3" stroke-linejoin="round"/>' +
+      '<path d="M50,58 l6,-8 l6,9 M70,62 l6,-8 l6,9 M90,65 l6,-8 l6,9" fill="#fff" stroke="#999" stroke-width="1"/></g>' +
+    '<g class="jaw up"><path d="M18,48 L122,30 Q124,20 114,18 L40,20 Q20,22 16,36 Z" fill="#4caf50" stroke="#1b5e20" stroke-width="3" stroke-linejoin="round"/>' +
+      '<path d="M50,42 l6,8 l6,-9 M70,38 l6,8 l6,-9 M90,35 l6,8 l6,-9" fill="#fff" stroke="#999" stroke-width="1"/>' +
+      '<circle cx="40" cy="20" r="10" fill="#fff" stroke="#1b5e20" stroke-width="3"/><circle cx="43" cy="19" r="4" fill="#222"/>' +
+      '<circle cx="112" cy="22" r="2" fill="#1b5e20"/></g>' +
+    '<circle cx="18" cy="50" r="12" fill="#388e3c" stroke="#1b5e20" stroke-width="3"/></svg>';
+
+  function gen(lv) {
+    if (lv.kind === 'sum') {
+      var a = IA.rand(10, 79), b = Math.random() < 0.7 ? IA.rand(1, 9 - (a % 10) || 1) : 10 * IA.rand(1, Math.min(2, 9 - Math.floor(a / 10)));
+      if (a % 10 + (b % 10) > 9) b = 10;
+      var s = a + b;
+      var d = Math.random() < 0.25 ? 0 : IA.pick([-3, -2, -1, 1, 2, 3, -10, 10]);
+      var other = Math.max(1, Math.min(99, s + d));
+      var exprLeft = Math.random() < 0.5;
+      return exprLeft ? { L: s, R: other, lt: a + ' + ' + b, rt: String(other), lExpr: true }
+                      : { L: other, R: s, lt: String(other), rt: a + ' + ' + b, rExpr: true };
+    }
+    var x = IA.rand(lv.min, lv.max), y;
+    if (Math.random() < 0.2) y = x;
+    else if (lv.max > 20 && Math.random() < 0.5) {
+      // same tens or same ones, so children must look carefully
+      y = Math.random() < 0.5 ? Math.floor(x / 10) * 10 + IA.rand(0, 9) : IA.rand(1, 9) * 10 + x % 10;
+      if (y === x || y < lv.min) y = x + (x < lv.max ? 1 : -1);
+    } else { do { y = IA.rand(lv.min, lv.max); } while (y === x); }
+    return { L: x, R: y, lt: String(x), rt: String(y) };
+  }
+  function tensOnes(n) { var t = Math.floor(n / 10), o = n % 10; return t + (t === 1 ? ' ten' : ' tens') + ' and ' + o + (o === 1 ? ' one' : ' ones'); }
+
+  IA.game({
+    id: 'g1m-hungry-alligator',
+    title: 'Hungry Alligator',
+    emoji: '🐊',
+    back: '../index.html',
+    instructions: 'The hungry alligator always eats the bigger number! Tap <, = or >.',
+    rounds: 10,
+    delay: 1700,
+    levelTitle: 'Pick your numbers',
+    levels: [
+      { label: 'Up to 20', value: { min: 0, max: 20 }, desc: '12 ? 9' },
+      { label: 'Up to 100', value: { min: 10, max: 99 }, desc: '47 ? 74' },
+      { label: 'Sums', value: { kind: 'sum' }, desc: '23 + 4 ? 30' }
+    ],
+    round: function (r) {
+      var q = gen(r.level);
+      var sym = q.L < q.R ? '<' : q.L > q.R ? '>' : '=';
+      var word = { '<': 'is less than', '>': 'is greater than', '=': 'is equal to' };
+      var left = IA.el('div', { class: 'side' + (q.lExpr ? ' expr' : '') }, [q.lt]);
+      var right = IA.el('div', { class: 'side' + (q.rExpr ? ' expr' : '') }, [q.rt]);
+      var gator = IA.el('div', { class: 'gator', html: GATOR });
+      var symbol = IA.el('div', { class: 'symbol' }, ['?']);
+      r.stage.appendChild(IA.el('div', { class: 'cmp' }, [left, IA.el('div', { class: 'ia-col', style: { gap: '0' } }, [gator, symbol]), right]));
+      var say = q.lt.replace('+', 'plus') + ' and ' + q.rt.replace('+', 'plus');
+      r.stage.appendChild(IA.el('div', { class: 'ia-row' }, [IA.speakButton(say)]));
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      r.stage.appendChild(hint);
+
+      var proxy = {
+        answer: function (ok, el) {
+          if (ok) {
+            symbol.textContent = sym;
+            if (sym === '=') gator.className = 'gator chomp';
+            else { gator.className = 'gator open' + (sym === '>' ? ' flip' : ''); (sym === '<' ? right : left).classList.add('big'); }
+            IA.say(q.lt.replace('+', 'plus') + ' ' + word[sym] + ' ' + q.rt.replace('+', 'plus'));
+          } else {
+            var h;
+            if (q.lExpr || q.rExpr) h = 'First work out the sum: ' + (q.lExpr ? q.lt + ' = ' + q.L : q.rt + ' = ' + q.R) + '.';
+            else if (Math.max(q.L, q.R) >= 10) h = q.L + ' is ' + tensOnes(q.L) + '. ' + q.R + ' is ' + tensOnes(q.R) + '. Compare the tens first, then the ones.';
+            else h = 'Count up from 0. Which number comes later?';
+            hint.textContent = '💡 ' + h; hint.style.display = '';
+          }
+          return r.answer(ok, el);
+        }
+      };
+      IA.choices(proxy, r.stage, ['<', '=', '>'], sym, { cls: 'sym-choices' });
+    }
+  });
+</script>
+</body>
+</html>

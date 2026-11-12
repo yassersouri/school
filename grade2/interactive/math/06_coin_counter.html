@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Coin Counter — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .coinbtn { border: none; background: none; padding: 4px; cursor: pointer; display: inline-flex; flex-direction: column; align-items: center; gap: 2px; border-radius: 14px; font-family: inherit; font-size: 13px; font-weight: bold; color: #555; touch-action: manipulation; min-width: 56px; min-height: 56px; }
+    .coinbtn:hover { background: var(--ia-accent-2); }
+    .coinbtn svg { display: block; filter: drop-shadow(0 2px 2px rgba(0,0,0,.25)); }
+    @keyframes drop { from { transform: translateY(-30px) scale(.6); opacity: 0; } to { transform: none; opacity: 1; } }
+    .coinbtn.new { animation: drop .25s ease; }
+    .pile { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; padding: 14px; min-height: 100px; background: #f6f1e7; border: 3px solid #e3d5b8; border-radius: 20px; max-width: 640px; width: 100%; }
+    .purse { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; padding: 10px; background: #ede7f6; border: 3px solid #b39ddb; border-radius: 22px; }
+    .tray { min-height: 110px; }
+    .tray:empty::before { content: 'Tap coins in the purse to put them here'; color: #999; font-size: 15px; }
+    .target { font-size: clamp(22px, 4.5vw, 32px); font-weight: bold; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .target .amt { color: var(--ia-accent); font-size: 1.5em; }
+    .have { font-size: 22px; font-weight: bold; color: #555; }
+    .lbl { font-size: 13px; color: #8a7b6b; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  /* Canadian coins (no pennies). */
+  var COINS = {
+    nickel:  { v: 5,   name: 'nickel',  d: 56, label: '5¢' },
+    dime:    { v: 10,  name: 'dime',    d: 50, label: '10¢' },
+    quarter: { v: 25,  name: 'quarter', d: 62, label: '25¢' },
+    loonie:  { v: 100, name: 'loonie',  d: 68, label: '$1' },
+    toonie:  { v: 200, name: 'toonie',  d: 72, label: '$2' }
+  };
+  function coinSVG(kind) {
+    var c = COINS[kind], d = c.d, r = d / 2, s;
+    var txt = '<text x="' + r + '" y="' + (r + d * 0.11) + '" text-anchor="middle" font-family="Arial, sans-serif" font-weight="bold" font-size="' + (d * (c.label.length > 2 ? 0.28 : 0.34)) + '" fill="#37474f">' + c.label + '</text>';
+    if (kind === 'loonie') {
+      var pts = [];
+      for (var i = 0; i < 11; i++) { var a = -Math.PI / 2 + i * 2 * Math.PI / 11; pts.push((r + (r - 1.5) * Math.cos(a)).toFixed(1) + ',' + (r + (r - 1.5) * Math.sin(a)).toFixed(1)); }
+      s = '<polygon points="' + pts.join(' ') + '" fill="#e2b33c" stroke="#a67c00" stroke-width="2.5"/>' +
+          '<circle cx="' + r + '" cy="' + r + '" r="' + (r * 0.78) + '" fill="none" stroke="#b8860b" stroke-width="1.5"/>';
+      txt = txt.replace('#37474f', '#5d4300');
+    } else if (kind === 'toonie') {
+      s = '<circle cx="' + r + '" cy="' + r + '" r="' + (r - 1.5) + '" fill="#cfd8dc" stroke="#78909c" stroke-width="2.5"/>' +
+          '<circle cx="' + r + '" cy="' + r + '" r="' + (r * 0.6) + '" fill="#e2b33c" stroke="#a67c00" stroke-width="2"/>';
+      txt = txt.replace('#37474f', '#5d4300');
+    } else {
+      s = '<circle cx="' + r + '" cy="' + r + '" r="' + (r - 1.5) + '" fill="#d7dee2" stroke="#8a9ba5" stroke-width="2.5"/>' +
+          '<circle cx="' + r + '" cy="' + r + '" r="' + (r * 0.8) + '" fill="none" stroke="#a7b6be" stroke-width="1.5"/>';
+    }
+    var wrap = document.createElement('span');
+    wrap.innerHTML = '<svg width="' + d + '" height="' + d + '" viewBox="0 0 ' + d + ' ' + d + '" aria-hidden="true">' + s + txt + '</svg>';
+    return wrap.firstChild;
+  }
+  function money(c) { return c < 100 ? c + '¢' : '$' + (c / 100).toFixed(2); }
+  function sayMoney(c) {
+    var dl = Math.floor(c / 100), ct = c % 100, out = [];
+    if (dl) out.push(dl + (dl === 1 ? ' dollar' : ' dollars'));
+    if (ct || !dl) out.push(ct + ' cents');
+    return out.join(' and ');
+  }
+  function sayCoin(kind) { var c = COINS[kind]; IA.say(c.name + ', ' + sayMoney(c.v)); }
+  function coinButton(kind, showName, onTap) {
+    var b = IA.el('button', { class: 'coinbtn', type: 'button', 'aria-label': COINS[kind].name + ', ' + sayMoney(COINS[kind].v) }, [coinSVG(kind), showName ? COINS[kind].name : null]);
+    b.dataset.kind = kind;
+    b.addEventListener('click', function () { sayCoin(kind); if (onTap) onTap(b); });
+    return b;
+  }
+  var ORDER = ['toonie', 'loonie', 'quarter', 'dime', 'nickel'];
+  function countingHint(kinds) {
+    var sorted = kinds.slice().sort(function (a, b) { return COINS[b].v - COINS[a].v; });
+    var run = 0, steps = sorted.map(function (k) { run += COINS[k].v; return money(run); });
+    return 'Start with the biggest coins and count on: ' + steps.join(', ') + '.';
+  }
+
+  function randomCollection(lv) {
+    var kinds = lv.big ? ['nickel', 'dime', 'quarter', 'loonie', 'toonie'] : ['nickel', 'dime', 'quarter'];
+    for (;;) {
+      var n = IA.rand(2, lv.big ? 6 : 6), out = [], tot = 0;
+      for (var i = 0; i < n; i++) { var k = IA.pick(kinds); out.push(k); tot += COINS[k].v; }
+      if (tot <= lv.max && (!lv.big || tot > 100)) return { kinds: out, total: tot };
+    }
+  }
+  function moneyChoices(ans, max) {
+    var deltas = IA.shuffle([5, -5, 10, -10, 25, -25, 15, -15, 20, -20]);
+    var set = {}, out = [ans]; set[ans] = true;
+    for (var i = 0; i < deltas.length && out.length < 4; i++) {
+      var v = ans + deltas[i];
+      if (v > 0 && v <= max + 25 && !set[v]) { set[v] = true; out.push(v); }
+    }
+    return IA.shuffle(out);
+  }
+
+  IA.game({
+    id: 'g2m-coin-counter',
+    title: 'Coin Counter',
+    emoji: '🪙',
+    back: '../index.html',
+    instructions: 'Count Canadian coins and make amounts. Tap any coin to hear its name!',
+    rounds: 10,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Count the coins', value: { mode: 'count', max: 100 }, desc: 'Nickels, dimes, quarters — up to $1' },
+      { label: 'Count bigger amounts', value: { mode: 'count', max: 500, big: true }, desc: 'With loonies and toonies — up to $5' },
+      { label: 'Make the amount', value: { mode: 'make', max: 100 }, desc: 'Tap coins to make up to $1' },
+      { label: 'Make bigger amounts', value: { mode: 'make', max: 500, big: true }, desc: 'Tap coins to make up to $5' }
+    ],
+    round: function (r) {
+      var lv = r.level;
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      if (lv.mode === 'count') {
+        var col = randomCollection(lv);
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['How much money is here?', IA.speakButton('How much money is here?')]));
+        var pile = IA.el('div', { class: 'pile' });
+        IA.shuffle(col.kinds).forEach(function (k) { pile.appendChild(coinButton(k, true)); });
+        r.stage.appendChild(pile);
+        r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Tap a coin to hear its name.']));
+        if (r.index === 0) IA.say('How much money is here? Tap a coin to hear its name.');
+        var rr = { answer: function (ok, el) {
+          if (!ok) { hint.textContent = '💡 ' + countingHint(col.kinds); hint.style.display = ''; }
+          return r.answer(ok, el, ok ? money(col.total) + '! 💰' : undefined);
+        } };
+        IA.choices(rr, r.stage, moneyChoices(col.total, lv.max), col.total, { render: money });
+        r.stage.appendChild(hint);
+        return;
+      }
+      // make the amount
+      var target = lv.big ? IA.rand(21, 100) * 5 : IA.rand(3, 20) * 5;
+      var have = 0;
+      r.stage.appendChild(IA.el('div', { class: 'target' }, ['Make', IA.el('span', { class: 'amt' }, [money(target)]), IA.speakButton('Make ' + sayMoney(target))]));
+      IA.say('Make ' + sayMoney(target));
+      var tray = IA.el('div', { class: 'pile tray', 'aria-label': 'Your coins' });
+      var haveEl = IA.el('div', { class: 'have', 'aria-live': 'polite' });
+      function upd() { haveEl.textContent = 'You have: ' + money(have); }
+      var purse = IA.el('div', { class: 'purse', 'aria-label': 'Purse' });
+      (lv.big ? ['nickel', 'dime', 'quarter', 'loonie', 'toonie'] : ['nickel', 'dime', 'quarter', 'loonie']).forEach(function (k) {
+        purse.appendChild(coinButton(k, true, function () {
+          if (tray.children.length >= 20) { IA.toast('That is a lot of coins! Try bigger ones.', true); return; }
+          var c = coinButton(k, false, function () { have -= COINS[k].v; c.remove(); upd(); });
+          c.classList.add('new'); c.setAttribute('aria-label', 'Remove ' + COINS[k].name);
+          tray.appendChild(c); have += COINS[k].v; upd(); hint.style.display = 'none';
+        }));
+      });
+      r.stage.appendChild(IA.el('div', { class: 'lbl' }, ['👛 Purse']));
+      r.stage.appendChild(purse);
+      r.stage.appendChild(IA.el('div', { class: 'lbl' }, ['Your coins (tap one to put it back)']));
+      r.stage.appendChild(tray);
+      r.stage.appendChild(haveEl); upd();
+      var check = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['Check ✔']);
+      check.addEventListener('click', function () {
+        if (have === target) { r.answer(true, check, money(target) + ' — perfect! 💰'); IA.say('Yes! That makes ' + sayMoney(target)); return; }
+        var d = target - have;
+        hint.textContent = '💡 You have ' + money(have) + '. ' + (d > 0 ? 'You need ' + money(d) + ' more.' : 'That is ' + money(-d) + ' too much — tap a coin to put it back.');
+        hint.style.display = '';
+        IA.say(hint.textContent.replace('💡', ''));
+        r.answer(false, check);
+      });
+      r.stage.appendChild(check);
+      r.stage.appendChild(hint);
+    }
+  });
+</script>
+</body>
+</html>

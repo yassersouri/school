@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Listen &amp; Pick — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .listen { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .hint-pic { font-size: clamp(56px, 12vw, 90px); line-height: 1; min-height: 1em; }
+    .hint-pic.hidden { visibility: hidden; }
+    .ia-choice { font-size: clamp(26px, 5.5vw, 40px); letter-spacing: 1px; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Each item: target word, its picture (used as a hint), and minimal-pair options (differ by about one sound).
+  var SETS = {
+    short: [
+      ['cat', '🐱', ['cot', 'cut', 'kit']], ['hat', '🎩', ['hot', 'hit', 'hut']], ['pig', '🐷', ['peg', 'pug', 'dig']],
+      ['dog', '🐶', ['dig', 'dug', 'log']], ['bed', '🛏️', ['bad', 'bid', 'bud']], ['sun', '☀️', ['sub', 'fun', 'sin']],
+      ['bus', '🚌', ['bun', 'but', 'bud']], ['pen', '🖊️', ['pin', 'pan', 'pun']], ['mug', '☕', ['rug', 'hug', 'mud']],
+      ['fox', '🦊', ['fix', 'box', 'fog']], ['six', '6️⃣', ['sax', 'sick', 'fix']], ['web', '🕸️', ['wet', 'wed', 'bed']],
+      ['ten', '🔟', ['tan', 'tin', 'hen']], ['net', '🥅', ['nut', 'not', 'pet']], ['bug', '🐛', ['bag', 'big', 'beg']],
+      ['cap', '🧢', ['cup', 'cop', 'map']], ['log', '🪵', ['leg', 'lag', 'dog']], ['hut', '🛖', ['hat', 'hot', 'hit']]
+    ],
+    long: [
+      ['cake', '🎂', ['cape', 'lake', 'make']], ['kite', '🪁', ['kit', 'bite', 'kid']], ['bike', '🚲', ['bake', 'like', 'bite']],
+      ['rose', '🌹', ['rope', 'nose', 'rod']], ['nose', '👃', ['rose', 'note', 'nod']], ['bone', '🦴', ['cone', 'bean', 'boat']],
+      ['five', '5️⃣', ['fine', 'dive', 'fit']], ['nine', '9️⃣', ['line', 'nice', 'mine']], ['tree', '🌳', ['free', 'tray', 'try']],
+      ['bee', '🐝', ['bay', 'boo', 'see']], ['sheep', '🐑', ['ship', 'sheet', 'shop']], ['seal', '🦭', ['sell', 'meal', 'seat']],
+      ['rain', '🌧️', ['ran', 'main', 'rail']], ['train', '🚆', ['rain', 'trail', 'drain']], ['boat', '⛵', ['bat', 'coat', 'beat']],
+      ['goat', '🐐', ['got', 'coat', 'gate']], ['coat', '🧥', ['cot', 'cat', 'goat']], ['snake', '🐍', ['snack', 'shake', 'lake']],
+      ['plane', '✈️', ['plan', 'plate', 'lane']], ['moon', '🌙', ['noon', 'mean', 'mood']], ['snail', '🐌', ['sail', 'nail', 'snake']]
+    ],
+    digraph: [
+      ['ship', '🚢', ['chip', 'sip', 'shop']], ['fish', '🐟', ['dish', 'fist', 'wish']], ['shell', '🐚', ['sell', 'bell', 'shed']],
+      ['chick', '🐤', ['check', 'kick', 'thick']], ['chair', '🪑', ['hair', 'share', 'cheer']], ['thumb', '👍', ['them', 'gum', 'thin']],
+      ['whale', '🐳', ['while', 'wheel', 'tale']], ['duck', '🦆', ['dock', 'deck', 'luck']], ['sock', '🧦', ['sack', 'shock', 'lock']],
+      ['ring', '💍', ['rang', 'wing', 'sing']], ['frog', '🐸', ['fog', 'from', 'fig']], ['crab', '🦀', ['cab', 'grab', 'crib']],
+      ['flag', '🚩', ['flap', 'flat', 'bag']], ['plug', '🔌', ['plum', 'pug', 'slug']], ['clock', '🕐', ['lock', 'click', 'block']],
+      ['sled', '🛷', ['slid', 'sped', 'bed']], ['star', '⭐', ['tar', 'scar', 'stir']], ['spoon', '🥄', ['soon', 'spin', 'moon']],
+      ['truck', '🚚', ['tuck', 'track', 'trick']], ['tent', '⛺', ['ten', 'test', 'rent']], ['hand', '✋', ['had', 'band', 'sand']],
+      ['gift', '🎁', ['lift', 'gust', 'sift']]
+    ]
+  };
+  var queue = [];
+  function nextItem(level) {
+    if (!queue.length || queue.level !== level) { queue = IA.shuffle(SETS[level]); queue.level = level; }
+    return queue.pop();
+  }
+
+  IA.game({
+    id: 'g1r-listen-and-pick',
+    title: 'Listen & Pick',
+    emoji: '👂',
+    back: '../index.html',
+    instructions: 'Listen to the word. Tap the word you hear!',
+    rounds: 10,
+    levelTitle: 'Which sounds?',
+    levels: [
+      { label: 'Short vowels', value: 'short', desc: 'cat · cot · cut' },
+      { label: 'Long vowels', value: 'long', desc: 'kite · kit · bite' },
+      { label: 'Digraphs & blends', value: 'digraph', desc: 'ship · chip · shop' }
+    ],
+    round: function (r) {
+      var it = nextItem(r.level), word = it[0];
+      var pic = IA.el('div', { class: 'hint-pic' + (IA.speechAvailable ? ' hidden' : ''), 'aria-hidden': IA.speechAvailable ? 'true' : 'false' }, [it[1]]);
+      var replay = IA.el('button', { class: 'ia-speak big', type: 'button', 'aria-label': 'Hear the word again',
+        onclick: function () { IA.say(word, { force: true, rate: 0.8 }); } }, ['🔊']);
+      r.stage.appendChild(IA.el('div', { class: 'listen' }, [
+        IA.el('div', { class: 'ia-prompt' }, ['Which word do you hear?']),
+        replay,
+        IA.speechAvailable ? IA.el('div', { class: 'ia-sub' }, ['Tap 🔊 to hear it again']) :
+          IA.el('div', { class: 'ia-hint' }, ['🔇 Sound is not available — use the picture as your clue!']),
+        pic
+      ]));
+      var opts = IA.shuffle([word].concat(it[2]));
+      var grid = IA.choices(r, r.stage, opts, word, { speak: true });
+      // After a wrong tap, show the picture so the child can still find the word.
+      grid.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('.ia-choice');
+        if (b && b.textContent !== word) {
+          pic.classList.remove('hidden');
+          setTimeout(function () { IA.say(word, { rate: 0.75, queue: true }); }, 700);
+        }
+      });
+      setTimeout(function () { IA.say(word, { rate: 0.8 }); }, 350);
+    }
+  });
+</script>
+</body>
+</html>

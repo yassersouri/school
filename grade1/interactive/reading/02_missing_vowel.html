@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Missing Vowel — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .word { display: flex; gap: 6px; justify-content: center; font-size: clamp(44px, 10vw, 76px); font-weight: bold; letter-spacing: 2px; }
+    .word span { min-width: .75em; text-align: center; }
+    .word .gap { border-bottom: 6px solid var(--ia-accent); color: var(--ia-accent); background: var(--ia-accent-2); min-width: 1em; }
+    .word .gap.filled { animation: ia-pop .45s ease; }
+    .vowels { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+    .vowels .ia-choice { min-width: 76px; min-height: 76px; font-size: clamp(32px, 6vw, 44px); padding: 6px 14px; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Vetted word → emoji bank (only words whose picture is clear).
+  var CVC = { cat: '🐱', hat: '🎩', bat: '🦇', rat: '🐀', map: '🗺️', van: '🚐', cap: '🧢', can: '🥫', ram: '🐏',
+    bed: '🛏️', hen: '🐔', web: '🕸️', pen: '🖊️', ten: '🔟', leg: '🦵', net: '🥅',
+    pig: '🐷', pin: '📌', six: '6️⃣',
+    dog: '🐶', log: '🪵', fox: '🦊', box: '📦',
+    sun: '☀️', bus: '🚌', bug: '🐛', mug: '☕', tub: '🛁', nut: '🥜', hut: '🛖' };
+  var BLEND = { frog: '🐸', crab: '🦀', drum: '🥁', flag: '🚩', plug: '🔌', clock: '🕐', sled: '🛷', skunk: '🦨',
+    truck: '🚚', tent: '⛺', hand: '✋', gift: '🎁', ship: '🚢', fish: '🐟', shell: '🐚', chick: '🐤',
+    duck: '🦆', sock: '🧦', ring: '💍', milk: '🥛', bell: '🔔', plant: '🪴', ant: '🐜' };
+  var VOWELS = ['a', 'e', 'i', 'o', 'u'];
+  var queue = [];
+  function nextWord(level) {
+    if (!queue.length || queue.level !== level) { queue = IA.shuffle(Object.keys(level === 'cvc' ? CVC : BLEND)); queue.level = level; }
+    return queue.pop();
+  }
+
+  IA.game({
+    id: 'g1r-missing-vowel',
+    title: 'Missing Vowel',
+    emoji: '🔤',
+    back: '../index.html',
+    instructions: 'Look at the picture. Which vowel is missing?',
+    rounds: 10,
+    levelTitle: 'Pick your words',
+    levels: [
+      { label: 'CVC words', value: 'cvc', desc: 'c_t → cat' },
+      { label: 'Blends & digraphs', value: 'blend', desc: 'fr_g → frog' }
+    ],
+    round: function (r) {
+      var word = nextWord(r.level), pic = (r.level === 'cvc' ? CVC : BLEND)[word];
+      var vi = -1;
+      for (var i = 0; i < word.length; i++) if (VOWELS.indexOf(word[i]) >= 0) { vi = i; break; }
+      var vowel = word[vi];
+      var letters = word.split('').map(function (ch, i) {
+        return IA.el('span', { class: i === vi ? 'gap' : '' }, [i === vi ? '\u00a0' : ch]);
+      });
+      var gap = letters[vi];
+      r.stage.appendChild(IA.el('div', { class: 'ia-emoji', 'aria-label': 'picture' }, [pic]));
+      r.stage.appendChild(IA.el('div', { class: 'word', 'aria-label': word.slice(0, vi) + ' blank ' + word.slice(vi + 1) }, letters));
+      var hint = IA.el('div', { class: 'ia-sub' }, ['Say the picture name. Listen for the middle sound. ', IA.speakButton(word)]);
+      r.stage.appendChild(hint);
+      var row = IA.el('div', { class: 'vowels' });
+      VOWELS.forEach(function (v) {
+        var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button', 'aria-label': 'vowel ' + v }, [v]);
+        b.addEventListener('click', function () {
+          if (v === vowel) {
+            gap.textContent = v; gap.classList.add('filled');
+            r.answer(true, b);
+            IA.say(word);
+          } else {
+            b.disabled = true;
+            // Show the wrong word, then explain.
+            gap.textContent = v;
+            setTimeout(function () { if (gap.textContent === v) gap.textContent = '\u00a0'; }, 900);
+            r.answer(false, b, 'Listen: ' + word + ' 👂');
+            IA.say(word, { rate: 0.6 });
+          }
+        });
+        row.appendChild(b);
+      });
+      r.stage.appendChild(row);
+    }
+  });
+</script>
+</body>
+</html>

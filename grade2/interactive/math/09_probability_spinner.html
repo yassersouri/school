@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Probability Spinner — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .play { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-start; width: 100%; }
+    .spin-box { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    svg.spinner { width: min(300px, 78vw); height: auto; display: block; }
+    svg.spinner .sec { cursor: pointer; }
+    svg.spinner .sec:hover { filter: brightness(1.1); }
+    .arrow { transform-origin: 150px 150px; transform-box: view-box; }
+    .side { display: flex; flex-direction: column; gap: 12px; min-width: 260px; flex: 1; max-width: 400px; }
+    .panel { background: #faf7ff; border: 2px solid #d1c4e9; border-radius: 16px; padding: 10px 12px; }
+    .panel h3 { margin: 0 0 8px; font-size: 19px; color: #4527a0; }
+    .ia-btn.sel { background: var(--ia-accent); color: #fff; border-color: var(--ia-accent); }
+    .nbtns { display: flex; flex-wrap: wrap; gap: 6px; }
+    .nbtns .ia-btn { min-width: 48px; min-height: 48px; padding: 4px; font-size: 18px; }
+    .chart { display: flex; flex-direction: column; gap: 6px; }
+    .bar-row { display: grid; grid-template-columns: 70px 1fr 40px; gap: 6px; align-items: center; font-weight: bold; font-size: 15px; }
+    .bar-track { height: 26px; background: #eee; border-radius: 8px; overflow: hidden; }
+    .bar { height: 100%; width: 100%; transform-origin: left center; transform: scaleX(0); transition: transform .4s ease; border-radius: 8px; }
+    .swatch { display: inline-block; width: 18px; height: 18px; border-radius: 50%; vertical-align: middle; margin-right: 4px; border: 2px solid rgba(0,0,0,.25); }
+    .pred { display: flex; flex-wrap: wrap; gap: 6px; }
+    .pred .ia-btn { font-size: 16px; min-height: 48px; padding: 6px 10px; }
+    .note { font-size: 15px; color: #4527a0; font-weight: bold; min-height: 1.3em; }
+    .pic { display: flex; justify-content: center; }
+    .pic svg { width: min(260px, 70vw); height: auto; }
+    .q { font-size: clamp(20px, 4vw, 28px); font-weight: bold; text-align: center; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var ID = 'g2m-probability-spinner';
+  var COL = { red: '#e53935', blue: '#1e88e5', yellow: '#fdd835', green: '#43a047' };
+  var NAMES = ['red', 'blue', 'yellow', 'green'];
+  var C = 150, R = 140;
+
+  function pt(angDeg, rad) { var a = (angDeg - 90) * Math.PI / 180; return (C + rad * Math.cos(a)).toFixed(2) + ',' + (C + rad * Math.sin(a)).toFixed(2); }
+  /** Spinner SVG string. sectors = array of colour names, clockwise from the top. */
+  function spinnerSVG(sectors, withArrow) {
+    var n = sectors.length, s = '<svg class="spinner" viewBox="0 0 300 300" role="img" aria-label="Spinner with ' + n + ' equal parts">';
+    s += '<circle cx="150" cy="150" r="' + (R + 6) + '" fill="#333"/>';
+    for (var i = 0; i < n; i++) {
+      var a0 = i * 360 / n, a1 = (i + 1) * 360 / n;
+      s += '<path class="sec" data-i="' + i + '" d="M150,150 L' + pt(a0, R) + ' A' + R + ',' + R + ' 0 ' + (a1 - a0 > 180 ? 1 : 0) + ',1 ' + pt(a1, R) + ' Z" fill="' + COL[sectors[i]] + '" stroke="#fff" stroke-width="3"/>';
+    }
+    if (withArrow) s += '<g class="arrow"><polygon points="150,30 164,150 150,166 136,150" fill="#263238" stroke="#fff" stroke-width="3"/></g>';
+    s += '<circle cx="150" cy="150" r="12" fill="#fff" stroke="#263238" stroke-width="4"/></svg>';
+    return s;
+  }
+  /** Bag-of-marbles SVG string. */
+  function bagSVG(marbles) {
+    var s = '<svg viewBox="0 0 260 250" role="img" aria-label="Bag of ' + marbles.length + ' marbles">';
+    s += '<path d="M60,40 Q40,40 32,90 L20,200 Q18,236 60,236 L200,236 Q242,236 240,200 L228,90 Q220,40 200,40 Z" fill="#d7b98e" stroke="#8d6e63" stroke-width="4"/>';
+    s += '<path d="M60,40 Q130,64 200,40" fill="none" stroke="#6d4c41" stroke-width="5"/>';
+    var per = 4, sh = IA.shuffle(marbles);
+    sh.forEach(function (m, i) {
+      var row = Math.floor(i / per), col = i % per, inRow = Math.min(per, sh.length - row * per);
+      var x = 130 + (col - (inRow - 1) / 2) * 46, y = 92 + row * 46;
+      s += '<circle cx="' + x + '" cy="' + y + '" r="19" fill="' + COL[m] + '" stroke="rgba(0,0,0,.35)" stroke-width="2"/><circle cx="' + (x - 6) + '" cy="' + (y - 6) + '" r="5" fill="#fff" opacity=".6"/>';
+    });
+    return s + '</svg>';
+  }
+  function svgNode(str) { var d = document.createElement('div'); d.innerHTML = str; return d.firstChild; }
+  function counts(arr) { var c = {}; arr.forEach(function (x) { c[x] = (c[x] || 0) + 1; }); return c; }
+  function swatch(c) { return IA.el('span', { class: 'swatch', style: { background: COL[c] } }); }
+
+  IA.game({
+    id: ID,
+    title: 'Probability Spinner',
+    emoji: '🎡',
+    back: '../index.html',
+    instructions: 'Spin, predict and use chance words: certain, likely, unlikely, impossible.',
+    rounds: 10,
+    levelTitle: 'Choose a mode',
+    levels: [
+      { label: '🎡 Spinner lab', value: { mode: 'lab' }, desc: 'Free play: build a spinner, predict and spin' },
+      { label: 'Chance words', value: { mode: 'words' }, desc: 'Certain, likely, unlikely or impossible?' },
+      { label: 'Which is more likely?', value: { mode: 'more' }, desc: 'Compare two colours' }
+    ],
+    round: function (r) {
+      if (r.level.mode === 'lab') return lab(r);
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      var useBag = Math.random() < 0.5;
+      var items, target, correct, explain, question;
+      if (r.level.mode === 'words') {
+        var cat = ['certain', 'likely', 'unlikely', 'impossible'][r.index % 4];
+        if (r.index >= 4) cat = IA.pick(['certain', 'likely', 'unlikely', 'impossible']);
+        target = IA.pick(NAMES);
+        var others = IA.shuffle(NAMES.filter(function (c) { return c !== target; }));
+        var n = IA.rand(useBag ? 4 : 4, useBag ? 10 : 8), k;
+        if (cat === 'certain') { n = IA.rand(useBag ? 3 : 2, useBag ? 8 : 6); k = n; }
+        else if (cat === 'impossible') k = 0;
+        else if (cat === 'likely') k = IA.rand(Math.ceil(0.7 * n), n - 1);
+        else k = IA.rand(1, Math.max(1, Math.floor(0.3 * n)));
+        items = [];
+        for (var i = 0; i < k; i++) items.push(target);
+        var nOther = IA.rand(1, 2);
+        for (var j = k; j < n; j++) items.push(others[(j - k) % nOther]);
+        if (!useBag) items = IA.shuffle(items);
+        correct = cat;
+        var thing = useBag ? 'marble' : 'part';
+        explain = {
+          certain: 'Every ' + thing + ' is ' + target + ' (' + k + ' of ' + n + '). It will happen for sure — certain!',
+          likely: k + ' of ' + n + ' ' + thing + 's are ' + target + '. That is most of them, so it is likely.',
+          unlikely: 'Only ' + k + ' of ' + n + ' ' + thing + 's ' + (k === 1 ? 'is' : 'are') + ' ' + target + '. It could happen, but it is unlikely.',
+          impossible: 'There are no ' + target + ' ' + thing + 's at all. It cannot happen — impossible!'
+        }[cat];
+        question = useBag ? 'You pick one marble without looking. Will it be ' + target + '?' : 'You spin once. Will it land on ' + target + '?';
+        r.stage.appendChild(IA.el('div', { class: 'q' }, [question, IA.speakButton(question + ' Is it certain, likely, unlikely, or impossible?')]));
+        IA.say(question + ' Is it certain, likely, unlikely, or impossible?');
+      } else {
+        var two = IA.sample(NAMES, 2), equal = Math.random() < 0.25, a, b;
+        var tot = useBag ? IA.rand(4, 10) : IA.pick([4, 6, 8]);
+        if (equal) { if (tot % 2) tot++; a = b = tot / 2; }
+        else { a = IA.rand(1, tot - 1); if (a * 2 === tot) a = a === 1 ? tot - 1 : a - 1; b = tot - a; }
+        items = [];
+        for (var x = 0; x < a; x++) items.push(two[0]);
+        for (var y = 0; y < b; y++) items.push(two[1]);
+        if (!useBag) items = IA.shuffle(items);
+        correct = equal ? 'equal' : (a > b ? two[0] : two[1]);
+        var more = a > b ? two[0] : two[1], less = a > b ? two[1] : two[0];
+        explain = equal ? 'There are ' + a + ' ' + two[0] + ' and ' + b + ' ' + two[1] + '. Same number, so they are equally likely!'
+          : 'There are ' + Math.max(a, b) + ' ' + more + ' and only ' + Math.min(a, b) + ' ' + less + '. More ' + more + ', so ' + more + ' is more likely.';
+        question = useBag ? 'Which colour are you more likely to pick?' : 'Which colour is the spinner more likely to land on?';
+        r.stage.appendChild(IA.el('div', { class: 'q' }, [question, IA.speakButton(question)]));
+        IA.say(question);
+        target = two;
+      }
+      r.stage.appendChild(IA.el('div', { class: 'pic' }, [svgNode(useBag ? bagSVG(items) : spinnerSVG(items, true))]));
+      var rr = { answer: function (ok, el) {
+        hint.textContent = '💡 ' + explain; hint.style.display = '';
+        if (!ok) IA.say(explain);
+        return r.answer(ok, el);
+      } };
+      var opts = r.level.mode === 'words' ? ['certain', 'likely', 'unlikely', 'impossible'] : IA.shuffle(target).concat(['equal']);
+      IA.choices(rr, r.stage, opts, correct, { render: function (o) {
+        if (r.level.mode === 'words') return { certain: '✅ Certain', likely: '👍 Likely', unlikely: '🤏 Unlikely', impossible: '🚫 Impossible' }[o];
+        if (o === 'equal') return '⚖️ Equally likely';
+        return IA.el('span', {}, [swatch(o), o]);
+      }, speak: false });
+      r.stage.appendChild(hint);
+    }
+  });
+
+  /* ── Free-play spinner lab ───────────────────────────────────── */
+  function lab(r) {
+    r.shell.setScore(''); r.shell.setProgress(0);
+    var sectors = ['red', 'red', 'red', 'blue'];
+    var tally = {}, total = 0, angle = 0, spinning = false, prediction = null;
+    var box = IA.el('div', { class: 'spin-box' });
+    var side = IA.el('div', { class: 'side' });
+    r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Tap a part of the spinner to change its colour. Choose how many parts. Then predict and spin!']));
+    r.stage.appendChild(IA.el('div', { class: 'play' }, [box, side]));
+    var spinnerHolder = IA.el('div');
+    var note = IA.el('div', { class: 'note', 'aria-live': 'polite' });
+    var spinRow = IA.el('div', { class: 'ia-row' });
+    box.appendChild(spinnerHolder); box.appendChild(spinRow); box.appendChild(note);
+    var spin1 = IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: function () { spin(1); } }, ['🌀 Spin']);
+    var spin10 = IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { spin(10); } }, ['⚡ 10×']);
+    var spin50 = IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { spin(50); } }, ['🚀 50×']);
+    [spin1, spin10, spin50].forEach(function (b) { spinRow.appendChild(b); });
+
+    var nPanel = IA.el('div', { class: 'panel' }, [IA.el('h3', {}, ['How many parts?'])]);
+    var nBtns = IA.el('div', { class: 'nbtns' });
+    for (var n = 2; n <= 8; n++) (function (n) {
+      nBtns.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', 'data-n': n, onclick: function () { setN(n); } }, [String(n)]));
+    })(n);
+    nPanel.appendChild(nBtns);
+    var predPanel = IA.el('div', { class: 'panel' }, [IA.el('h3', {}, ['🤔 Predict: which colour is most likely?'])]);
+    var predRow = IA.el('div', { class: 'pred' }); predPanel.appendChild(predRow);
+    var chartPanel = IA.el('div', { class: 'panel' }, [IA.el('h3', {}, ['📊 Tally']), ]);
+    var chart = IA.el('div', { class: 'chart' }); chartPanel.appendChild(chart);
+    chartPanel.appendChild(IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { resetTally(); IA.toast('Tally cleared'); } }, ['🧹 Clear tally']));
+    [nPanel, predPanel, chartPanel].forEach(function (p) { side.appendChild(p); });
+    r.stage.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { location.reload(); } }, ['🎚️ Change mode']));
+
+    function present() { return NAMES.filter(function (c) { return sectors.indexOf(c) >= 0; }); }
+    function mostLikely() {
+      var c = counts(sectors), best = 0, who = [];
+      Object.keys(c).forEach(function (k) { if (c[k] > best) { best = c[k]; who = [k]; } else if (c[k] === best) who.push(k); });
+      return who.length === 1 ? who[0] : 'equal';
+    }
+    function draw() {
+      spinnerHolder.innerHTML = spinnerSVG(sectors, true);
+      var arrow = spinnerHolder.querySelector('.arrow');
+      arrow.style.transform = 'rotate(' + angle + 'deg)';
+      Array.prototype.forEach.call(spinnerHolder.querySelectorAll('.sec'), function (p) {
+        p.addEventListener('click', function () {
+          if (spinning) return;
+          var i = +p.getAttribute('data-i');
+          sectors[i] = NAMES[(NAMES.indexOf(sectors[i]) + 1) % NAMES.length];
+          IA.sfx.tap(); IA.say(sectors[i]); changed();
+        });
+      });
+      Array.prototype.forEach.call(nBtns.children, function (b) { b.classList.toggle('sel', +b.getAttribute('data-n') === sectors.length); });
+      IA.clear(predRow);
+      present().concat(present().length > 1 ? ['equal'] : []).forEach(function (c) {
+        predRow.appendChild(IA.el('button', { class: 'ia-btn' + (prediction === c ? ' sel' : ''), type: 'button', onclick: function () { predict(c); } },
+          c === 'equal' ? ['⚖️ Equally likely'] : [swatch(c), c]));
+      });
+      drawChart();
+    }
+    function drawChart() {
+      IA.clear(chart);
+      var max = 1;
+      NAMES.forEach(function (c) { max = Math.max(max, tally[c] || 0); });
+      present().forEach(function (c) {
+        var bar = IA.el('div', { class: 'bar', style: { background: COL[c] } });
+        chart.appendChild(IA.el('div', { class: 'bar-row' }, [IA.el('span', {}, [swatch(c), c]), IA.el('div', { class: 'bar-track' }, [bar]), IA.el('span', {}, [String(tally[c] || 0)])]));
+        requestAnimationFrame(function () { bar.style.transform = 'scaleX(' + ((tally[c] || 0) / max) + ')'; });
+      });
+      chart.appendChild(IA.el('div', { class: 'ia-sub' }, ['Total spins: ' + total]));
+    }
+    function resetTally() { tally = {}; total = 0; drawChart(); }
+    function changed() { prediction = null; note.textContent = ''; if (total) resetTally(); draw(); }
+    function setN(n) {
+      if (spinning) return;
+      var old = sectors.slice(); sectors = [];
+      for (var i = 0; i < n; i++) sectors.push(old[i] || NAMES[i % 2 ? 1 : 0]);
+      IA.sfx.tap(); changed();
+    }
+    function predict(c) {
+      prediction = c; IA.sfx.tap();
+      var c2 = counts(sectors);
+      var why = c === 'equal' ? '' : c + ' has ' + c2[c] + ' of ' + sectors.length + ' parts.';
+      var right = mostLikely();
+      if (c === right) { note.textContent = 'Good thinking! ' + (c === 'equal' ? 'The top colours have the same number of parts.' : why) + ' Now spin to test it!'; IA.good(null, 'Smart prediction! 🧠'); }
+      else { note.textContent = 'Hmm, count the parts! ' + (right === 'equal' ? 'Some colours have the same number of parts.' : right + ' has ' + c2[right] + ' of ' + sectors.length + ' parts.') + ' Spin and see!'; IA.say(note.textContent); }
+      draw();
+    }
+    function spin(times) {
+      if (spinning) return;
+      spinning = true;
+      var results = [], last = 0;
+      for (var t = 0; t < times; t++) { last = Math.random() * 360; results.push(sectors[Math.floor(last / (360 / sectors.length)) % sectors.length]); }
+      var arrow = spinnerHolder.querySelector('.arrow');
+      var base = angle - (angle % 360);
+      angle = base + 360 * (times === 1 ? 4 : 2) + last;
+      var dur = times === 1 ? 2.4 : 0.8;
+      arrow.style.transition = 'transform ' + dur + 's cubic-bezier(.15,.7,.2,1)';
+      requestAnimationFrame(function () { arrow.style.transform = 'rotate(' + angle + 'deg)'; });
+      IA.sfx.tap();
+      setTimeout(function () {
+        arrow.style.transition = '';
+        results.forEach(function (c) { tally[c] = (tally[c] || 0) + 1; });
+        total += times; spinning = false;
+        var lastC = results[results.length - 1];
+        if (times === 1) { note.textContent = 'It landed on ' + lastC + '!'; IA.say(lastC + '!'); }
+        else {
+          var top = present().slice().sort(function (a, b) { return (tally[b] || 0) - (tally[a] || 0); })[0];
+          note.textContent = times + ' spins done! ' + top + ' is in the lead with ' + tally[top] + '.' + (prediction && prediction !== 'equal' ? (prediction === top ? ' Just like you predicted! 🎯' : ' You predicted ' + prediction + '.') : '');
+          IA.say(note.textContent.replace(/[🎯]/g, ''));
+        }
+        drawChart();
+        r.shell.setProgress(Math.min(1, total / 20));
+        if (total >= 20) IA.setStars(ID, 1);
+      }, dur * 1000 + 50);
+    }
+    draw();
+  }
+</script>
+</body>
+</html>

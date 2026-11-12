@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Math Facts Race — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; }
+    .hud { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; font-weight: bold; font-size: 20px; }
+    .hud span { background: #f1f8e9; border: 2px solid #c5e1a5; border-radius: 999px; padding: 4px 14px; }
+    .hud .time.low { background: #ffebee; border-color: #ef9a9a; color: #c62828; }
+    .fact { font-size: clamp(40px, 10vw, 72px); font-weight: bold; display: flex; align-items: center; gap: 12px; }
+    .ans { min-width: 1.8em; padding: 0 8px; border-bottom: 5px solid var(--ia-accent); text-align: center; color: var(--ia-accent); min-height: 1.15em; }
+    .pad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; max-width: 340px; }
+    .pad .ia-btn { font-size: clamp(26px, 6vw, 34px); min-height: 64px; padding: 6px; }
+    .last { min-height: 26px; font-size: 18px; color: #6d5a00; }
+    .start { display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; }
+    .best { font-size: 20px; color: #8a6d00; }
+    .goal { font-size: 15px; color: #777; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var ID = 'g1m-math-facts-race';
+  var SECONDS = 60;
+  var STAR_AT = [5, 12, 20];
+  var shell = IA.freePlay({
+    id: ID, title: 'Math Facts Race', emoji: '🏎️', back: '../index.html',
+    instructions: 'Answer as many facts as you can in 60 seconds!'
+  });
+  var LEVELS = [
+    { label: 'Adding to 10', value: { key: 'add10', name: 'Adding to 10' }, desc: '3 + 4, 6 + 2 …' },
+    { label: 'Taking away to 10', value: { key: 'sub10', name: 'Taking away to 10' }, desc: '9 − 5, 7 − 3 …' },
+    { label: 'Mixed to 20', value: { key: 'mix20', name: 'Mixed to 20' }, desc: '8 + 7, 15 − 6 …' }
+  ];
+  var level, keyHandler = null, timer = null;
+
+  function bestKey() { return 'best:' + ID + ':' + level.key; }
+  function fact() {
+    var a, b, op;
+    if (level.key === 'add10') { a = IA.rand(0, 10); b = IA.rand(0, 10 - a); op = '+'; }
+    else if (level.key === 'sub10') { a = IA.rand(1, 10); b = IA.rand(0, a); op = '−'; }
+    else if (Math.random() < 0.5) { a = IA.rand(1, 12); b = IA.rand(1, Math.min(10, 20 - a)); op = '+'; }
+    else { a = IA.rand(5, 20); b = IA.rand(1, Math.min(10, a)); op = '−'; }
+    return { a: a, b: b, op: op, ans: op === '+' ? a + b : a - b };
+  }
+  function stopAll() {
+    if (timer) { clearInterval(timer); timer = null; }
+    if (keyHandler) { document.removeEventListener('keydown', keyHandler); keyHandler = null; }
+  }
+  function pickLevel() { stopAll(); shell.setScore(''); shell.setProgress(0); IA.levelPicker(shell.stage, 'Pick your race', LEVELS, function (v) { level = v; startScreen(); }); }
+
+  function startScreen() {
+    stopAll();
+    IA.clear(shell.stage); shell.setProgress(0); shell.setScore('');
+    var best = IA.load(bestKey(), 0);
+    shell.stage.appendChild(IA.el('div', { class: 'start' }, [
+      IA.el('div', { class: 'ia-emoji' }, ['🏁']),
+      IA.el('h2', { style: { color: 'var(--ia-accent)', margin: 0 } }, [level.name]),
+      IA.el('div', { class: 'best' }, ['🏆 Best score: ' + best]),
+      IA.el('div', { class: 'goal' }, ['⭐ ' + STAR_AT[0] + '   ⭐⭐ ' + STAR_AT[1] + '   ⭐⭐⭐ ' + STAR_AT[2] + ' right answers']),
+      IA.el('div', { class: 'ia-row' }, [
+        IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: race }, ['▶ Ready, set, go!']),
+        IA.el('button', { class: 'ia-btn', type: 'button', onclick: pickLevel }, ['🎚️ Change level'])
+      ])
+    ]));
+  }
+
+  function race() {
+    stopAll();
+    IA.clear(shell.stage);
+    var right = 0, wrong = 0, left = SECONDS, f = null, prev = '', typed = '', over = false;
+    var timeEl = IA.el('span', { class: 'time' }), rightEl = IA.el('span', {});
+    shell.stage.appendChild(IA.el('div', { class: 'hud' }, [timeEl, rightEl]));
+    var aEl = IA.el('span'), ansEl = IA.el('span', { class: 'ans', 'aria-live': 'polite' });
+    var factEl = IA.el('div', { class: 'fact' }, [aEl, '=', ansEl]);
+    shell.stage.appendChild(factEl);
+    var last = IA.el('div', { class: 'last' });
+    shell.stage.appendChild(last);
+    var pad = IA.el('div', { class: 'pad' });
+    [1, 2, 3, 4, 5, 6, 7, 8, 9].forEach(function (d) { pad.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { digit(d); } }, [String(d)])); });
+    pad.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'Delete', onclick: back }, ['⌫']));
+    pad.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { digit(0); } }, ['0']));
+    pad.appendChild(IA.el('button', { class: 'ia-btn primary', type: 'button', 'aria-label': 'Check', onclick: check }, ['✔']));
+    shell.stage.appendChild(pad);
+
+    function hud() {
+      timeEl.textContent = '⏱️ ' + left + 's';
+      timeEl.classList.toggle('low', left <= 10);
+      rightEl.textContent = '✅ ' + right;
+      shell.setScore('✅ ' + right);
+      shell.setProgress((SECONDS - left) / SECONDS);
+    }
+    function nextFact() {
+      do { f = fact(); } while (f.a + f.op + f.b === prev);
+      prev = f.a + f.op + f.b;
+      aEl.textContent = f.a + ' ' + f.op + ' ' + f.b;
+      typed = ''; ansEl.textContent = '';
+    }
+    function digit(d) {
+      if (over || typed.length >= 2) return;
+      IA.sfx.tap();
+      typed += d; ansEl.textContent = typed;
+      if (typed.length >= String(f.ans).length && Number(typed) === f.ans) check();
+      else if (typed.length >= 2) check();
+    }
+    function back() { if (over) return; typed = typed.slice(0, -1); ansEl.textContent = typed; }
+    function check() {
+      if (over || typed === '') return;
+      if (Number(typed) === f.ans) {
+        right++; IA.sfx.good(); factEl.classList.remove('ia-pop'); void factEl.offsetWidth; factEl.classList.add('ia-pop');
+        last.textContent = '';
+      } else {
+        wrong++; IA.sfx.bad(); factEl.classList.remove('ia-shake'); void factEl.offsetWidth; factEl.classList.add('ia-shake');
+        last.textContent = '💡 ' + f.a + ' ' + f.op + ' ' + f.b + ' = ' + f.ans;
+      }
+      hud(); nextFact();
+    }
+    keyHandler = function (e) {
+      if (/^[0-9]$/.test(e.key)) { e.preventDefault(); digit(Number(e.key)); }
+      else if (e.key === 'Backspace') { e.preventDefault(); back(); }
+      else if (e.key === 'Enter') { e.preventDefault(); check(); }
+    };
+    document.addEventListener('keydown', keyHandler);
+    nextFact(); hud();
+    timer = setInterval(function () {
+      left--; hud();
+      if (left <= 0) end();
+    }, 1000);
+
+    function end() {
+      over = true; stopAll();
+      var best = IA.load(bestKey(), 0), isBest = right > best;
+      if (isBest) IA.save(bestKey(), right);
+      var stars = right >= STAR_AT[2] ? 3 : right >= STAR_AT[1] ? 2 : right >= STAR_AT[0] ? 1 : 0;
+      if (stars) shell.done(stars);
+      IA.sfx.win(); if (stars) IA.confetti();
+      IA.say('Time is up! You got ' + right + ' right!' + (isBest ? ' A new best score!' : ''));
+      IA.clear(shell.stage);
+      shell.stage.appendChild(IA.el('div', { class: 'ia-finish' }, [
+        IA.el('div', { class: 'ia-big-stars' }, [stars ? '⭐'.repeat(stars) + '☆'.repeat(3 - stars) : '🏁']),
+        IA.el('h2', {}, ['Time’s up! ' + right + ' right answer' + (right === 1 ? '' : 's') + '!']),
+        IA.el('div', { class: 'best' }, [isBest ? '🏆 New best score!' : '🏆 Best score: ' + best]),
+        stars < 3 ? IA.el('div', { class: 'goal' }, ['Get ' + STAR_AT[stars] + ' right for ' + (stars + 1) + ' star' + (stars ? 's' : '') + '!']) : null,
+        IA.el('div', { class: 'ia-row' }, [
+          IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: race }, ['🔁 Race again']),
+          IA.el('button', { class: 'ia-btn', type: 'button', onclick: pickLevel }, ['🎚️ Change level']),
+          IA.el('a', { class: 'ia-btn', href: '../index.html' }, ['🏠 More activities'])
+        ])
+      ]));
+    }
+  }
+  pickLevel();
+</script>
+</body>
+</html>

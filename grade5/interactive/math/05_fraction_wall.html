@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fraction Wall — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .wall { width: 100%; max-width: 760px; display: flex; flex-direction: column; gap: 4px; position: relative; }
+    .wrow { display: flex; align-items: stretch; gap: 6px; }
+    .wrow .name { width: 46px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; }
+    .wrow .pieces { flex: 1; min-width: 0; display: flex; gap: 2px; }
+    .wrow.focus .name { background: #fff3c4; border-radius: 8px; }
+    .piece { flex: 1; min-width: 0; height: 44px; border: 2px solid rgba(0,0,0,.18); border-radius: 6px; background: var(--light); font: inherit; font-size: clamp(8px, 1.9vw, 15px); font-weight: bold; color: #37474f; cursor: pointer; padding: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; touch-action: manipulation; transition: background .15s; }
+    .piece.on { background: var(--dark); color: #fff; }
+    .piece:focus-visible { outline: 3px solid #1a6fbd; outline-offset: 1px; }
+    .guide { position: absolute; top: -6px; bottom: -6px; width: 0; border-left: 4px dashed #d84315; pointer-events: none; display: none; z-index: 2; }
+    .fr { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; vertical-align: middle; font-weight: bold; margin: 0 2px; }
+    .fr .n { border-bottom: 3px solid currentColor; padding: 0 4px 2px; }
+    .fr .d { padding: 2px 4px 0; }
+    .name .fr { font-size: 14px; }
+    .name .fr .n { border-bottom-width: 2px; }
+    .ia-choice .fr, .ia-prompt .fr { font-size: 1em; }
+    .step { font-size: 18px; text-align: center; color: #37474f; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var DENS = [1, 2, 3, 4, 5, 6, 8, 10, 12];
+  var COLORS = { 1: ['#ffcdd2', '#e53935'], 2: ['#ffe0b2', '#fb8c00'], 3: ['#fff9c4', '#f9a825'], 4: ['#dcedc8', '#7cb342'], 5: ['#c8e6c9', '#2e7d32'], 6: ['#b2ebf2', '#00838f'], 8: ['#bbdefb', '#1e88e5'], 10: ['#d1c4e9', '#5e35b1'], 12: ['#f8bbd0', '#d81b60'] };
+  function fr(n, d) { return IA.el('span', { class: 'fr', 'aria-label': n + ' over ' + d }, [IA.el('span', { class: 'n' }, [String(n)]), IA.el('span', { class: 'd' }, [String(d)])]); }
+  function eq(a, b, c, d) { return a * d === b * c; }
+
+  function Wall(container) {
+    var wall = IA.el('div', { class: 'wall' }), rows = {}, counts = {}, locked = false, onChange = null;
+    var guide = IA.el('div', { class: 'guide' });
+    DENS.forEach(function (d) {
+      var pieces = IA.el('div', { class: 'pieces' }), btns = [];
+      for (var i = 0; i < d; i++) (function (i) {
+        var b = IA.el('button', { class: 'piece', type: 'button', 'aria-label': 'Shade ' + (i + 1) + ' of ' + d, style: { '--light': COLORS[d][0], '--dark': COLORS[d][1] } }, [d === 1 ? '1' : '1/' + d]);
+        b.style.setProperty('--light', COLORS[d][0]); b.style.setProperty('--dark', COLORS[d][1]);
+        b.addEventListener('click', function () {
+          if (locked) return;
+          IA.sfx.tap();
+          setCount(d, counts[d] === i + 1 ? i : i + 1);
+          if (onChange) onChange(d, counts[d]);
+        });
+        btns.push(b); pieces.appendChild(b);
+      })(i);
+      var row = IA.el('div', { class: 'wrow' }, [IA.el('div', { class: 'name' }, [d === 1 ? IA.el('b', {}, ['1']) : fr(1, d)]), pieces]);
+      rows[d] = { row: row, btns: btns, pieces: pieces }; counts[d] = 0;
+      wall.appendChild(row);
+    });
+    wall.appendChild(guide);
+    container.appendChild(wall);
+    function setCount(d, n) { counts[d] = n; rows[d].btns.forEach(function (b, j) { b.classList.toggle('on', j < n); }); }
+    return {
+      el: wall, setCount: setCount, count: function (d) { return counts[d]; },
+      focus: function (d) { Object.keys(rows).forEach(function (k) { rows[k].row.classList.toggle('focus', +k === d); }); },
+      showGuide: function (n, d) {
+        var p = rows[1].pieces, wr = wall.getBoundingClientRect(), pr = p.getBoundingClientRect();
+        guide.style.left = (pr.left - wr.left + pr.width * n / d - 2) + 'px'; guide.style.display = 'block';
+      },
+      onChange: function (f) { onChange = f; }, lock: function () { locked = true; }
+    };
+  }
+
+  // all non-trivial equivalent pairs available on the wall
+  var PAIRS = [];
+  DENS.forEach(function (t) { DENS.forEach(function (d) {
+    if (t === 1 || d === 1 || t === d) return;
+    for (var s = 1; s < t; s++) if ((s * d) % t === 0) PAIRS.push([s, t, s * d / t, d]);
+  }); });
+  var DEN_NAME = { 2: 'halves', 3: 'thirds', 4: 'fourths', 5: 'fifths', 6: 'sixths', 8: 'eighths', 10: 'tenths', 12: 'twelfths' };
+
+  IA.game({
+    id: 'g5m-fraction-wall',
+    title: 'Fraction Wall',
+    emoji: '🧱',
+    back: '../index.html',
+    instructions: 'Tap pieces to shade them from the left. Fractions that end at the same place are equivalent!',
+    rounds: 10,
+    delay: 1600,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Shade & match', value: 'match', desc: 'Shade 2/4, then match it in another row' },
+      { label: 'Which is equivalent?', value: 'equiv', desc: 'Find the fraction equal to 3/4' },
+      { label: 'Which is bigger?', value: 'bigger', desc: 'Compare fractions using the wall' }
+    ],
+    round: function (r) {
+      var prompt = IA.el('div', { class: 'ia-prompt' });
+      var step = IA.el('div', { class: 'step' });
+      var hint = IA.el('div', { class: 'ia-hint hidden' });
+      r.stage.appendChild(prompt); r.stage.appendChild(step);
+      var area = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+      if (r.level === 'match') {
+        var pr = IA.pick(PAIRS), s = pr[0], t = pr[1], m = pr[2], d = pr[3];
+        prompt.appendChild(document.createTextNode('Shade ')); prompt.appendChild(fr(s, t));
+        step.textContent = 'Step 1: shade ' + s + ' pieces in the ' + DEN_NAME[t] + ' row.';
+        var wall = Wall(r.stage); wall.focus(t);
+        var stage2 = false;
+        var btn = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['Check ✔']);
+        r.stage.appendChild(btn); r.stage.appendChild(hint);
+        btn.addEventListener('click', function () {
+          if (!stage2) {
+            if (wall.count(t) === s) {
+              IA.sfx.good(); stage2 = true; hint.classList.add('hidden');
+              wall.showGuide(s, t); wall.focus(d);
+              IA.clear(prompt); prompt.appendChild(fr(s, t)); prompt.appendChild(document.createTextNode(' = ? ')); prompt.appendChild(document.createTextNode(DEN_NAME[d]));
+              step.textContent = 'Step 2: shade the ' + DEN_NAME[d] + ' row so it ends on the orange line.';
+            } else {
+              r.answer(false, btn); hint.classList.remove('hidden');
+              hint.textContent = 'You shaded ' + wall.count(t) + ' piece' + (wall.count(t) === 1 ? '' : 's') + ' in the ' + DEN_NAME[t] + ' row. You need ' + s + '.';
+            }
+            return;
+          }
+          if (wall.count(d) === m) {
+            wall.lock(); btn.disabled = true;
+            IA.clear(prompt); prompt.appendChild(fr(s, t)); prompt.appendChild(document.createTextNode(' = ')); prompt.appendChild(fr(m, d));
+            step.textContent = 'They line up, so they are equivalent!';
+            r.answer(true, prompt, s + '/' + t + ' = ' + m + '/' + d + ' ✔');
+          } else {
+            r.answer(false, btn); hint.classList.remove('hidden');
+            hint.textContent = 'Your ' + DEN_NAME[d] + ' end ' + (wall.count(d) * t > s * d ? 'past' : 'before') + ' the orange line. Try ' + (wall.count(d) * t > s * d ? 'fewer' : 'more') + ' pieces.';
+          }
+        });
+        return;
+      }
+      var wall2;
+      if (r.level === 'equiv') {
+        var p = IA.pick(PAIRS), a = p[0], b = p[1], c = p[2], e = p[3];
+        prompt.appendChild(document.createTextNode('Which is equal to ')); prompt.appendChild(fr(a, b)); prompt.appendChild(document.createTextNode('?'));
+        step.textContent = 'Use the wall to check — tap to shade.';
+        var opts = [c + '/' + e], vals = [[c, e]];
+        function add(n, dd) {
+          if (opts.length >= 4 || DENS.indexOf(dd) < 0 || dd === 1 || n <= 0 || n >= dd) return;
+          if (eq(n, dd, a, b)) return;
+          for (var i = 0; i < vals.length; i++) if (eq(vals[i][0], vals[i][1], n, dd)) return;
+          opts.push(n + '/' + dd); vals.push([n, dd]);
+        }
+        add(a + 1, b + 1); add(a, e); add(c + 1, e); add(c - 1, e); add(a + 2, b + 2);
+        var guard = 0;
+        while (opts.length < 4 && guard++ < 200) { var dd = IA.pick(DENS); add(IA.rand(1, dd - 1), dd); }
+        r.stage.appendChild(area);
+        wall2 = Wall(area);
+        IA.choices(r, r.stage, IA.shuffle(opts), c + '/' + e, {
+          render: function (o) { var q = o.split('/'); return fr(+q[0], +q[1]); },
+          isCorrect: function (o) {
+            var q = o.split('/');
+            if (o !== c + '/' + e) {
+              wall2.setCount(b, a); wall2.showGuide(a, b); hint.classList.remove('hidden');
+              hint.textContent = q[0] + '/' + q[1] + ' does not end on the orange line. Which row has pieces that end exactly on it?';
+            }
+            return o === c + '/' + e;
+          }
+        });
+      } else {
+        var x, y, guard2 = 0;
+        do {
+          var d1 = IA.pick(DENS.slice(1)), d2 = IA.pick(DENS.slice(1));
+          x = [IA.rand(1, d1 - 1), d1]; y = [IA.rand(1, d2 - 1), d2];
+        } while ((d1 === d2 || eq(x[0], x[1], y[0], y[1])) && guard2++ < 100);
+        var big = x[0] * y[1] > y[0] * x[1] ? x : y;
+        prompt.appendChild(document.createTextNode('Which is bigger?'));
+        step.textContent = 'Shade both on the wall to compare.';
+        r.stage.appendChild(area);
+        wall2 = Wall(area);
+        IA.choices(r, r.stage, IA.shuffle([x.join('/'), y.join('/')]), big.join('/'), {
+          render: function (o) { var q = o.split('/'); return fr(+q[0], +q[1]); },
+          isCorrect: function (o) {
+            if (o !== big.join('/')) {
+              wall2.setCount(x[1], x[0]); wall2.setCount(y[1], y[0]); hint.classList.remove('hidden');
+              hint.textContent = 'Look at the two shaded rows: the one that reaches further to the right is bigger.';
+            }
+            return o === big.join('/');
+          }
+        });
+      }
+      r.stage.appendChild(hint);
+    }
+  });
+</script>
+</body>
+</html>

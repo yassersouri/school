@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shape Detective — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .pic svg { width: min(220px, 60vw); height: auto; display: block; }
+    .q { font-size: clamp(20px, 4vw, 28px); font-weight: bold; text-align: center; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .ia-choice svg { width: 70px; height: 70px; display: block; }
+    .ia-choice .nm { font-size: 18px; }
+    .ia-choice.pic-choice { flex-direction: column; gap: 2px; }
+    .bins { display: flex; gap: 12px; width: 100%; flex-wrap: wrap; }
+    .ia-bin { min-height: 150px; }
+    .tray { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; min-height: 100px; }
+    .shp { flex-direction: column; padding: 4px 8px; font-size: 14px; gap: 0; background: #fff; }
+    .shp svg { width: 64px; height: 64px; display: block; }
+    .shp.ia-locked { cursor: default; border-color: #2e7d32; }
+    .emoji-obj { font-size: clamp(80px, 18vw, 120px); line-height: 1; }
+    .objname { font-size: 22px; font-weight: bold; color: #555; }
+    .small-note { font-size: 14px; color: #777; }
+    /* placed tiles must not swallow taps meant for the bin (engine ignores bin taps that land on an item) */
+    .ia-bin .ia-locked { pointer-events: none; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var FILL = '#d1c4e9', STROKE = '#4527a0';
+  function svg(inner, vb) { var d = document.createElement('div'); d.innerHTML = '<svg viewBox="' + (vb || '0 0 200 200') + '" aria-hidden="true">' + inner + '</svg>'; return d.firstChild; }
+  function poly(points) { return '<polygon points="' + points.map(function (p) { return p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ') + '" fill="' + FILL + '" stroke="' + STROKE + '" stroke-width="6" stroke-linejoin="round"/>'; }
+  function regular(n, rot) { var pts = []; for (var i = 0; i < n; i++) { var a = rot + i * 2 * Math.PI / n - Math.PI / 2; pts.push([100 + 80 * Math.cos(a), 100 + 80 * Math.sin(a)]); } return poly(pts); }
+
+  /* ── 2-D shapes ── */
+  var SHAPES2 = {
+    triangle:  { sides: 3, draw: function (v) { return v ? poly([[25, 165], [175, 165], [IA.rand(40, 160), 35]]) : regular(3, 0); } },
+    square:    { sides: 4, draw: function (v) { return v ? regular(4, Math.PI / 4 + (Math.random() < .5 ? 0 : Math.PI / 4)) : poly([[40, 40], [160, 40], [160, 160], [40, 160]]); } },
+    rectangle: { sides: 4, draw: function (v) { return v ? poly([[65, 20], [135, 20], [135, 180], [65, 180]]) : poly([[15, 60], [185, 60], [185, 140], [15, 140]]); } },
+    pentagon:  { sides: 5, draw: function (v) { return regular(5, v ? Math.PI / 5 : 0); } },
+    hexagon:   { sides: 6, draw: function (v) { return regular(6, v ? Math.PI / 6 : 0); } },
+    octagon:   { sides: 8, draw: function (v) { return regular(8, v ? Math.PI / 8 : 0); } },
+    circle:    { sides: 0, draw: function () { return '<circle cx="100" cy="100" r="80" fill="' + FILL + '" stroke="' + STROKE + '" stroke-width="6"/>'; } },
+    rhombus:   { sides: 4, draw: function () { return poly([[100, 15], [165, 100], [100, 185], [35, 100]]); } },
+    trapezoid: { sides: 4, draw: function () { return poly([[60, 50], [140, 50], [185, 150], [15, 150]]); } }
+  };
+  function shape2(name, variant) { return svg(SHAPES2[name].draw(variant)); }
+
+  /* ── 3-D objects ── */
+  var S3 = 'stroke="' + STROKE + '" stroke-width="4" stroke-linejoin="round"';
+  var D3 = 'stroke="' + STROKE + '" stroke-width="3" stroke-dasharray="7 6" fill="none"';
+  function L(a, b, dashed) { return '<line x1="' + a[0] + '" y1="' + a[1] + '" x2="' + b[0] + '" y2="' + b[1] + '" ' + (dashed ? D3 : S3) + '/>'; }
+  function P(pts, fill) { return '<polygon points="' + pts.map(function (p) { return p.join(','); }).join(' ') + '" fill="' + fill + '" ' + S3 + '/>'; }
+  function box(x, y, w, h, dx, dy) {
+    var f = [[x, y], [x + w, y], [x + w, y + h], [x, y + h]], b = f.map(function (p) { return [p[0] + dx, p[1] - dy]; });
+    return L(b[3], b[0], 1) + L(b[3], b[2], 1) + L(f[3], b[3], 1) +
+      P([f[0], f[1], b[1], b[0]], '#ede7f6') + P([f[1], b[1], b[2], f[2]], '#b39ddb') + P(f, FILL);
+  }
+  var OBJ3 = {
+    'cube': { faces: 6, edges: 12, vertices: 8, roll: false, draw: function () { return box(35, 75, 90, 90, 40, 40); } },
+    'rectangular prism': { faces: 6, edges: 12, vertices: 8, roll: false, draw: function () { return box(15, 90, 130, 70, 40, 40); } },
+    'pyramid': { faces: 5, edges: 8, vertices: 5, roll: false, label: 'square-based pyramid', draw: function () {
+      var A = [35, 160], B = [125, 160], C = [170, 125], D = [80, 125], T = [100, 20];
+      return L(C, D, 1) + L(D, A, 1) + L(T, D, 1) + P([A, B, T], FILL) + P([B, C, T], '#b39ddb');
+    } },
+    'cylinder': { flat: 2, roll: true, draw: function () {
+      return '<path d="M40,45 L40,155 A60,16 0 0,0 160,155 L160,45 Z" fill="' + FILL + '" ' + S3 + '/>' +
+        '<path d="M40,155 A60,16 0 0,1 160,155" ' + D3 + '/>' + '<ellipse cx="100" cy="45" rx="60" ry="16" fill="#ede7f6" ' + S3 + '/>';
+    } },
+    'cone': { flat: 1, roll: true, draw: function () {
+      return '<path d="M100,18 L40,150 A60,16 0 0,0 160,150 Z" fill="' + FILL + '" ' + S3 + '/>' + '<path d="M40,150 A60,16 0 0,1 160,150" ' + D3 + '/>';
+    } },
+    'sphere': { flat: 0, roll: true, draw: function () {
+      return '<defs><radialGradient id="sg" cx="35%" cy="35%"><stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#9575cd"/></radialGradient></defs>' +
+        '<circle cx="100" cy="100" r="75" fill="url(#sg)" ' + S3 + '/>' + '<path d="M25,100 A75,20 0 0,0 175,100" fill="none" ' + S3 + '/>' + '<path d="M25,100 A75,20 0 0,1 175,100" ' + D3 + '/>';
+    } }
+  };
+  function shape3(name) { return svg(OBJ3[name].draw()); }
+  function label3(n) { return OBJ3[n].label || n; }
+
+  var REAL = [
+    ['soccer ball', '⚽', 'sphere'], ['basketball', '🏀', 'sphere'], ['globe', '🌍', 'sphere'], ['orange', '🍊', 'sphere'],
+    ['dice', '🎲', 'cube'], ['ice cube', '🧊', 'cube'],
+    ['soup can', '🥫', 'cylinder'], ['paper towel roll', '🧻', 'cylinder'], ['battery', '🔋', 'cylinder'], ['drum', '🥁', 'cylinder'], ['candle', '🕯️', 'cylinder'],
+    ['ice cream cone', '🍦', 'cone'],
+    ['box', '📦', 'rectangular prism'], ['juice box', '🧃', 'rectangular prism'], ['book', '📕', 'rectangular prism']
+  ];
+  var bag = {};
+  function draw(key, list) { if (!bag[key] || !bag[key].length) bag[key] = IA.shuffle(list); return bag[key].pop(); }
+  function a(n) { return (/^[aeiou]/i.test(n) ? 'an ' : 'a ') + n; }
+  function A(n) { return cap(a(n)); }
+  function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
+
+  function hintBox() { return IA.el('div', { class: 'ia-hint', style: { display: 'none' } }); }
+  function withHint(r, hint, text) {
+    return { answer: function (ok, el) { if (!ok) { hint.textContent = '💡 ' + text; hint.style.display = ''; IA.say(text); } return r.answer(ok, el); } };
+  }
+  function ask(r, q) { r.stage.appendChild(IA.el('div', { class: 'q' }, [q, IA.speakButton(q)])); IA.say(q); }
+  function picture(node) { var p = IA.el('div', { class: 'pic' }); p.appendChild(node); return p; }
+
+  /* ── Rounds ── */
+  function round2D(r) {
+    var hint = hintBox(), names = ['triangle', 'square', 'rectangle', 'pentagon', 'hexagon', 'octagon', 'circle'];
+    var type = r.index % 4, name;
+    if (type === 3) { // which shape has N sides?
+      var n = IA.pick([3, 4, 5, 6, 8]);
+      var bySides = { 3: 'triangle', 4: IA.pick(['square', 'rectangle']), 5: 'pentagon', 6: 'hexagon', 8: 'octagon' };
+      var opts = IA.sample([3, 4, 5, 6, 8].filter(function (k) { return k !== n; }), 3).concat([n]).map(function (k) { return bySides[k]; });
+      ask(r, 'Which shape has ' + n + ' sides?');
+      var g = IA.choices(withHint(r, hint, 'Count the straight sides on each shape. ' + A(bySides[n]) + ' has ' + n + ' sides.'), r.stage, IA.shuffle(opts), bySides[n], {
+        render: function (o) { return shape2(o, Math.random() < .5); } });
+      Array.prototype.forEach.call(g.children, function (b) { b.classList.add('pic-choice'); });
+    } else if (type === 2) { // name it
+      name = draw('2d', names);
+      r.stage.appendChild(picture(shape2(name, Math.random() < .5)));
+      ask(r, 'What is this shape called?');
+      var pool = names.filter(function (x) { return x !== name && !((name === 'square' && x === 'rectangle') || (name === 'rectangle' && x === 'square')); });
+      IA.choices(withHint(r, hint, name === 'circle' ? 'It is round with no corners — a circle.' : 'It has ' + SHAPES2[name].sides + ' sides and ' + SHAPES2[name].sides + ' corners — ' + a(name) + '.'),
+        r.stage, IA.shuffle(IA.sample(pool, 3).concat([name])), name, { render: cap, speak: true });
+    } else { // count sides or corners
+      name = draw('2dc', names.filter(function (x) { return x !== 'circle'; }));
+      var n2 = SHAPES2[name].sides, what = type === 0 ? 'sides' : 'corners (vertices)';
+      r.stage.appendChild(picture(shape2(name, Math.random() < .5)));
+      ask(r, 'How many ' + what + ' does this ' + name + ' have?');
+      IA.choices(withHint(r, hint, type === 0 ? 'Touch each straight side as you count. ' + A(name) + ' has ' + n2 + ' sides.' : 'A corner (vertex) is where two sides meet. ' + A(name) + ' has ' + n2 + ' corners.'),
+        r.stage, IA.numberChoices(n2, 4, 2, 2), n2, { speak: true });
+    }
+    r.stage.appendChild(hint);
+  }
+
+  function round3D(r) {
+    var hint = hintBox(), all = Object.keys(OBJ3), flatOnes = ['cube', 'rectangular prism', 'pyramid'];
+    var type = r.index % 3, name;
+    if (type === 0) {
+      name = draw('3d', all);
+      r.stage.appendChild(picture(shape3(name)));
+      ask(r, 'What is this 3-D object called?');
+      var pool = all.filter(function (x) { return x !== name; });
+      IA.choices(withHint(r, hint, 'This is ' + a(label3(name)) + '.'), r.stage, IA.shuffle(IA.sample(pool, 3).concat([name])), name, { render: function (o) { return cap(label3(o)); }, cls: 'wide', speak: false });
+    } else {
+      name = draw('3dc' + type, type === 1 ? all : flatOnes);
+      var o = OBJ3[name], q, ans, tip;
+      if (o.flat !== undefined) {
+        ans = o.flat; q = 'How many flat faces does this ' + name + ' have?';
+        tip = { cylinder: 'A cylinder has 2 flat circle faces (top and bottom) and one curved surface.', cone: 'A cone has 1 flat circle face and one curved surface.', sphere: 'A sphere is round all over — 0 flat faces!' }[name];
+      } else {
+        var attr = type === 1 ? 'faces' : IA.pick(['edges', 'vertices']);
+        ans = o[attr]; q = 'How many ' + (attr === 'vertices' ? 'vertices (corners)' : attr) + ' does this ' + label3(name) + ' have?';
+        tip = { faces: 'Faces are the flat sides. Don\'t forget the hidden faces at the back and bottom! A ' + label3(name) + ' has ' + o.faces + ' faces.',
+          edges: 'An edge is where two faces meet. The dashed lines are hidden edges. A ' + label3(name) + ' has ' + o.edges + ' edges.',
+          vertices: 'A vertex is a corner where edges meet. A ' + label3(name) + ' has ' + o.vertices + ' vertices.' }[attr];
+      }
+      r.stage.appendChild(picture(shape3(name)));
+      ask(r, q);
+      if (o.flat === undefined) r.stage.appendChild(IA.el('div', { class: 'small-note' }, ['Dashed lines show edges hidden at the back.']));
+      IA.choices(withHint(r, hint, tip), r.stage, IA.numberChoices(ans, 4, 3, 0), ans, { speak: true });
+    }
+    r.stage.appendChild(hint);
+  }
+
+  function roundReal(r) {
+    var hint = hintBox(), it = draw('real', REAL);
+    r.stage.appendChild(IA.el('div', { class: 'ia-col' }, [IA.el('span', { class: 'emoji-obj', role: 'img', 'aria-label': it[0] }, [it[1]]), IA.el('span', { class: 'objname' }, [cap(it[0])])]));
+    ask(r, 'Which 3-D object is ' + a(it[0]) + ' shaped like?');
+    var opts = ['sphere', 'cube', 'cylinder', 'cone', 'rectangular prism'];
+    var g = IA.choices(withHint(r, hint, A(it[0]) + ' is shaped like ' + a(it[2]) + '.'), r.stage, IA.shuffle(opts), it[2], {
+      render: function (o) { var s = IA.el('span', { class: 'ia-col' }, [shape3(o), IA.el('span', { class: 'nm' }, [cap(o)])]); s.style.gap = '2px'; return s; } });
+    Array.prototype.forEach.call(g.children, function (b) { b.classList.add('pic-choice'); });
+    r.stage.appendChild(hint);
+  }
+
+  var RULES = [
+    { a: 'Has 4 sides', b: 'Does not have 4 sides', items: ['triangle', 'square', 'rectangle', 'pentagon', 'hexagon', 'circle', 'rhombus', 'trapezoid', 'octagon'], kind: '2d',
+      test: function (n) { return SHAPES2[n].sides === 4; }, why: function (n) { return n === 'circle' ? 'A circle has no straight sides.' : A(n) + ' has ' + SHAPES2[n].sides + ' sides.'; } },
+    { a: 'Can roll', b: 'Cannot roll', items: Object.keys(OBJ3), kind: '3d',
+      test: function (n) { return OBJ3[n].roll; }, why: function (n) { return OBJ3[n].roll ? A(n) + ' has a curved surface, so it can roll.' : A(label3(n)) + ' has only flat faces, so it slides but cannot roll.'; } },
+    { a: '2-D shape (flat)', b: '3-D object (solid)', items: ['triangle', 'square', 'circle', 'hexagon', 'rectangle', 'cube', 'sphere', 'cylinder', 'cone', 'rectangular prism'], kind: 'mix',
+      test: function (n) { return !!SHAPES2[n]; }, why: function (n) { return SHAPES2[n] ? A(n) + ' is flat — it is a 2-D shape.' : A(n) + ' is solid — you can hold it. It is a 3-D object.'; } }
+  ];
+  function roundSort(r) {
+    var rule = r.index % 4 === 3 ? RULES[IA.rand(1, 2)] : RULES[r.index % 3];
+    var picks;
+    do { picks = IA.sample(rule.items, 5); } while (picks.every(rule.test) || !picks.some(rule.test));
+    ask(r, 'Sort them! Drag (or tap, then tap a bin).');
+    var tray = IA.el('div', { class: 'tray' });
+    picks.forEach(function (n) {
+      var pic = SHAPES2[n] ? shape2(n, Math.random() < .5) : shape3(n);
+      var t = IA.el('div', { class: 'ia-tile shp', 'aria-label': n }, [pic, SHAPES2[n] ? n : label3(n)]);
+      t.dataset.name = n; tray.appendChild(t);
+    });
+    var binA = IA.el('div', { class: 'ia-bin', 'aria-label': rule.a }, [IA.el('div', { class: 'ia-bin-label' }, ['✅ ' + rule.a])]);
+    var binB = IA.el('div', { class: 'ia-bin', 'aria-label': rule.b }, [IA.el('div', { class: 'ia-bin-label' }, ['❌ ' + rule.b])]);
+    binA.dataset.yes = '1';
+    var hint = hintBox();
+    r.stage.appendChild(tray);
+    r.stage.appendChild(IA.el('div', { class: 'bins' }, [binA, binB]));
+    r.stage.appendChild(hint);
+    var placed = 0;
+    IA.dragDrop({ items: tray.children, targets: [binA, binB], onDrop: function (item, bin) {
+      var n = item.dataset.name, ok = rule.test(n) === (bin === binA);
+      if (!ok) { hint.textContent = '💡 ' + rule.why(n); hint.style.display = ''; IA.say(rule.why(n)); r.answer(false, item, 'Oops! ' + rule.why(n)); return false; }
+      item.classList.add('ia-locked'); item.classList.remove('ia-selected'); item.setAttribute('tabindex', '-1');
+      IA.sfx.tap(); IA.say(n);
+      placed++;
+      if (placed === picks.length) setTimeout(function () { r.answer(true, null, 'All sorted! 🗂️'); }, 300);
+    } });
+  }
+
+  IA.game({
+    id: 'g2m-shape-detective',
+    title: 'Shape Detective',
+    emoji: '🔍',
+    back: '../index.html',
+    instructions: 'Be a shape detective! Count sides, corners, faces and edges, and sort shapes.',
+    rounds: 10,
+    levelTitle: 'Choose a case',
+    levels: [
+      { label: '2-D shapes', value: '2d', desc: 'Sides, corners and shape names' },
+      { label: '3-D objects', value: '3d', desc: 'Faces, edges, vertices and names' },
+      { label: 'Sorting', value: 'sort', desc: 'Drag shapes into the right bin' },
+      { label: 'Shapes all around us', value: 'real', desc: 'Match real things to 3-D objects' }
+    ],
+    round: function (r) {
+      ({ '2d': round2D, '3d': round3D, sort: roundSort, real: roundReal })[r.level](r);
+    }
+  });
+</script>
+</body>
+</html>

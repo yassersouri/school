@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fiction or Nonfiction? — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .excerpt { max-width: 640px; background: #fff7fa; border: 2px solid #f8bbd0; border-radius: 16px; padding: 14px 18px; font-size: clamp(18px, 3vw, 22px); line-height: 1.6; display: flex; gap: 10px; align-items: flex-start; }
+    .excerpt p { margin: 0; flex: 1; }
+    .why { max-width: 640px; font-size: 16px; text-align: center; }
+    .ia-choice small { display: block; font-size: 14px; font-weight: normal; color: #777; }
+    .fnf .ia-choice { flex-direction: column; gap: 2px; }
+    .mi .ia-choice { font-size: clamp(17px, 2.8vw, 21px); text-align: left; justify-content: flex-start; }
+    .q { font-size: clamp(24px, 4.4vw, 32px); font-weight: bold; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // type: 'F' fiction, 'N' nonfiction. All texts are original.
+  var EXCERPTS = [
+    ['F', 'Benny the badger put on his best bow tie. “Today I will bake the biggest cake in the forest!” he told his friend Owl.', 'Badgers don’t wear bow ties or bake cakes, and animals don’t talk. It’s a made-up story.'],
+    ['N', 'A honeybee visits about 50 to 100 flowers on one trip. It carries pollen home in little baskets on its back legs.', 'It gives real facts and numbers about bees.'],
+    ['F', 'When Lila opened the old book, a tiny dragon flew out and landed on her nose. “Thank you for letting me out!” it squeaked.', 'Tiny dragons are not real. This is a pretend story with a character and magic.'],
+    ['N', 'Canada has three oceans on its coasts: the Pacific, the Atlantic, and the Arctic. Canada has the longest coastline of any country.', 'It teaches true facts about Canada.'],
+    ['F', 'The moon was bored, so it climbed down a ladder and went skating on the frozen pond with the stars.', 'The moon can’t climb ladders or skate! It’s a made-up story.'],
+    ['N', 'Your heart is a muscle about the size of your fist. It pumps blood all around your body, even while you sleep.', 'It explains true facts about the human body.'],
+    ['F', 'Grandma’s garden gnome winked at Theo. Every night, it tiptoed around the yard to water the tomatoes.', 'Garden gnomes can’t wink or walk. It’s pretend.'],
+    ['N', 'Penguins are birds, but they cannot fly. They use their flippers to swim fast through cold ocean water.', 'It gives real facts about penguins.'],
+    ['F', 'Rosa the robot wanted to be a chef. She tried to make soup, but she put in socks instead of carrots!', 'It tells a funny made-up story about a character.'],
+    ['N', 'Water freezes into ice at 0 degrees Celsius. When ice warms up, it melts back into water.', 'It teaches a true science fact with a number.'],
+    ['F', 'The three little ducks paddled to the bakery. “Three muffins, please,” said the smallest duck, counting her coins.', 'Ducks don’t talk or buy muffins. It’s a made-up story.'],
+    ['N', 'A caterpillar turns into a butterfly inside a chrysalis. This change is called metamorphosis.', 'It explains a real thing that happens in nature.'],
+    ['F', 'Every time Max sneezed, it started to snow inside his classroom. His teacher handed out mittens.', 'Sneezing can’t make snow. It’s a silly, pretend story.'],
+    ['N', 'Moose are the largest members of the deer family. A male moose grows new antlers every year.', 'It gives true facts about moose.'],
+    ['F', 'Pip the pine tree wished he could see the ocean. One windy night, a friendly eagle carried one of his pine cones to the beach.', 'Trees can’t wish or think. Pip is a made-up character.'],
+    ['N', 'The Sun is a star. It is so far away that its light takes about eight minutes to reach Earth.', 'It teaches real space facts with numbers.'],
+    ['F', 'Ella’s shoes could talk. “Left, right, left!” they shouted as she marched to school.', 'Shoes can’t talk. It’s a pretend story.'],
+    ['N', 'Recycling paper saves trees. Old paper can be mashed up, cleaned, and made into new paper.', 'It explains how something really works.'],
+    ['F', 'The cat and the mouse decided to stop chasing each other. Now they play checkers every Sunday.', 'Cats and mice don’t play checkers. It’s a made-up story.'],
+    ['N', 'Spiders are not insects. Insects have six legs, but spiders have eight legs.', 'It gives true facts that you can check in a science book.'],
+    ['F', 'A cloud named Puff liked to make shapes. On Monday she was a bunny, and on Tuesday she was a teapot.', 'Clouds don’t have names or choose shapes. It’s pretend.'],
+    ['N', 'Salmon hatch in rivers and swim out to the ocean. When they are grown, they swim back to the same river to lay eggs.', 'It teaches real facts about salmon.'],
+    ['F', 'Nia found a door inside the old oak tree. Behind it was a tiny kitchen where a squirrel was frying pancakes.', 'Squirrels don’t cook pancakes. It’s a made-up story.'],
+    ['N', 'A leap year has 366 days instead of 365. The extra day is February 29.', 'It gives true facts and numbers about the calendar.']
+  ];
+  var MAIN = [
+    { text: 'Beavers are great builders. They cut down trees with their strong teeth. They pile up sticks and mud to make dams. They even build homes called lodges in the water.',
+      main: 'Beavers are great builders.', detail: 'Beavers cut trees with their teeth.', off: 'Fish swim in rivers.' },
+    { text: 'There are many ways to stay healthy. You can eat fruits and vegetables. You can play outside and move your body. Getting enough sleep helps too.',
+      main: 'There are many ways to stay healthy.', detail: 'Sleep helps you stay healthy.', off: 'Ice cream is a cold treat.' },
+    { text: 'Owls are built to hunt at night. Their big eyes help them see in the dark. Their soft feathers let them fly without a sound. They can hear a mouse moving under the snow.',
+      main: 'Owls are built to hunt at night.', detail: 'Owls have soft feathers.', off: 'Mice like to eat seeds.' },
+    { text: 'Winter in Canada can be lots of fun. Kids skate on frozen ponds. Families go sledding down snowy hills. Some people build snowmen in their yards.',
+      main: 'Winter in Canada can be lots of fun.', detail: 'Kids skate on frozen ponds.', off: 'Summer is the warmest season.' },
+    { text: 'Plants need a few things to grow. They need sunlight and water. They need air. Most plants also need soil to hold their roots.',
+      main: 'Plants need a few things to grow.', detail: 'Plants need water.', off: 'Flowers come in many colours.' },
+    { text: 'Dogs help people in many ways. Some dogs guide people who cannot see. Some dogs help farmers herd sheep. Other dogs help find people who are lost.',
+      main: 'Dogs help people in many ways.', detail: 'Some dogs herd sheep.', off: 'Cats like to sleep a lot.' },
+    { text: 'The library is a busy place. Kids borrow books to take home. People use the computers. On Saturdays, a librarian reads stories out loud.',
+      main: 'The library is a busy place.', detail: 'People use the computers.', off: 'Books are made of paper.' },
+    { text: 'Frogs change a lot as they grow. They start as tiny eggs in a pond. The eggs hatch into tadpoles with tails. Then the tadpoles grow legs and become frogs.',
+      main: 'Frogs change a lot as they grow.', detail: 'Tadpoles have tails.', off: 'Ponds can freeze in winter.' },
+    { text: 'Bicycle helmets keep riders safe. A helmet protects your head if you fall. It should fit snugly. Always buckle the strap before you ride.',
+      main: 'Bicycle helmets keep riders safe.', detail: 'Buckle the strap before you ride.', off: 'Bikes have two wheels.' },
+    { text: 'Many animals get ready for winter. Squirrels hide nuts to eat later. Some birds fly south to warmer places. Bears eat a lot and then sleep in dens.',
+      main: 'Many animals get ready for winter.', detail: 'Squirrels hide nuts.', off: 'Birds lay eggs in nests.' },
+    { text: 'Recess is a time to play. Some kids play tag. Others climb on the monkey bars. A few friends like to draw with chalk.',
+      main: 'Recess is a time to play.', detail: 'Some kids play tag.', off: 'Lunch is at noon.' },
+    { text: 'Rain is important for Earth. It fills lakes and rivers. It gives plants water to drink. Animals drink the rainwater too.',
+      main: 'Rain is important for Earth.', detail: 'Rain fills lakes and rivers.', off: 'Clouds can look like animals.' }
+  ];
+  var exQ = [], miQ = [];
+
+  function fnfRound(r, onlyType) {
+    if (!exQ.length) exQ = IA.shuffle(EXCERPTS);
+    var ex = exQ.pop();
+    r.stage.appendChild(IA.el('div', { class: 'q' }, ['Is this fiction or nonfiction?']));
+    r.stage.appendChild(IA.el('div', { class: 'excerpt' }, [IA.speakButton(ex[1]), IA.el('p', {}, [ex[1]])]));
+    var why = IA.el('div', { class: 'ia-hint why', style: { visibility: 'hidden' } }, ['…']);
+    var grid = IA.el('div', { class: 'ia-choices wide fnf' });
+    [['F', '📖 Fiction', 'made-up story'], ['N', '📚 Nonfiction', 'true facts']].forEach(function (o) {
+      var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [o[1], IA.el('small', {}, [o[2]])]);
+      b.addEventListener('click', function () {
+        var ok = o[0] === ex[0];
+        why.style.visibility = 'visible';
+        why.textContent = (ok ? '✅ ' : '💡 ') + (ex[0] === 'F' ? 'Fiction! ' : 'Nonfiction! ') + ex[2];
+        IA.say(why.textContent.replace(/^\S+\s/, ''));
+        if (!ok) b.disabled = true;
+        r.answer(ok, b);
+      });
+      grid.appendChild(b);
+    });
+    r.stage.appendChild(grid);
+    r.stage.appendChild(why);
+    setTimeout(function () { IA.say(ex[1]); }, 300);
+  }
+  function mainRound(r) {
+    if (!miQ.length) miQ = IA.shuffle(MAIN);
+    var m = miQ.pop();
+    r.stage.appendChild(IA.el('div', { class: 'q' }, ['What is the main idea?']));
+    r.stage.appendChild(IA.el('div', { class: 'excerpt' }, [IA.speakButton(m.text), IA.el('p', {}, [m.text])]));
+    var why = IA.el('div', { class: 'ia-hint why', style: { visibility: 'hidden' } }, ['…']);
+    var grid = IA.el('div', { class: 'ia-choices wide mi', style: { gridTemplateColumns: '1fr' } });
+    IA.shuffle([['main', m.main], ['detail', m.detail], ['off', m.off]]).forEach(function (o) {
+      var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [o[1]]);
+      b.addEventListener('click', function () {
+        var ok = o[0] === 'main';
+        why.style.visibility = 'visible';
+        why.textContent = ok ? '✅ Yes! The main idea is what the WHOLE paragraph is about. The other sentences are details.'
+          : o[0] === 'detail' ? '💡 That is a detail — it’s only ONE small part. What is the whole paragraph about?'
+          : '💡 The paragraph doesn’t talk about that. What is the whole paragraph about?';
+        IA.say(why.textContent.replace(/^\S+\s/, ''));
+        if (!ok) b.disabled = true;
+        r.answer(ok, b);
+      });
+      grid.appendChild(b);
+    });
+    r.stage.appendChild(grid);
+    r.stage.appendChild(why);
+    setTimeout(function () { IA.say(m.text); }, 300);
+  }
+
+  IA.game({
+    id: 'g2r-fiction-nonfiction',
+    title: 'Fiction or Nonfiction?',
+    emoji: '📖',
+    back: '../index.html',
+    instructions: 'Read or listen. Is it a made-up story or true facts?',
+    rounds: 10,
+    delay: 2200,
+    levelTitle: 'Pick a game',
+    levels: [
+      { label: '📖 or 📚', value: 'fnf', desc: 'Fiction or nonfiction?' },
+      { label: '🎯 Main idea', value: 'main', desc: 'What is the paragraph mostly about?' }
+    ],
+    round: function (r) { if (r.level === 'main') mainRound(r); else fnfRound(r); }
+  });
+</script>
+</body>
+</html>

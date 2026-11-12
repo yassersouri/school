@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Count &amp; Tap — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; }
+    .field { position: relative; width: 100%; max-width: 600px; height: clamp(230px, 46vw, 320px); background: #f6fbf4; border: 3px dashed #c8e6c9; border-radius: 18px; }
+    .field.rows { height: auto; min-height: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; padding: 12px; }
+    .field.rows .row { display: flex; gap: 6px; }
+    .obj { font-size: clamp(34px, 6.5vw, 46px); line-height: 1; width: 1.35em; height: 1.35em; display: inline-flex; align-items: center; justify-content: center; border: 0; background: transparent; cursor: pointer; border-radius: 50%; padding: 0; position: relative; touch-action: manipulation; font-family: inherit; }
+    .field:not(.rows) .obj { position: absolute; transform: translate(-50%, -50%); }
+    .obj.counted { background: #fff3c4; box-shadow: 0 0 0 3px #f0c040; }
+    .obj .n { position: absolute; right: -8px; top: -8px; font-size: 14px; font-weight: bold; color: #fff; background: var(--ia-accent); border-radius: 999px; min-width: 22px; height: 22px; display: none; align-items: center; justify-content: center; padding: 0 4px; }
+    .obj.counted .n { display: inline-flex; }
+    .tools { font-size: 14px; color: #777; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var THINGS = ['🍎', '🐞', '⭐', '🐟', '🌸', '🚗', '🐥', '🍓', '⚽', '🦋', '🍪', '🐢', '🎈', '🍌', '🐸', '🧁'];
+  var lastEmoji = null;
+
+  IA.game({
+    id: 'g1m-count-tap',
+    title: 'Count & Tap',
+    emoji: '👆',
+    back: '../index.html',
+    instructions: 'Count the pictures. Tap each one as you count, then tap the number!',
+    rounds: 10,
+    levelTitle: 'How many things?',
+    levels: [
+      { label: '1 to 10 in rows', value: { min: 1, max: 10, rows: true }, desc: 'Neat rows of five' },
+      { label: '1 to 10 scattered', value: { min: 3, max: 10, rows: false }, desc: 'Pictures all over' },
+      { label: '1 to 20 scattered', value: { min: 8, max: 20, rows: false }, desc: 'Bigger groups' }
+    ],
+    round: function (r) {
+      var lv = r.level;
+      var n = IA.rand(lv.min, lv.max);
+      var e; do { e = IA.pick(THINGS); } while (e === lastEmoji); lastEmoji = e;
+      var counted = 0;
+      var objs = [];
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['How many ' + e + '?']));
+
+      function mk() {
+        var b = IA.el('button', { class: 'obj', type: 'button', 'aria-label': 'Count me' }, [e, IA.el('span', { class: 'n' })]);
+        b.addEventListener('click', function () {
+          if (b.classList.contains('counted')) return;
+          counted++;
+          b.classList.add('counted');
+          b.querySelector('.n').textContent = counted;
+          IA.say(String(counted), { rate: 1 });
+        });
+        objs.push(b);
+        return b;
+      }
+
+      var field;
+      if (lv.rows) {
+        field = IA.el('div', { class: 'field rows' });
+        var row;
+        for (var i = 0; i < n; i++) {
+          if (i % 5 === 0) { row = IA.el('div', { class: 'row' }); field.appendChild(row); }
+          row.appendChild(mk());
+        }
+      } else {
+        field = IA.el('div', { class: 'field' });
+        var cols = n > 10 ? 6 : 4, rws = n > 10 ? 4 : 3;
+        var cells = [];
+        for (var c = 0; c < cols * rws; c++) cells.push(c);
+        IA.sample(cells, n).forEach(function (cell) {
+          var cx = cell % cols, cy = Math.floor(cell / cols);
+          var x = (cx + 0.5 + (Math.random() - 0.5) * 0.45) / cols * 100;
+          var y = (cy + 0.5 + (Math.random() - 0.5) * 0.4) / rws * 100;
+          var b = mk();
+          b.style.left = x + '%'; b.style.top = y + '%';
+          field.appendChild(b);
+        });
+      }
+      r.stage.appendChild(field);
+
+      r.stage.appendChild(IA.el('div', { class: 'ia-row tools' }, [
+        IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () {
+          counted = 0; objs.forEach(function (o) { o.classList.remove('counted'); });
+        } }, ['↺ Start counting again'])
+      ]));
+
+      var hinted = false;
+      var proxy = {
+        answer: function (ok, el) {
+          var res = r.answer(ok, el);
+          if (!ok && !hinted) {
+            hinted = true;
+            var h = IA.el('div', { class: 'ia-hint' }, ['💡 Tap each picture once. The numbers will help you count!']);
+            field.parentNode.insertBefore(h, field.nextSibling);
+          }
+          return res;
+        }
+      };
+      IA.choices(proxy, r.stage, IA.numberChoices(n, 4, 3, 1), n, { speak: true });
+    }
+  });
+</script>
+</body>
+</html>

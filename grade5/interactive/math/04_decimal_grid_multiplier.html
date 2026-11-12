@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Decimal Grid Multiplier — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .gwrap { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .grid { display: grid; grid-template-columns: repeat(10, 1fr); gap: 2px; padding: 3px; background: #455a64; border-radius: 6px; width: min(320px, 78vw); aspect-ratio: 1; touch-action: none; cursor: crosshair; user-select: none; }
+    .grid i { background: #fff; border-radius: 2px; transition: background .2s; }
+    .grid i.r { background: #90caf9; }
+    .grid i.c { background: #fff59d; }
+    .grid i.b { background: #43a047; }
+    .legend { display: flex; flex-wrap: wrap; gap: 10px 18px; justify-content: center; font-size: 17px; }
+    .legend b { display: inline-block; width: 18px; height: 18px; border-radius: 4px; vertical-align: -3px; margin-right: 4px; }
+    .ctrl { display: flex; align-items: center; gap: 8px; font-size: 18px; font-weight: bold; }
+    .ctrl .val { min-width: 48px; text-align: center; font-size: 22px; }
+    .ctrl .ia-btn { min-width: 52px; min-height: 52px; padding: 4px; }
+    .mini-row { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .mini { display: grid; grid-template-columns: repeat(10, 1fr); gap: 1px; padding: 2px; background: #455a64; border-radius: 4px; width: min(130px, 38vw); aspect-ratio: 1; }
+    .mini i { background: #fff; transition: background .25s; }
+    .readout { font-size: 19px; text-align: center; color: #37474f; min-height: 26px; }
+    .readout strong { color: #2e7d32; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Exact decimals: values are whole numbers of thousandths (or hundredths for areas).
+  function fmtU(v, P) {
+    var s = String(v); while (s.length <= P) s = '0' + s;
+    var w = s.slice(0, -P), f = s.slice(-P).replace(/0+$/, '');
+    return w + (f ? '.' + f : '');
+  }
+  function t(n) { return fmtU(n, 1); } // tenths
+
+  function Grid(onChange) {
+    var g = IA.el('div', { class: 'grid', role: 'img' }), cells = [], rows = 0, cols = 0, enabled = true;
+    for (var i = 0; i < 100; i++) { var c = IA.el('i'); cells.push(c); g.appendChild(c); }
+    function paint() {
+      for (var i = 0; i < 100; i++) {
+        var r = Math.floor(i / 10) < rows, c = i % 10 < cols;
+        cells[i].className = r && c ? 'b' : r ? 'r' : c ? 'c' : '';
+      }
+      g.setAttribute('aria-label', rows + ' rows and ' + cols + ' columns shaded');
+      if (onChange) onChange(rows, cols);
+    }
+    function fromPoint(e) {
+      var b = g.getBoundingClientRect();
+      var cc = Math.max(1, Math.min(10, Math.floor((e.clientX - b.left) / b.width * 10) + 1));
+      var rr = Math.max(1, Math.min(10, Math.floor((e.clientY - b.top) / b.height * 10) + 1));
+      if (rr !== rows || cc !== cols) { rows = rr; cols = cc; IA.sfx.tap(); paint(); }
+    }
+    var down = false;
+    g.addEventListener('pointerdown', function (e) { if (!enabled) return; down = true; try { g.setPointerCapture(e.pointerId); } catch (er) {} fromPoint(e); });
+    g.addEventListener('pointermove', function (e) { if (down) fromPoint(e); });
+    g.addEventListener('pointerup', function () { down = false; });
+    g.addEventListener('pointercancel', function () { down = false; });
+    paint();
+    return {
+      el: g,
+      set: function (r, c) { rows = Math.max(0, Math.min(10, r)); cols = Math.max(0, Math.min(10, c)); paint(); },
+      get: function () { return [rows, cols]; },
+      lock: function () { enabled = false; g.style.cursor = 'default'; }
+    };
+  }
+
+  function legend() {
+    return IA.el('div', { class: 'legend' }, [
+      IA.el('span', {}, [IA.el('b', { style: { background: '#90caf9' } }), 'rows']),
+      IA.el('span', {}, [IA.el('b', { style: { background: '#fff59d' } }), 'columns']),
+      IA.el('span', {}, [IA.el('b', { style: { background: '#43a047' } }), 'overlap = the product'])]);
+  }
+
+  function controls(grid) {
+    function ctrl(label, idx) {
+      var val = IA.el('span', { class: 'val' }, ['0']);
+      function bump(d) { var g = grid.get(); g[idx] += d; grid.set(g[0], g[1]); IA.sfx.tap(); }
+      return { el: IA.el('div', { class: 'ctrl' }, [label,
+        IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'less ' + label, onclick: function () { bump(-1); } }, ['−']), val,
+        IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'more ' + label, onclick: function () { bump(1); } }, ['+'])]), val: val };
+    }
+    var a = ctrl('Rows', 0), b = ctrl('Columns', 1);
+    return { el: IA.el('div', { class: 'ia-row' }, [a.el, b.el]), update: function (r, c) { a.val.textContent = t(r); b.val.textContent = t(c); } };
+  }
+
+  function options(correct, wrongs) { // all in thousandths
+    var out = [correct], seen = {}; seen[correct] = 1;
+    wrongs.concat([correct + 1000, correct + 100, correct * 2]).forEach(function (w) { if (out.length < 4 && w > 0 && !seen[w]) { seen[w] = 1; out.push(w); } });
+    return IA.shuffle(out);
+  }
+
+  var PALETTE = ['#ef5350', '#42a5f5', '#66bb6a', '#ffa726', '#ab47bc', '#26a69a'];
+
+  IA.game({
+    id: 'g5m-decimal-grid-multiplier',
+    title: 'Decimal Grid Multiplier',
+    emoji: '🟩',
+    back: '../index.html',
+    instructions: 'The big square is 1 whole. Drag on the grid (or use + and −) to shade rows and columns. The overlap is the product!',
+    rounds: 10,
+    delay: 1600,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Build it: tenths × tenths', value: 'build', desc: 'Shade 0.3 and 0.4 and see 0.12' },
+      { label: 'Quiz: tenths × tenths', value: 'quiz', desc: '0.6 × 0.7 = ? (the grid is your tool)' },
+      { label: 'Whole × decimal', value: 'strips', desc: '3 × 0.4 with repeated strips' }
+    ],
+    round: function (r) {
+      var hint = IA.el('div', { class: 'ia-hint hidden' });
+      if (r.level === 'strips') {
+        var n = IA.rand(2, 5), d;
+        do { d = Math.random() < .6 ? IA.rand(1, 9) * 10 : IA.pick([15, 25, 35, 45, 75, 5]); } while (n * d > 400 || n * d < 30);
+        var prod = n * d; // hundredths
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, [n + ' × ' + fmtU(d, 2) + ' = ?']));
+        r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Each square = 1 whole. Add ' + fmtU(d, 2) + ' ' + n + ' times.']));
+        var ng = Math.max(1, Math.ceil(prod / 100)), cells = [];
+        var row = IA.el('div', { class: 'mini-row' });
+        for (var g = 0; g < ng; g++) {
+          var m = IA.el('div', { class: 'mini', 'aria-hidden': 'true' });
+          var arr = [];
+          for (var i = 0; i < 100; i++) { var c = IA.el('i'); arr.push(c); m.appendChild(c); }
+          // fill column by column so tenths make whole columns
+          for (var col = 0; col < 10; col++) for (var rr = 0; rr < 10; rr++) cells.push(arr[rr * 10 + col]);
+          row.appendChild(m);
+        }
+        r.stage.appendChild(row);
+        var added = 0;
+        var read = IA.el('div', { class: 'readout' }, ['Strips added: 0 of ' + n]);
+        var addBtn = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['➕ Add ' + fmtU(d, 2)]);
+        r.stage.appendChild(read); r.stage.appendChild(addBtn);
+        var qArea = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+        r.stage.appendChild(qArea);
+        addBtn.addEventListener('click', function () {
+          if (added >= n) return;
+          for (var k = added * d; k < (added + 1) * d; k++) cells[k].style.background = PALETTE[added % PALETTE.length];
+          added++; IA.sfx.tap();
+          var whole = Math.floor(added * d / 100), rest = added * d % 100;
+          read.textContent = 'Strips added: ' + added + ' of ' + n + ' → ' + whole + ' whole' + (whole === 1 ? '' : 's') + ' and ' + rest + ' hundredths';
+          if (added === n) {
+            addBtn.disabled = true;
+            qArea.appendChild(IA.el('div', { class: 'ia-prompt' }, ['So ' + n + ' × ' + fmtU(d, 2) + ' = ?']));
+            IA.choices(r, qArea, options(prod * 10, [prod * 100, prod, (n * 100 + d) * 10]), prod * 10, {
+              render: function (v) { return fmtU(v, 3); },
+              isCorrect: function (v) {
+                if (v !== prod * 10) { hint.classList.remove('hidden'); hint.textContent = 'Count the shaded squares: ' + whole + ' full square' + (whole === 1 ? '' : 's') + ' and ' + rest + ' hundredths.'; }
+                return v === prod * 10;
+              }
+            });
+            qArea.appendChild(hint);
+          }
+        });
+        return;
+      }
+
+      var a = IA.rand(1, 9), b = IA.rand(1, 9);
+      if (r.level === 'build' && a === b) b = b === 9 ? 8 : b + 1;
+      var correct = a * b * 10; // thousandths
+      var opts = options(correct, [a * b * 100, a * b, (a + b) * 100]);
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, [(r.level === 'build' ? 'Show ' : '') + t(a) + ' × ' + t(b) + (r.level === 'build' ? '' : ' = ?')]));
+      var readout = IA.el('div', { class: 'readout' });
+      var ctr;
+      var grid = Grid(function (rows, cols) {
+        if (ctr) ctr.update(rows, cols);
+        readout.innerHTML = '';
+        readout.appendChild(document.createTextNode(t(rows) + ' × ' + t(cols) + ' → overlap: '));
+        readout.appendChild(IA.el('strong', {}, [rows * cols + ' of 100 squares = ' + fmtU(rows * cols, 2)]));
+      });
+      ctr = controls(grid);
+      ctr.update(0, 0);
+      r.stage.appendChild(IA.el('div', { class: 'gwrap' }, [grid.el, legend()]));
+      r.stage.appendChild(ctr.el);
+      r.stage.appendChild(readout);
+      var qArea2 = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+      function ask() {
+        IA.choices(r, qArea2, opts, correct, {
+          render: function (v) { return fmtU(v, 3); },
+          isCorrect: function (v) {
+            if (v !== correct) {
+              grid.set(a, b);
+              hint.classList.remove('hidden');
+              hint.textContent = 'Tenths × tenths make hundredths: ' + a + ' × ' + b + ' = ' + (a * b) + ' little squares out of 100.';
+            }
+            return v === correct;
+          }
+        });
+        qArea2.appendChild(hint);
+      }
+      if (r.level === 'build') {
+        r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Make ' + t(a) + ' rows and ' + t(b) + ' columns.']));
+        var done = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['Done ✔']);
+        r.stage.appendChild(done); r.stage.appendChild(qArea2);
+        done.addEventListener('click', function () {
+          var g = grid.get();
+          if ((g[0] === a && g[1] === b) || (g[0] === b && g[1] === a)) {
+            IA.sfx.good(); done.remove(); grid.lock(); ctr.el.remove();
+            qArea2.appendChild(IA.el('div', { class: 'ia-prompt' }, ['So ' + t(a) + ' × ' + t(b) + ' = ?']));
+            ask();
+          } else {
+            r.answer(false, done);
+            hint.classList.remove('hidden');
+            hint.textContent = 'You have ' + t(g[0]) + ' (rows) and ' + t(g[1]) + ' (columns). Each row or column is one tenth.';
+            if (!hint.parentNode) r.stage.appendChild(hint);
+          }
+        });
+      } else {
+        r.stage.appendChild(qArea2);
+        ask();
+      }
+    }
+  });
+</script>
+</body>
+</html>

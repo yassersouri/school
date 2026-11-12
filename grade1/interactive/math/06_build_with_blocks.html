@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Build It with Blocks — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; --u: clamp(13px, 2.6vw, 18px); }
+    .rod { width: var(--u); height: calc(var(--u) * 10); background: repeating-linear-gradient(to bottom, #42a5f5 0, #42a5f5 calc(var(--u) - 2px), #1565c0 calc(var(--u) - 2px), #1565c0 var(--u)); border: 2px solid #1565c0; border-radius: 3px; box-sizing: content-box; }
+    .rod.h { width: calc(var(--u) * 10); height: var(--u); background: repeating-linear-gradient(to right, #42a5f5 0, #42a5f5 calc(var(--u) - 2px), #1565c0 calc(var(--u) - 2px), #1565c0 var(--u)); }
+    .cube { width: var(--u); height: var(--u); background: #ffb300; border: 2px solid #e65100; border-radius: 3px; box-sizing: content-box; }
+    .supply { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+    .src { display: flex; flex-direction: column; align-items: center; gap: 8px; background: #fcfaf4; border: 3px solid #e3dccb; border-radius: 16px; padding: 10px 14px; }
+    .src-pic { padding: 10px; border-radius: 12px; display: flex; align-items: center; justify-content: center; min-width: 56px; min-height: 56px; background: #fff; border: 2px dashed #ccc; }
+    .mat { display: flex; gap: 10px; width: 100%; max-width: 640px; }
+    .zone { flex: 1; border: 3px dashed #a5d6a7; border-radius: 16px; background: #f6fbf4; padding: 8px; min-height: calc(var(--u) * 10 + 64px); display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .zone h3 { margin: 0; font-size: 16px; color: var(--ia-accent); }
+    .zone .items { display: flex; flex-wrap: wrap; gap: 5px; justify-content: center; align-content: flex-start; flex: 1; width: 100%; }
+    .zone.ones .items { max-width: calc((var(--u) + 9px) * 5); }
+    .piece { border: 0; padding: 4px; background: transparent; cursor: pointer; border-radius: 6px; touch-action: manipulation; }
+    .piece:hover { background: #ffebee; }
+    .counter { font-size: clamp(18px, 3.6vw, 24px); font-weight: bold; text-align: center; color: #333; }
+    .counter b { color: var(--ia-accent); }
+    .target { display: flex; align-items: center; gap: 10px; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  IA.game({
+    id: 'g1m-build-with-blocks',
+    title: 'Build It with Blocks',
+    emoji: '🧱',
+    back: '../index.html',
+    instructions: 'Build the number with tens rods and ones cubes. Tap a block on the mat to take it away.',
+    rounds: 8,
+    levelTitle: 'Which numbers?',
+    levels: [
+      { label: '10 to 50', value: { min: 10, max: 50 }, desc: 'Up to 5 tens' },
+      { label: '10 to 99', value: { min: 10, max: 99 }, desc: 'Up to 9 tens' }
+    ],
+    round: function (r) {
+      var target = IA.rand(r.level.min, r.level.max);
+      var T = Math.floor(target / 10), O = target % 10;
+      var tens = 0, ones = 0;
+      IA.say('Build ' + target);
+
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt target' }, ['Build', IA.el('span', { class: 'ia-big', style: { color: 'var(--ia-accent)' } }, [String(target)]), IA.speakButton('Build ' + target)]));
+
+      var rodPic = IA.el('div', { class: 'src-pic', 'aria-label': 'Ten rod' }, [IA.el('div', { class: 'rod h' })]);
+      var cubePic = IA.el('div', { class: 'src-pic', 'aria-label': 'One cube' }, [IA.el('div', { class: 'cube' })]);
+      rodPic._kind = 'ten'; cubePic._kind = 'one';
+      r.stage.appendChild(IA.el('div', { class: 'supply' }, [
+        IA.el('div', { class: 'src' }, [rodPic, IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { add('ten'); } }, ['➕ Ten'])]),
+        IA.el('div', { class: 'src' }, [cubePic, IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { add('one'); } }, ['➕ One'])])
+      ]));
+
+      var tensItems = IA.el('div', { class: 'items' }), onesItems = IA.el('div', { class: 'items' });
+      var tensZone = IA.el('div', { class: 'zone tens' }, [IA.el('h3', {}, ['Tens']), tensItems]);
+      var onesZone = IA.el('div', { class: 'zone ones' }, [IA.el('h3', {}, ['Ones']), onesItems]);
+      var mat = IA.el('div', { class: 'mat' }, [tensZone, onesZone]);
+      r.stage.appendChild(mat);
+      var counter = IA.el('div', { class: 'counter', 'aria-live': 'polite' });
+      r.stage.appendChild(counter);
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      r.stage.appendChild(hint);
+
+      IA.dragDrop({
+        items: [rodPic, cubePic], targets: [tensZone, onesZone, mat], keepInPlace: true,
+        onDrop: function (item) { add(item._kind); return false; }
+      });
+
+      function render() {
+        hint.style.display = 'none';
+        IA.clear(tensItems); IA.clear(onesItems);
+        for (var i = 0; i < tens; i++) tensItems.appendChild(piece('ten'));
+        for (var j = 0; j < ones; j++) onesItems.appendChild(piece('one'));
+        counter.innerHTML = '';
+        counter.appendChild(document.createTextNode(tens + ' ten' + (tens === 1 ? '' : 's') + ' and ' + ones + ' one' + (ones === 1 ? '' : 's') + ' = '));
+        counter.appendChild(IA.el('b', {}, [String(tens * 10 + ones)]));
+      }
+      function piece(kind) {
+        return IA.el('button', { class: 'piece', type: 'button', 'aria-label': 'Remove ' + kind, onclick: function () {
+          if (kind === 'ten') tens--; else ones--;
+          IA.sfx.tap(); render();
+        } }, [IA.el('div', { class: kind === 'ten' ? 'rod' : 'cube' })]);
+      }
+      function add(kind) {
+        if (kind === 'ten') { if (tens >= 9) { IA.toast('That’s a lot of tens! 9 is the most.', true); return; } tens++; }
+        else { if (ones >= 9) { IA.toast('10 ones make 1 ten — use a ten rod!', true); return; } ones++; }
+        IA.sfx.tap(); render();
+      }
+      render();
+
+      r.stage.appendChild(IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: function (e) {
+        if (tens === T && ones === O) { hint.style.display = 'none'; r.answer(true, e.currentTarget, target + ' = ' + T + (T === 1 ? ' ten' : ' tens') + ' and ' + O + (O === 1 ? ' one' : ' ones') + '! 🎉'); return; }
+        var msg = 'You have ' + tens + ' ten' + (tens === 1 ? '' : 's') + ' and ' + ones + ' one' + (ones === 1 ? '' : 's') +
+          '. You need ' + T + ' ten' + (T === 1 ? '' : 's') + ' and ' + O + ' one' + (O === 1 ? '' : 's') + '.';
+        hint.textContent = '💡 ' + msg; hint.style.display = '';
+        IA.say(msg);
+        r.answer(false, mat);
+      } }, ['Check ✔']));
+    }
+  });
+</script>
+</body>
+</html>

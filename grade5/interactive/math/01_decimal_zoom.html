@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Decimal Zoom — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .nl-box { width: 100%; max-width: 760px; }
+    .nl-clip { position: relative; overflow: hidden; padding: 0 30px; touch-action: none; cursor: pointer; border-radius: 14px; background: #fbfefd; }
+    .nl-clip.no-place { cursor: default; }
+    .nl { position: relative; height: 130px; transform-origin: 0 50%; }
+    .nl.zoom { transition: transform .9s ease-in-out; }
+    .nl.fade-in { animation: nlIn .5s ease; }
+    @keyframes nlIn { from { opacity: 0; } to { opacity: 1; } }
+    .axis { position: absolute; left: 0; right: 0; top: 72px; height: 4px; background: #37474f; border-radius: 2px; }
+    .tick { position: absolute; top: 64px; width: 2px; height: 20px; margin-left: -1px; background: #37474f; }
+    .tick.major { top: 56px; height: 36px; width: 4px; margin-left: -2px; }
+    .tick.mid { top: 60px; height: 28px; width: 3px; }
+    .lbl { position: absolute; top: 96px; transform: translateX(-50%); font-size: clamp(11px, 2.4vw, 18px); font-weight: bold; color: #37474f; white-space: nowrap; transition: opacity .3s; }
+    .lbl.major { font-size: clamp(14px, 3vw, 20px); color: #00695c; }
+    .lbl.hidden { opacity: 0; }
+    .lbl.hint { color: #b26a00; }
+    .zooming .lbl { opacity: 0 !important; }
+    .pin { position: absolute; top: 4px; width: 0; pointer-events: none; }
+    .pin span { position: absolute; left: -18px; width: 36px; text-align: center; font-size: 34px; line-height: 1; }
+    .pin i { position: absolute; left: -2px; top: 36px; width: 4px; height: 34px; background: #d84315; border-radius: 2px; }
+    .pin.target span { color: #1565c0; }
+    .pin.target i { background: #1565c0; }
+    .seg { position: absolute; top: 40px; height: 76px; border: 0; background: transparent; cursor: pointer; border-radius: 10px; font: inherit; }
+    .seg:hover, .seg:focus-visible { background: rgba(0,105,92,.14); outline: none; }
+    .seg.bad { background: rgba(198,40,40,.15); }
+    .seg.good { background: rgba(46,125,50,.25); }
+    .map { width: 100%; max-width: 360px; margin: 0 auto; font-size: 13px; color: #607d8b; text-align: center; }
+    .map-bar { position: relative; height: 12px; background: #cfd8dc; border-radius: 6px; margin: 4px 22px; }
+    .map-win { position: absolute; top: -4px; height: 20px; width: 10%; background: #00897b; border-radius: 4px; }
+    .map-ends { display: flex; justify-content: space-between; font-weight: bold; }
+    .nudge { display: flex; gap: 12px; justify-content: center; align-items: center; flex-wrap: wrap; }
+    .target-num { color: #d84315; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // All values are whole numbers of HUNDREDTHS (no floating-point arithmetic).
+  function fmt(v, keep) {
+    var s = String(Math.abs(v)); while (s.length < 3) s = '0' + s;
+    var w = s.slice(0, -2), f = s.slice(-2);
+    if (!keep) f = f.replace(/0+$/, '');
+    return (v < 0 ? '-' : '') + w + (f ? '.' + f : '');
+  }
+  function parseDec(str, P) {
+    str = String(str).trim().replace(',', '.').replace(/\s+/g, '');
+    if (!/^\d*\.?\d*$/.test(str) || !/\d/.test(str)) return null;
+    var parts = str.split('.'), w = parts[0] || '0', f = parts[1] || '';
+    if (f.length > P) { if (/[1-9]/.test(f.slice(P))) return null; f = f.slice(0, P); }
+    while (f.length < P) f += '0';
+    return parseInt(w, 10) * Math.pow(10, P) + parseInt(f || '0', 10);
+  }
+
+  // Build a number line from lo to hi (hundredths) with ticks every `step`.
+  function NumberLine(lo, hi, step, keep) {
+    var clip = IA.el('div', { class: 'nl-clip' });
+    var nl = IA.el('div', { class: 'nl' });
+    clip.appendChild(nl);
+    nl.appendChild(IA.el('div', { class: 'axis' }));
+    var n = (hi - lo) / step, labels = {};
+    for (var i = 0; i <= n; i++) {
+      var v = lo + i * step, pct = i / n * 100;
+      var major = (i === 0 || i === n), mid = (i * 2 === n);
+      nl.appendChild(IA.el('div', { class: 'tick' + (major ? ' major' : mid ? ' mid' : ''), style: { left: pct + '%' } }));
+      var lb = IA.el('div', { class: 'lbl' + (major ? ' major' : ' hidden'), style: { left: pct + '%' } }, [fmt(v, keep)]);
+      nl.appendChild(lb); labels[v] = lb;
+    }
+    return {
+      el: clip, line: nl, lo: lo, hi: hi, step: step, n: n,
+      pct: function (v) { return (v - lo) / (hi - lo) * 100; },
+      valueAt: function (x) {
+        var r = nl.getBoundingClientRect(); var f = (x - r.left) / r.width;
+        f = Math.max(0, Math.min(1, f)); return lo + Math.round(f * n) * step;
+      },
+      showAll: function () { Object.keys(labels).forEach(function (k) { labels[k].classList.remove('hidden'); labels[k].classList.add('hint'); }); },
+      addPin: function (cls, label) {
+        var p = IA.el('div', { class: 'pin ' + (cls || ''), style: { display: 'none' } }, [IA.el('span', {}, [label || '▼']), IA.el('i')]);
+        nl.appendChild(p);
+        return { el: p, set: function (v) { p.style.display = ''; p.style.left = ((v - lo) / (hi - lo) * 100) + '%'; } };
+      }
+    };
+  }
+
+  // Make a line accept placement by tap/drag plus ◀ ▶ buttons. Returns {get(), row}
+  function makePlaceable(line, onMove) {
+    var pin = line.addPin('', '▼'), val = null, dragging = false;
+    function set(v) { v = Math.max(line.lo, Math.min(line.hi, v)); if (v !== val) IA.sfx.tap(); val = v; pin.set(v); if (onMove) onMove(v); }
+    var c = line.el;
+    c.setAttribute('tabindex', '0'); c.setAttribute('role', 'slider'); c.setAttribute('aria-label', 'Number line: use arrow keys to move the marker');
+    c.addEventListener('pointerdown', function (e) { dragging = true; try { c.setPointerCapture(e.pointerId); } catch (er) {} set(line.valueAt(e.clientX)); });
+    c.addEventListener('pointermove', function (e) { if (dragging) set(line.valueAt(e.clientX)); });
+    c.addEventListener('pointerup', function () { dragging = false; });
+    c.addEventListener('pointercancel', function () { dragging = false; });
+    c.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowLeft') { e.preventDefault(); set((val === null ? line.lo : val) - line.step); }
+      if (e.key === 'ArrowRight') { e.preventDefault(); set((val === null ? line.lo : val) + line.step); }
+    });
+    var row = IA.el('div', { class: 'nudge' }, [
+      IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'Move left', onclick: function () { set((val === null ? line.lo : val) - line.step); } }, ['◀']),
+      IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'Move right', onclick: function () { set((val === null ? line.lo : val) + line.step); } }, ['▶'])
+    ]);
+    return { get: function () { return val; }, row: row };
+  }
+
+  function mapBar(whole, tenth) {
+    var win = IA.el('div', { class: 'map-win', style: { left: (tenth * 10) + '%' } });
+    return IA.el('div', { class: 'map' }, ['🔍 zoomed in on this part:',
+      IA.el('div', { class: 'map-bar' }, [win]),
+      IA.el('div', { class: 'map-ends' }, [String(whole), String(whole + 1)])]);
+  }
+
+  function placeStep(r, box, line, target, prefix) {
+    var ctrl;
+    var check = IA.el('button', { class: 'ia-btn primary', type: 'button', disabled: true }, ['Check ✔']);
+    ctrl = makePlaceable(line, function () { check.disabled = false; });
+    box.appendChild(line.el);
+    r.stage.appendChild(ctrl.row);
+    ctrl.row.appendChild(check);
+    var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+    r.stage.appendChild(hint);
+    check.addEventListener('click', function () {
+      var v = ctrl.get(); if (v === null) return;
+      if (v === target) {
+        var p = line.addPin('target', '★'); p.set(target);
+        r.answer(true, check, (prefix || '') + fmt(target) + ' ✔');
+      } else {
+        r.answer(false, check);
+        line.showAll();
+        hint.style.display = '';
+        hint.textContent = 'Your marker is at ' + fmt(v, line.step === 1) + '. Count the little steps: each one is ' + (line.step === 1 ? '0.01' : '0.1') + '. Move it to ' + fmt(target) + '.';
+      }
+    });
+  }
+
+  IA.game({
+    id: 'g5m-decimal-zoom',
+    title: 'Decimal Zoom',
+    emoji: '🔍',
+    back: '../index.html',
+    instructions: 'Tap or drag on the number line to place the decimal. Zoom in to find hundredths!',
+    rounds: 10,
+    levelTitle: 'Choose your zoom',
+    levels: [
+      { label: 'Tenths', value: 'tenths', desc: 'Place 0.7 or 3.4 between two whole numbers' },
+      { label: 'Zoom to hundredths', value: 'zoom', desc: 'Find the tenth, zoom in ×10, place 0.37' },
+      { label: 'What is at the arrow?', value: 'read', desc: 'Read the number at the arrow' }
+    ],
+    round: function (r) {
+      var whole = r.index < 3 ? 0 : IA.rand(0, 9);
+      var lo = whole * 100;
+      var box = IA.el('div', { class: 'nl-box' });
+      if (r.level === 'tenths') {
+        var t = lo + IA.rand(1, 9) * 10;
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Place ', IA.el('span', { class: 'target-num' }, [fmt(t)])]));
+        r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Each small step on this line is one tenth (0.1).']));
+        r.stage.appendChild(box);
+        placeStep(r, box, NumberLine(lo, lo + 100, 10), t);
+      } else if (r.level === 'zoom') {
+        var tenth = IA.rand(0, 9), t2 = lo + tenth * 10 + IA.rand(1, 9);
+        var prompt = IA.el('div', { class: 'ia-prompt' }, ['Where is ', IA.el('span', { class: 'target-num' }, [fmt(t2)]), '?']);
+        var sub = IA.el('div', { class: 'ia-sub' }, ['Step 1: tap the tenth-section that ' + fmt(t2) + ' is inside.']);
+        r.stage.appendChild(prompt); r.stage.appendChild(sub); r.stage.appendChild(box);
+        var line = NumberLine(lo, lo + 100, 10);
+        line.el.classList.add('no-place');
+        box.appendChild(line.el);
+        var segs = [];
+        for (var i = 0; i < 10; i++) (function (i) {
+          var s = IA.el('button', { class: 'seg', type: 'button', 'aria-label': 'Between ' + fmt(lo + i * 10) + ' and ' + fmt(lo + i * 10 + 10), style: { left: (i * 10) + '%', width: '10%' } });
+          s.addEventListener('click', function () {
+            if (i !== tenth) {
+              s.classList.add('bad'); r.answer(false, s, 'Not that one!');
+              line.showAll();
+              sub.textContent = fmt(t2) + ' has ' + Math.floor((t2 % 100) / 10) + ' tenths, so it is between ' + fmt(lo + tenth * 10, false) + ' and ' + fmt(lo + tenth * 10 + 10) + '.';
+              return;
+            }
+            segs.forEach(function (x) { x.disabled = true; });
+            s.classList.add('good'); IA.sfx.good(); IA.toast('Zooming in ×10! 🔍');
+            line.el.classList.add('zooming');
+            line.line.classList.add('zoom');
+            line.line.style.transform = 'translateX(' + (-i * 100) + '%) scaleX(10)';
+            setTimeout(function () {
+              IA.clear(box);
+              var a = lo + i * 10;
+              var z = NumberLine(a, a + 10, 1, true);
+              z.line.classList.add('fade-in');
+              sub.textContent = 'Step 2: now each small step is one hundredth (0.01). Place ' + fmt(t2) + '.';
+              box.appendChild(mapBar(whole, i));
+              placeStep(r, box, z, t2);
+            }, 950);
+          });
+          segs.push(s); line.line.appendChild(s);
+        })(i);
+      } else {
+        var zoomed = r.index % 2 === 1;
+        var tn = IA.rand(0, 9), a2, line2, val;
+        if (zoomed) { a2 = lo + tn * 10; line2 = NumberLine(a2, a2 + 10, 1, true); val = a2 + IA.rand(1, 9); }
+        else { line2 = NumberLine(lo, lo + 100, 10); val = lo + IA.rand(1, 9) * 10; }
+        line2.el.classList.add('no-place');
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['What number is at the arrow?']));
+        r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, [zoomed ? 'Each small step is 0.01.' : 'Each small step is 0.1.']));
+        if (zoomed) r.stage.appendChild(mapBar(whole, tn));
+        r.stage.appendChild(box); box.appendChild(line2.el);
+        line2.addPin('target', '⬇').set(val);
+        var hint2 = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+        IA.numberInput(r.stage, function (s, inp) {
+          var v = parseDec(s, 2);
+          if (v === val) { inp.disabled = true; r.answer(true, inp, fmt(val) + ' ✔'); }
+          else {
+            r.answer(false, inp); line2.showAll(); hint2.style.display = '';
+            hint2.textContent = 'Count the steps from ' + fmt(zoomed ? a2 : lo, zoomed) + '. The labels can help!';
+          }
+        }, { decimal: true, label: 'Number at the arrow' });
+        r.stage.appendChild(hint2);
+      }
+    }
+  });
+</script>
+</body>
+</html>

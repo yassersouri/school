@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Listen &amp; Answer — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .passage { width: 100%; max-width: 720px; background: #fff7fa; border: 2px solid #f8bbd0; border-radius: 16px; padding: 12px 18px 14px; }
+    .passage h2 { margin: 0 0 4px; color: var(--ia-accent); font-size: clamp(20px, 3.6vw, 26px); }
+    .passage .kind { font-size: 13px; color: #8a6d7a; }
+    .ptext { font-size: clamp(18px, 2.8vw, 21px); line-height: 1.75; margin: 8px 0 0; }
+    .ptext .w { cursor: pointer; border-radius: 6px; padding: 1px 0; transition: background .15s; }
+    .ptext .w:hover { background: #fde2ec; }
+    .ptext .s.cur { background: #fff3c4; border-radius: 6px; box-shadow: 0 0 0 2px #fff3c4; }
+    .ptext .w.now { background: #f48fb1; color: #fff; }
+    .controls { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+    .controls .ia-btn { font-size: 16px; min-height: 48px; padding: 6px 14px; }
+    .toggle { margin-left: auto; }
+    .passage.folded .ptext { display: none; }
+    .qbox { width: 100%; max-width: 720px; display: flex; flex-direction: column; gap: 10px; align-items: center; }
+    .qtag { font-size: 13px; font-weight: bold; text-transform: uppercase; letter-spacing: 1px; color: #fff; background: var(--ia-accent); border-radius: 999px; padding: 3px 12px; }
+    .qtext { font-size: clamp(21px, 3.8vw, 28px); font-weight: bold; text-align: center; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .opts { display: flex; flex-direction: column; gap: 10px; width: 100%; }
+    .opt { display: flex; gap: 8px; align-items: center; }
+    .opt .ia-choice { flex: 1; font-size: clamp(17px, 2.8vw, 21px); min-height: 60px; justify-content: flex-start; text-align: left; }
+    .why { max-width: 720px; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Original passages. Each has 4 questions; the first option is the correct one (choices are shuffled).
+  var PASSAGES = [
+    { title: 'Amazing Octopuses', emoji: '🐙', kind: 'Nonfiction',
+      text: 'An octopus is a sea animal with eight long arms. Each arm is covered with suckers that help it grab food and hold on to rocks. An octopus has no bones, so it can squeeze through a hole as small as a coin. When an octopus is in danger, it can change colour to hide. It can also squirt a cloud of dark ink and zoom away. Octopuses are very smart. Some can even open jars to get a snack inside!',
+      qs: [
+        ['Find it', 'How many arms does an octopus have?', ['eight', 'six', 'ten'], 'The first sentence says an octopus has eight long arms.'],
+        ['Find it', 'Why can an octopus squeeze through a tiny hole?', ['It has no bones.', 'It is very smart.', 'It can squirt ink.'], 'The passage says it has no bones, SO it can squeeze through small holes.'],
+        ['Main idea', 'What is this passage mostly about?', ['the amazing things octopuses can do', 'how to open a jar', 'fish that live in rivers'], 'Every sentence tells something an octopus can do.'],
+        ['Think', 'Why would an octopus change colour?', ['to hide from danger', 'to look pretty for a party', 'because it is cold'], 'It says it changes colour to hide when it is in danger.']
+      ] },
+    { title: 'Nora and the Noisy Night', emoji: '🌙', kind: 'Fiction',
+      text: 'Nora could not fall asleep. Tap, tap, tap went something on her window. She pulled her blanket up to her nose. “Maybe it is a monster,” she whispered. Nora took a deep breath and tiptoed to the window. She pulled back the curtain very slowly. It was only a branch from the maple tree, tapping in the wind! Nora giggled. She climbed back into bed and hugged her stuffed bunny. Tap, tap, tap. Now it sounded like a song, and soon she was fast asleep.',
+      qs: [
+        ['Find it', 'What was making the tapping sound?', ['a branch from the maple tree', 'a monster', 'her stuffed bunny'], 'When Nora looked, it was only a branch tapping in the wind.'],
+        ['Order', 'What did Nora do right after she tiptoed to the window?', ['She pulled back the curtain.', 'She hugged her bunny.', 'She fell asleep.'], 'She tiptoed to the window, THEN pulled back the curtain.'],
+        ['Think', 'How did Nora feel at the beginning of the story?', ['scared', 'bored', 'angry'], 'She hid under her blanket and whispered about a monster — she was scared.'],
+        ['Main idea', 'What is this story mostly about?', ['a girl who finds out a scary noise is just a branch', 'how maple trees grow', 'a monster who lives in a closet'], 'The whole story is about the noise and what it really was.']
+      ] },
+    { title: 'From Tree to Syrup', emoji: '🍁', kind: 'Nonfiction',
+      text: 'Maple syrup comes from maple trees. In early spring, the nights are still freezing, but the days are warm. This makes a clear, watery liquid called sap flow inside the trees. Farmers drill a small hole in each tree and put in a tap. The sap drips out into buckets or tubes. Next, the sap is boiled for a long time until most of the water turns into steam. It takes about forty buckets of sap to make just one bucket of syrup! Canada makes more maple syrup than any other country.',
+      qs: [
+        ['Find it', 'When does the sap flow?', ['in early spring', 'in the middle of summer', 'on the hottest day of the year'], 'It says sap flows in early spring, when nights freeze and days are warm.'],
+        ['Order', 'What happens after the sap drips out of the tree?', ['It is boiled for a long time.', 'Farmers drill a hole.', 'The nights get freezing.'], 'First the sap drips out. Next, it is boiled.'],
+        ['Find it', 'About how many buckets of sap make one bucket of syrup?', ['forty', 'two', 'one'], 'It takes about forty buckets of sap!'],
+        ['Main idea', 'What is this passage mostly about?', ['how maple syrup is made', 'how to plant a maple tree', 'why leaves fall in autumn'], 'Each step tells how sap becomes syrup.']
+      ] },
+    { title: 'The Lemonade Stand', emoji: '🍋', kind: 'Fiction',
+      text: 'On a hot Saturday, Eli and his friend Priya set up a lemonade stand. Their sign said, “Lemonade, 50 cents.” At first, nobody stopped. Priya had an idea. “Let’s add ice and sing a song!” she said. They sang, “Cold lemonade, fresh and sweet!” Soon, a jogger stopped and paid with two quarters. Then a family with three kids lined up. By the end of the day, the jug was empty. Eli and Priya counted their coins and grinned. They decided to give half of the money to the animal shelter.',
+      qs: [
+        ['Find it', 'How much did one lemonade cost?', ['50 cents', 'one dollar', '25 cents'], 'The sign said 50 cents. That’s two quarters!'],
+        ['Order', 'What happened right after they sang their song?', ['A jogger stopped to buy some.', 'They made a sign.', 'They counted their coins.'], 'They sang, and SOON a jogger stopped.'],
+        ['Think', 'Why did more people stop after the song?', ['The song got people’s attention.', 'It started to rain.', 'The lemonade was free.'], 'Nobody stopped at first. The singing made people notice the stand.'],
+        ['Think', 'What do we learn about Eli and Priya at the end?', ['They care about animals and like to share.', 'They do not like lemonade.', 'They want to keep all the money.'], 'They gave half of their money to the animal shelter.']
+      ] },
+    { title: 'Busy Beavers', emoji: '🦫', kind: 'Nonfiction',
+      text: 'The beaver is Canada’s national animal. You can even see one on the back of a nickel! Beavers have big orange front teeth that never stop growing. Chewing on trees keeps their teeth from getting too long. Beavers use the logs and sticks to build dams across streams. A dam makes a pond. In the pond, beavers build a home called a lodge. The door to the lodge is under the water, so wolves cannot get in. When a beaver senses danger, it slaps its flat tail on the water to warn its family.',
+      qs: [
+        ['Find it', 'Where is the door to a beaver lodge?', ['under the water', 'on the roof', 'next to a tree'], 'The door is under the water, so wolves cannot get in.'],
+        ['Find it', 'Why do beavers chew on trees?', ['to keep their teeth from getting too long', 'because they are bored', 'to make paper'], 'Their teeth never stop growing, and chewing keeps them short.'],
+        ['Think', 'Why does a beaver slap its tail on the water?', ['to warn its family about danger', 'to say good morning', 'to catch a fish'], 'It slaps its tail when it senses danger.'],
+        ['Main idea', 'What is this passage mostly about?', ['how beavers live and build', 'coins in Canada', 'how wolves hunt'], 'Most sentences tell how beavers live and build.']
+      ] },
+    { title: 'Pip’s First Swim', emoji: '🐧', kind: 'Fiction',
+      text: 'Pip was a young penguin who did not like the water. “It’s too cold and too deep,” he said. Every day, his big sister Nell dove off the ice and came back with a fish. One morning, Pip’s tummy rumbled loudly. Nell had gone far away, and Pip was very hungry. He walked to the edge of the ice and looked down. “One, two, three!” he counted, and he jumped. The water was cold, but his flippers worked like wings. Pip zipped through the water and caught his very own fish. “Swimming is fun!” he cheered.',
+      qs: [
+        ['Find it', 'Why did Pip not like the water at first?', ['He thought it was too cold and too deep.', 'He did not like fish.', 'His flippers were broken.'], 'Pip said, “It’s too cold and too deep.”'],
+        ['Order', 'What did Pip do right before he jumped?', ['He counted to three.', 'He caught a fish.', 'He cheered.'], '“One, two, three!” he counted, and THEN he jumped.'],
+        ['Think', 'Why did Pip finally jump in?', ['He was hungry, and Nell was not there to help.', 'Nell pushed him in.', 'The ice melted.'], 'His tummy rumbled and Nell had gone far away.'],
+        ['Main idea', 'What lesson does this story teach?', ['Trying something new can be fun.', 'Penguins should stay on the ice.', 'Always eat breakfast with your sister.'], 'Pip was afraid, tried it, and found that swimming is fun.']
+      ] },
+    { title: 'Why Leaves Change Colour', emoji: '🍂', kind: 'Nonfiction',
+      text: 'In summer, most tree leaves are green. They are green because they are full of something called chlorophyll. Chlorophyll helps leaves use sunlight to make food for the tree. In fall, the days get shorter and cooler. The tree stops making chlorophyll, and the green colour fades away. Then we can see the yellow and orange colours that were hiding in the leaf all along! Some trees, like maples, also make bright red colours in the fall. Soon, the leaves dry up and drop to the ground.',
+      qs: [
+        ['Find it', 'What makes leaves green?', ['chlorophyll', 'rain', 'soil'], 'Leaves are green because they are full of chlorophyll.'],
+        ['Order', 'What happens after the green colour fades away?', ['We can see yellow and orange colours.', 'The leaves grow bigger.', 'Summer begins.'], 'The green fades, THEN the yellow and orange show.'],
+        ['Find it', 'Which tree does the passage say makes bright red colours?', ['maple', 'pine', 'spruce'], 'It says some trees, like maples, make bright red colours.'],
+        ['Main idea', 'What is this passage mostly about?', ['why leaves change colour in fall', 'how to rake leaves', 'what birds eat in winter'], 'The whole passage explains the colour change.']
+      ] },
+    { title: 'Grandma’s Story Blanket', emoji: '🧵', kind: 'Fiction',
+      text: 'Every winter, Grandma Rose visits Kai’s family. She always brings her big patchwork blanket. Each square on the blanket tells a story. One square is blue with a white fish. “This is from the summer I learned to fish with my uncle,” Grandma says. Another square is green with a tiny house. “This is the house where I grew up.” Kai loves to snuggle under the blanket and listen. This year, Grandma gave Kai an empty square, a needle, and some thread. “Now you can add a picture of your own story,” she said. Kai thought hard. Then he started to sew a little red bike.',
+      qs: [
+        ['Find it', 'What does each square on the blanket have?', ['a story', 'a pocket', 'a button'], 'It says each square on the blanket tells a story.'],
+        ['Find it', 'What does the fish square remind Grandma of?', ['learning to fish with her uncle', 'her house', 'a trip to the store'], 'Grandma says it is from the summer she learned to fish with her uncle.'],
+        ['Think', 'Why did Grandma give Kai an empty square?', ['so Kai could add his own story', 'because the blanket was ripped', 'so Kai could wipe the table'], 'She said, “Now you can add a picture of your own story.”'],
+        ['Main idea', 'What is this story mostly about?', ['a blanket that helps a family share stories', 'how to catch a fish', 'a boy who wants a new bike'], 'The blanket holds Grandma’s stories, and now Kai’s too.']
+      ] }
+  ];
+
+  var reader = null;
+  function makeReader(p) {
+    var box = IA.el('section', { class: 'passage' });
+    box.appendChild(IA.el('div', { class: 'kind' }, [p.kind === 'Fiction' ? '📖 Fiction' : '📚 Nonfiction']));
+    box.appendChild(IA.el('h2', {}, [p.emoji + ' ' + p.title]));
+    var playBtn = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['▶️ Read to me']);
+    var stopBtn = IA.el('button', { class: 'ia-btn', type: 'button' }, ['⏹ Stop']);
+    var foldBtn = IA.el('button', { class: 'ia-btn toggle', type: 'button' }, ['🙈 Hide story']);
+    box.appendChild(IA.el('div', { class: 'controls' }, [playBtn, stopBtn, foldBtn]));
+    var ptext = IA.el('p', { class: 'ptext' });
+    box.appendChild(ptext);
+    box.appendChild(IA.el('div', { class: 'ia-sub', style: { textAlign: 'left', marginTop: '6px' } }, ['👆 Tap any word to hear it.']));
+    var sentences = (p.text.match(/[^.!?]+[.!?]+[”"]?\s*/g) || [p.text]).map(function (s) { return s.trim(); });
+    var sEls = [];
+    sentences.forEach(function (s, si) {
+      var sEl = IA.el('span', { class: 's' });
+      var words = [];
+      var re = /\S+/g, m;
+      while ((m = re.exec(s))) {
+        var w = IA.el('span', { class: 'w' }, [m[0]]);
+        w._start = m.index; w._end = m.index + m[0].length;
+        (function (word) { w.addEventListener('click', function () { stop(); IA.say(word.replace(/[^A-Za-z0-9’'-]/g, ''), { force: true, rate: 0.8 }); }); })(m[0]);
+        words.push(w); sEl.appendChild(w); sEl.appendChild(document.createTextNode(' '));
+      }
+      sEl._text = s; sEl._words = words;
+      sEls.push(sEl); ptext.appendChild(sEl);
+    });
+    var token = 0, timer = null;
+    function clearHL() { sEls.forEach(function (s) { s.classList.remove('cur'); s._words.forEach(function (w) { w.classList.remove('now'); }); }); }
+    function stop() { token++; clearTimeout(timer); IA.stopSpeech(); clearHL(); playBtn.textContent = '▶️ Read to me'; }
+    function play(from) {
+      stop(); var my = token; playBtn.textContent = '🔁 Start again';
+      box.classList.remove('folded'); foldBtn.textContent = '🙈 Hide story';
+      (function step(i) {
+        if (my !== token) return;
+        clearHL();
+        if (i >= sEls.length) { playBtn.textContent = '▶️ Read to me'; if (reader && reader.onDone) reader.onDone(); return; }
+        var sEl = sEls[i]; sEl.classList.add('cur');
+        var u = IA.say(sEl._text, {
+          rate: 0.85,
+          onboundary: function (e) {
+            if (my !== token || e.name === 'sentence') return;
+            sEl._words.forEach(function (w) { w.classList.toggle('now', e.charIndex >= w._start && e.charIndex < w._end); });
+          },
+          onend: function () { if (my === token && u) setTimeout(function () { step(i + 1); }, 150); }
+        });
+        if (!u) {
+          // No speech (muted/unsupported): sentence highlight at a gentle reading pace.
+          timer = setTimeout(function () { step(i + 1); }, 600 + sEl._words.length * 380);
+        }
+      })(from || 0);
+    }
+    playBtn.addEventListener('click', function () { play(0); });
+    stopBtn.addEventListener('click', stop);
+    foldBtn.addEventListener('click', function () { var f = box.classList.toggle('folded'); foldBtn.textContent = f ? '👀 Show story' : '🙈 Hide story'; });
+    return { el: box, play: play, stop: stop, p: p };
+  }
+
+  IA.game({
+    id: 'g2r-listen-and-answer',
+    title: 'Listen & Answer',
+    emoji: '👂',
+    back: '../index.html',
+    instructions: 'Listen to the story (or read it), then answer the questions.',
+    rounds: 4,
+    delay: 1600,
+    levelTitle: 'Pick a story',
+    levels: PASSAGES.map(function (p) { return { label: p.emoji + ' ' + p.title, value: p, desc: p.kind + ' · ' + p.text.split(/\s+/).length + ' words' }; }),
+    round: function (r) {
+      var p = r.level;
+      if (r.index === 0 || !reader || reader.p !== p) { if (reader) reader.stop(); reader = makeReader(p); setTimeout(function () { reader.play(0); }, 300); }
+      r.stage.appendChild(reader.el);
+      var q = p.qs[r.index];
+      var qbox = IA.el('div', { class: 'qbox' });
+      qbox.appendChild(IA.el('span', { class: 'qtag' }, ['Question ' + (r.index + 1) + ' · ' + q[0]]));
+      qbox.appendChild(IA.el('div', { class: 'qtext' }, [q[1], IA.speakButton(function () { reader.stop(); return q[1]; })]));
+      var why = IA.el('div', { class: 'ia-hint why', style: { visibility: 'hidden' } }, ['…']);
+      var opts = IA.el('div', { class: 'opts' });
+      IA.shuffle(q[2].map(function (t, i) { return { t: t, ok: i === 0 }; })).forEach(function (o) {
+        var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [o.t]);
+        b.addEventListener('click', function () {
+          reader.stop();
+          why.style.visibility = 'visible';
+          why.textContent = (o.ok ? '✅ ' : '💡 Look back: ') + q[3];
+          if (o.ok) IA.say(q[3]); else { b.disabled = true; IA.say('Look back in the story. ' + q[3]); }
+          r.answer(o.ok, b);
+        });
+        opts.appendChild(IA.el('div', { class: 'opt' }, [IA.speakButton(function () { reader.stop(); return o.t; }), b]));
+      });
+      qbox.appendChild(opts);
+      qbox.appendChild(why);
+      r.stage.appendChild(qbox);
+    }
+  });
+</script>
+</body>
+</html>

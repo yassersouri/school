@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Syllable Type Sort — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .tray { min-height: 76px; width: 100%; justify-content: center; }
+    .bins { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; width: 100%; }
+    .bins .ia-bin { min-width: 0; min-height: 130px; }
+    .bin-ico { font-size: 26px; display: block; }
+    .bin-sub { display: block; font-size: 13px; color: #888; font-weight: normal; }
+    .ia-bin .ia-tile { font-size: 22px; min-height: 48px; }
+    .ia-tile.placed { border-color: var(--ia-good); color: var(--ia-good); background: #e8f5e9; }
+    .why { max-width: 600px; text-align: center; font-size: 17px; }
+    .why b { color: var(--ia-accent); }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var TYPES = {
+    closed: { label: 'Closed', icon: '🔒', sub: 'ends in a consonant · short vowel',
+      words: ['cat','sit','hop','fun','bed','jump','nap','dish','frog','lamp','kit','net','mag','pic','rab','sun','chop','tent'],
+      why: function (w) { return '<b>' + w + '</b> is <b>closed</b>: the vowel is trapped by a consonant at the end, so it says its short sound.'; } },
+    open: { label: 'Open', icon: '🌞', sub: 'ends in a vowel · long vowel',
+      words: ['go','me','hi','she','no','so','we','he','be','ba','ti','ro','mu','spi','pa'],
+      why: function (w) { return '<b>' + w + '</b> is <b>open</b>: it ends with a vowel, so the vowel says its name (like ' + w + ' in ' + ({ ba: 'ba-by', ti: 'ti-ger', ro: 'ro-bot', mu: 'mu-sic', spi: 'spi-der', pa: 'pa-per' }[w] || w) + ').'; } },
+    silent: { label: 'Silent-e', icon: '✨', sub: 'vowel + consonant + e',
+      words: ['cake','bike','home','cute','hope','side','kite','rope','made','line','tune','cube','bone','game','slide','shine'],
+      why: function (w) { return '<b>' + w + '</b> is <b>silent-e</b>: the e at the end is quiet and makes the vowel say its name.'; } },
+    team: { label: 'Vowel Team', icon: '🤝', sub: 'two vowels, one sound',
+      words: ['rain','boat','seed','team','play','coat','leaf','mail','sea','feet','soap','day','snow','beak','pain','green'],
+      why: function (w) { var m = w.match(/ai|ay|ee|ea|oa|ow/); return '<b>' + w + '</b> has a <b>vowel team</b>: <b>' + (m ? m[0] : '') + '</b> work together to make one sound.'; } },
+    r: { label: 'Bossy R', icon: '🚗', sub: 'vowel + r (ar, er, ir, or, ur)',
+      words: ['car','her','bird','fork','turn','star','corn','shirt','park','fern','burn','horn','girl','barn','sport','curl'],
+      why: function (w) { var m = w.match(/ar|er|ir|or|ur/); return '<b>' + w + '</b> is <b>r-controlled</b>: the r changes the vowel sound in <b>' + (m ? m[0] : '') + '</b>.'; } }
+  };
+  var LAST = {};
+
+  IA.game({
+    id: 'g2r-syllable-type-sort',
+    title: 'Syllable Type Sort',
+    emoji: '🗂️',
+    back: '../index.html',
+    instructions: 'Drag each word part into the right bin — or tap it, then tap a bin.',
+    rounds: 8,
+    levelTitle: 'How many bins?',
+    levels: [
+      { label: '4 bins', value: ['closed', 'open', 'silent', 'team'], desc: 'Closed · Open · Silent-e · Vowel Team' },
+      { label: '5 bins', value: ['closed', 'open', 'silent', 'team', 'r'], desc: '+ Bossy R (r-controlled)' }
+    ],
+    round: function (r) {
+      var types = r.level;
+      var count = types.length === 5 ? 5 : 4;
+      var picks = IA.shuffle(types).slice(0, count);
+      var tiles = picks.map(function (t) {
+        var w; var g = 0;
+        do { w = IA.pick(TYPES[t].words); } while (LAST[w] && g++ < 20);
+        LAST[w] = true;
+        return { t: t, w: w };
+      });
+      if (Object.keys(LAST).length > 40) LAST = {};
+
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Sort the syllables!']));
+      var tray = IA.el('div', { class: 'ia-row tray' });
+      var els = tiles.map(function (o) {
+        var t = IA.el('div', { class: 'ia-tile', 'data-type': o.t, 'aria-label': o.w }, [o.w]);
+        tray.appendChild(t); return t;
+      });
+      r.stage.appendChild(tray);
+      var why = IA.el('div', { class: 'ia-hint why', style: { visibility: 'hidden' } }, ['…']);
+      r.stage.appendChild(why);
+      var bins = IA.el('div', { class: 'bins' });
+      var targets = types.map(function (t) {
+        var b = IA.el('div', { class: 'ia-bin', 'data-type': t, 'aria-label': TYPES[t].label + ' bin' }, [
+          IA.el('div', { class: 'ia-bin-label' }, [IA.el('span', { class: 'bin-ico' }, [TYPES[t].icon]), TYPES[t].label, IA.el('span', { class: 'bin-sub' }, [TYPES[t].sub])])
+        ]);
+        bins.appendChild(b); return b;
+      });
+      r.stage.appendChild(bins);
+      var left = els.length;
+      IA.dragDrop({
+        items: els, targets: targets,
+        onPick: function (it) { IA.say(it.textContent); },
+        onDrop: function (it, bin) {
+          var t = it.getAttribute('data-type'), w = it.textContent;
+          if (t === bin.getAttribute('data-type')) {
+            it.classList.add('placed', 'ia-locked'); it.removeAttribute('tabindex');
+            IA.sfx.good();
+            why.style.visibility = 'visible'; why.innerHTML = '✅ ' + TYPES[t].why(w);
+            left--;
+            if (left === 0) setTimeout(function () { r.answer(true, bins); }, 50);
+            return true;
+          }
+          why.style.visibility = 'visible';
+          why.innerHTML = '💡 Not ' + TYPES[bin.getAttribute('data-type')].label + '. ' + TYPES[t].why(w);
+          IA.say(why.textContent.replace('💡', ''));
+          r.answer(false, it, 'Look again! 🤔');
+          return false;
+        }
+      });
+      IA.say('Sort the syllables!');
+    }
+  });
+</script>
+</body>
+</html>

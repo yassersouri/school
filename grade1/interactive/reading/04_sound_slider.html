@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sound Slider — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .slide-word { display: flex; gap: 4px; justify-content: center; font-size: clamp(52px, 12vw, 88px); font-weight: bold; position: relative; padding-bottom: 18px; }
+    .slide-word .ch { padding: 0 6px; border-radius: 12px; transition: background .2s, color .2s, transform .2s; }
+    .slide-word .ch.on { background: #fff4c2; color: var(--ia-accent); transform: translateY(-6px); }
+    .slide-word .ch.all { background: var(--ia-accent-2); color: var(--ia-accent); }
+    .slide-word .ch.silent { color: #aaa; }
+    .slide-word .ch.silent::after { content: 'quiet e'; display: block; font-size: 12px; text-align: center; color: #999; margin-top: -8px; }
+    .slide-word .ch.team { text-decoration: underline; text-decoration-color: #f0c040; text-decoration-thickness: 5px; text-underline-offset: 8px; }
+    .arrow { width: 100%; max-width: 360px; height: 10px; border-radius: 999px; background: #eee6d6; overflow: hidden; }
+    .arrow i { display: block; height: 100%; width: 100%; background: var(--ia-accent); transform: scaleX(0); transform-origin: left; }
+    .arrow i.go { transition: transform var(--dur, 1.4s) linear; transform: scaleX(1); }
+    .pics .ia-choice { font-size: clamp(54px, 11vw, 80px); min-height: 110px; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var BANK = {
+    cvc: { cat: '🐱', hat: '🎩', bat: '🦇', rat: '🐀', map: '🗺️', van: '🚐', cap: '🧢', can: '🥫', bed: '🛏️', hen: '🐔',
+      web: '🕸️', pen: '🖊️', ten: '🔟', leg: '🦵', net: '🥅', pig: '🐷', pin: '📌', six: '6️⃣', dog: '🐶', log: '🪵',
+      fox: '🦊', box: '📦', sun: '☀️', bus: '🚌', bug: '🐛', mug: '☕', tub: '🛁', nut: '🥜', hut: '🛖' },
+    blend: { ship: '🚢', fish: '🐟', frog: '🐸', crab: '🦀', drum: '🥁', flag: '🚩', plug: '🔌', sled: '🛷', duck: '🦆',
+      sock: '🧦', ring: '💍', tent: '⛺', hand: '✋', gift: '🎁', milk: '🥛', bell: '🔔', chick: '🐤',
+      shell: '🐚', truck: '🚚', clock: '🕐', plant: '🪴', skunk: '🦨' },
+    silent: { cake: '🎂', kite: '🪁', bike: '🚲', rose: '🌹', nose: '👃', bone: '🦴', five: '5️⃣', nine: '9️⃣',
+      rope: '🪢', snake: '🐍', plane: '✈️', whale: '🐳', smile: '😃' }
+  };
+  // Split a word into sound chunks: digraphs stay together, a final silent e is marked.
+  function chunks(w) {
+    var out = [], i = 0;
+    while (i < w.length) {
+      var two = w.substr(i, 2);
+      if (/^(sh|ch|th|wh|ck|ng|ll)$/.test(two)) { out.push({ t: two, team: true }); i += 2; continue; }
+      out.push({ t: w[i] }); i++;
+    }
+    var last = out[out.length - 1];
+    if (w.length >= 4 && last.t === 'e' && /[aeiou][^aeiou]e$/.test(w)) last.silent = true;
+    return out;
+  }
+  function distractors(word, bank) {
+    var others = Object.keys(bank).filter(function (w) { return w !== word; });
+    var scored = IA.shuffle(others).map(function (w) {
+      var s = 0; for (var i = 0; i < Math.min(w.length, word.length); i++) if (w[i] === word[i]) s++;
+      if (w.length === word.length) s += 0.5;
+      return { w: w, s: s };
+    }).sort(function (a, b) { return b.s - a.s; });
+    return [scored[0].w, scored[1].w];
+  }
+  var queue = [];
+  function nextWord(level) {
+    if (!queue.length || queue.level !== level) { queue = IA.shuffle(Object.keys(BANK[level])); queue.level = level; }
+    return queue.pop();
+  }
+
+  IA.game({
+    id: 'g1r-sound-slider',
+    title: 'Sound Slider',
+    emoji: '🎢',
+    back: '../index.html',
+    instructions: 'Read the word. Tap Slide to blend the sounds. Then tap the matching picture!',
+    rounds: 10,
+    levelTitle: 'Pick your words',
+    levels: [
+      { label: 'CVC words', value: 'cvc', desc: 'c-a-t → cat' },
+      { label: 'Blends & digraphs', value: 'blend', desc: 'sh-i-p → ship' },
+      { label: 'Silent e', value: 'silent', desc: 'k-i-t-e → kite' }
+    ],
+    round: function (r) {
+      var bank = BANK[r.level], word = nextWord(r.level);
+      var cs = chunks(word);
+      var spans = cs.map(function (c) { return IA.el('span', { class: 'ch' + (c.team ? ' team' : '') + (c.silent ? ' silent' : '') }, [c.t]); });
+      var bar = IA.el('i');
+      var sliding = false;
+      function slide() {
+        if (sliding) return; sliding = true;
+        var active = spans.filter(function (s, i) { return !cs[i].silent; });
+        var step = 520, dur = step * active.length;
+        spans.forEach(function (s) { s.classList.remove('on', 'all'); });
+        bar.classList.remove('go'); void bar.offsetWidth;
+        bar.style.setProperty('--dur', dur + 'ms'); bar.classList.add('go');
+        IA.say(word, { rate: 0.5 });
+        active.forEach(function (s, i) {
+          setTimeout(function () { active.forEach(function (x) { x.classList.remove('on'); }); s.classList.add('on'); }, i * step);
+        });
+        setTimeout(function () {
+          active.forEach(function (x) { x.classList.remove('on'); });
+          spans.forEach(function (x) { x.classList.add('all'); });
+          IA.say(word, { rate: 1, queue: true });
+          sliding = false;
+        }, dur + 250);
+      }
+      r.stage.appendChild(IA.el('div', { class: 'slide-word', 'aria-label': word }, spans));
+      r.stage.appendChild(IA.el('div', { class: 'arrow', 'aria-hidden': 'true' }, [bar]));
+      r.stage.appendChild(IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: slide }, ['🎢 Slide']));
+      var opts = IA.shuffle([word].concat(distractors(word, bank)));
+      var grid = IA.choices(r, r.stage, opts, word, { cls: 'pics', render: function (w) { return IA.el('span', { 'aria-label': w }, [bank[w]]); } });
+      grid.classList.add('pics');
+      grid.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('.ia-choice');
+        if (b && b.disabled) setTimeout(slide, 500); // wrong picture → blend it again for them
+      });
+    }
+  });
+</script>
+</body>
+</html>

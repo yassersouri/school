@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Even/Odd Picture Proof — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .tabs .ia-btn[aria-pressed="true"] { background: var(--ia-accent); color: #fff; border-color: var(--ia-accent); }
+    .pickers { display: flex; gap: 18px; flex-wrap: wrap; justify-content: center; }
+    .picker { display: flex; align-items: center; gap: 8px; border-radius: 16px; padding: 6px 10px; border: 3px solid; background: #fff; }
+    .picker.a { border-color: #e53935; } .picker.b { border-color: #1e88e5; }
+    .picker .val { font-size: 32px; font-weight: bold; min-width: 48px; text-align: center; }
+    .picker .lbl { font-size: 15px; font-weight: bold; color: #555; min-width: 44px; }
+    .picker .ia-btn { min-width: 48px; min-height: 48px; padding: 4px; font-size: 24px; }
+    svg.dots { width: 100%; max-width: 640px; height: auto; background: #fafafa; border: 2px solid #e0e0e0; border-radius: 16px; touch-action: manipulation; }
+    svg.dots circle.d { transition: transform .9s cubic-bezier(.5, 0, .3, 1), stroke .3s; }
+    svg.dots circle.lonely { stroke: #f0a000; stroke-width: 4; }
+    .eq { font-size: clamp(22px, 4.5vw, 32px); font-weight: bold; text-align: center; min-height: 1.4em; }
+    .eq .ev { color: #2e7d32; } .eq .od { color: #6a1b9a; }
+    .cases { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .case { padding: 8px 14px; border-radius: 12px; background: #eceff1; color: #555; font-weight: bold; font-size: 17px; }
+    .case.seen { background: #e8f5e9; color: #1b5e20; }
+    .proof { background: #fffdf3; border: 3px solid #f0c040; border-radius: 16px; padding: 14px 18px; max-width: 640px; font-size: 17px; line-height: 1.45; }
+    .proof h3 { margin: 0 0 6px; color: #8a6d00; }
+    .proof ol { margin: 6px 0 0; padding-left: 22px; }
+    .qtext { font-size: clamp(19px, 3.6vw, 27px); font-weight: bold; text-align: center; max-width: 680px; }
+    .ia-choices.long { grid-template-columns: 1fr; }
+    .ia-choices.long .ia-choice { font-size: clamp(17px, 3.2vw, 22px); min-height: 56px; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var NS = 'http://www.w3.org/2000/svg', P = 30, R = 11, TOP = 30, ROW = 34;
+  function sv(tag, attrs) { var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); return e; }
+  function eo(n) { return n % 2 === 0 ? 'even' : 'odd'; }
+  function pos(i, x0) { return { x: x0 + Math.floor(i / 2) * P, y: TOP + (i % 2) * ROW }; }
+  function place(c, p) { c.style.transform = 'translate(' + p.x + 'px,' + p.y + 'px)'; }
+
+  // Draws a and b as pairs (2-row columns). Returns {svg, combine()}.
+  function dotPicture(a, b, opts) {
+    opts = opts || {};
+    var gap = 40, aCols = Math.ceil(a / 2), bCols = Math.ceil(b / 2);
+    var bx = 20 + aCols * P + gap, W = Math.max(bx + bCols * P + 10, 260);
+    var svg = sv('svg', { class: 'dots', viewBox: '0 0 ' + W + ' 96', role: 'img', 'aria-label': a + ' red dots and ' + b + ' blue dots arranged in pairs' });
+    svg.style.maxWidth = Math.min(640, W * 1.6) + 'px';
+    var plus = sv('text', { x: bx - gap / 2, y: TOP + ROW / 2 + 9, 'text-anchor': 'middle', 'font-size': 28, 'font-weight': 'bold', fill: '#555' });
+    plus.textContent = '+'; plus.style.transition = 'opacity .4s'; svg.appendChild(plus);
+    var A = [], B = [];
+    for (var i = 0; i < a; i++) { var c = sv('circle', { class: 'd', cx: 0, cy: 0, r: R, fill: '#e53935', stroke: '#fff', 'stroke-width': 2 }); place(c, pos(i, 20 + P / 2)); svg.appendChild(c); A.push(c); }
+    for (var j = 0; j < b; j++) { var d = sv('circle', { class: 'd', cx: 0, cy: 0, r: R, fill: '#1e88e5', stroke: '#fff', 'stroke-width': 2 }); place(d, pos(j, bx + P / 2)); svg.appendChild(d); B.push(d); }
+    if (a % 2) A[a - 1].classList.add('lonely');
+    if (b % 2) B[b - 1].classList.add('lonely');
+    function combine() {
+      plus.style.opacity = '0';
+      A.concat(B).forEach(function (c) { c.classList.remove('lonely'); });
+      B.forEach(function (c, k) { place(c, pos(a + k, 20 + P / 2)); });
+      var all = A.concat(B);
+      if ((a + b) % 2) setTimeout(function () { all[a + b - 1].classList.add('lonely'); }, 950);
+    }
+    if (opts.combined) { svg.classList.add('static'); combine(); }
+    return { svg: svg, combine: combine };
+  }
+
+  var shell = IA.freePlay({
+    id: 'g5m-even-odd-picture-proof', title: 'Even/Odd Picture Proof', emoji: '⚫', back: '../index.html',
+    instructions: 'Even numbers are made of pairs. Odd numbers have one dot left over. Combine two numbers and watch the leftover dots.'
+  });
+
+  var tabs = IA.el('div', { class: 'tabs' }), body = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+  shell.stage.appendChild(tabs); shell.stage.appendChild(body);
+  var modes = [['explore', '⚫ Explore'], ['quiz', '🧠 Quiz']];
+  var tabBtns = modes.map(function (m) { return IA.el('button', { class: 'ia-btn small', type: 'button', 'aria-pressed': 'false', onclick: function () { show(m[0]); } }, [m[1]]); });
+  tabBtns.forEach(function (b) { tabs.appendChild(b); });
+  function show(m) {
+    tabBtns.forEach(function (b, i) { b.setAttribute('aria-pressed', modes[i][0] === m ? 'true' : 'false'); });
+    IA.clear(body); shell.setScore(''); shell.setProgress(0);
+    if (m === 'explore') explore(); else quiz();
+  }
+
+  var seen = {};
+  var CASES = [['ee', 'even + even'], ['eo', 'even + odd'], ['oo', 'odd + odd']];
+  function caseKey(a, b) { var p = a % 2 + b % 2; return p === 0 ? 'ee' : p === 1 ? 'eo' : 'oo'; }
+
+  function explore() {
+    var a = 6, b = 5, pic = null, combined = false;
+    function picker(cls, label, get, set) {
+      var val = IA.el('div', { class: 'val', 'aria-live': 'polite' }, [String(get())]);
+      function ch(d) { var v = Math.max(1, Math.min(15, get() + d)); set(v); val.textContent = v; IA.sfx.tap(); draw(); }
+      return IA.el('div', { class: 'picker ' + cls }, [IA.el('span', { class: 'lbl' }, [label]),
+        IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'less', onclick: function () { ch(-1); } }, ['−']), val,
+        IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'more', onclick: function () { ch(1); } }, ['+'])]);
+    }
+    body.appendChild(IA.el('div', { class: 'pickers' }, [
+      picker('a', '🔴 Red', function () { return a; }, function (v) { a = v; }),
+      picker('b', '🔵 Blue', function () { return b; }, function (v) { b = v; })]));
+    var holder = IA.el('div', { style: { width: '100%', display: 'flex', justifyContent: 'center' } });
+    var eq = IA.el('div', { class: 'eq' });
+    var go = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['🔗 Combine']);
+    var caseRow = IA.el('div', { class: 'cases' });
+    var proof = IA.el('div', { class: 'proof hidden' });
+    body.appendChild(holder); body.appendChild(eq); body.appendChild(go);
+    body.appendChild(IA.el('div', { class: 'ia-sub' }, ['Try all three cases:'])); body.appendChild(caseRow); body.appendChild(proof);
+    function drawCases() {
+      IA.clear(caseRow);
+      CASES.forEach(function (c) { caseRow.appendChild(IA.el('div', { class: 'case' + (seen[c[0]] ? ' seen' : '') }, [(seen[c[0]] ? '✅ ' : '⬜ ') + c[1]])); });
+    }
+    function draw() {
+      combined = false; IA.clear(holder); pic = dotPicture(a, b); holder.appendChild(pic.svg);
+      eq.innerHTML = '';
+      eq.appendChild(IA.el('span', { class: a % 2 ? 'od' : 'ev' }, [a + ' (' + eo(a) + ')']));
+      eq.appendChild(document.createTextNode(' + '));
+      eq.appendChild(IA.el('span', { class: b % 2 ? 'od' : 'ev' }, [b + ' (' + eo(b) + ')']));
+      eq.appendChild(document.createTextNode(' = ?'));
+      go.disabled = false;
+    }
+    go.addEventListener('click', function () {
+      if (combined) return;
+      combined = true; go.disabled = true; pic.combine();
+      setTimeout(function () {
+        var s = a + b, k = caseKey(a, b);
+        eq.lastChild.textContent = ' = ';
+        eq.appendChild(IA.el('span', { class: s % 2 ? 'od' : 'ev' }, [s + ' — ' + eo(s).toUpperCase()]));
+        var msg = k === 'ee' ? 'All pairs + all pairs = all pairs → even.'
+          : k === 'oo' ? 'The two lonely dots make a new pair → even!' : 'Only one lonely dot, nothing to pair it with → odd.';
+        IA.toast(msg); IA.sfx.good();
+        if (!seen[k]) { seen[k] = true; drawCases(); }
+        if (seen.ee && seen.eo && seen.oo) showProof();
+      }, 1000);
+    });
+    function showProof() {
+      if (!proof.classList.contains('hidden')) return;
+      shell.done(1); IA.confetti(40);
+      IA.clear(proof);
+      proof.appendChild(IA.el('h3', {}, ['🏅 Proof by cases']));
+      proof.appendChild(IA.el('div', {}, ['Every whole number is even (all pairs) or odd (pairs + 1 lonely dot). So any sum of two numbers is one of just three cases:']));
+      proof.appendChild(IA.el('ol', {}, [
+        IA.el('li', {}, ['even + even: pairs + pairs → no lonely dot → EVEN.']),
+        IA.el('li', {}, ['even + odd (or odd + even): one lonely dot stays alone → ODD.']),
+        IA.el('li', {}, ['odd + odd: the two lonely dots pair up → EVEN.'])]));
+      proof.appendChild(IA.el('div', { style: { marginTop: '6px' } }, ['The picture works for ANY numbers, not just the ones you tried — that is why it is a proof, not just examples.']));
+      proof.classList.remove('hidden');
+    }
+    drawCases(); draw();
+  }
+
+  /* ── Quiz ── */
+  function oddN(lo, hi) { var n = IA.rand(lo, hi); return n % 2 ? n : n + 1; }
+  function evenN(lo, hi) { var n = IA.rand(lo, hi); return n % 2 ? n + 1 : n; }
+  var RULES = ['even + even = even', 'even + odd = odd', 'odd + odd = even', 'odd + odd = odd'];
+  var GEN = {
+    bigSum: function () {
+      var a = IA.rand(101, 999), b = IA.rand(101, 999), s = a + b;
+      return { text: 'Without adding: is ' + a + ' + ' + b + ' even or odd?', opts: ['Even', 'Odd'], ans: s % 2 ? 'Odd' : 'Even',
+        hint: 'Look at the last digits: ' + a + ' is ' + eo(a) + ' and ' + b + ' is ' + eo(b) + '. ' + eo(a) + ' + ' + eo(b) + ' = ' + eo(s) + '.' };
+    },
+    triple: function () {
+      var kinds = IA.shuffle(['o', 'o', IA.pick(['e', 'o'])]), nums = kinds.map(function (k) { return k === 'o' ? oddN(11, 97) : evenN(10, 96); });
+      var s = nums[0] + nums[1] + nums[2];
+      return { text: 'Is ' + nums.join(' + ') + ' even or odd?', opts: ['Even', 'Odd'], ans: s % 2 ? 'Odd' : 'Even',
+        hint: 'Count the odd numbers: ' + nums.filter(function (n) { return n % 2; }).length + '. Every two lonely dots make a pair.' };
+    },
+    picture: function () {
+      var k = IA.pick(['ee', 'eo', 'oo']), a = k === 'oo' ? oddN(3, 9) : evenN(2, 8), b = k === 'ee' ? evenN(2, 8) : oddN(3, 9);
+      var ans = k === 'ee' ? RULES[0] : k === 'eo' ? RULES[1] : RULES[2];
+      return { text: 'Which rule does this picture show?', fig: dotPicture(a, b, { combined: true }).svg, opts: RULES, ans: ans,
+        hint: 'Red has ' + a + ' dots (' + eo(a) + '), blue has ' + b + ' (' + eo(b) + '). Is a lonely dot left at the end?' };
+    },
+    examples: function () {
+      var a = IA.pick(['Mia', 'Sam', 'Lena', 'Omar']);
+      return { text: a + ' checked 3 + 5 = 8, 7 + 9 = 16 and 11 + 13 = 24. Has ' + a + ' PROVED that odd + odd is always even?',
+        opts: ['No — examples are not a proof. The pairing picture shows it works for every odd number.', 'Yes — three examples are enough.', 'Yes — because 8, 16 and 24 are all even.'],
+        ans: 'No — examples are not a proof. The pairing picture shows it works for every odd number.',
+        hint: 'There are infinitely many odd numbers. Examples can only check a few of them.' };
+    },
+    cases: function () {
+      return { text: 'To prove a rule about the sum of ANY two whole numbers by cases, which cases must you check?',
+        opts: ['even + even, even + odd, odd + odd', 'only odd + odd', 'only 2 + 2 and 3 + 3', 'even + even and odd + odd'], ans: 'even + even, even + odd, odd + odd',
+        hint: 'Every number is even or odd, so every pair of numbers fits one of the cases — you must check them all.' };
+    },
+    lonely: function () {
+      return { text: 'When you arrange an odd number of dots in pairs, what do you always see?',
+        opts: ['Exactly one dot without a partner', 'No dots left over', 'Two dots left over', 'It depends on how big the number is'], ans: 'Exactly one dot without a partner',
+        hint: 'Try 7 dots: 3 pairs and …?' };
+    },
+    missing: function () {
+      var aEven = Math.random() < .5, sumOdd = Math.random() < .5;
+      var bPar = aEven === !sumOdd ? 'even' : 'odd';
+      return { text: 'a + b is ' + (sumOdd ? 'odd' : 'even') + ' and a is ' + (aEven ? 'even' : 'odd') + '. What is b?', opts: ['Even', 'Odd', 'Could be either'], ans: bPar === 'even' ? 'Even' : 'Odd',
+        hint: 'Go through the cases: ' + (aEven ? 'even' : 'odd') + ' + even = ' + (aEven ? 'even' : 'odd') + ', ' + (aEven ? 'even' : 'odd') + ' + odd = ' + (aEven ? 'odd' : 'even') + '.' };
+    },
+    fourOdd: function () {
+      var n = IA.pick([3, 4, 5]);
+      return { text: 'You add ' + n + ' odd numbers together. Is the answer even or odd?', opts: ['Even', 'Odd', 'Could be either'], ans: n % 2 ? 'Odd' : 'Even',
+        hint: 'Each odd number brings one lonely dot. ' + n + ' lonely dots make ' + Math.floor(n / 2) + ' pair' + (n >= 4 ? 's' : '') + (n % 2 ? ' and one left over.' : ' with none left over.') };
+    },
+    diff: function () {
+      var a = oddN(21, 59), b = oddN(3, 19);
+      return { text: 'Is ' + a + ' − ' + b + ' even or odd?', opts: ['Even', 'Odd'], ans: (a - b) % 2 ? 'Odd' : 'Even',
+        hint: 'Take ' + b + ' dots away from ' + a + ': the lonely dot is taken away with them, so only pairs are left.' };
+    },
+    counter: function () {
+      return { text: 'Which ONE example would prove the claim "odd + odd = odd" is FALSE?', opts: ['3 + 5 = 8', '2 + 4 = 6', '3 + 4 = 7', '1 + 2 = 3'], ans: '3 + 5 = 8',
+        hint: 'A counterexample must use two odd numbers AND give an answer that is not odd.' };
+    }
+  };
+
+  function quiz() {
+    var TOTAL = 10, i = 0, correct = 0, types = IA.shuffle(Object.keys(GEN));
+    function next() {
+      IA.clear(body);
+      if (i >= TOTAL) return finish();
+      shell.setProgress(i / TOTAL); shell.setScore('⭐ ' + correct + ' / ' + TOTAL);
+      var q = GEN[types[i]](), missed = false, locked = false;
+      body.appendChild(IA.el('div', { class: 'qtext' }, [q.text]));
+      if (q.fig) body.appendChild(q.fig);
+      var grid = IA.el('div', { class: 'ia-choices' + (q.opts.some(function (o) { return o.length > 26; }) ? ' long' : q.opts.some(function (o) { return o.length > 10; }) ? ' wide' : '') });
+      var hint = IA.el('div', { class: 'ia-hint hidden' });
+      IA.shuffle(q.opts).forEach(function (o) {
+        var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [o]);
+        b.addEventListener('click', function () {
+          if (locked || b.disabled) return;
+          if (o === q.ans) {
+            locked = true; if (!missed) correct++;
+            IA.good(b); shell.setScore('⭐ ' + correct + ' / ' + TOTAL);
+            setTimeout(function () { i++; next(); }, 1500);
+          } else { missed = true; b.disabled = true; IA.bad(b); hint.classList.remove('hidden'); hint.textContent = '💡 ' + q.hint; }
+        });
+        grid.appendChild(b);
+      });
+      body.appendChild(grid); body.appendChild(hint);
+    }
+    function finish() {
+      shell.setProgress(1);
+      var pct = correct / TOTAL, stars = pct >= 0.9 ? 3 : pct >= 0.7 ? 2 : 1;
+      shell.done(stars); IA.sfx.win(); IA.confetti();
+      body.appendChild(IA.el('div', { class: 'ia-finish' }, [
+        IA.el('div', { class: 'ia-big-stars' }, ['⭐'.repeat(stars) + '☆'.repeat(3 - stars)]),
+        IA.el('h2', {}, ['You got ' + correct + ' out of ' + TOTAL + ' on the first try!']),
+        IA.el('div', { class: 'ia-row' }, [
+          IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: quiz }, ['🔁 Play again']),
+          IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { show('explore'); } }, ['⚫ Explore']),
+          IA.el('a', { class: 'ia-btn', href: '../index.html' }, ['🏠 More activities'])])]));
+    }
+    next();
+  }
+
+  show('explore');
+</script>
+</body>
+</html>

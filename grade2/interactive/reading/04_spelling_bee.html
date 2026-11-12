@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spelling Bee — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .listen { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; }
+    .listen .ia-btn { flex-direction: column; min-width: 130px; }
+    .listen .ia-btn span { font-size: 36px; line-height: 1; }
+    .clue { max-width: 600px; text-align: center; font-size: 18px; }
+    .attempt { display: flex; gap: 6px; justify-content: center; flex-wrap: wrap; min-height: 54px; }
+    .attempt span { width: 44px; height: 52px; border-radius: 10px; display: inline-flex; align-items: center; justify-content: center; font-size: 28px; font-weight: bold; border: 3px solid; }
+    .attempt .ok { background: #e8f5e9; border-color: #2e7d32; color: #2e7d32; }
+    .attempt .no { background: #ffebee; border-color: #c62828; color: #c62828; }
+    .attempt .gap { background: #fff; border-style: dashed; border-color: #bbb; color: #bbb; }
+    .reveal { font-size: clamp(30px, 7vw, 46px); font-weight: bold; color: var(--ia-accent); letter-spacing: 3px; }
+    .ia-input { width: min(320px, 80vw); }
+    .bee { font-size: 54px; line-height: 1; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // [word, sentence (spoken), clue (definition)]. Words with common sound-alike spellings are avoided.
+  var LISTS = {
+    silent: [
+      ['cake', 'We ate a birthday cake with candles.', 'a sweet treat for a birthday'],
+      ['bike', 'I ride my bike to the park.', 'it has two wheels and pedals'],
+      ['home', 'After school, we walk home.', 'the place where you live'],
+      ['rope', 'We jumped over the long rope.', 'a thick string for jumping or pulling'],
+      ['kite', 'The red kite flew high in the wind.', 'it flies in the wind on a string'],
+      ['cube', 'Drop an ice cube into the glass.', 'a shape with six square faces'],
+      ['slide', 'She went down the slide at recess.', 'you go down it at the playground'],
+      ['smile', 'Grandma has a big smile.', 'a happy face'],
+      ['stone', 'He skipped a flat stone across the lake.', 'a small rock'],
+      ['bone', 'The dog buried a bone in the yard.', 'a dog likes to chew it'],
+      ['shine', 'The stars shine at night.', 'to give off light'],
+      ['cute', 'The puppy is so cute.', 'sweet and nice to look at'],
+      ['tube', 'Squeeze the tube of toothpaste.', 'a long, hollow holder'],
+      ['five', 'A hand has five fingers.', 'the number after four']
+    ],
+    team: [
+      ['rain', 'Bring an umbrella in case of rain.', 'water that falls from clouds'],
+      ['boat', 'We rowed the boat across the lake.', 'it floats on water and carries people'],
+      ['seed', 'Plant a seed and give it water.', 'a plant grows from it'],
+      ['play', 'Can you come out to play?', 'to have fun with games'],
+      ['coat', 'Zip up your coat. It is cold!', 'you wear it over your clothes when it is cold'],
+      ['leaf', 'A yellow leaf fell from the tree.', 'a flat green part of a tree'],
+      ['train', 'The train went through the tunnel.', 'it runs on tracks'],
+      ['sheep', 'The sheep has thick wool.', 'a farm animal with wool'],
+      ['snow', 'We built a fort in the snow.', 'cold white flakes that fall in winter'],
+      ['queen', 'The queen wore a gold crown.', 'a woman who rules a land'],
+      ['soap', 'Wash your hands with soap.', 'it makes bubbles and gets you clean'],
+      ['green', 'Grass is green.', 'the colour of grass'],
+      ['paint', 'We used blue paint for the sky.', 'colour you brush onto paper'],
+      ['dream', 'I had a funny dream last night.', 'a story you see when you sleep']
+    ],
+    affix: [
+      ['unhappy', 'The boy was unhappy when it rained.', 'not happy'],
+      ['replay', 'Let us replay the game!', 'to play again'],
+      ['helpful', 'My sister is very helpful.', 'full of help; ready to help'],
+      ['careful', 'Be careful on the ice.', 'full of care'],
+      ['slowly', 'The turtle walked slowly.', 'in a slow way'],
+      ['kindness', 'Thank you for your kindness.', 'being kind'],
+      ['fearless', 'The fearless cat climbed the tall tree.', 'without fear'],
+      ['reread', 'I will reread my favourite book.', 'to read again'],
+      ['dislike', 'I dislike loud noises.', 'to not like'],
+      ['unkind', 'It is unkind to tease.', 'not kind'],
+      ['teacher', 'Our teacher read us a story.', 'a person who teaches'],
+      ['softly', 'Mom sang softly to the baby.', 'in a soft way'],
+      ['preheat', 'Preheat the oven before baking.', 'to heat before'],
+      ['painless', 'The checkup was quick and painless.', 'without pain']
+    ],
+    two: [
+      ['rabbit', 'The rabbit hopped across the grass.', 'an animal with long ears that hops'],
+      ['napkin', 'Wipe your mouth with a napkin.', 'you wipe your mouth with it at meals'],
+      ['picnic', 'We had a picnic in the park.', 'a meal you eat outside'],
+      ['sunset', 'The sky was pink at sunset.', 'when the sun goes down'],
+      ['basket', 'Put the apples in the basket.', 'a holder you can carry'],
+      ['kitten', 'The kitten played with yarn.', 'a baby cat'],
+      ['muffin', 'I ate a blueberry muffin.', 'a small cake for breakfast'],
+      ['pumpkin', 'We carved a pumpkin for Halloween.', 'a big orange vegetable'],
+      ['robot', 'The robot can sweep the floor.', 'a machine that can move and do jobs'],
+      ['tiger', 'The tiger has orange and black stripes.', 'a big striped wild cat'],
+      ['music', 'We dance to music.', 'sounds and songs'],
+      ['paper', 'Draw on a sheet of paper.', 'you write and draw on it'],
+      ['helmet', 'Wear a helmet when you ride.', 'a hard hat that keeps your head safe'],
+      ['magnet', 'A magnet sticks to the fridge.', 'it pulls metal things to it']
+    ]
+  };
+  var queues = {};
+  function next(lv) { if (!queues[lv] || !queues[lv].length) queues[lv] = IA.shuffle(LISTS[lv]); return queues[lv].pop(); }
+  function blanked(sentence, word) {
+    var re = new RegExp('\\b' + word + '\\b', 'i');
+    return sentence.replace(re, '_____');
+  }
+
+  IA.game({
+    id: 'g2r-spelling-bee',
+    title: 'Spelling Bee',
+    emoji: '🐝',
+    back: '../index.html',
+    instructions: 'Listen to the word and the sentence. Then type the word!',
+    rounds: 10,
+    levelTitle: 'Which spelling pattern?',
+    levels: [
+      { label: '✨ Silent-e', value: 'silent', desc: 'cake · bike · home' },
+      { label: '🤝 Vowel teams', value: 'team', desc: 'rain · boat · seed' },
+      { label: '🧪 Prefixes & suffixes', value: 'affix', desc: 'unhappy · helpful · slowly' },
+      { label: '👏 Two syllables', value: 'two', desc: 'rabbit · picnic · tiger' }
+    ],
+    round: function (r) {
+      var item = next(r.level), word = item[0], sentence = item[1], clue = item[2];
+      var tries = 0, revealed = false;
+      function sayWord() { IA.say(word, { force: true, rate: 0.75 }); }
+      function saySentence() { IA.sayParts([word, sentence, word], 450, { force: true }); }
+      r.stage.appendChild(IA.el('div', { class: 'bee', 'aria-hidden': 'true' }, ['🐝']));
+      r.stage.appendChild(IA.el('div', { class: 'listen' }, [
+        IA.el('button', { class: 'ia-btn', type: 'button', onclick: sayWord }, [IA.el('span', {}, ['🔊']), 'Word']),
+        IA.el('button', { class: 'ia-btn', type: 'button', onclick: saySentence }, [IA.el('span', {}, ['💬']), 'Sentence'])
+      ]));
+      var clueBox = IA.el('div', { class: 'ia-hint clue' }, ['💡 Clue: ' + clue, IA.el('br'), '“' + blanked(sentence, word) + '”']);
+      var clueBtn = IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { clueBtn.replaceWith(clueBox); } }, ['💡 Show a clue']);
+      var noSpeech = !IA.speechAvailable || IA.isMuted();
+      r.stage.appendChild(noSpeech ? clueBox : clueBtn);
+      if (noSpeech) r.stage.insertBefore(IA.el('div', { class: 'ia-sub' }, ['🔇 Sound is off — read the clue and the sentence to guess the word.']), clueBox);
+      var attempt = IA.el('div', { class: 'attempt', 'aria-live': 'polite' });
+      r.stage.appendChild(attempt);
+      var input = IA.numberInput(r.stage, function (val, inp) {
+        var guess = val.toLowerCase().replace(/\s+/g, '');
+        if (guess === word) {
+          showAttempt(guess);
+          IA.say(word + '! ' + word.split('').join(', ') + '. ' + word + '!');
+          r.answer(true, attempt, 'You spelled ' + word + '! 🐝');
+          return;
+        }
+        tries++;
+        showAttempt(guess);
+        r.answer(false, inp, 'Not quite! Green letters are right.');
+        if (tries >= 2 && !revealed) {
+          revealed = true;
+          r.stage.insertBefore(IA.el('div', { class: 'ia-col' }, [IA.el('div', { class: 'ia-sub' }, ['Here is the word — copy it to finish:']), IA.el('div', { class: 'reveal' }, [word])]), attempt);
+          IA.say(word + ' is spelled ' + word.split('').join(', '));
+        }
+        inp.value = ''; inp.focus();
+      }, { text: true, placeholder: 'type here', label: 'Type the word' });
+      function showAttempt(g) {
+        IA.clear(attempt);
+        // Edit-distance alignment so one missing letter doesn't turn the rest red.
+        var a = g, b = word, m = a.length, n = b.length, D = [];
+        for (var i = 0; i <= m; i++) { D[i] = []; for (var j = 0; j <= n; j++) D[i][j] = i === 0 ? j : j === 0 ? i : 0; }
+        for (i = 1; i <= m; i++) for (j = 1; j <= n; j++)
+          D[i][j] = Math.min(D[i - 1][j] + 1, D[i][j - 1] + 1, D[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1));
+        var out = []; i = m; j = n;
+        while (i > 0 || j > 0) {
+          if (i > 0 && j > 0 && D[i][j] === D[i - 1][j - 1] + (a[i - 1] === b[j - 1] ? 0 : 1)) { out.unshift([a[i - 1], a[i - 1] === b[j - 1] ? 'ok' : 'no']); i--; j--; }
+          else if (j > 0 && D[i][j] === D[i][j - 1] + 1) { out.unshift(['_', 'gap']); j--; }
+          else { out.unshift([a[i - 1], 'no']); i--; }
+        }
+        out.forEach(function (o) { attempt.appendChild(IA.el('span', { class: o[1] }, [o[0]])); });
+        if (g !== word) attempt.appendChild(IA.el('div', { class: 'ia-sub', style: { width: '100%' } }, ['🟩 right letter · 🟥 wrong letter · ⬜ a letter is missing here']));
+      }
+      setTimeout(saySentence, 300);
+      input.setAttribute('maxlength', '16');
+    }
+  });
+</script>
+</body>
+</html>

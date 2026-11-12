@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Read-Along Stories — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .shelf { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; width: 100%; }
+    .shelf .ia-btn { flex-direction: column; min-height: 130px; position: relative; }
+    .shelf .big { font-size: 46px; line-height: 1; }
+    .shelf .got { position: absolute; top: 8px; right: 10px; font-size: 13px; }
+    .story-head { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .story-head h2 { margin: 0; color: var(--ia-accent); font-size: clamp(24px, 5vw, 34px); }
+    .story-head .pic { font-size: clamp(48px, 10vw, 70px); line-height: 1; }
+    .story { font-size: clamp(22px, 4.6vw, 30px); line-height: 1.9; max-width: 720px; width: 100%; background: #fffdf5; border: 2px solid #f0e6c8; border-radius: 18px; padding: 14px 18px; }
+    .sent { border-radius: 10px; padding: 2px 0; transition: background .2s; }
+    .sent.cur { background: var(--ia-accent-2); }
+    .w { display: inline-block; padding: 0 3px; border-radius: 8px; cursor: pointer; transition: background .15s, color .15s; }
+    .w:hover { background: #f3f8fe; }
+    .w.reading { background: #ffe082; color: #0d47a1; }
+    .controls { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; }
+    .qnum { font-size: 15px; color: #888; }
+    .q { font-size: clamp(22px, 4.4vw, 30px); font-weight: bold; text-align: center; display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .ia-choices.wide { grid-template-columns: 1fr; max-width: 480px; }
+    .ia-choices.wide .ia-choice { font-size: clamp(20px, 4vw, 26px); }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Original decodable stories (grade-1 phonics: short vowels, digraphs, silent e, sight words).
+  // "Lost Cat" is adapted from grade1/reading/15_fluency_passages/02_my_lost_cat.
+  var STORIES = [
+    { title: 'Pip the Pup', emoji: '🐶', text: [
+        'Pip is a pup.', 'Pip has a red ball.', 'Pip can run fast to get the ball.', 'The ball fell in the mud!',
+        'Pip dug in the mud and got the ball.', 'Now Pip is a big mess.', 'Mom put Pip in the tub.', 'Pip is wet, but he is glad.'],
+      qs: [['What does Pip have?', 'a red ball', ['a blue hat', 'a big bone']],
+           ['Where did the ball fall?', 'in the mud', ['in the tub', 'on the bed']],
+           ['Who put Pip in the tub?', 'Mom', ['Dad', 'Sam']]] },
+    { title: 'The Frog on the Log', emoji: '🐸', text: [
+        'A green frog sat on a log.', 'The sun was hot.', 'The frog had a nap.', 'Then a big bug went buzz, buzz, buzz.',
+        'The frog woke up.', 'Snap! The frog got the bug.', 'Then the frog hopped into the pond with a splash.'],
+      qs: [['Where did the frog sit?', 'on a log', ['on a rock', 'in a box']],
+           ['What woke the frog up?', 'a buzzing bug', ['a fish', 'a duck']],
+           ['Where did the frog hop at the end?', 'into the pond', ['up a tree', 'into a bed']]] },
+    { title: 'Kate and the Kite', emoji: '🪁', text: [
+        'Kate has a kite.', 'It is white with a pink tail.', 'Kate and Dad go up the hill.', 'The wind is strong.',
+        'Up, up, up goes the kite!', 'It dips and dives in the sky.', 'Kate holds on tight and smiles.', 'What a fine day!'],
+      qs: [['What colour is the kite?', 'white', ['green', 'red']],
+           ['Where do Kate and Dad go?', 'up the hill', ['to the lake', 'to the shop']],
+           ['How does Kate feel?', 'happy 😃', ['sad 😢', 'mad 😠']]] },
+    { title: 'Fish on the Ship', emoji: '🚢', text: [
+        'Chip and Beth are on a big ship.', 'Chip has a rod and a net.', 'Beth looks at the sea.', '"I see a fish!" Beth yells.',
+        'Chip gets the fish in his net.', 'Flip, flop! The fish jumps back in the sea.', 'Chip and Beth grin and wave to the fish.'],
+      qs: [['Where are Chip and Beth?', 'on a ship', ['on a bus', 'in a shop']],
+           ['Who sees the fish first?', 'Beth', ['Chip', 'Mom']],
+           ['What does the fish do?', 'jumps back in the sea', ['naps on the ship', 'eats a cake']]] },
+    { title: 'Snow Day', emoji: '⛄', text: [
+        'It is a snow day!', 'Jen and Sam put on hats and coats.', 'They run out to play.', 'They make a big snowman.',
+        'Sam gets a carrot for the nose.', 'Jen adds two black rocks for eyes.', 'Then they go in for hot cocoa.', 'Yum!'],
+      qs: [['What do Jen and Sam make?', 'a snowman', ['a sandcastle', 'a cake']],
+           ['What is the snowman\u2019s nose?', 'a carrot', ['a rock', 'a hat']],
+           ['What do they have inside?', 'hot cocoa', ['ice cream', 'soup']]] },
+    { title: 'Lost Cat', emoji: '🐱', text: [
+        'My cat Tess ran out the back door.', 'I could not find her!', 'I looked under the bed.', 'I looked in the yard.',
+        'Then I heard a soft "meow" from the big tree.', 'Tess was up on a branch!', 'Dad got a tall ladder, and we got Tess down.', 'I gave her a big hug.'],
+      qs: [['What is the cat\u2019s name?', 'Tess', ['Pip', 'Max']],
+           ['Where was Tess?', 'up in a tree', ['under the bed', 'in the yard']],
+           ['Who got the ladder?', 'Dad', ['Mom', 'Tess']]] }
+  ];
+  var DKEY = 'g1r-stories-done';
+
+  function readAlong(nodes, text, done, rate) {
+    rate = rate || 0.85;
+    var words = text.split(' '), starts = [], pos = 0, finished = false, gotBoundary = false, timer = null, safety = null;
+    words.forEach(function (w) { starts.push(pos); pos += w.length + 1; });
+    function mark(i) { nodes.forEach(function (n, j) { n.classList.toggle('reading', j === i); }); }
+    function end() { if (finished) return; finished = true; clearTimeout(timer); clearTimeout(safety); mark(-1); if (done) done(); }
+    function timed(i) {
+      if (gotBoundary || finished) return;
+      if (i >= words.length) { if (!IA.speechAvailable || IA.isMuted()) end(); return; }
+      mark(i);
+      timer = setTimeout(function () { timed(i + 1); }, (260 + words[i].length * 70) / rate);
+    }
+    if (!IA.speechAvailable || IA.isMuted()) { timed(0); return { stop: end }; }
+    IA.say(text, {
+      rate: rate,
+      onboundary: function (e) {
+        if (e.name && e.name !== 'word') return;
+        if (!gotBoundary) { gotBoundary = true; clearTimeout(timer); }
+        var i = 0; while (i + 1 < starts.length && starts[i + 1] <= e.charIndex) i++;
+        mark(i);
+      },
+      onend: end
+    });
+    timer = setTimeout(function () { timed(0); }, 450);
+    safety = setTimeout(end, words.length * 900 + 4000);
+    return { stop: end };
+  }
+  function clean(w) { return w.replace(/[^A-Za-z']/g, ''); }
+
+  var shell = IA.freePlay({
+    id: 'g1r-read-along-stories',
+    title: 'Read-Along Stories',
+    emoji: '📖',
+    back: '../index.html',
+    instructions: 'Pick a story. Tap “Read to me” or tap any word to hear it. Then answer 3 questions!'
+  });
+  var stage = shell.stage, reader = null;
+
+  function stopReading() { if (reader) { var rd = reader; rd.cancelled = true; reader = null; if (rd.handle) rd.handle.stop(); } IA.stopSpeech(); }
+
+  function shelf() {
+    stopReading(); IA.clear(stage); shell.setProgress(0); shell.setScore('');
+    var done = IA.load(DKEY, {}) || {};
+    stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Pick a story 📚']));
+    var g = IA.el('div', { class: 'shelf' });
+    STORIES.forEach(function (s, i) {
+      g.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { IA.sfx.tap(); openStory(i); } }, [
+        done[i] ? IA.el('span', { class: 'got' }, ['⭐'.repeat(done[i])]) : null,
+        IA.el('span', { class: 'big' }, [s.emoji]), IA.el('span', {}, [s.title])
+      ]));
+    });
+    stage.appendChild(g);
+  }
+
+  function openStory(idx) {
+    stopReading(); IA.clear(stage);
+    var s = STORIES[idx];
+    shell.setProgress(0); shell.setScore('Story ' + (idx + 1) + ' of ' + STORIES.length);
+    stage.appendChild(IA.el('div', { class: 'story-head' }, [IA.el('span', { class: 'pic' }, [s.emoji]), IA.el('h2', {}, [s.title])]));
+    var sentEls = [], wordEls = [];
+    var box = IA.el('div', { class: 'story' });
+    s.text.forEach(function (t, si) {
+      var ws = t.split(' ').map(function (w) {
+        return IA.el('span', { class: 'w', role: 'button', tabindex: '0', onclick: function () { stopReading(); playBtn.disabled = false; IA.say(clean(w), { force: true, rate: 0.8 }); },
+          onkeydown: function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); IA.say(clean(w), { force: true, rate: 0.8 }); } } }, [w]);
+      });
+      wordEls.push(ws);
+      var sp = IA.el('span', { class: 'sent' }, []);
+      ws.forEach(function (w, i) { sp.appendChild(w); if (i < ws.length - 1) sp.appendChild(document.createTextNode(' ')); });
+      sentEls.push(sp);
+      box.appendChild(sp); box.appendChild(document.createTextNode(' '));
+    });
+    stage.appendChild(box);
+    var playBtn = IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: readAll }, ['▶️ Read to me']);
+    var stopBtn = IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { stopReading(); clearCur(); playBtn.disabled = false; } }, ['⏹️ Stop']);
+    stage.appendChild(IA.el('div', { class: 'controls' }, [
+      playBtn, stopBtn,
+      IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { stopReading(); quiz(idx); } }, ['❓ Questions']),
+      IA.el('button', { class: 'ia-btn small', type: 'button', onclick: shelf }, ['📚 All stories'])
+    ]));
+    function clearCur() { sentEls.forEach(function (x) { x.classList.remove('cur'); }); wordEls.forEach(function (ws) { ws.forEach(function (w) { w.classList.remove('reading'); }); }); }
+    function readAll() {
+      stopReading(); playBtn.disabled = true;
+      var me = { cancelled: false }; reader = me;
+      var i = 0;
+      (function next() {
+        if (me.cancelled) return;
+        clearCur();
+        shell.setProgress(i / s.text.length);
+        if (i >= s.text.length) { playBtn.disabled = false; reader = null; return; }
+        sentEls[i].classList.add('cur');
+        var cur = i++;
+        me.handle = readAlong(wordEls[cur], s.text[cur], function () { if (!me.cancelled) setTimeout(next, 350); });
+      })();
+    }
+  }
+
+  function quiz(idx) {
+    var s = STORIES[idx], qi = 0, firstTry = 0;
+    function ask() {
+      IA.clear(stage);
+      shell.setProgress(qi / s.qs.length);
+      if (qi >= s.qs.length) return finish();
+      var q = s.qs[qi], missed = false, locked = false;
+      stage.appendChild(IA.el('div', { class: 'story-head' }, [IA.el('span', { class: 'pic' }, [s.emoji]), IA.el('h2', {}, [s.title])]));
+      stage.appendChild(IA.el('div', { class: 'qnum' }, ['Question ' + (qi + 1) + ' of ' + s.qs.length]));
+      stage.appendChild(IA.el('div', { class: 'q' }, [q[0], IA.speakButton(q[0])]));
+      var grid = IA.el('div', { class: 'ia-choices wide' });
+      IA.shuffle([q[1]].concat(q[2])).forEach(function (opt) {
+        var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [opt]);
+        b.addEventListener('click', function () {
+          if (locked) return;
+          IA.say(opt.replace(/[^\w\s']/g, ''));
+          if (opt === q[1]) {
+            locked = true; if (!missed) firstTry++;
+            IA.good(b); setTimeout(function () { qi++; ask(); }, 1100);
+          } else {
+            missed = true; b.disabled = true;
+            IA.bad(b, 'Look back at the story! 📖');
+            if (!stage.querySelector('.peek')) stage.appendChild(IA.el('button', { class: 'ia-btn small peek', type: 'button', onclick: function () {
+              var p = IA.el('div', { class: 'story' }, [s.text.join(' ')]);
+              this.replaceWith(p);
+            } }, ['📖 Peek at the story']));
+          }
+        });
+        grid.appendChild(b);
+      });
+      stage.appendChild(grid);
+      setTimeout(function () { IA.say(q[0]); }, 250);
+    }
+    function finish() {
+      var stars = firstTry === 3 ? 3 : firstTry === 2 ? 2 : 1;
+      var done = IA.load(DKEY, {}) || {};
+      done[idx] = Math.max(done[idx] || 0, stars); IA.save(DKEY, done);
+      shell.done(stars); shell.setProgress(1);
+      IA.sfx.win(); IA.confetti();
+      IA.say('You finished ' + s.title + '!');
+      stage.appendChild(IA.el('div', { class: 'ia-finish' }, [
+        IA.el('div', { class: 'ia-big-stars' }, ['⭐'.repeat(stars) + '☆'.repeat(3 - stars)]),
+        IA.el('h2', {}, ['You got ' + firstTry + ' of 3 on the first try!']),
+        IA.el('div', { class: 'ia-row' }, [
+          idx + 1 < STORIES.length ? IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: function () { openStory(idx + 1); } }, ['➡️ Next story']) : null,
+          IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { openStory(idx); } }, ['🔁 Read it again']),
+          IA.el('button', { class: 'ia-btn', type: 'button', onclick: shelf }, ['📚 All stories'])
+        ])
+      ]));
+    }
+    ask();
+  }
+  shelf();
+</script>
+</body>
+</html>

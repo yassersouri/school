@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Function Machine — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .machine-row { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; max-width: 620px; position: relative; height: 130px; }
+    .chute { flex: 1; height: 16px; background: repeating-linear-gradient(90deg, #b0bec5 0 12px, #cfd8dc 12px 24px); border-radius: 8px; position: relative; }
+    .machine { width: 150px; height: 120px; border-radius: 22px; background: linear-gradient(160deg, #26a69a, #00695c); color: #fff; display: flex; flex-direction: column; align-items: center; justify-content: center; font-weight: bold; box-shadow: 0 6px 0 #004d40; z-index: 2; }
+    .machine .gear { font-size: 40px; line-height: 1; }
+    .machine.spin .gear { animation: spin .7s linear; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .machine .rule { font-size: 20px; }
+    .ball { position: absolute; top: 50%; width: 54px; height: 54px; margin-top: -27px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: bold; color: #fff; z-index: 1; transition: transform .6s ease-in, opacity .3s; }
+    .ball.in { left: 0; background: #1e88e5; }
+    .ball.out { right: 0; background: #f4511e; }
+    .pad { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; width: 100%; max-width: 520px; }
+    .pad .ia-btn { min-height: 52px; padding: 4px; font-size: 22px; }
+    .pad .ia-btn.used { background: #e0f2f1; }
+    table.io { border-collapse: collapse; font-size: 22px; min-width: 220px; }
+    table.io th { background: #00695c; color: #fff; padding: 6px 18px; }
+    table.io td { border: 2px solid #b2dfdb; padding: 4px 18px; text-align: center; font-weight: bold; }
+    table.io tr.new td { animation: ia-pop .45s ease; background: #fff8e1; }
+    .layout { display: flex; gap: 20px; flex-wrap: wrap; justify-content: center; align-items: flex-start; width: 100%; }
+    .guess { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  function lin(a, c) {
+    var t = (a === 1 ? 'n' : a + ' × n') + (c > 0 ? ' + ' + c : c < 0 ? ' − ' + (-c) : '');
+    return { t: t, f: function (n) { return a * n + c; } };
+  }
+  function sq(c) { return { t: 'n × n' + (c > 0 ? ' + ' + c : c < 0 ? ' − ' + (-c) : ''), f: function (n) { return n * n + c; } }; }
+  var pron = { t: 'n × (n + 1)', f: function (n) { return n * (n + 1); } };
+  function same(r1, r2) { for (var n = 0; n <= 25; n++) if (r1.f(n) !== r2.f(n)) return false; return true; }
+
+  function makeRule(level) {
+    var rule, lo = 1, cands = [];
+    if (level === 1) {
+      var kind = IA.pick(['add', 'sub', 'mul']);
+      if (kind === 'add') { var a = IA.rand(2, 9); rule = lin(1, a); cands = [lin(1, a + 1), lin(1, a - 1), lin(a, 0), lin(2, a - 2), lin(1, -a)]; lo = 0; }
+      else if (kind === 'sub') { var s = IA.rand(1, 5); rule = lin(1, -s); lo = s; cands = [lin(1, s), lin(1, -s - 1), lin(1, 1 - s), lin(2, -s)]; }
+      else { var m = IA.rand(2, 9); rule = lin(m, 0); lo = 0; cands = [lin(1, m), lin(m + 1, 0), lin(m - 1, 0), lin(m, 1), lin(m, -1)]; }
+    } else if (level === 2) {
+      var A = IA.rand(2, 5), C = IA.rand(1, 9), plus = Math.random() < .6;
+      if (!plus) C = IA.rand(1, A - 1);
+      rule = lin(A, plus ? C : -C);
+      cands = [lin(A, plus ? C + 1 : -C + 1), lin(A + 1, plus ? C : -C), lin(A - 1, plus ? C : -C), lin(A, plus ? -C : C), lin(1, plus ? C : -C), lin(A + 1, 0)];
+      if (plus && C >= 2) cands.push(lin(C, A));
+    } else {
+      var k = IA.pick(['sq', 'sq+', 'sq-', 'pron']);
+      if (k === 'sq') rule = sq(0); else if (k === 'sq+') rule = sq(IA.rand(1, 5)); else if (k === 'sq-') rule = sq(-1); else rule = pron;
+      cands = [sq(0), sq(1), sq(2), sq(-1), pron, lin(2, 0), lin(3, -2), lin(2, 1), lin(4, -3)];
+    }
+    var opts = [rule];
+    IA.shuffle(cands).forEach(function (c) {
+      if (opts.length >= 4) return;
+      if (opts.every(function (o) { return !same(o, c) && o.t !== c.t; })) opts.push(c);
+    });
+    var inputs = []; for (var n = lo; n < lo + 12; n++) inputs.push(n);
+    return { rule: rule, opts: IA.shuffle(opts), inputs: inputs };
+  }
+
+  IA.game({
+    id: 'g5m-function-machine',
+    title: 'Function Machine',
+    emoji: '⚙️',
+    back: '../index.html',
+    instructions: 'Feed numbers into the machine. Watch the table grow, then work out the secret rule.',
+    rounds: 10,
+    delay: 1800,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'One step', value: 1, desc: 'n + 3, n − 2, 4 × n' },
+      { label: 'Two steps', value: 2, desc: '2 × n + 1, 3 × n − 2' },
+      { label: 'Squares', value: 3, desc: 'n × n, n × n + 1, n × (n + 1)' }
+    ],
+    round: function (r) {
+      var R = makeRule(r.level), tried = {}, triedList = [], busy = false;
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['What is the secret rule?']));
+      var mach = IA.el('div', { class: 'machine', 'aria-label': 'Function machine with a hidden rule' }, [IA.el('div', { class: 'gear' }, ['⚙️']), IA.el('div', { class: 'rule' }, ['n → ?'])]);
+      var inChute = IA.el('div', { class: 'chute' }), outChute = IA.el('div', { class: 'chute' });
+      var row = IA.el('div', { class: 'machine-row' }, [inChute, mach, outChute]);
+      r.stage.appendChild(row);
+      var tbody = IA.el('tbody');
+      var table = IA.el('table', { class: 'io' }, [IA.el('thead', {}, [IA.el('tr', {}, [IA.el('th', {}, ['In (n)']), IA.el('th', {}, ['Out'])])]), tbody]);
+      var pad = IA.el('div', { class: 'pad' });
+      var status = IA.el('div', { class: 'ia-sub' }, ['Tap a number to feed it in. Try at least 3 different numbers.']);
+      var left = IA.el('div', { class: 'ia-col' }, [status, pad]);
+      r.stage.appendChild(IA.el('div', { class: 'layout' }, [left, table]));
+      var guess = IA.el('div', { class: 'guess hidden' }, [IA.el('div', { class: 'ia-prompt', style: { fontSize: '24px' } }, ['Which rule is it?'])]);
+      var hint = IA.el('div', { class: 'ia-hint hidden' });
+      r.stage.appendChild(guess); r.stage.appendChild(hint);
+
+      R.inputs.forEach(function (n) {
+        var b = IA.el('button', { class: 'ia-btn', type: 'button' }, [String(n)]);
+        b.addEventListener('click', function () { feed(n, b); });
+        pad.appendChild(b);
+      });
+      function feed(n, btn) {
+        if (busy) return;
+        busy = true; IA.sfx.tap();
+        var out = R.rule.f(n);
+        var ball = IA.el('div', { class: 'ball in' }, [String(n)]);
+        row.appendChild(ball);
+        var dist = inChute.getBoundingClientRect().width + 40;
+        requestAnimationFrame(function () { requestAnimationFrame(function () { ball.style.transform = 'translateX(' + dist + 'px)'; ball.style.opacity = '0'; }); });
+        setTimeout(function () {
+          ball.remove(); mach.classList.remove('spin'); void mach.offsetWidth; mach.classList.add('spin');
+        }, 550);
+        setTimeout(function () {
+          var ob = IA.el('div', { class: 'ball out', style: { transform: 'translateX(-' + (outChute.getBoundingClientRect().width) + 'px)', opacity: '0' } }, [String(out)]);
+          row.appendChild(ob);
+          requestAnimationFrame(function () { requestAnimationFrame(function () { ob.style.transform = 'translateX(0)'; ob.style.opacity = '1'; }); });
+          setTimeout(function () { ob.remove(); }, 1500);
+          Array.prototype.forEach.call(tbody.querySelectorAll('tr.new'), function (t) { t.classList.remove('new'); });
+          if (!tried[n]) {
+            tried[n] = true; triedList.push(n); btn.classList.add('used');
+            tbody.appendChild(IA.el('tr', { class: 'new' }, [IA.el('td', {}, [String(n)]), IA.el('td', {}, [String(out)])]));
+          }
+          busy = false;
+          if (triedList.length >= 3 && guess.classList.contains('hidden')) {
+            guess.classList.remove('hidden');
+            status.textContent = 'Feed more numbers if you want to test your idea.';
+            IA.choices(r, guess, R.opts, R.rule, {
+              cls: 'wide',
+              render: function (o) { return 'n → ' + o.t; },
+              isCorrect: function (o) {
+                if (o === R.rule) { mach.querySelector('.rule').textContent = 'n → ' + o.t; return true; }
+                var bad = null;
+                for (var i = 0; i < triedList.length; i++) if (o.f(triedList[i]) !== R.rule.f(triedList[i])) { bad = triedList[i]; break; }
+                hint.classList.remove('hidden');
+                hint.textContent = bad === null ? 'That rule fits so far — feed another number to test it!'
+                  : 'Test it: with n = ' + bad + ', "' + o.t + '" gives ' + o.f(bad) + ', but the machine gave ' + R.rule.f(bad) + '.';
+                return false;
+              }
+            });
+          } else if (triedList.length < 3) status.textContent = (3 - triedList.length) + ' more different number' + (triedList.length === 2 ? '' : 's') + ' to go.';
+        }, 900);
+      }
+    }
+  });
+</script>
+</body>
+</html>

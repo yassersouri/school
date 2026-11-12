@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Expanded Form Match — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .q { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .q .ia-big { color: var(--ia-accent); }
+    .q .exp { font-size: clamp(30px, 7vw, 54px); font-weight: bold; color: var(--ia-accent); }
+    .pv { display: inline-grid; grid-template-columns: repeat(3, auto); border: 3px solid #d1c4e9; border-radius: 12px; overflow: hidden; font-weight: bold; }
+    .pv span { padding: 4px 14px; text-align: center; font-size: 22px; }
+    .pv .hd { font-size: 13px; background: var(--ia-accent-2); color: #4527a0; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  function digits(n) { return { h: Math.floor(n / 100), t: Math.floor(n / 10) % 10, o: n % 10 }; }
+  function exp(parts) { return parts.filter(function (p) { return p !== 0; }).join(' + '); }
+  function correctParts(n) { var d = digits(n); return n >= 100 ? [d.h * 100, d.t * 10, d.o] : [d.t * 10, d.o]; }
+  function sum(arr) { return arr.reduce(function (a, b) { return a + b; }, 0); }
+
+  /** Wrong expanded forms: digit swaps and place-value slips. Never sums to n. */
+  function expDistractors(n) {
+    var d = digits(n), c = [];
+    if (n >= 100) {
+      c.push([d.h * 10, d.t * 10, d.o]);          // 30 + 40 + 7
+      c.push([d.h, d.t, d.o]);                     // 3 + 4 + 7
+      c.push([d.h * 100, d.t, d.o]);               // 300 + 4 + 7
+      c.push([d.h * 100, d.o * 10, d.t]);          // 300 + 70 + 4
+      c.push([d.o * 100, d.t * 10, d.h]);          // 700 + 40 + 3
+      c.push([d.t * 100, d.h * 10, d.o]);          // 400 + 30 + 7
+      c.push([d.h * 100, d.t * 100, d.o]);         // 300 + 400 + 7
+      c.push([d.h * 1000, d.t * 10, d.o]);         // 3000 + 40 + 7
+    } else {
+      c.push([d.t, d.o]);                          // 4 + 7
+      c.push([d.o * 10, d.t]);                     // 70 + 4
+      c.push([d.t * 10, d.o * 10]);                // 40 + 70
+      c.push([d.t * 100, d.o]);                    // 400 + 7
+      c.push([d.t * 10, d.o * 100]);               // 40 + 700
+    }
+    var good = exp(correctParts(n)), seen = {}, out = [];
+    seen[good] = true;
+    IA.shuffle(c).forEach(function (p) {
+      var s = exp(p);
+      if (!s || seen[s] || sum(p) === n || p.filter(function (x) { return x; }).length < 2) return;
+      seen[s] = true; out.push(s);
+    });
+    return out;
+  }
+  /** Wrong standard-form numbers for a given n. */
+  function numDistractors(n) {
+    var d = digits(n), c = [];
+    if (n >= 100) {
+      c.push(d.h * 100 + d.o * 10 + d.t, d.t * 100 + d.h * 10 + d.o, d.o * 100 + d.t * 10 + d.h);
+      if (d.t === 0) c.push(d.h * 1000 + d.o, d.h * 10 + d.o, d.h * 100 + d.o * 10);   // 4006, 46, 460
+      else if (d.o === 0) c.push(d.h * 1000 + d.t * 10, d.h * 10 + d.t, d.h * 100 + d.t); // 3050, 35, 305
+      else c.push(n + 10 <= 999 ? n + 10 : n - 20, n - 10, n + 100 <= 999 ? n + 100 : n - 100);
+    } else {
+      c.push(d.o * 10 + d.t, d.t * 100 + d.o, d.t + d.o, n + 10, n - 10);
+    }
+    var seen = {}, out = []; seen[n] = true;
+    c.forEach(function (x) { if (x > 0 && !seen[x]) { seen[x] = true; out.push(x); } });
+    return IA.shuffle(out);
+  }
+
+  function makeNumber(lv) {
+    if (lv.kind === 2) return IA.rand(1, 9) * 10 + IA.rand(1, 9);
+    if (lv.kind === 3) return IA.rand(1, 9) * 100 + IA.rand(1, 9) * 10 + IA.rand(1, 9);
+    // zeros level: mostly numbers with a zero
+    if (Math.random() < 0.75) return IA.rand(1, 9) * 100 + (Math.random() < 0.5 ? IA.rand(1, 9) : IA.rand(1, 9) * 10);
+    return IA.rand(1, 9) * 100 + IA.rand(1, 9) * 10 + IA.rand(1, 9);
+  }
+  function pvChart(n) {
+    var d = digits(n), g = IA.el('div', { class: 'pv' });
+    var cols = n >= 100 ? [['Hundreds', d.h], ['Tens', d.t], ['Ones', d.o]] : [['Tens', d.t], ['Ones', d.o]];
+    g.style.gridTemplateColumns = 'repeat(' + cols.length + ', auto)';
+    cols.forEach(function (c) { g.appendChild(IA.el('span', { class: 'hd' }, [c[0]])); });
+    cols.forEach(function (c) { g.appendChild(IA.el('span', {}, [String(c[1])])); });
+    return g;
+  }
+
+  IA.game({
+    id: 'g2m-expanded-form-match',
+    title: 'Expanded Form Match',
+    emoji: '🧩',
+    back: '../index.html',
+    instructions: 'Match each number with its expanded form.',
+    rounds: 10,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: '2-digit numbers', value: { kind: 2 }, desc: 'Like 47 = 40 + 7' },
+      { label: '3-digit numbers', value: { kind: 3 }, desc: 'Like 347 = 300 + 40 + 7' },
+      { label: 'Zero heroes', value: { kind: 0 }, desc: 'Like 406 = 400 + 6' }
+    ],
+    round: function (r) {
+      var n = makeNumber(r.level);
+      var good = exp(correctParts(n));
+      var forward = r.index % 2 === 0;
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } }, [
+        IA.el('div', {}, [n >= 100 && (n % 100 < 10 || n % 10 === 0) ? 'A zero means "none" in that place, so we skip it.' : 'Look at each digit and its place:']),
+        pvChart(n), IA.el('div', {}, [n + ' = ' + good])
+      ]);
+      var rr = { answer: function (ok, el) { if (!ok) hint.style.display = ''; return r.answer(ok, el, ok ? n + ' = ' + good + ' ✔' : undefined); } };
+      var spoken = String(n);
+      if (forward) {
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Which is the expanded form?']));
+        r.stage.appendChild(IA.el('div', { class: 'q' }, [IA.el('span', { class: 'ia-big' }, [String(n)]), IA.speakButton(spoken)]));
+        var opts = IA.shuffle([good].concat(expDistractors(n).slice(0, 3)));
+        IA.choices(rr, r.stage, opts, good, { cls: 'wide', render: function (o) { return o; } });
+      } else {
+        var parts = correctParts(n).filter(function (p) { return p; });
+        if (r.level.kind !== 2 && r.index >= 5) parts = IA.shuffle(parts); // mixed-up order
+        var shown = parts.join(' + ');
+        spoken = parts.join(' plus ');
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['What number is this?']));
+        r.stage.appendChild(IA.el('div', { class: 'q' }, [IA.el('span', { class: 'exp' }, [shown]), IA.speakButton(spoken)]));
+        if (parts.length > 1 && shown !== exp(correctParts(n))) r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['The parts are mixed up — find the hundreds first!']));
+        var nums = IA.shuffle([n].concat(numDistractors(n).slice(0, 3)));
+        IA.choices(rr, r.stage, nums, n, { speak: true });
+      }
+      IA.say(forward ? 'Which is the expanded form of ' + n + '?' : 'What number is ' + spoken + '?');
+      r.stage.appendChild(hint);
+    }
+  });
+</script>
+</body>
+</html>

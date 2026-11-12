@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Builder — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .slots { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+    .slots .ia-slot { width: clamp(60px, 14vw, 84px); height: clamp(68px, 15vw, 92px); position: relative; }
+    .slots .ia-slot .ghost { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: clamp(28px, 6vw, 40px); font-weight: bold; color: #9ec9f0; pointer-events: none; }
+    .slots .ia-slot.done { border-style: solid; border-color: var(--ia-good); background: #e8f5e9; }
+    .tray { display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; min-height: 72px; padding: 10px; background: var(--ia-accent-2); border-radius: 18px; width: 100%; max-width: 560px; }
+    .ia-tile { font-size: clamp(28px, 6vw, 40px); min-width: 64px; min-height: 64px; }
+    .ia-slot .ia-tile { box-shadow: none; border-color: transparent; background: transparent; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var BANK = {
+    cvc: { cat: '🐱', hat: '🎩', bat: '🦇', rat: '🐀', map: '🗺️', van: '🚐', cap: '🧢', can: '🥫', bed: '🛏️', hen: '🐔',
+      web: '🕸️', pen: '🖊️', ten: '🔟', leg: '🦵', net: '🥅', pig: '🐷', pin: '📌', six: '6️⃣', dog: '🐶', log: '🪵',
+      fox: '🦊', box: '📦', sun: '☀️', bus: '🚌', bug: '🐛', mug: '☕', tub: '🛁', nut: '🥜', hut: '🛖' },
+    blend: { ship: '🚢', fish: '🐟', frog: '🐸', crab: '🦀', drum: '🥁', flag: '🚩', plug: '🔌', sled: '🛷', duck: '🦆',
+      sock: '🧦', ring: '💍', tent: '⛺', hand: '✋', gift: '🎁', milk: '🥛', bell: '🔔', chick: '🐤',
+      shell: '🐚', truck: '🚚', clock: '🕐', plant: '🪴' },
+    silent: { cake: '🎂', kite: '🪁', bike: '🚲', rose: '🌹', nose: '👃', bone: '🦴', five: '5️⃣', nine: '9️⃣',
+      rope: '🪢', snake: '🐍', plane: '✈️', whale: '🐳', smile: '😃' }
+  };
+  var LETTERS = 'abcdefghijklmnoprstuvw'.split('');
+  var queue = [];
+  function nextWord(level) {
+    if (!queue.length || queue.level !== level) { queue = IA.shuffle(Object.keys(BANK[level])); queue.level = level; }
+    return queue.pop();
+  }
+
+  IA.game({
+    id: 'g1r-word-builder',
+    title: 'Word Builder',
+    emoji: '🧱',
+    back: '../index.html',
+    instructions: 'Spell the picture! Drag the letters into the boxes (or tap a letter, then tap a box).',
+    rounds: 8,
+    delay: 1500,
+    levelTitle: 'Pick your words',
+    levels: [
+      { label: 'CVC words', value: 'cvc', desc: 'cat · pig · sun' },
+      { label: 'Blends & digraphs', value: 'blend', desc: 'ship · frog · duck' },
+      { label: 'Silent e', value: 'silent', desc: 'cake · kite · bone' }
+    ],
+    round: function (r) {
+      var word = nextWord(r.level), pic = BANK[r.level][word];
+      var wrongs = 0, filled = 0;
+      r.stage.appendChild(IA.el('div', { class: 'ia-row' }, [IA.el('div', { class: 'ia-emoji' }, [pic]), IA.speakButton(word)]));
+      var slots = word.split('').map(function (ch, i) { var s = IA.el('div', { class: 'ia-slot', 'aria-label': 'box ' + (i + 1) }); s._letter = ch; return s; });
+      r.stage.appendChild(IA.el('div', { class: 'slots' }, slots));
+      var extras = IA.sample(LETTERS.filter(function (l) { return word.indexOf(l) < 0; }), word.length > 3 ? 2 : 1);
+      var tiles = IA.shuffle(word.split('').concat(extras)).map(function (ch) { var t = IA.el('div', { class: 'ia-tile' }, [ch]); t._letter = ch; return t; });
+      r.stage.appendChild(IA.el('div', { class: 'tray', 'aria-label': 'letters' }, tiles));
+      var hint = IA.el('div', { class: 'ia-sub' }, ['Say the word slowly. What sound comes first?']);
+      r.stage.appendChild(hint);
+      IA.dragDrop({
+        items: tiles, targets: slots,
+        onDrop: function (tile, slot) {
+          if (slot.querySelector('.ia-tile')) { IA.toast('That box is full!', true); return false; }
+          if (tile._letter !== slot._letter) {
+            wrongs++;
+            var pos = ['first', 'second', 'third', 'fourth', 'fifth'][slots.indexOf(slot)];
+            r.answer(false, tile, 'Not that box — try again!');
+            hint.textContent = 'Listen: ' + word + '. What is the ' + pos + ' letter?';
+            IA.say(word, { rate: 0.5 });
+            if (wrongs >= 2) {
+              var g = IA.el('span', { class: 'ghost' }, [slot._letter]);
+              slot.appendChild(g); setTimeout(function () { g.remove(); }, 1200);
+            }
+            return false;
+          }
+          tile.classList.add('ia-locked'); tile.classList.remove('ia-drag'); tile.removeAttribute('tabindex');
+          slot.classList.add('done'); IA.sfx.tap();
+          var gh = slot.querySelector('.ghost'); if (gh) gh.remove();
+          filled++;
+          if (filled === word.length) {
+            hint.textContent = word + '!';
+            r.answer(true, slots[0].parentNode);
+            IA.say(word);
+          }
+        }
+      });
+      setTimeout(function () { IA.say(word); }, 300);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Make 10 Pairs — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; }
+    .board { display: grid; grid-template-columns: repeat(4, 1fr); gap: clamp(8px, 2vw, 14px); width: 100%; max-width: 520px; }
+    .card { position: relative; aspect-ratio: 1 / 1; min-height: 64px; border: 0; padding: 0; background: transparent; cursor: pointer; perspective: 600px; font-family: inherit; touch-action: manipulation; }
+    .card .in { position: absolute; inset: 0; transition: transform .35s ease; transform-style: preserve-3d; }
+    .card.up .in { transform: rotateY(180deg); }
+    .face { position: absolute; inset: 0; border-radius: 14px; display: flex; flex-direction: column; align-items: center; justify-content: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; border: 3px solid #a5d6a7; }
+    .back { background: repeating-linear-gradient(45deg, #43a047 0 10px, #388e3c 10px 20px); color: #fff; font-size: clamp(26px, 6vw, 40px); }
+    .front { background: #fff; transform: rotateY(180deg); font-size: clamp(28px, 7vw, 46px); font-weight: bold; color: #1b5e20; }
+    .front small { font-size: clamp(9px, 2vw, 13px); letter-spacing: 1px; color: #e53935; line-height: 1.1; width: 6.2em; word-break: break-all; text-align: left; }
+    .card.sel .front { border-color: #f0c040; background: #fff8dc; box-shadow: 0 0 0 4px #ffe58f; }
+    .card.matched .front { border-color: var(--ia-good); background: #e8f5e9; opacity: .55; }
+    .card.matched { cursor: default; }
+    .card:focus-visible { outline: 4px solid #1a6fbd; outline-offset: 2px; border-radius: 14px; }
+    .found { min-height: 30px; font-size: 18px; color: #2e7d32; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+    .found span { background: #e8f5e9; border-radius: 999px; padding: 2px 10px; }
+    @media (prefers-reduced-motion: reduce) { .card .in { transition: none; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var ID = 'g1m-make-10-pairs';
+  var shell = IA.freePlay({
+    id: ID, title: 'Make 10 Pairs', emoji: '🃏', back: '../index.html',
+    instructions: 'Find two cards that add up to the target number!'
+  });
+  var LEVELS = [
+    { label: 'Make 10 — cards up', value: { target: 10, faceUp: true }, desc: 'See all the cards' },
+    { label: 'Make 10 — memory', value: { target: 10, faceUp: false }, desc: 'Cards are hidden' },
+    { label: 'Make 20 — memory', value: { target: 20, faceUp: false }, desc: 'Like 13 + 7' }
+  ];
+  var level;
+  function pickLevel() { shell.setScore(''); shell.setProgress(0); IA.levelPicker(shell.stage, 'Pick a game', LEVELS, function (v) { level = v; board(); }); }
+
+  function dots(n) { return n <= 10 ? '●'.repeat(n) : ''; }
+
+  function board() {
+    var T = level.target;
+    var pairs;
+    if (T === 10) pairs = [[0, 10], [1, 9], [2, 8], [3, 7], [4, 6], [5, 5]];
+    else pairs = IA.sample([[11, 9], [12, 8], [13, 7], [14, 6], [15, 5], [16, 4], [17, 3], [18, 2], [19, 1], [10, 10]], 6);
+    var vals = IA.shuffle([].concat.apply([], pairs));
+    var matched = 0, tries = 0, misses = 0, first = null, busy = false;
+    IA.clear(shell.stage);
+    shell.setProgress(0);
+    function score() { shell.setScore('🃏 ' + matched + ' / 6 · tries ' + tries); }
+    score();
+    var prompt = IA.el('div', { class: 'ia-prompt' }, ['Make ', IA.el('span', { class: 'ia-big', style: { color: 'var(--ia-accent)' } }, [String(T)]), IA.speakButton('Find two cards that make ' + T + '.')]);
+    shell.stage.appendChild(prompt);
+    var grid = IA.el('div', { class: 'board' });
+    var found = IA.el('div', { class: 'found', 'aria-live': 'polite' });
+    vals.forEach(function (v) {
+      var c = IA.el('button', { class: 'card' + (level.faceUp ? ' up' : ''), type: 'button', 'aria-label': level.faceUp ? String(v) : 'Hidden card' }, [
+        IA.el('div', { class: 'in' }, [
+          IA.el('div', { class: 'face back' }, ['?']),
+          IA.el('div', { class: 'face front' }, [String(v), T === 10 && v > 0 ? IA.el('small', {}, [dots(v)]) : null])
+        ])
+      ]);
+      c._v = v;
+      c.addEventListener('click', function () { tap(c); });
+      grid.appendChild(c);
+    });
+    shell.stage.appendChild(grid);
+    shell.stage.appendChild(found);
+    IA.say('Find two cards that make ' + T + '.');
+
+    function tap(c) {
+      if (busy || c.classList.contains('matched') || c === first) return;
+      IA.sfx.tap();
+      c.classList.add('up', 'sel'); c.setAttribute('aria-label', String(c._v));
+      if (!first) { first = c; IA.say(String(c._v), { rate: 1 }); return; }
+      var a = first, b = c; first = null; tries++;
+      var sum = a._v + b._v;
+      if (sum === T) {
+        matched++;
+        a.classList.remove('sel'); b.classList.remove('sel');
+        a.classList.add('matched'); b.classList.add('matched');
+        a.disabled = b.disabled = true;
+        IA.good(null, a._v + ' + ' + b._v + ' = ' + T + ' 🎉');
+        IA.say(a._v + ' and ' + b._v + ' make ' + T + '!');
+        found.appendChild(IA.el('span', {}, [a._v + ' + ' + b._v]));
+        shell.setProgress(matched / 6);
+        score();
+        if (matched === 6) setTimeout(finish, 1200);
+      } else {
+        misses++;
+        busy = true;
+        IA.bad(b, a._v + ' + ' + b._v + ' = ' + sum + (sum < T ? ' — too small!' : ' — too big!'));
+        IA.say(a._v + ' and ' + b._v + ' make ' + sum + '. We need ' + T + '.');
+        score();
+        setTimeout(function () {
+          a.classList.remove('sel'); b.classList.remove('sel');
+          if (!level.faceUp) {
+            a.classList.remove('up'); b.classList.remove('up');
+            a.setAttribute('aria-label', 'Hidden card'); b.setAttribute('aria-label', 'Hidden card');
+          }
+          busy = false;
+        }, 1300);
+      }
+    }
+
+    function finish() {
+      var ok3 = level.faceUp ? 1 : 4, ok2 = level.faceUp ? 3 : 9;
+      var stars = misses <= ok3 ? 3 : misses <= ok2 ? 2 : 1;
+      shell.done(stars);
+      IA.sfx.win(); IA.confetti();
+      IA.say(stars === 3 ? 'Amazing! Three stars!' : 'You found all the pairs!');
+      IA.clear(shell.stage);
+      shell.stage.appendChild(IA.el('div', { class: 'ia-finish' }, [
+        IA.el('div', { class: 'ia-big-stars' }, ['⭐'.repeat(stars) + '☆'.repeat(3 - stars)]),
+        IA.el('h2', {}, ['You found all 6 pairs in ' + tries + ' tries!']),
+        IA.el('div', { class: 'ia-sub' }, [level.faceUp ? 'Fewer tries = more stars.' : 'Try to remember where the cards are!']),
+        IA.el('div', { class: 'ia-row' }, [
+          IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: board }, ['🔁 New board']),
+          IA.el('button', { class: 'ia-btn', type: 'button', onclick: pickLevel }, ['🎚️ Change level']),
+          IA.el('a', { class: 'ia-btn', href: '../index.html' }, ['🏠 More activities'])
+        ])
+      ]));
+    }
+  }
+  pickLevel();
+</script>
+</body>
+</html>

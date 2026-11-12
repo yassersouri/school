@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Compound Word Smash — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .smash { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .wcard { background: #fff; border: 3px solid #9ec9f0; border-radius: 20px; box-shadow: 0 5px 0 #cfe3f7; padding: 10px 18px; min-width: 120px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+    .wcard .pic { font-size: clamp(44px, 9vw, 64px); line-height: 1; min-height: 1em; }
+    .wcard .w { font-size: clamp(28px, 6vw, 42px); font-weight: bold; }
+    .wcard.whole { border-color: var(--ia-accent); background: var(--ia-accent-2); }
+    .op { font-size: clamp(32px, 7vw, 48px); font-weight: bold; color: var(--ia-accent); }
+    .smash.joined .wcard.a { animation: slideR .5s ease; }
+    .smash.joined .wcard.b { animation: slideL .5s ease; }
+    @keyframes slideR { 50% { transform: translateX(14px) scale(1.05); } }
+    @keyframes slideL { 50% { transform: translateX(-14px) scale(1.05); } }
+    .result { min-height: 1.2em; font-size: clamp(30px, 6vw, 44px); font-weight: bold; color: var(--ia-good); }
+    .result .a { color: #1a6fbd; } .result .b { color: #c2185b; }
+    .ia-choices.wide { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); max-width: 760px; }
+    .ia-choices.wide .ia-choice { font-size: clamp(20px, 4vw, 30px); }
+    @media (prefers-reduced-motion: reduce) { .smash.joined .wcard { animation: none; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // [part1, part2, picture of part1, picture of part2, picture of whole]. Words from grade1/reading/14_compound_words.
+  var C = [
+    ['sun', 'flower', '☀️', '🌸', '🌻'], ['rain', 'bow', '🌧️', '🎀', '🌈'], ['butter', 'fly', '🧈', '🪰', '🦋'],
+    ['cup', 'cake', '🥤', '🎂', '🧁'], ['snow', 'man', '❄️', '👨', '⛄'], ['foot', 'ball', '🦶', '⚽', '🏈'],
+    ['back', 'pack', '', '', '🎒'], ['pop', 'corn', '', '🌽', '🍿'], ['pan', 'cake', '🍳', '🎂', '🥞'],
+    ['tooth', 'brush', '🦷', '🖌️', '🪥'], ['rain', 'coat', '🌧️', '🧥', ''], ['bed', 'room', '🛏️', '', ''],
+    ['star', 'fish', '⭐', '🐟', ''], ['cow', 'boy', '🐄', '👦', '🤠'], ['lady', 'bug', '', '🐛', '🐞'],
+    ['gold', 'fish', '', '🐟', ''], ['pine', 'apple', '🌲', '🍎', '🍍'], ['water', 'melon', '💧', '🍈', '🍉'],
+    ['dog', 'house', '🐶', '🏠', ''], ['sun', 'shine', '☀️', '', ''], ['play', 'ground', '', '', ''],
+    ['class', 'room', '', '', ''], ['bed', 'time', '🛏️', '⏰', ''], ['snow', 'ball', '❄️', '⚽', ''],
+    ['foot', 'print', '🦶', '', '👣'], ['moon', 'light', '🌙', '💡', '']
+  ];
+  function whole(c) { return c[0] + c[1]; }
+  // Two other compounds, preferring ones that share a part (so the child must read both parts).
+  function others(c) {
+    var rest = IA.shuffle(C.filter(function (x) { return whole(x) !== whole(c); }));
+    rest.sort(function (x, y) {
+      var sx = (x[0] === c[0] || x[1] === c[1] || x[0] === c[1] || x[1] === c[0]) ? 1 : 0;
+      var sy = (y[0] === c[0] || y[1] === c[1] || y[0] === c[1] || y[1] === c[0]) ? 1 : 0;
+      return sy - sx;
+    });
+    return rest.slice(0, 2);
+  }
+  function card(word, pic, cls) {
+    return IA.el('div', { class: 'wcard ' + (cls || '') }, [IA.el('div', { class: 'pic' }, [pic || '']), IA.el('div', { class: 'w' }, [word])]);
+  }
+  var queue = [];
+  function next() { if (!queue.length) queue = IA.shuffle(C); return queue.pop(); }
+
+  IA.game({
+    id: 'g1r-compound-word-smash',
+    title: 'Compound Word Smash',
+    emoji: '💥',
+    back: '../index.html',
+    instructions: 'Two small words smash together to make one big word!',
+    rounds: 10,
+    levelTitle: 'Pick a game',
+    levels: [
+      { label: 'Put it together', value: 'join', desc: 'sun + flower = ?' },
+      { label: 'Take it apart', value: 'split', desc: 'sunflower = ? + ?' }
+    ],
+    round: function (r) {
+      var c = next(), w = whole(c), alt = others(c);
+      var result = IA.el('div', { class: 'result', 'aria-live': 'polite' });
+      var row;
+      if (r.level === 'join') {
+        row = IA.el('div', { class: 'smash' }, [card(c[0], c[2], 'a'), IA.el('span', { class: 'op' }, ['+']), card(c[1], c[3], 'b'), IA.el('span', { class: 'op' }, ['=']), IA.el('span', { class: 'op' }, ['?'])]);
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['What big word do they make?', IA.speakButton(c[0] + ' plus ' + c[1])]));
+        r.stage.appendChild(row);
+        r.stage.appendChild(result);
+        var opts = IA.shuffle([w].concat(alt.map(whole)));
+        var grid = IA.choices(r, r.stage, opts, w, { speak: true, cls: 'wide' });
+        grid.addEventListener('click', function (e) {
+          var b = e.target.closest && e.target.closest('.ia-choice');
+          if (!b) return;
+          if (b.textContent === w) {
+            row.classList.add('joined');
+            row.lastChild.textContent = c[4] || '✨';
+            IA.clear(result).appendChild(IA.el('span', {}, [IA.el('span', { class: 'a' }, [c[0]]), IA.el('span', { class: 'b' }, [c[1]])]));
+          } else {
+            result.textContent = '';
+            result.appendChild(IA.el('span', { class: 'ia-hint' }, ['Check both parts: ' + c[0] + ' + ' + c[1]]));
+          }
+        });
+        setTimeout(function () { IA.say(c[0] + ' plus ' + c[1] + ' makes what word?'); }, 300);
+      } else {
+        row = IA.el('div', { class: 'smash' }, [card(w, c[4], 'whole')]);
+        r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Which two words make it?', IA.speakButton(w)]));
+        r.stage.appendChild(row);
+        r.stage.appendChild(result);
+        var pairs = IA.shuffle([c].concat(alt));
+        var correct = pairs.indexOf(c);
+        var grid2 = IA.choices(r, r.stage, pairs.map(function (p, i) { return i; }), correct, {
+          cls: 'wide',
+          render: function (i) { return pairs[i][0] + ' + ' + pairs[i][1]; }
+        });
+        Array.prototype.forEach.call(grid2.children, function (b, i) {
+          b.addEventListener('click', function () {
+            IA.say(pairs[i][0] + ', ' + pairs[i][1]);
+            if (i === correct) {
+              IA.clear(result).appendChild(IA.el('span', {}, [IA.el('span', { class: 'a' }, [c[0]]), ' + ', IA.el('span', { class: 'b' }, [c[1]])]));
+            } else {
+              result.textContent = '';
+              result.appendChild(IA.el('span', { class: 'ia-hint' }, ['Do ' + pairs[i][0] + ' and ' + pairs[i][1] + ' make ' + w + '? Look again!']));
+            }
+          });
+        });
+        setTimeout(function () { IA.say('Which two words make ' + w + '?'); }, 300);
+      }
+    }
+  });
+</script>
+</body>
+</html>

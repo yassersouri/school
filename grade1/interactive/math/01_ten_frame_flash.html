@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ten-Frame Flash — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; }
+    .frames { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; min-height: 140px; }
+    .frames.hidden .ia-dot { visibility: hidden; }
+    .peek { font-size: 14px; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Template activity: shows the standard IA.game + IA.choices pattern.
+  function frame(n, color) {
+    var f = IA.el('div', { class: 'ia-ten-frame', 'aria-hidden': 'true' });
+    for (var i = 0; i < 10; i++) {
+      f.appendChild(IA.el('span', {}, [i < n ? IA.el('i', { class: 'ia-dot' + (color ? ' ' + color : '') }) : null]));
+    }
+    return f;
+  }
+
+  IA.game({
+    id: 'g1m-ten-frame-flash',
+    title: 'Ten-Frame Flash',
+    emoji: '⚡',
+    back: '../index.html',
+    instructions: 'Look quickly! How many dots did you see?',
+    rounds: 10,
+    levelTitle: 'How big are the numbers?',
+    levels: [
+      { label: 'Up to 5', value: { max: 5, frames: 1, ms: 1500 }, desc: 'One ten-frame' },
+      { label: 'Up to 10', value: { max: 10, frames: 1, ms: 1500 }, desc: 'One ten-frame' },
+      { label: 'Up to 20', value: { max: 20, frames: 2, ms: 2200 }, desc: 'Two ten-frames' }
+    ],
+    round: function (r) {
+      var lv = r.level;
+      var n = IA.rand(lv.max <= 5 ? 1 : (lv.frames === 2 ? 8 : 3), lv.max);
+      var wrap = IA.el('div', { class: 'frames' });
+      if (lv.frames === 2) { wrap.appendChild(frame(Math.min(n, 10))); wrap.appendChild(frame(Math.max(0, n - 10), 'blue')); }
+      else wrap.appendChild(frame(n));
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['How many dots?']));
+      r.stage.appendChild(wrap);
+      setTimeout(function () { wrap.classList.add('hidden'); }, lv.ms);
+      r.stage.appendChild(IA.el('button', { class: 'ia-btn small peek', type: 'button', onclick: function () {
+        wrap.classList.remove('hidden'); setTimeout(function () { wrap.classList.add('hidden'); }, lv.ms);
+      } }, ['👀 Peek again']));
+      IA.choices(r, r.stage, IA.numberChoices(n, 4, 3, 1), n, { speak: true });
+    }
+  });
+</script>
+</body>
+</html>

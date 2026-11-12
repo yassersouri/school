@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sentence Scramble — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .slots { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; width: 100%; }
+    .slots .ia-slot { min-width: clamp(76px, 15vw, 110px); min-height: 66px; padding: 2px; }
+    .slots .ia-slot.done { border-style: solid; border-color: #a5d6a7; background: #f1f8f1; }
+    .slots .ia-slot .ia-tile { box-shadow: none; border-color: transparent; background: transparent; }
+    .tray { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; min-height: 72px; width: 100%; padding: 10px; border-radius: 18px; background: var(--ia-accent-2); }
+    .ia-tile { font-size: clamp(22px, 4.6vw, 32px); }
+    .ia-tile.reading { background: #fff4c2 !important; color: var(--ia-accent); transform: translateY(-4px); }
+    .cues { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; font-size: 15px; color: #666; }
+    .cues b { color: var(--ia-accent); }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Sentences from grade1/reading/04_sentences "Build a Sentence" and the sight-word sheets.
+  // Each has one fixed order (only one capitalised word; the end mark goes last).
+  var SENTENCES = [
+    'I can hop.', 'Max can dig.', 'Pam sat down.', 'The cat naps.',
+    'My truck is red.', 'My bike is red.', 'The sea is blue.', 'I see the moon.', 'My bed is soft.', 'I am very sleepy.',
+    'It is snack time.', 'The plum is red.', 'I run very fast.', 'Where did they go?',
+    'I have a big pup.', 'Max naps in the sun.', 'We went to the park.', 'I see a red kite.', 'Ben had a red bag.',
+    'Ben sat at his desk.', 'My toy box is big.', 'I see a fat pig.', 'I jump in the tub.', 'All my hair is wet.',
+    'I ride up the hill.', 'I ride to the lake.', 'We went to the beach.', 'I made a sand cake.', 'I went to the pond.',
+    'I see a fast fish.', 'I can kick and jump.', 'He is on the bus.', 'Look at my new hat!', 'Do you like to read?',
+    'My pup can run and jump.', 'Sam ran up the big hill.', 'I have fun with my toys.', 'The hen is on a nest.',
+    'The duck ran in the sun.', 'It is time for a bath.', 'I had jam on a bun.', 'The frog is on a log.',
+    'The ball is big and red.', 'She said yes to the cat.'
+  ];
+  function wc(s) { return s.split(' ').length; }
+  var LEVELS = { short: function (s) { return wc(s) <= 4; }, mid: function (s) { return wc(s) === 5; }, long: function (s) { return wc(s) === 6; } };
+  var queue = [];
+  function nextSentence(level) {
+    if (!queue.length || queue.level !== level) { queue = IA.shuffle(SENTENCES.filter(LEVELS[level])); queue.level = level; }
+    return queue.pop();
+  }
+
+  // Read text aloud, highlighting nodes[i] as word i is spoken. Uses onboundary when the
+  // browser supports it, else falls back to timing. Calls done() at the end.
+  function readAlong(nodes, text, done, rate) {
+    rate = rate || 0.85;
+    var words = text.split(' '), starts = [], pos = 0, finished = false, gotBoundary = false, timer = null, safety = null;
+    words.forEach(function (w) { starts.push(pos); pos += w.length + 1; });
+    function mark(i) { nodes.forEach(function (n, j) { n.classList.toggle('reading', j === i); }); }
+    function end() { if (finished) return; finished = true; clearTimeout(timer); clearTimeout(safety); mark(-1); if (done) done(); }
+    function timed(i) {
+      if (gotBoundary || finished) return;
+      if (i >= words.length) { if (!IA.speechAvailable || IA.isMuted()) end(); return; }
+      mark(i);
+      timer = setTimeout(function () { timed(i + 1); }, (260 + words[i].length * 70) / rate);
+    }
+    var silent = !IA.speechAvailable || IA.isMuted();
+    if (silent) { timed(0); return; }
+    IA.say(text, {
+      rate: rate,
+      onboundary: function (e) {
+        if (e.name && e.name !== 'word') return;
+        if (!gotBoundary) { gotBoundary = true; clearTimeout(timer); }
+        var i = 0; while (i + 1 < starts.length && starts[i + 1] <= e.charIndex) i++;
+        mark(i);
+      },
+      onend: end
+    });
+    timer = setTimeout(function () { timed(0); }, 450);
+    safety = setTimeout(end, words.length * 900 + 4000);
+  }
+
+  IA.game({
+    id: 'g1r-sentence-scramble',
+    title: 'Sentence Scramble',
+    emoji: '🧩',
+    back: '../index.html',
+    instructions: 'Put the words in order to make a sentence. The capital letter goes first, the period goes last!',
+    rounds: 8,
+    levelTitle: 'How long are the sentences?',
+    levels: [
+      { label: 'Short', value: 'short', desc: '3–4 words' },
+      { label: 'Medium', value: 'mid', desc: '5 words' },
+      { label: 'Long', value: 'long', desc: '6 words' }
+    ],
+    round: function (r) {
+      var sentence = nextSentence(r.level), words = sentence.split(' ');
+      var slots = words.map(function (w, i) { var s = IA.el('div', { class: 'ia-slot' + (i === 0 ? ' first' : ''), 'aria-label': 'word ' + (i + 1) }); s._word = w; return s; });
+      var tiles = words.map(function (w) { var t = IA.el('div', { class: 'ia-tile' }, [w]); t._word = w; return t; });
+      var order = IA.shuffle(tiles);
+      // Make sure it does not start already solved.
+      if (order.every(function (t, i) { return t === tiles[i]; })) order.push(order.shift());
+      var filled = 0, hintShown = false;
+      var help = IA.el('div', { class: 'ia-row' });
+      var msg = IA.el('div', { class: 'ia-sub' }, ['Drag a word into a box, or tap a word and then tap a box.']);
+      r.stage.appendChild(IA.el('div', { class: 'cues' }, [IA.el('span', {}, ['First word: ', IA.el('b', {}, ['Capital letter'])]), IA.el('span', {}, ['Last word: ', IA.el('b', {}, ['. ? or !'])])]));
+      r.stage.appendChild(IA.el('div', { class: 'slots' }, slots));
+      r.stage.appendChild(IA.el('div', { class: 'tray' }, order));
+      r.stage.appendChild(msg);
+      r.stage.appendChild(help);
+      function showHelp() {
+        if (hintShown) return; hintShown = true;
+        help.appendChild(IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { IA.say(sentence, { force: true, rate: 0.8 }); } }, ['🔊 Hear the sentence']));
+      }
+      IA.dragDrop({
+        items: tiles, targets: slots,
+        onDrop: function (tile, slot) {
+          if (slot.querySelector('.ia-tile')) { IA.toast('That box is full!', true); return false; }
+          if (tile._word !== slot._word) {
+            var i = slots.indexOf(slot), last = slots.length - 1, w = tile._word;
+            var cap = /^[A-Z]/.test(w), end = /[.?!]$/.test(w), why;
+            if (i === 0 && !cap) why = 'A sentence starts with a capital letter. Find the word with a capital!';
+            else if (end && i !== last) why = 'The word with the end mark goes last.';
+            else if (i === last && !end) why = 'The last word has a period (or ? or !).';
+            else if (cap && i !== 0) why = 'The word with a capital letter goes first.';
+            else why = 'Read the words you have so far. What word makes sense next?';
+            msg.textContent = '💡 ' + why;
+            r.answer(false, tile);
+            showHelp();
+            return false;
+          }
+          tile.classList.add('ia-locked'); tile.classList.remove('ia-drag'); tile.removeAttribute('tabindex');
+          slot.classList.add('done'); IA.sfx.tap(); filled++;
+          if (filled === words.length) {
+            msg.textContent = '📖 ' + sentence;
+            var placed = slots.map(function (s) { return s.querySelector('.ia-tile'); });
+            readAlong(placed, sentence, function () { r.answer(true, slot.parentNode); });
+          }
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

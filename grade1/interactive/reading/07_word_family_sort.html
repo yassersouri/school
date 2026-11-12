@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Word Family Sort — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .bins { display: flex; gap: 12px; width: 100%; flex-wrap: wrap; }
+    .bins .ia-bin { min-width: 150px; min-height: 150px; }
+    .ia-bin-label { font-size: clamp(30px, 6.5vw, 42px); }
+    .ia-bin-label .house { display: block; font-size: 20px; }
+    .tray { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; min-height: 70px; width: 100%; padding: 10px; border-radius: 18px; background: var(--ia-accent-2); }
+    .ia-tile { font-size: clamp(24px, 5vw, 32px); }
+    .ia-tile.hint .rime, .ia-bin .ia-tile .rime { color: #c2185b; text-decoration: underline; text-underline-offset: 5px; }
+    .ia-bin .ia-tile { border-color: #a5d6a7; box-shadow: 0 3px 0 #a5d6a7; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Families match grade1/reading/01_short_vowels sheets.
+  var FAM = {
+    at: ['cat', 'hat', 'bat', 'mat', 'rat', 'sat', 'fat'], an: ['can', 'fan', 'man', 'pan', 'ran', 'van', 'tan'],
+    ap: ['cap', 'map', 'nap', 'tap', 'lap', 'gap'], ad: ['dad', 'had', 'mad', 'sad', 'bad', 'pad'],
+    ag: ['bag', 'rag', 'tag', 'wag'], ack: ['back', 'pack', 'sack', 'rack'],
+    ed: ['bed', 'red', 'fed', 'led'], en: ['hen', 'pen', 'ten', 'men', 'den'], et: ['get', 'jet', 'net', 'pet', 'wet', 'vet'],
+    ell: ['bell', 'fell', 'sell', 'tell', 'well', 'yell'], est: ['best', 'nest', 'rest', 'test', 'vest'],
+    ig: ['big', 'dig', 'fig', 'pig', 'wig'], in: ['bin', 'fin', 'pin', 'tin', 'win'], it: ['bit', 'fit', 'hit', 'kit', 'pit', 'sit'],
+    ip: ['dip', 'hip', 'lip', 'rip', 'sip', 'tip', 'zip'], ick: ['kick', 'lick', 'pick', 'sick', 'tick'], ill: ['fill', 'hill', 'pill', 'will'],
+    op: ['hop', 'mop', 'pop', 'top'], ot: ['cot', 'dot', 'got', 'hot', 'lot', 'not', 'pot'], og: ['dog', 'fog', 'hog', 'jog', 'log'],
+    ock: ['dock', 'lock', 'rock', 'sock'],
+    ug: ['bug', 'dug', 'hug', 'jug', 'mug', 'rug', 'tug'], un: ['bun', 'fun', 'run', 'sun'], ut: ['but', 'cut', 'hut', 'nut'],
+    ub: ['cub', 'rub', 'sub', 'tub'], uck: ['duck', 'luck', 'tuck', 'puck'], ump: ['bump', 'dump', 'jump', 'lump', 'pump']
+  };
+  var NAMES = Object.keys(FAM);
+  function vowelOf(f) { return f[0]; }
+  function pickFamilies(mode) {
+    if (mode === 'two') {
+      var a = IA.pick(NAMES), b = IA.pick(NAMES.filter(function (f) { return vowelOf(f) !== vowelOf(a); }));
+      return [a, b];
+    }
+    if (mode === 'same') {
+      var groups = {}; NAMES.forEach(function (f) { (groups[vowelOf(f)] = groups[vowelOf(f)] || []).push(f); });
+      return IA.sample(groups[IA.pick(Object.keys(groups))], 3);
+    }
+    return IA.sample(NAMES, 3);
+  }
+  function tileFor(word, fam) {
+    var t = IA.el('div', { class: 'ia-tile', 'aria-label': word }, [word.slice(0, word.length - fam.length), IA.el('span', { class: 'rime' }, [fam])]);
+    t._fam = fam; t._word = word;
+    t.addEventListener('pointerdown', function () { IA.say(word); });
+    t.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') IA.say(word); });
+    return t;
+  }
+
+  IA.game({
+    id: 'g1r-word-family-sort',
+    title: 'Word Family Sort',
+    emoji: '🏠',
+    back: '../index.html',
+    instructions: 'Each word lives in a family house. Drag each word to the house with the same ending!',
+    rounds: 5,
+    delay: 1600,
+    levelTitle: 'How many houses?',
+    levels: [
+      { label: 'Two houses', value: 'two', desc: '-at and -ig (6 words)' },
+      { label: 'Three houses', value: 'three', desc: 'Mixed families (9 words)' },
+      { label: 'Same vowel', value: 'same', desc: '-at, -an, -ap (tricky!)' }
+    ],
+    round: function (r) {
+      var fams = pickFamilies(r.level);
+      var bins = fams.map(function (f) {
+        var b = IA.el('div', { class: 'ia-bin', 'aria-label': f + ' family' }, [IA.el('div', { class: 'ia-bin-label' }, [IA.el('span', { class: 'house' }, ['🏠']), '-' + f])]);
+        b._fam = f; return b;
+      });
+      var tiles = [];
+      fams.forEach(function (f) { IA.sample(FAM[f], 3).forEach(function (w) { tiles.push(tileFor(w, f)); }); });
+      tiles = IA.shuffle(tiles);
+      var placed = 0;
+      r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Board ' + (r.index + 1) + ' of ' + r.total]));
+      r.stage.appendChild(IA.el('div', { class: 'bins' }, bins));
+      r.stage.appendChild(IA.el('div', { class: 'tray' }, tiles));
+      IA.dragDrop({
+        items: tiles, targets: bins,
+        onDrop: function (tile, bin) {
+          if (tile._fam !== bin._fam) {
+            tile.classList.add('hint');
+            r.answer(false, tile, tile._word + ' ends with -' + tile._fam + ' 👀');
+            IA.say(tile._word + ' ends with ' + tile._fam, { rate: 0.8 });
+            return false;
+          }
+          tile.classList.add('ia-locked'); tile.classList.remove('hint', 'ia-drag'); tile.removeAttribute('tabindex');
+          IA.sfx.tap(); placed++;
+          if (placed === tiles.length) r.answer(true, r.stage.querySelector('.bins'), 'All sorted! 🏠');
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

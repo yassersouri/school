@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rhyme &amp; Alliteration Arcade — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .tag { font-size: 14px; font-weight: bold; color: #fff; background: var(--ia-accent); border-radius: 999px; padding: 4px 14px; letter-spacing: 1px; text-transform: uppercase; }
+    .cue { font-size: clamp(34px, 7vw, 54px); font-weight: bold; color: var(--ia-accent); }
+    .twister { max-width: 640px; font-size: clamp(20px, 3.6vw, 28px); text-align: center; background: #fff7fa; border: 2px solid #f8bbd0; border-radius: 16px; padding: 12px 18px; line-height: 1.5; }
+    .twister b { color: var(--ia-accent); }
+    .ia-choice .e { font-size: 30px; }
+    .why { max-width: 600px; text-align: center; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Rhyme families: every word in a family rhymes; words in different families never rhyme.
+  var RHYMES = [
+    [['cat','🐱'], ['hat','🎩'], ['bat','🦇'], ['mat','🧘']],
+    [['dog','🐶'], ['frog','🐸'], ['log','🪵']],
+    [['sun','☀️'], ['bun','🍞'], ['run','🏃']],
+    [['ring','💍'], ['king','🤴'], ['wing','🪽'], ['swing','🛝']],
+    [['cake','🎂'], ['lake','🏞️'], ['snake','🐍'], ['rake','🧹']],
+    [['night','🌃'], ['light','💡'], ['kite','🪁'], ['bite','😬']],
+    [['bee','🐝'], ['tree','🌳'], ['three','3️⃣'], ['key','🔑']],
+    [['sock','🧦'], ['rock','🪨'], ['clock','⏰'], ['lock','🔒']],
+    [['snail','🐌'], ['tail','🐾'], ['whale','🐋'], ['mail','📬']],
+    [['bug','🐞'], ['rug','🟫'], ['mug','☕'], ['hug','🤗']],
+    [['bell','🔔'], ['shell','🐚'], ['well','🪣']],
+    [['ship','🚢'], ['lip','👄'], ['zip','🤐']],
+    [['fox','🦊'], ['box','📦'], ['ox','🐂']],
+    [['star','⭐'], ['car','🚗'], ['jar','🫙']],
+    [['moon','🌙'], ['spoon','🥄'], ['balloon','🎈']],
+    [['boat','⛵'], ['goat','🐐'], ['coat','🧥']]
+  ];
+  // Alliteration: twister + words that start with the SAME sound; other sounds give safe distractors.
+  var SOUNDS = {
+    b: { tw: 'Big brown bears bounce blue balls.', words: [['bus','🚌'], ['bed','🛏️'], ['bike','🚲'], ['banana','🍌']] },
+    d: { tw: 'Dizzy ducks dance during dinner.', words: [['dog','🐶'], ['door','🚪'], ['dish','🍽️'], ['drum','🥁']] },
+    f: { tw: 'Five funny fish found a flag.', words: [['fox','🦊'], ['fan','🪭'], ['feet','🦶'], ['fork','🍴']] },
+    g: { tw: 'Gary’s green goat gobbles grapes.', words: [['gift','🎁'], ['gate','🚧'], ['guitar','🎸'], ['gum','🍬']] },
+    h: { tw: 'Happy hippos hop on hot hills.', words: [['hat','🎩'], ['horse','🐴'], ['house','🏠'], ['heart','❤️']] },
+    l: { tw: 'Little lions lick lemon lollipops.', words: [['leaf','🍃'], ['lamp','💡'], ['lock','🔒'], ['ladder','🪜']] },
+    m: { tw: 'Many mice make muffins on Monday.', words: [['moon','🌙'], ['map','🗺️'], ['milk','🥛'], ['mitten','🧤']] },
+    n: { tw: 'Nine noisy newts nap at noon.', words: [['nest','🪹'], ['nut','🥜'], ['nose','👃'], ['nail','💅']] },
+    p: { tw: 'Penny the pig picks pink peppers.', words: [['pen','🖊️'], ['pizza','🍕'], ['panda','🐼'], ['pear','🍐']] },
+    r: { tw: 'Rosy rabbits race round red rocks.', words: [['rain','🌧️'], ['ring','💍'], ['robot','🤖'], ['rose','🌹']] },
+    s: { tw: 'Silly snakes sip soup on Sunday.', words: [['sun','☀️'], ['sock','🧦'], ['seal','🦭'], ['sandwich','🥪']] },
+    t: { tw: 'Ten tiny turtles tap on tables.', words: [['tent','⛺'], ['tiger','🐯'], ['toes','🦶'], ['tooth','🦷']] },
+    w: { tw: 'Wendy’s wiggly worms wear wool.', words: [['web','🕸️'], ['wagon','🛒'], ['window','🪟'], ['watch','⌚']] },
+    z: { tw: 'Zippy zebras zoom to the zoo.', words: [['zipper','🤐'], ['zero','0️⃣'], ['zigzag','〰️'], ['zucchini','🥒']] }
+  };
+  // Sound words (onomatopoeia): [sentence, sound word, three other words from the sentence]
+  var ONO = [
+    ['The bee went buzz by the flowers.', 'buzz', ['bee', 'flowers', 'went']],
+    ['I jumped in the puddle with a splash!', 'splash', ['jumped', 'puddle', 'with']],
+    ['The dry leaves went crunch under my boots.', 'crunch', ['leaves', 'boots', 'dry']],
+    ['Moo! said the cow in the barn.', 'moo', ['cow', 'barn', 'said']],
+    ['The clock on the wall goes tick, tock.', 'tick', ['clock', 'wall', 'goes']],
+    ['Pop! The red balloon burst.', 'pop', ['red', 'balloon', 'burst']],
+    ['The door slammed with a loud bang.', 'bang', ['door', 'loud', 'with']],
+    ['The little duck said quack to its mother.', 'quack', ['duck', 'little', 'mother']],
+    ['Sizzle went the eggs in the hot pan.', 'sizzle', ['eggs', 'hot', 'pan']],
+    ['The snake gave a long hiss.', 'hiss', ['snake', 'long', 'gave']],
+    ['Thunder went boom over the hills.', 'boom', ['thunder', 'hills', 'over']],
+    ['Drip, drip went the tap all night.', 'drip', ['tap', 'night', 'went']],
+    ['The car horn went beep at the corner.', 'beep', ['car', 'corner', 'horn']],
+    ['Woof! barked the puppy at the mail carrier.', 'woof', ['puppy', 'mail', 'carrier']],
+    ['The kitten’s tummy went rumble at lunchtime.', 'rumble', ['kitten', 'tummy', 'lunchtime']]
+  ];
+  var onoQ = [];
+
+  function choiceGrid(r, opts, isRight, onWrong, render) {
+    var grid = IA.el('div', { class: 'ia-choices' });
+    opts.forEach(function (o) {
+      var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, render(o));
+      b.addEventListener('click', function () {
+        IA.say(o[0] || o);
+        var ok = isRight(o);
+        if (!ok) { b.disabled = true; onWrong(o); }
+        r.answer(ok, b);
+      });
+      grid.appendChild(b);
+    });
+    r.stage.appendChild(grid);
+  }
+  function card(o) { return [IA.el('span', { class: 'e' }, [o[1]]), o[0]]; }
+
+  function rhymeRound(r, why) {
+    var fams = IA.sample(RHYMES, 4);
+    var fam = IA.sample(fams[0], 2), cue = fam[0], right = fam[1];
+    var opts = IA.shuffle([right, IA.pick(fams[1]), IA.pick(fams[2]), IA.pick(fams[3])]);
+    r.stage.appendChild(IA.el('span', { class: 'tag' }, ['🎵 Rhyme time']));
+    r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Which word rhymes with', IA.el('span', { class: 'cue' }, [cue[1] + ' ' + cue[0]]), IA.speakButton('Which word rhymes with ' + cue[0] + '?')]));
+    choiceGrid(r, opts, function (o) { return o === right; }, function (o) {
+      why.style.visibility = 'visible'; why.textContent = '💡 ' + cue[0] + ' … ' + o[0] + ' — the endings sound different. Listen for the end of ' + cue[0] + '.';
+      setTimeout(function () { IA.say(cue[0] + ', ' + o[0] + '. They do not rhyme.'); }, 600);
+    }, card);
+    r.stage.appendChild(why);
+    setTimeout(function () { IA.say('Which word rhymes with ' + cue[0] + '?'); }, 300);
+    return cue[0] + ' and ' + right[0] + ' rhyme!';
+  }
+  function allitRound(r, why) {
+    var keys = IA.sample(Object.keys(SOUNDS), 4);
+    var s = SOUNDS[keys[0]], right = IA.pick(s.words);
+    var opts = IA.shuffle([right].concat(keys.slice(1).map(function (k) { return IA.pick(SOUNDS[k].words); })));
+    var html = s.tw.split(' ').map(function (w) { return w.charAt(0).toLowerCase() === keys[0] ? '<b>' + w + '</b>' : w; }).join(' ');
+    r.stage.appendChild(IA.el('span', { class: 'tag' }, ['👅 Tongue twister']));
+    r.stage.appendChild(IA.el('div', { class: 'twister' }, [IA.el('span', { html: html }), ' ', IA.speakButton(s.tw)]));
+    r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Which word starts with the same sound?']));
+    choiceGrid(r, opts, function (o) { return o === right; }, function (o) {
+      why.style.visibility = 'visible'; why.textContent = '💡 The twister starts with /' + keys[0] + '/. ' + o[0] + ' starts with /' + o[0].charAt(0) + '/.';
+    }, card);
+    r.stage.appendChild(why);
+    setTimeout(function () { IA.sayParts([s.tw, 'Which word starts with the same sound?'], 400); }, 300);
+    return right[0] + ' starts with /' + keys[0] + '/ too!';
+  }
+  function onoRound(r, why) {
+    if (!onoQ.length) onoQ = IA.shuffle(ONO);
+    var q = onoQ.pop();
+    var opts = IA.shuffle([q[1]].concat(q[2]));
+    r.stage.appendChild(IA.el('span', { class: 'tag' }, ['💥 Sound words']));
+    r.stage.appendChild(IA.el('div', { class: 'twister' }, [q[0], ' ', IA.speakButton(q[0])]));
+    r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Which word is a SOUND word?']));
+    choiceGrid(r, opts, function (o) { return o === q[1]; }, function (o) {
+      why.style.visibility = 'visible'; why.textContent = '💡 “' + o + '” is not a sound. A sound word sounds like the noise it names — say it out loud!';
+    }, function (o) { return [o]; });
+    r.stage.appendChild(why);
+    setTimeout(function () { IA.sayParts([q[0], 'Which word is a sound word?'], 400); }, 300);
+    return '“' + q[1] + '” is a sound word! 💥';
+  }
+
+  var KINDS = { rhyme: rhymeRound, allit: allitRound, ono: onoRound };
+  IA.game({
+    id: 'g2r-rhyme-arcade',
+    title: 'Rhyme & Alliteration Arcade',
+    emoji: '🕹️',
+    back: '../index.html',
+    instructions: 'Listen and pick the word that fits!',
+    rounds: 10,
+    levelTitle: 'Pick a game',
+    levels: [
+      { label: '🕹️ Mix it up', value: ['rhyme', 'allit', 'ono'], desc: 'All three games mixed' },
+      { label: '🎵 Rhyme time', value: ['rhyme'], desc: 'Find the rhyming word' },
+      { label: '👅 Tongue twisters', value: ['allit'], desc: 'Same starting sound' },
+      { label: '💥 Sound words', value: ['ono'], desc: 'buzz · splash · pop' }
+    ],
+    round: function (r) {
+      var kind = r.level[r.index % r.level.length];
+      var why = IA.el('div', { class: 'ia-hint why', style: { visibility: 'hidden' } }, ['…']);
+      var win = KINDS[kind](r, why);
+      var orig = r.answer;
+      r.answer = function (ok, el) { return orig(ok, el, ok ? win : undefined); };
+    }
+  });
+</script>
+</body>
+</html>

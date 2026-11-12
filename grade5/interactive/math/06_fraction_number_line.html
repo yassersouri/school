@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fraction Number Line — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .nl-box { width: 100%; max-width: 760px; }
+    .nl-clip { position: relative; padding: 0 30px; touch-action: none; cursor: pointer; border-radius: 14px; background: #fbfefd; }
+    .nl-clip.static { cursor: default; touch-action: auto; }
+    .nl { position: relative; height: 150px; }
+    .axis { position: absolute; left: 0; right: 0; top: 72px; height: 4px; background: #37474f; border-radius: 2px; }
+    .tick { position: absolute; top: 64px; width: 2px; height: 20px; margin-left: -1px; background: #37474f; }
+    .tick.major { top: 56px; height: 36px; width: 4px; margin-left: -2px; }
+    .lbl { position: absolute; top: 96px; transform: translateX(-50%); font-weight: bold; color: #00695c; font-size: 20px; }
+    .lbl.small { font-size: clamp(9px, 2vw, 14px); color: #b26a00; }
+    .lbl.small.low { top: 122px; }
+    .pin { position: absolute; top: 4px; width: 0; pointer-events: none; }
+    .pin span { position: absolute; left: -18px; width: 36px; text-align: center; font-size: 34px; line-height: 1; color: #d84315; }
+    .pin i { position: absolute; left: -2px; top: 36px; width: 4px; height: 34px; background: #d84315; border-radius: 2px; }
+    .pin.ok span { color: #2e7d32; } .pin.ok i { background: #2e7d32; }
+    .mark { position: absolute; top: 14px; transform: translateX(-50%); font-size: 14px; background: #fff; border: 2px solid #5e35b1; color: #5e35b1; border-radius: 8px; padding: 1px 4px; }
+    .mark.alt { top: 112px; }
+    .fr { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; vertical-align: middle; font-weight: bold; margin: 0 2px; }
+    .fr .n { border-bottom: 3px solid currentColor; padding: 0 4px 2px; }
+    .fr .d { padding: 2px 4px 0; }
+    .mixed { display: inline-flex; align-items: center; gap: 2px; }
+    .mark .fr .n, .lbl .fr .n { border-bottom-width: 2px; }
+    .target { color: #d84315; }
+    .tray, .slots { display: flex; gap: 10px; flex-wrap: wrap; justify-content: center; align-items: center; min-height: 92px; width: 100%; }
+    .tray { border: 3px dashed #b2dfdb; border-radius: 16px; padding: 8px; background: #f6fbfa; }
+    .slot { width: 92px; height: 92px; border: 3px dashed #80cbc4; border-radius: 14px; display: flex; align-items: center; justify-content: center; background: #fff; }
+    .slot.wrong { border-color: #c62828; background: #ffebee; }
+    .slot.right { border-color: #2e7d32; background: #e8f5e9; border-style: solid; }
+    .ftile { width: 78px; height: 78px; border-radius: 12px; background: #fff; border: 3px solid #00695c; box-shadow: 0 3px 0 #80cbc4; display: flex; align-items: center; justify-content: center; font-size: 24px; color: #00695c; }
+    .order-lbl { display: flex; justify-content: space-between; width: 100%; max-width: 520px; font-size: 15px; color: #607d8b; font-weight: bold; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  function gcd(a, b) { return b ? gcd(b, a % b) : a; }
+  function fr(n, d) { return IA.el('span', { class: 'fr' }, [IA.el('span', { class: 'n' }, [String(n)]), IA.el('span', { class: 'd' }, [String(d)])]); }
+  function mixedEl(n, d) { // n/d shown as a mixed number when > 1
+    var w = Math.floor(n / d), r = n % d;
+    if (!w) return fr(n, d);
+    if (!r) return IA.el('span', {}, [String(w)]);
+    return IA.el('span', { class: 'mixed' }, [String(w), fr(r, d)]);
+  }
+  function textOf(n, d, mixed) { var w = Math.floor(n / d), r = n % d; return mixed && w ? (r ? w + ' ' + r + '/' + d : String(w)) : n + '/' + d; }
+
+  // Line from 0 to `wholes`, ticks every 1/den. Values are tick counts (integers).
+  function Line(wholes, den, placeable, onMove) {
+    var N = wholes * den;
+    var clip = IA.el('div', { class: 'nl-clip' + (placeable ? '' : ' static') });
+    var nl = IA.el('div', { class: 'nl' }, [IA.el('div', { class: 'axis' })]);
+    clip.appendChild(nl);
+    var smalls = [];
+    for (var i = 0; i <= N; i++) {
+      var major = i % den === 0, pct = i / N * 100;
+      nl.appendChild(IA.el('div', { class: 'tick' + (major ? ' major' : ''), style: { left: pct + '%' } }));
+      if (major) nl.appendChild(IA.el('div', { class: 'lbl', style: { left: pct + '%' } }, [String(i / den)]));
+      else { var s = IA.el('div', { class: 'lbl small hidden' + (i % 2 ? ' low' : ''), style: { left: pct + '%' } }, [fr(i, den)]); smalls.push(s); nl.appendChild(s); }
+    }
+    var api = { el: clip, line: nl, N: N, den: den, val: null,
+      showAll: function () { smalls.forEach(function (s) { s.classList.remove('hidden'); }); },
+      pct: function (v) { return v / N * 100; } };
+    if (placeable) {
+      var pin = IA.el('div', { class: 'pin', style: { display: 'none' } }, [IA.el('span', {}, ['▼']), IA.el('i')]);
+      nl.appendChild(pin); api.pin = pin;
+      var set = function (v) { v = Math.max(0, Math.min(N, v)); if (v !== api.val) IA.sfx.tap(); api.val = v; pin.style.display = ''; pin.style.left = (v / N * 100) + '%'; if (onMove) onMove(v); };
+      api.set = set;
+      var at = function (x) { var r = nl.getBoundingClientRect(); return Math.round(Math.max(0, Math.min(1, (x - r.left) / r.width)) * N); };
+      var dragging = false;
+      clip.setAttribute('tabindex', '0'); clip.setAttribute('aria-label', 'Number line: use arrow keys to move the marker');
+      clip.addEventListener('pointerdown', function (e) { dragging = true; try { clip.setPointerCapture(e.pointerId); } catch (er) {} set(at(e.clientX)); });
+      clip.addEventListener('pointermove', function (e) { if (dragging) set(at(e.clientX)); });
+      clip.addEventListener('pointerup', function () { dragging = false; });
+      clip.addEventListener('pointercancel', function () { dragging = false; });
+      clip.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowLeft') { e.preventDefault(); set((api.val || 0) - 1); }
+        if (e.key === 'ArrowRight') { e.preventDefault(); set((api.val === null ? 0 : api.val) + 1); }
+      });
+    }
+    return api;
+  }
+
+  var PROPER_DENS = [2, 3, 4, 5, 6, 8, 10, 12];
+
+  function placeRound(r, mixedLevel) {
+    var wholes, den, n, d;
+    if (!mixedLevel) {
+      wholes = 1;
+      den = IA.pick(PROPER_DENS);
+      var divs = PROPER_DENS.filter(function (x) { return den % x === 0; });
+      d = IA.pick(divs);
+      do { n = IA.rand(1, d - 1); } while (d !== den && gcd(n, d) !== 1);
+    } else {
+      wholes = IA.pick([2, 2, 3]);
+      den = IA.pick([2, 3, 4, 5, 6, 8]);
+      var dv = [2, 3, 4, 5, 6, 8].filter(function (x) { return den % x === 0; });
+      d = IA.pick(dv);
+      do { n = IA.rand(d + 1, wholes * d - 1); } while (n % d === 0);
+    }
+    var showMixed = mixedLevel && r.index % 2 === 0;
+    var targetTicks = n * den / d;
+    var check = IA.el('button', { class: 'ia-btn primary', type: 'button', disabled: true }, ['Check ✔']);
+    var p = IA.el('div', { class: 'ia-prompt' }, ['Place ', IA.el('span', { class: 'target' }, [showMixed ? mixedEl(n, d) : fr(n, d)])]);
+    r.stage.appendChild(p);
+    r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Each small step is 1/' + den + '. Tap or drag on the line, or use ◀ ▶.']));
+    var line = Line(wholes, den, true, function () { check.disabled = false; });
+    r.stage.appendChild(IA.el('div', { class: 'nl-box' }, [line.el]));
+    var hint = IA.el('div', { class: 'ia-hint hidden' });
+    r.stage.appendChild(IA.el('div', { class: 'ia-row' }, [
+      IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'Move left', onclick: function () { line.set((line.val || 0) - 1); } }, ['◀']),
+      IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'Move right', onclick: function () { line.set((line.val === null ? 0 : line.val) + 1); } }, ['▶']),
+      check]));
+    r.stage.appendChild(hint);
+    check.addEventListener('click', function () {
+      if (line.val === targetTicks) { line.pin.classList.add('ok'); r.answer(true, check, textOf(n, d, showMixed) + ' ✔'); return; }
+      r.answer(false, check); line.showAll(); hint.classList.remove('hidden');
+      var msg = textOf(n, d, showMixed) + (d !== den ? ' = ' + targetTicks + '/' + den : '') + '. ';
+      if (showMixed) msg += 'Go to ' + Math.floor(n / d) + ', then ' + (n % d) * den / d + ' more small step' + ((n % d) * den / d === 1 ? '' : 's') + '.';
+      else msg += 'Count ' + targetTicks + ' small steps from 0.';
+      hint.textContent = msg + ' You are at ' + line.val + '/' + den + '.';
+    });
+  }
+
+  function orderRound(r) {
+    var count = r.index < 5 ? 3 : 4, list = [], guard = 0;
+    while (list.length < count && guard++ < 500) {
+      var d = IA.pick(PROPER_DENS), n = IA.rand(1, d - 1);
+      if (gcd(n, d) !== 1) continue;
+      var ok = list.every(function (f) { return Math.abs(n * f[1] - f[0] * d) * 16 >= d * f[1]; });
+      if (ok) list.push([n, d]);
+    }
+    var sorted = list.slice().sort(function (a, b) { return a[0] * b[1] - b[0] * a[1]; });
+    r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Put them in order']));
+    r.stage.appendChild(IA.el('div', { class: 'ia-sub' }, ['Drag each fraction into a box (or tap a fraction, then tap a box).']));
+    var tray = IA.el('div', { class: 'tray' });
+    var tiles = IA.shuffle(list).map(function (f) { var t = IA.el('div', { class: 'ftile', 'aria-label': f[0] + ' over ' + f[1] }, [fr(f[0], f[1])]); t._f = f; tray.appendChild(t); return t; });
+    var slots = [];
+    for (var i = 0; i < count; i++) slots.push(IA.el('div', { class: 'slot', 'aria-label': 'Box ' + (i + 1) }));
+    r.stage.appendChild(tray);
+    r.stage.appendChild(IA.el('div', { class: 'order-lbl' }, ['smallest', '→', 'largest']));
+    r.stage.appendChild(IA.el('div', { class: 'slots' }, slots));
+    var check = IA.el('button', { class: 'ia-btn primary', type: 'button', disabled: true }, ['Check order ✔']);
+    var hint = IA.el('div', { class: 'ia-col hidden', style: { width: '100%' } });
+    r.stage.appendChild(check); r.stage.appendChild(hint);
+    function refresh() {
+      slots.forEach(function (s) { s.classList.remove('wrong', 'right'); });
+      check.disabled = !slots.every(function (s) { return s.querySelector('.ftile'); });
+    }
+    IA.dragDrop({
+      items: tiles, targets: slots.concat([tray]),
+      onDrop: function (item, target) {
+        if (target !== tray) {
+          var existing = target.querySelector('.ftile');
+          if (existing && existing !== item) item.parentNode.appendChild(existing);
+        }
+        setTimeout(refresh, 0);
+      }
+    });
+    check.addEventListener('click', function () {
+      var allRight = true;
+      slots.forEach(function (s, i) {
+        var f = s.querySelector('.ftile')._f, good = f === sorted[i];
+        s.classList.add(good ? 'right' : 'wrong'); if (!good) allRight = false;
+      });
+      if (allRight) {
+        tiles.forEach(function (t) { t.classList.add('ia-locked'); });
+        r.answer(true, check, 'Perfect order! ✔');
+        return;
+      }
+      r.answer(false, check);
+      IA.clear(hint); hint.classList.remove('hidden');
+      hint.appendChild(IA.el('div', { class: 'ia-hint' }, ['Here they are on a number line — further right means bigger.']));
+      var L = Line(1, 1, false);
+      list.forEach(function (f, i) {
+        L.line.appendChild(IA.el('div', { class: 'tick', style: { left: (f[0] / f[1] * 100) + '%', background: '#5e35b1' } }));
+        L.line.appendChild(IA.el('div', { class: 'mark' + (i % 2 ? ' alt' : ''), style: { left: (f[0] / f[1] * 100) + '%' } }, [fr(f[0], f[1])]));
+      });
+      hint.appendChild(IA.el('div', { class: 'nl-box' }, [L.el]));
+    });
+  }
+
+  IA.game({
+    id: 'g5m-fraction-number-line',
+    title: 'Fraction Number Line',
+    emoji: '📏',
+    back: '../index.html',
+    instructions: 'Place fractions and mixed numbers on the number line, then put fractions in order.',
+    rounds: 10,
+    delay: 1400,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Fractions 0 to 1', value: 'p1', desc: 'Place 3/4 or 1/2 on a line' },
+      { label: 'Mixed numbers', value: 'p2', desc: 'Place 1 3/4 or 7/4 on 0–2 or 0–3' },
+      { label: 'Put in order', value: 'ord', desc: 'Drag 3–4 fractions smallest → largest' }
+    ],
+    round: function (r) {
+      if (r.level === 'ord') orderRound(r); else placeRound(r, r.level === 'p2');
+    }
+  });
+</script>
+</body>
+</html>

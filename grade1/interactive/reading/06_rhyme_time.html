@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rhyme Time — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #1a6fbd; --ia-accent-2: #e3f0fb; }
+    .target { display: flex; flex-direction: column; align-items: center; gap: 4px; background: var(--ia-accent-2); border-radius: 22px; padding: 12px 28px; }
+    .target .pic { font-size: clamp(56px, 12vw, 84px); line-height: 1; }
+    .target .w { font-size: clamp(40px, 9vw, 64px); font-weight: bold; }
+    .opt { display: flex; flex-direction: column; align-items: center; gap: 2px; }
+    .opt .pic { font-size: clamp(40px, 8vw, 56px); line-height: 1; min-height: 1em; }
+    .opt .w { font-size: clamp(26px, 5vw, 36px); }
+    .show-rime .rime { color: #c2185b; text-decoration: underline; text-decoration-thickness: 4px; text-underline-offset: 6px; }
+    .ia-choices { max-width: 680px; }
+    .ia-choice { min-height: 130px; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // Rhyme families (spelling of the ending matches the sound in every word below).
+  var FAM = {
+    at: ['cat', 'hat', 'bat', 'rat', 'mat', 'sat'], an: ['van', 'can', 'man', 'fan', 'pan', 'ran'],
+    ap: ['cap', 'map', 'nap', 'tap'], ig: ['pig', 'wig', 'big', 'dig'], op: ['mop', 'top', 'hop', 'pop'],
+    og: ['dog', 'log', 'frog', 'jog'], ug: ['bug', 'mug', 'rug', 'hug', 'jug'], un: ['sun', 'bun', 'run', 'fun'],
+    ed: ['bed', 'red', 'sled', 'fed'], en: ['hen', 'pen', 'ten', 'men'], et: ['net', 'jet', 'wet', 'pet'],
+    ell: ['bell', 'shell', 'well', 'smell'], ock: ['sock', 'clock', 'rock', 'lock'], ake: ['cake', 'snake', 'lake', 'rake'],
+    ite: ['kite', 'bite', 'white'], ose: ['rose', 'nose', 'hose'], one: ['bone', 'cone', 'phone'],
+    ee: ['bee', 'tree', 'three', 'see'], ing: ['ring', 'king', 'sing', 'wing'], ish: ['fish', 'dish', 'wish'],
+    ar: ['car', 'star', 'jar', 'far'], ain: ['rain', 'train', 'chain'], oat: ['boat', 'goat', 'coat']
+  };
+  var PIC = { cat: '🐱', hat: '🎩', bat: '🦇', rat: '🐀', van: '🚐', can: '🥫', man: '👨', cap: '🧢', map: '🗺️',
+    pig: '🐷', dog: '🐶', log: '🪵', frog: '🐸', bug: '🐛', mug: '☕', hug: '🤗', sun: '☀️', run: '🏃', bed: '🛏️',
+    sled: '🛷', hen: '🐔', pen: '🖊️', ten: '🔟', net: '🥅', bell: '🔔', shell: '🐚', sock: '🧦', clock: '🕐',
+    rock: '🪨', lock: '🔒', cake: '🎂', snake: '🐍', kite: '🪁', rose: '🌹', nose: '👃', bone: '🦴', phone: '📱',
+    bee: '🐝', tree: '🌳', three: '3️⃣', ring: '💍', fish: '🐟', car: '🚗', star: '⭐', rain: '🌧️', train: '🚆',
+    chain: '⛓️', boat: '⛵', goat: '🐐', coat: '🧥' };
+  var FAMS = Object.keys(FAM);
+  function famOf(w) { for (var f in FAM) if (FAM[f].indexOf(w) >= 0) return f; }
+  function wordNode(w) {
+    var f = famOf(w), cut = w.length - f.length;
+    return IA.el('span', { class: 'w' }, [w.slice(0, cut), IA.el('span', { class: 'rime' }, [w.slice(cut)])]);
+  }
+  var famQueue = [];
+
+  IA.game({
+    id: 'g1r-rhyme-time',
+    title: 'Rhyme Time',
+    emoji: '🎵',
+    back: '../index.html',
+    instructions: 'Rhyming words end with the same sound. Find the word that rhymes!',
+    rounds: 10,
+    round: function (r) {
+      if (!famQueue.length) famQueue = IA.shuffle(FAMS);
+      var fam = famQueue.pop();
+      var withPic = FAM[fam].filter(function (w) { return PIC[w]; });
+      var target = IA.pick(withPic.length ? withPic : FAM[fam]);
+      var rest = FAM[fam].filter(function (w) { return w !== target; });
+      var restPic = rest.filter(function (w) { return PIC[w]; });
+      var answer = IA.pick(restPic.length && Math.random() < 0.7 ? restPic : rest);
+      var others = IA.sample(FAMS.filter(function (f) { return f !== fam; }), 2).map(function (f) {
+        var ws = FAM[f].filter(function (w) { return PIC[w]; });
+        return IA.pick(ws.length ? ws : FAM[f]);
+      });
+      var opts = IA.shuffle([answer].concat(others));
+      var ask = 'Which word rhymes with ' + target + '?';
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Which word rhymes with…', IA.speakButton(ask)]));
+      r.stage.appendChild(IA.el('div', { class: 'target' }, [PIC[target] ? IA.el('div', { class: 'pic' }, [PIC[target]]) : null, wordNode(target)]));
+      var hint = IA.el('div', { class: 'ia-hint', style: { visibility: 'hidden' } }, ['Listen to the end: ', IA.el('b', {}, ['-' + fam]), ' — ', target + ' ends with -' + fam + '.']);
+      r.stage.classList.remove('show-rime');
+      var grid = IA.choices(r, r.stage, opts, answer, {
+        speak: true,
+        render: function (w) { return IA.el('span', { class: 'opt' }, [IA.el('span', { class: 'pic' }, [PIC[w] || '']), wordNode(w)]); }
+      });
+      r.stage.appendChild(hint);
+      grid.addEventListener('click', function (e) {
+        var b = e.target.closest && e.target.closest('.ia-choice');
+        if (b && b.disabled) { r.stage.classList.add('show-rime'); hint.style.visibility = 'visible'; }
+      });
+      setTimeout(function () { IA.say(ask); }, 300);
+    }
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Number Line Drop — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .q { display: flex; align-items: center; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .q .ia-big { color: var(--ia-accent); }
+    .line-wrap { width: 100%; max-width: 860px; }
+    svg.nl { width: 100%; height: auto; display: block; touch-action: none; cursor: pointer; user-select: none; -webkit-user-select: none; }
+    svg.nl:focus-visible { outline: 4px solid #1a6fbd; outline-offset: 2px; border-radius: 8px; }
+    svg.nl .lbl { font: bold 26px 'Comic Sans MS', 'Chalkboard SE', cursive; fill: #444; }
+    svg.nl .truth text { font: bold 28px 'Comic Sans MS', 'Chalkboard SE', cursive; fill: #2e7d32; }
+    svg.nl .mine text { font: bold 24px 'Comic Sans MS', 'Chalkboard SE', cursive; fill: #5e35b1; }
+    .result { font-size: clamp(17px, 3.2vw, 22px); text-align: center; font-weight: bold; min-height: 1.4em; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var NS = 'http://www.w3.org/2000/svg';
+  function S(tag, attrs, parent) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { if (k === 'text') e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]); });
+    if (parent) parent.appendChild(e);
+    return e;
+  }
+  var X0 = 50, X1 = 950, W = 1000;
+
+  IA.game({
+    id: 'g2m-number-line-drop',
+    title: 'Number Line Drop',
+    emoji: '📍',
+    back: '../index.html',
+    instructions: 'Drag the pin (or tap the line) to show where the number goes. Then press Check.',
+    rounds: 10,
+    levelTitle: 'Choose a number line',
+    levels: [
+      { label: '0 to 100', value: { max: 100, step: 10, labels: 10, tol: 3 }, desc: 'Every ten is labelled' },
+      { label: '0 to 100 — tricky', value: { max: 100, step: 10, labels: 50, tol: 4 }, desc: 'Only 0, 50 and 100 labelled' },
+      { label: '0 to 1000', value: { max: 1000, step: 100, labels: 100, tol: 30 }, desc: 'Every hundred is labelled' }
+    ],
+    round: function (r) {
+      var lv = r.level, max = lv.max;
+      var n;
+      do { n = IA.rand(1, max - 1); } while (n % lv.step === 0 && Math.random() < 0.85);
+      var value = null, done = false;
+      function xOf(v) { return X0 + (X1 - X0) * v / max; }
+
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, ['Where does this number go?']));
+      r.stage.appendChild(IA.el('div', { class: 'q' }, [IA.el('span', { class: 'ia-big' }, [String(n)]), IA.speakButton('Where does ' + n + ' go?')]));
+      IA.say('Where does ' + n + ' go on the number line?');
+
+      var svg = S('svg', { class: 'nl', viewBox: '0 0 ' + W + ' 190', role: 'slider', tabindex: '0', 'aria-label': 'Number line from 0 to ' + max, 'aria-valuemin': 0, 'aria-valuemax': max });
+      S('rect', { x: 0, y: 0, width: W, height: 190, fill: 'transparent' }, svg);
+      S('line', { x1: X0 - 20, y1: 120, x2: X1 + 20, y2: 120, stroke: '#444', 'stroke-width': 5, 'stroke-linecap': 'round' }, svg);
+      for (var v = 0; v <= max; v += lv.step) {
+        var big = v % lv.labels === 0;
+        S('line', { x1: xOf(v), y1: big ? 100 : 106, x2: xOf(v), y2: big ? 140 : 134, stroke: '#444', 'stroke-width': big ? 4 : 3 }, svg);
+        if (big) S('text', { x: xOf(v), y: 172, 'text-anchor': 'middle', class: 'lbl', text: String(v) }, svg);
+      }
+      var truth = S('g', { class: 'truth', style: 'display:none' }, svg);
+      var mine = S('g', { class: 'mine', style: 'display:none' }, svg);
+      S('path', { d: 'M0,0 L-16,-34 A18,18 0 1,1 16,-34 Z', transform: 'translate(0,118)', fill: '#7e57c2', stroke: '#4527a0', 'stroke-width': 3 }, mine);
+      S('circle', { cx: 0, cy: 70, r: 7, fill: '#fff' }, mine);
+      var mineLbl = S('text', { x: 0, y: 30, 'text-anchor': 'middle', text: '' }, mine);
+      var wrap = IA.el('div', { class: 'line-wrap' }); wrap.appendChild(svg); r.stage.appendChild(wrap);
+
+      var result = IA.el('div', { class: 'result', 'aria-live': 'polite' }, ['Tap or drag on the line to place your pin 📍']);
+      var check = IA.el('button', { class: 'ia-btn primary', type: 'button', disabled: true }, ['Check ✔']);
+      var row = IA.el('div', { class: 'ia-row' }, [check]);
+      r.stage.appendChild(result); r.stage.appendChild(row);
+
+      function setValue(v) {
+        if (done) return;
+        value = Math.max(0, Math.min(max, Math.round(v)));
+        mine.setAttribute('transform', 'translate(' + xOf(value) + ',0)');
+        mine.style.display = '';
+        svg.setAttribute('aria-valuenow', value);
+        check.disabled = false;
+        result.textContent = 'Press Check when you are happy with your pin.';
+      }
+      function fromEvent(e) {
+        var rect = svg.getBoundingClientRect();
+        var x = (e.clientX - rect.left) / rect.width * W;
+        return (x - X0) / (X1 - X0) * max;
+      }
+      var dragging = null;
+      svg.addEventListener('pointerdown', function (e) {
+        if (done) return;
+        dragging = e.pointerId; try { svg.setPointerCapture(e.pointerId); } catch (err) {}
+        setValue(fromEvent(e)); IA.sfx.tap();
+      });
+      svg.addEventListener('pointermove', function (e) { if (dragging === e.pointerId) setValue(fromEvent(e)); });
+      svg.addEventListener('pointerup', function () { dragging = null; });
+      svg.addEventListener('pointercancel', function () { dragging = null; });
+      svg.addEventListener('keydown', function (e) {
+        var stepK = max === 1000 ? 10 : 1;
+        if (e.key === 'ArrowRight' || e.key === 'ArrowUp') { e.preventDefault(); setValue((value === null ? max / 2 : value) + stepK); }
+        else if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') { e.preventDefault(); setValue((value === null ? max / 2 : value) - stepK); }
+        else if (e.key === 'Enter' && value !== null) check.click();
+      });
+
+      check.addEventListener('click', function () {
+        if (value === null || done) return;
+        done = true; check.disabled = true;
+        // show the true spot
+        S('line', { x1: xOf(n), y1: 82, x2: xOf(n), y2: 150, stroke: '#2e7d32', 'stroke-width': 5 }, truth);
+        S('circle', { cx: xOf(n), cy: 120, r: 9, fill: '#2e7d32' }, truth);
+        S('text', { x: xOf(n), y: 30, 'text-anchor': 'middle', text: String(n) }, truth);
+        truth.style.display = '';
+        mineLbl.textContent = Math.abs(value - n) < max * 0.08 ? '' : String(value);
+        var off = Math.abs(value - n);
+        if (off <= lv.tol) {
+          result.textContent = off === 0 ? 'Bullseye! 🎯 Exactly ' + n + '!' : 'So close! Your pin is at about ' + value + '. ' + n + ' is right there! ✔';
+          r.answer(true, check, off === 0 ? 'Bullseye! 🎯' : 'Great spot! 🌟');
+        } else {
+          var near = Math.round(n / lv.step) * lv.step;
+          var tip = n === near ? '' : ' Tip: ' + n + ' is close to ' + near + '.';
+          result.textContent = 'Your pin is at about ' + value + '. The green line shows ' + n + '.' + tip;
+          r.answer(false, check, 'Look at the green line!');
+          IA.say('Here is ' + n + '.' + tip);
+          row.appendChild(IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: function () { r.skip(); } }, ['Next ➡']));
+        }
+      });
+    }
+  });
+</script>
+</body>
+</html>

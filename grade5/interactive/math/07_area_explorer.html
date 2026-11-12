@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Area Explorer — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #00695c; --ia-accent-2: #e0f2f1; }
+    .tabs { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; }
+    .tabs .ia-btn[aria-pressed="true"] { background: var(--ia-accent); color: #fff; border-color: var(--ia-accent); }
+    svg.board { width: 100%; max-width: 600px; height: auto; touch-action: none; user-select: none; display: block; }
+    svg.board text { font-family: inherit; font-weight: bold; paint-order: stroke; stroke: #fff; stroke-width: 5px; stroke-linejoin: round; }
+    .handle { cursor: grab; }
+    .tri { transition: transform 1.2s ease-in-out; }
+    .formula { font-size: clamp(20px, 4vw, 30px); font-weight: bold; color: #00695c; text-align: center; }
+    .formula small { display: block; font-size: 15px; color: #607d8b; font-weight: normal; }
+    .ctrls { display: flex; flex-wrap: wrap; gap: 10px 20px; justify-content: center; }
+    .ctrl { display: flex; align-items: center; gap: 6px; font-size: 17px; font-weight: bold; }
+    .ctrl .val { min-width: 54px; text-align: center; }
+    .ctrl .ia-btn { min-width: 52px; min-height: 52px; padding: 4px; }
+    .check { display: flex; align-items: center; gap: 8px; font-size: 18px; cursor: pointer; min-height: 48px; }
+    .check input { width: 28px; height: 28px; }
+    .unit { font-size: 24px; font-weight: bold; }
+    .hidden { display: none !important; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var S = 40, M = 20, GW = 12, GH = 8, NS = 'http://www.w3.org/2000/svg';
+  function sv(tag, attrs, kids) {
+    var e = document.createElementNS(NS, tag);
+    Object.keys(attrs || {}).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    (kids || []).forEach(function (k) { e.appendChild(typeof k === 'string' ? document.createTextNode(k) : k); });
+    return e;
+  }
+  function X(c) { return M + c * S; }
+  function Y(c) { return M + c * S; }
+  function board() {
+    var svg = sv('svg', { class: 'board', viewBox: '0 0 580 400', role: 'img' });
+    return svg;
+  }
+  function gridLines(g) {
+    for (var i = 0; i <= GW; i++) g.appendChild(sv('line', { x1: X(i), y1: Y(0), x2: X(i), y2: Y(GH), stroke: '#cfd8dc', 'stroke-width': 1.5 }));
+    for (var j = 0; j <= GH; j++) g.appendChild(sv('line', { x1: X(0), y1: Y(j), x2: X(GW), y2: Y(j), stroke: '#cfd8dc', 'stroke-width': 1.5 }));
+    g.appendChild(sv('text', { x: X(GW) + 6, y: Y(0) + 14, 'font-size': 13, fill: '#90a4ae', stroke: 'none' }, ['1 cm']));
+  }
+  function text(x, y, s, o) { o = o || {}; return sv('text', { x: x, y: y, 'font-size': o.size || 20, fill: o.fill || '#37474f', 'text-anchor': o.anchor || 'middle', 'dominant-baseline': 'middle' }, [s]); }
+  function pts(arr) { return arr.map(function (p) { return p[0] + ',' + p[1]; }).join(' '); }
+  function toSvg(svg, e) { var p = svg.createSVGPoint(); p.x = e.clientX; p.y = e.clientY; return p.matrixTransform(svg.getScreenCTM().inverse()); }
+  function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+  function ctrl(label, get, set) {
+    var val = IA.el('span', { class: 'val' });
+    var el = IA.el('div', { class: 'ctrl' }, [label,
+      IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'Less ' + label, onclick: function () { IA.sfx.tap(); set(get() - 1); } }, ['−']), val,
+      IA.el('button', { class: 'ia-btn', type: 'button', 'aria-label': 'More ' + label, onclick: function () { IA.sfx.tap(); set(get() + 1); } }, ['+'])]);
+    return { el: el, update: function () { val.textContent = get() + ' cm'; } };
+  }
+  function handle(cx, cy, name) {
+    var g = sv('g', { class: 'handle', 'data-h': name });
+    g.appendChild(sv('circle', { cx: cx, cy: cy, r: 28, fill: 'transparent' }));
+    g.appendChild(sv('circle', { cx: cx, cy: cy, r: 12, fill: '#d84315', stroke: '#fff', 'stroke-width': 3 }));
+    return g;
+  }
+
+  var shell = IA.freePlay({
+    id: 'g5m-area-explorer', title: 'Area Explorer', emoji: '📐', back: '../index.html',
+    instructions: 'Drag the orange dots (or use + and −) to change the shape. Then try the quiz!'
+  });
+  var played = { rect: false, para: false };
+  function markPlayed(k) { played[k] = true; if (played.rect && played.para) shell.done(1); }
+
+  var tabs = IA.el('div', { class: 'tabs' });
+  var body = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+  shell.stage.appendChild(tabs); shell.stage.appendChild(body);
+  var modes = [['rect', '🟦 Rectangle & square'], ['para', '🔷 Parallelogram'], ['quiz', '🧠 Quiz']];
+  var tabBtns = modes.map(function (m) {
+    return IA.el('button', { class: 'ia-btn small', type: 'button', 'aria-pressed': 'false', onclick: function () { show(m[0]); } }, [m[1]]);
+  });
+  tabBtns.forEach(function (b) { tabs.appendChild(b); });
+  function show(m) {
+    tabBtns.forEach(function (b, i) { b.setAttribute('aria-pressed', modes[i][0] === m ? 'true' : 'false'); });
+    IA.clear(body); shell.setScore(''); shell.setProgress(0);
+    if (m === 'rect') rectMode(); else if (m === 'para') paraMode(); else quizMode();
+  }
+
+  /* ── Rectangle & square explorer ── */
+  function rectMode() {
+    var l = 5, w = 3, square = false, moves = 0;
+    var svg = board(), gridG = sv('g'), dyn = sv('g');
+    gridLines(gridG); svg.appendChild(gridG); svg.appendChild(dyn);
+    var formula = IA.el('div', { class: 'formula' });
+    var cl = ctrl('Length', function () { return l; }, function (v) { setLW(v, square ? v : w); });
+    var cw = ctrl('Width', function () { return w; }, function (v) { setLW(square ? v : l, v); });
+    var sq = IA.el('input', { type: 'checkbox' });
+    sq.addEventListener('change', function () { square = sq.checked; if (square) setLW(Math.min(l, GH), Math.min(l, GH)); });
+    body.appendChild(svg); body.appendChild(formula);
+    body.appendChild(IA.el('div', { class: 'ctrls' }, [cl.el, cw.el, IA.el('label', { class: 'check' }, [sq, 'Square (all sides equal)'])]));
+    function setLW(a, b) {
+      if (square) { var v = clamp(a, 1, GH); a = v; b = v; }
+      l = clamp(a, 1, GW); w = clamp(b, 1, GH);
+      if (++moves > 4) markPlayed('rect');
+      draw();
+    }
+    function draw() {
+      while (dyn.firstChild) dyn.removeChild(dyn.firstChild);
+      dyn.appendChild(sv('rect', { x: X(0), y: Y(0), width: l * S, height: w * S, fill: 'rgba(0,137,123,.28)', stroke: '#00695c', 'stroke-width': 4 }));
+      dyn.appendChild(text(X(l / 2), Y(w) + 24, l + ' cm', { fill: '#00695c' }));
+      dyn.appendChild(text(X(l) + 10, Y(w / 2), w + ' cm', { fill: '#00695c', anchor: 'start' }));
+      dyn.appendChild(handle(X(l), Y(w), 'corner'));
+      svg.setAttribute('aria-label', (square ? 'Square ' : 'Rectangle ') + l + ' by ' + w + ' centimetres');
+      IA.clear(formula);
+      formula.appendChild(document.createTextNode('A = ' + (square ? 's × s' : 'l × w') + ' = ' + l + ' × ' + w + ' = ' + (l * w) + ' cm²'));
+      formula.appendChild(IA.el('small', {}, [l * w + ' squares of 1 cm² fit inside — count them to check!']));
+      cl.update(); cw.update();
+    }
+    var drag = false;
+    svg.addEventListener('pointerdown', function (e) {
+      if (!e.target.closest('.handle')) return;
+      drag = true; try { svg.setPointerCapture(e.pointerId); } catch (er) {}
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var p = toSvg(svg, e), a = Math.round((p.x - M) / S), b = Math.round((p.y - M) / S);
+      if (square) { var v = Math.max(a, b); a = v; b = v; }
+      a = clamp(a, 1, square ? GH : GW); b = clamp(b, 1, GH);
+      if (a !== l || b !== w) { IA.sfx.tap(); setLW(a, b); }
+    });
+    svg.addEventListener('pointerup', function () { drag = false; });
+    svg.addEventListener('pointercancel', function () { drag = false; });
+    draw();
+  }
+
+  /* ── Parallelogram explorer ── */
+  function paraMode() {
+    var b = 6, h = 4, s = 2, cut = false, moves = 0;
+    var svg = board(), gridG = sv('g'), dyn = sv('g');
+    gridLines(gridG); svg.appendChild(gridG); svg.appendChild(dyn);
+    var formula = IA.el('div', { class: 'formula' });
+    var cb = ctrl('Base', function () { return b; }, function (v) { setP(v, h, s); });
+    var ch = ctrl('Height', function () { return h; }, function (v) { setP(b, v, s); });
+    var cs = ctrl('Lean', function () { return s; }, function (v) { setP(b, h, v); });
+    var cutBtn = IA.el('button', { class: 'ia-btn primary', type: 'button' }, ['✂️ Cut & move the triangle']);
+    body.appendChild(svg); body.appendChild(formula);
+    body.appendChild(IA.el('div', { class: 'ctrls' }, [cb.el, ch.el, cs.el]));
+    body.appendChild(cutBtn);
+    function setP(nb, nh, ns) {
+      b = clamp(nb, 2, 10); h = clamp(nh, 1, 7); s = clamp(ns, 0, Math.min(b, 11 - b));
+      cut = false; if (++moves > 3) markPlayed('para'); draw();
+    }
+    cutBtn.addEventListener('click', function () {
+      if (s === 0) { IA.toast('Lean it first — it is already a rectangle!'); return; }
+      cut = !cut; IA.sfx.tap(); draw(true);
+      if (cut) markPlayed('para');
+    });
+    function draw(animate) {
+      while (dyn.firstChild) dyn.removeChild(dyn.firstChild);
+      var y0 = GH, yt = GH - h;
+      var BL = [X(1), Y(y0)], BR = [X(1 + b), Y(y0)], TR = [X(1 + b + s), Y(yt)], TL = [X(1 + s), Y(yt)], FOOT = [X(1 + s), Y(y0)];
+      if (!cut) {
+        dyn.appendChild(sv('polygon', { points: pts([BL, BR, TR, TL]), fill: 'rgba(0,137,123,.28)', stroke: '#00695c', 'stroke-width': 4 }));
+      } else {
+        dyn.appendChild(sv('polygon', { points: pts([FOOT, BR, TR, TL]), fill: 'rgba(0,137,123,.28)', stroke: '#00695c', 'stroke-width': 4 }));
+        var tri = sv('polygon', { class: 'tri', points: pts([BL, FOOT, TL]), fill: 'rgba(255,152,0,.55)', stroke: '#e65100', 'stroke-width': 4 });
+        dyn.appendChild(tri);
+        if (animate) { void tri.getBoundingClientRect(); requestAnimationFrame(function () { requestAnimationFrame(function () { tri.style.transform = 'translate(' + (b * S) + 'px, 0px)'; }); }); }
+        else tri.style.transform = 'translate(' + (b * S) + 'px, 0px)';
+      }
+      dyn.appendChild(sv('line', { x1: TL[0], y1: TL[1], x2: FOOT[0], y2: FOOT[1], stroke: '#5e35b1', 'stroke-width': 3, 'stroke-dasharray': '8 6' }));
+      dyn.appendChild(sv('rect', { x: FOOT[0], y: FOOT[1] - 12, width: 12, height: 12, fill: 'none', stroke: '#5e35b1', 'stroke-width': 2 }));
+      dyn.appendChild(text(X(1 + b / 2), Y(y0) + 24, 'base = ' + b + ' cm', { fill: '#00695c' }));
+      dyn.appendChild(text(FOOT[0] + 8, Y(y0 - h / 2), 'h = ' + h + ' cm', { fill: '#5e35b1', anchor: 'start', size: 18 }));
+      if (!cut) { dyn.appendChild(handle(TL[0], TL[1], 'top')); dyn.appendChild(handle(BR[0], BR[1], 'base')); }
+      svg.setAttribute('aria-label', 'Parallelogram with base ' + b + ' and height ' + h + ' centimetres');
+      IA.clear(formula);
+      formula.appendChild(document.createTextNode('A = b × h = ' + b + ' × ' + h + ' = ' + (b * h) + ' cm²'));
+      formula.appendChild(IA.el('small', {}, [cut ? 'Same pieces, now a ' + b + ' × ' + h + ' rectangle — so the area did not change!' : 'Use the height (dashed, straight up), not the slanted side.']));
+      cutBtn.textContent = cut ? '↺ Put it back' : '✂️ Cut & move the triangle';
+      cb.update(); ch.update(); cs.update();
+    }
+    var drag = null;
+    svg.addEventListener('pointerdown', function (e) {
+      var hd = e.target.closest('.handle'); if (!hd) return;
+      drag = hd.getAttribute('data-h'); try { svg.setPointerCapture(e.pointerId); } catch (er) {}
+    });
+    svg.addEventListener('pointermove', function (e) {
+      if (!drag) return;
+      var p = toSvg(svg, e), cx = Math.round((p.x - M) / S), cy = Math.round((p.y - M) / S);
+      var nb = b, nh = h, ns = s;
+      if (drag === 'base') nb = cx - 1; else { ns = cx - 1; nh = GH - cy; }
+      nb = clamp(nb, 2, 10); nh = clamp(nh, 1, 7); ns = clamp(ns, 0, Math.min(nb, 11 - nb));
+      if (nb !== b || nh !== h || ns !== s) { IA.sfx.tap(); setP(nb, nh, ns); }
+    });
+    svg.addEventListener('pointerup', function () { drag = null; });
+    svg.addEventListener('pointercancel', function () { drag = null; });
+    draw();
+  }
+
+  /* ── Quiz ── */
+  function figure(f) {
+    var svg = board(), g = sv('g');
+    svg.appendChild(g);
+    var w = f.w, h = f.h, s = f.s || 0, k = 1;
+    if (f.grid) gridLines(g);
+    else {
+      k = Math.min(10 / (w + s), 6 / h);
+      g.appendChild(text(X(GW) - 4, Y(0) + 6, 'not to scale', { size: 15, fill: '#90a4ae', anchor: 'end' }));
+    }
+    var x0 = f.grid ? 1 : 1, y0 = f.grid ? GH : 7.2;
+    var dw = w * k, dh = h * k, ds = s * k;
+    var poly = f.kind === 'rect' ? [[X(x0), Y(y0 - dh)], [X(x0 + dw), Y(y0 - dh)], [X(x0 + dw), Y(y0)], [X(x0), Y(y0)]]
+      : [[X(x0), Y(y0)], [X(x0 + dw), Y(y0)], [X(x0 + dw + ds), Y(y0 - dh)], [X(x0 + ds), Y(y0 - dh)]];
+    g.appendChild(sv('polygon', { points: pts(poly), fill: 'rgba(0,137,123,.28)', stroke: '#00695c', 'stroke-width': 4 }));
+    var u = f.unit;
+    g.appendChild(text(X(x0 + dw / 2), Y(y0) + 24, f.bottom, { fill: '#00695c' }));
+    if (f.kind === 'rect') g.appendChild(text(X(x0 + dw) + 10, Y(y0 - dh / 2), f.side, { fill: '#00695c', anchor: 'start' }));
+    else {
+      g.appendChild(sv('line', { x1: X(x0 + ds), y1: Y(y0 - dh), x2: X(x0 + ds), y2: Y(y0), stroke: '#5e35b1', 'stroke-width': 3, 'stroke-dasharray': '8 6' }));
+      g.appendChild(sv('rect', { x: X(x0 + ds), y: Y(y0) - 12, width: 12, height: 12, fill: 'none', stroke: '#5e35b1', 'stroke-width': 2 }));
+      g.appendChild(text(X(x0 + ds) + 8, Y(y0 - dh / 2), f.side, { fill: '#5e35b1', anchor: 'start', size: 18 }));
+      if (f.slant) g.appendChild(text(X(x0 + dw + ds / 2) + 10, Y(y0 - dh / 2), f.slant, { fill: '#607d8b', anchor: 'start', size: 18 }));
+    }
+    if (f.inside) g.appendChild(text(X(x0 + (dw + ds) / 2), Y(y0 - dh / 2) - (f.kind === 'rect' ? 0 : 22), f.inside, { fill: '#d84315', size: 20 }));
+    svg.setAttribute('aria-label', f.label);
+    return svg;
+  }
+
+  function makeQ(type) {
+    var q = {};
+    if (type === 'rect') {
+      var l = IA.rand(3, 11), w = IA.rand(2, 7); if (l === w) l++;
+      q.fig = { kind: 'rect', w: l, h: w, grid: true, bottom: l + ' cm', side: w + ' cm', label: 'Rectangle ' + l + ' by ' + w + ' cm' };
+      q.text = 'Area of the rectangle?'; q.ans = l * w; q.unit = 'cm²'; q.hint = 'A = length × width = ' + l + ' × ' + w + '.';
+    } else if (type === 'square') {
+      var sd = IA.rand(2, 7);
+      q.fig = { kind: 'rect', w: sd, h: sd, grid: true, bottom: sd + ' cm', side: sd + ' cm', label: 'Square with side ' + sd + ' cm' };
+      q.text = 'Area of the square?'; q.ans = sd * sd; q.unit = 'cm²'; q.hint = 'A = side × side = ' + sd + ' × ' + sd + '.';
+    } else if (type === 'para') {
+      var pair = IA.pick([[3, 4], [4, 3], [1, 0], [2, 0]]), b = IA.rand(4, 7), h = pair[1] || IA.rand(2, 6), s = pair[0];
+      s = Math.min(s, b, 11 - b);
+      var slant = (pair[1] && s === pair[0]) ? '5 cm' : null;
+      q.fig = { kind: 'para', w: b, h: h, s: s, grid: true, bottom: b + ' cm', side: h + ' cm', slant: slant, label: 'Parallelogram base ' + b + ' height ' + h + (slant ? ' slanted side 5' : '') };
+      q.text = 'Area of the parallelogram?'; q.ans = b * h; q.unit = 'cm²';
+      q.hint = 'A = base × height = ' + b + ' × ' + h + (slant ? '. The slanted side (5 cm) is not the height!' : '.');
+    } else if (type === 'rectBig') {
+      var L = IA.rand(11, 25), W = IA.rand(6, 14);
+      q.fig = { kind: 'rect', w: L, h: W, bottom: L + ' m', side: W + ' m', label: 'Garden ' + L + ' by ' + W + ' metres' };
+      q.text = 'A garden is ' + L + ' m long and ' + W + ' m wide. Area?'; q.ans = L * W; q.unit = 'm²'; q.hint = 'A = ' + L + ' × ' + W + '.';
+    } else if (type === 'paraBig') {
+      var B = IA.rand(9, 20), H = IA.rand(5, 12), side = H + IA.rand(2, 5);
+      q.fig = { kind: 'para', w: B, h: H, s: Math.round(Math.sqrt(side * side - H * H)), bottom: B + ' m', side: H + ' m', slant: side + ' m', label: 'Parallelogram base ' + B + ' height ' + H + ' slanted side ' + side + ' metres' };
+      q.text = 'Area of this parallelogram?'; q.ans = B * H; q.unit = 'm²'; q.hint = 'A = base × height = ' + B + ' × ' + H + '. Ignore the slanted side (' + side + ' m).';
+    } else if (type === 'missing') {
+      var a = IA.rand(3, 12), c = IA.rand(2, 9); if (a === c) a++;
+      q.fig = { kind: 'rect', w: a, h: c, bottom: a + ' cm', side: '? cm', inside: 'A = ' + (a * c) + ' cm²', label: 'Rectangle with area ' + (a * c) + ' and length ' + a };
+      q.text = 'The area is ' + (a * c) + ' cm². Find the missing side.'; q.ans = c; q.unit = 'cm'; q.hint = a + ' × ? = ' + (a * c) + ', so ? = ' + (a * c) + ' ÷ ' + a + '.';
+    } else {
+      var sq = IA.rand(3, 12);
+      q.fig = { kind: 'rect', w: sq, h: sq, bottom: '? cm', side: '? cm', inside: 'A = ' + (sq * sq) + ' cm²', label: 'Square with area ' + (sq * sq) };
+      q.text = 'This square has area ' + (sq * sq) + ' cm². How long is each side?'; q.ans = sq; q.unit = 'cm'; q.hint = 'Which number times itself makes ' + (sq * sq) + '?';
+    }
+    return q;
+  }
+
+  function quizMode() {
+    var TOTAL = 10, i = 0, correct = 0;
+    var types = IA.shuffle(['rect', 'rect', 'square', 'para', 'para', 'missing', 'missing', 'squareSide', 'rectBig', 'paraBig']);
+    function next() {
+      IA.clear(body);
+      if (i >= TOTAL) return finish();
+      shell.setProgress(i / TOTAL); shell.setScore('⭐ ' + correct + ' / ' + TOTAL);
+      var q = makeQ(types[i]), missed = false, locked = false;
+      body.appendChild(IA.el('div', { class: 'ia-prompt', style: { fontSize: 'clamp(19px, 3.6vw, 28px)' } }, [q.text]));
+      body.appendChild(figure(q.fig));
+      var hint = IA.el('div', { class: 'ia-hint hidden' });
+      var inp = IA.numberInput(body, function (v, el) {
+        if (locked) return;
+        var m = /^\s*(\d+)/.exec(v), n = m ? parseInt(m[1], 10) : NaN;
+        if (n === q.ans) {
+          locked = true; el.disabled = true; if (!missed) correct++;
+          IA.good(el, q.ans + ' ' + q.unit + ' ✔');
+          shell.setScore('⭐ ' + correct + ' / ' + TOTAL);
+          setTimeout(function () { i++; next(); }, 1300);
+        } else { missed = true; IA.bad(el); hint.classList.remove('hidden'); hint.textContent = q.hint; }
+      }, { label: 'Answer in ' + q.unit });
+      inp.parentNode.insertBefore(IA.el('span', { class: 'unit' }, [q.unit]), inp.nextSibling);
+      body.appendChild(hint);
+    }
+    function finish() {
+      shell.setProgress(1);
+      var pct = correct / TOTAL, stars = pct >= 0.9 ? 3 : pct >= 0.7 ? 2 : 1;
+      shell.done(stars); IA.sfx.win(); IA.confetti();
+      body.appendChild(IA.el('div', { class: 'ia-finish' }, [
+        IA.el('div', { class: 'ia-big-stars' }, ['⭐'.repeat(stars) + '☆'.repeat(3 - stars)]),
+        IA.el('h2', {}, ['You got ' + correct + ' out of ' + TOTAL + ' on the first try!']),
+        IA.el('div', { class: 'ia-row' }, [
+          IA.el('button', { class: 'ia-btn primary', type: 'button', onclick: quizMode }, ['🔁 Play again']),
+          IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { show('rect'); } }, ['📐 Explore']),
+          IA.el('a', { class: 'ia-btn', href: '../index.html' }, ['🏠 More activities'])])]));
+    }
+    next();
+  }
+
+  show('rect');
+</script>
+</body>
+</html>

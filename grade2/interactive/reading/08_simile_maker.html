@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simile Maker — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .sent { font-size: clamp(22px, 4.4vw, 32px); font-weight: bold; text-align: center; line-height: 1.5; max-width: 700px; }
+    .blank { display: inline-block; min-width: 110px; border-bottom: 4px solid var(--ia-accent); color: var(--ia-accent); }
+    .ia-choice { flex-direction: column; gap: 0; font-size: clamp(18px, 3.4vw, 24px); }
+    .ia-choice .e { font-size: 40px; line-height: 1.1; }
+    .why { max-width: 600px; text-align: center; }
+    .builder { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: center; font-size: clamp(20px, 4vw, 28px); font-weight: bold; }
+    .bslot { min-width: 96px; min-height: 56px; padding: 4px 10px; border: 3px dashed #f48fb1; border-radius: 12px; background: #fff7fa; display: inline-flex; align-items: center; justify-content: center; color: #c9a3b3; font-size: 15px; font-weight: normal; }
+    .bslot.full { border-style: solid; border-color: var(--ia-accent); color: #333; font-size: clamp(18px, 3.6vw, 26px); font-weight: bold; background: #fff; }
+    .bslot.active { box-shadow: 0 0 0 4px #f0c040; }
+    .fixed { color: #666; }
+    .bank h3 { margin: 6px 0; font-size: 16px; color: var(--ia-accent); text-align: center; }
+    .bank .ia-row { gap: 8px; }
+    .bank .ia-btn { font-size: 18px; min-height: 52px; padding: 8px 12px; }
+    .mode { display: flex; gap: 8px; }
+    .mine { font-size: 18px; text-align: center; color: #555; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  // [sentence start, adjective/verb phrase, right ending, emoji, three clearly-wrong endings]
+  var AS = [
+    ['The cheetah ran', 'fast', 'a cheetah', '🐆', [['a snail', '🐌'], ['a rock', '🪨'], ['a sleepy sloth', '🦥']], 'as fast as', 'My dog ran as fast as'],
+    ['', 'slow', 'a snail', '🐌', [['a rocket', '🚀'], ['a race car', '🏎️'], ['a cheetah', '🐆']], 'as slow as', 'The bus was as slow as'],
+    ['', 'busy', 'a bee', '🐝', [['a sleeping cat', '😴'], ['a rock', '🪨'], ['a pillow', '🛏️']], 'as busy as', 'Mom was as busy as'],
+    ['', 'quiet', 'a mouse', '🐭', [['a drum', '🥁'], ['a fire truck', '🚒'], ['thunder', '⛈️']], 'as quiet as', 'The library was as quiet as'],
+    ['', 'brave', 'a lion', '🦁', [['a scared kitten', '🙀'], ['a jelly bean', '🍬'], ['a sock', '🧦']], 'as brave as', 'The firefighter was as brave as'],
+    ['', 'light', 'a feather', '🪶', [['an elephant', '🐘'], ['a truck', '🚚'], ['a big rock', '🪨']], 'as light as', 'The paper was as light as'],
+    ['', 'cold', 'ice', '🧊', [['fire', '🔥'], ['the sun', '☀️'], ['hot soup', '🍲']], 'as cold as', 'My hands were as cold as'],
+    ['', 'tall', 'a giraffe', '🦒', [['an ant', '🐜'], ['a mouse', '🐭'], ['a pebble', '🪨']], 'as tall as', 'The tree was as tall as'],
+    ['', 'big', 'an elephant', '🐘', [['a bug', '🐞'], ['a pea', '🫛'], ['a button', '🔘']], 'as big as', 'The pumpkin was as big as'],
+    ['', 'bright', 'the sun', '☀️', [['a dark cave', '🕳️'], ['mud', '🟤'], ['a shadow', '👤']], 'as bright as', 'Her smile was as bright as'],
+    ['', 'sweet', 'honey', '🍯', [['a lemon', '🍋'], ['salt', '🧂'], ['a pickle', '🥒']], 'as sweet as', 'The berries were as sweet as'],
+    ['', 'hard', 'a rock', '🪨', [['a pillow', '🛏️'], ['a marshmallow', '🍡'], ['jelly', '🍮']], 'as hard as', 'The old bread was as hard as'],
+    ['', 'tiny', 'an ant', '🐜', [['a whale', '🐋'], ['a mountain', '⛰️'], ['a bus', '🚌']], 'as tiny as', 'The seed was as tiny as'],
+    ['', 'loud', 'thunder', '⛈️', [['a whisper', '🤫'], ['a feather', '🪶'], ['a mouse', '🐭']], 'as loud as', 'The band was as loud as'],
+    ['', 'soft', 'a cloud', '☁️', [['a brick', '🧱'], ['a nail', '🔩'], ['a rock', '🪨']], 'as soft as', 'The kitten was as soft as'],
+    ['', 'hot', 'fire', '🔥', [['snow', '❄️'], ['ice', '🧊'], ['a snowman', '⛄']], 'as hot as', 'The sand was as hot as'],
+    ['', 'strong', 'an ox', '🐂', [['a noodle', '🍜'], ['a feather', '🪶'], ['a bubble', '🫧']], 'as strong as', 'Grandpa was as strong as'],
+    ['', 'wise', 'an owl', '🦉', [['a rock', '🪨'], ['a spoon', '🥄'], ['a sock', '🧦']], 'as wise as', 'My grandma is as wise as']
+  ].map(function (a) { return { start: a[6], adj: a[1], right: [a[2], a[3]], wrong: a[4], frame: a[5] }; });
+  var LIKE = [
+    ['She swam like', 'a fish', '🐟', [['a rock', '🪨'], ['a cactus', '🌵'], ['a brick', '🧱']], 'A fish swims fast and well.', 'Which one is great at swimming?'],
+    ['The frog hopped like', 'a kangaroo', '🦘', [['a snail', '🐌'], ['a tree', '🌳'], ['a table', '🪑']], 'A kangaroo hops far.', 'Which one can hop?'],
+    ['He ran like', 'the wind', '💨', [['a turtle', '🐢'], ['a sleepy bear', '🐻'], ['a statue', '🗿']], 'The wind moves very fast.', 'Which one moves really fast?'],
+    ['The stars sparkled like', 'diamonds', '💎', [['mud', '🟤'], ['socks', '🧦'], ['potatoes', '🥔']], 'Diamonds sparkle and shine.', 'Which one sparkles?'],
+    ['The bird sang like', 'a flute', '🪈', [['a vacuum', '🧹'], ['a rock', '🪨'], ['a sandwich', '🥪']], 'A flute makes pretty music.', 'Which one makes pretty music?'],
+    ['The race car zoomed like', 'a rocket', '🚀', [['a snail', '🐌'], ['a sloth', '🦥'], ['a pillow', '🛏️']], 'A rocket goes super fast.', 'Which one goes super fast?'],
+    ['The tired puppy slept like', 'a log', '🪵', [['an alarm clock', '⏰'], ['a drum', '🥁'], ['a bouncing ball', '⚽']], 'A log lies still and does not move at all.', 'Which one stays very still?'],
+    ['The snowflakes floated down like', 'feathers', '🪶', [['bricks', '🧱'], ['bowling balls', '🎳'], ['rocks', '🪨']], 'Feathers drift down softly.', 'Which one floats down softly?'],
+    ['My little brother climbed like', 'a monkey', '🐒', [['a fish', '🐟'], ['a snail', '🐌'], ['a potato', '🥔']], 'A monkey is great at climbing.', 'Which one is great at climbing?'],
+    ['The lake was smooth like', 'glass', '🪟', [['sandpaper', '🟫'], ['a pinecone', '🌲'], ['a hedgehog', '🦔']], 'Glass is flat and smooth.', 'Which one is smooth?']
+  ].map(function (a) { return { start: a[0], right: [a[1], a[2]], wrong: a[3], ok: a[4], hint: a[5] }; });
+  var qA = [], qL = [];
+
+  // Free-mode tiles
+  var SUBJ = [['My cat', '🐱'], ['The snow', '❄️'], ['My teacher', '🧑‍🏫'], ['The puppy', '🐶'], ['Grandpa', '👴'], ['The wind', '🌬️'], ['My dad', '👨'], ['The moon', '🌙']];
+  var ADJ = ['fast', 'slow', 'soft', 'loud', 'quiet', 'bright', 'cold', 'tall', 'tiny', 'happy', 'sleepy', 'strong'];
+  var THING = [['a cheetah', '🐆'], ['a snail', '🐌'], ['a cloud', '☁️'], ['thunder', '⛈️'], ['a mouse', '🐭'], ['the sun', '☀️'], ['ice', '🧊'], ['a giraffe', '🦒'], ['an ant', '🐜'], ['a puppy', '🐶'], ['a bear', '🐻'], ['a rocket', '🚀'], ['a feather', '🪶'], ['a lion', '🦁']];
+  var VERB = ['ran', 'danced', 'sang', 'jumped', 'slept', 'swam', 'roared', 'sparkled'];
+
+  function pickRound(r, item, sentencePre, sentencePost, whyText) {
+    var full = sentencePre + ' ' + item.right[0] + (sentencePost || '') + '.';
+    var blank = IA.el('span', { class: 'blank' }, ['?']);
+    r.stage.appendChild(IA.el('div', { class: 'sent' }, [sentencePre + ' ', blank, (sentencePost || '') + '. ', IA.speakButton(sentencePre + ' blank.')]));
+    var why = IA.el('div', { class: 'ia-hint why', style: { visibility: 'hidden' } }, ['…']);
+    var opts = IA.shuffle([item.right].concat(item.wrong));
+    var grid = IA.el('div', { class: 'ia-choices' });
+    opts.forEach(function (o) {
+      var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [IA.el('span', { class: 'e' }, [o[1]]), o[0]]);
+      b.addEventListener('click', function () {
+        if (o === item.right) {
+          blank.textContent = o[0] + ' ' + o[1];
+          why.style.visibility = 'visible'; why.textContent = '✅ ' + whyText;
+          IA.say(full);
+          r.answer(true, b);
+        } else {
+          b.disabled = true;
+          why.style.visibility = 'visible'; why.textContent = '💡 ' + (item.adj ? 'Is ' + o[0] + ' ' + item.adj + '? Pick something that is VERY ' + item.adj + '!' : item.hint);
+          IA.say(sentencePre + ' ' + o[0] + '? Hmm, that does not make sense.');
+          r.answer(false, b);
+        }
+      });
+      grid.appendChild(b);
+    });
+    r.stage.appendChild(grid);
+    r.stage.appendChild(why);
+    setTimeout(function () { IA.say(sentencePre + '… what?'); }, 300);
+  }
+
+  function asRound(r) {
+    if (!qA.length) qA = IA.shuffle(AS);
+    var it = qA.pop();
+    pickRound(r, it, it.start, '', it.right[0] + ' is very ' + it.adj + ', so “' + it.frame + ' ' + it.right[0] + '” means very, very ' + it.adj + '!');
+  }
+  function likeRound(r) {
+    if (!qL.length) qL = IA.shuffle(LIKE);
+    var it = qL.pop();
+    pickRound(r, it, it.start, '', it.ok);
+  }
+  function freeRound(r) {
+    var mode = IA.pick(['as', 'like']);
+    var parts = { subj: null, mid: null, thing: null };
+    var heard = false;
+    var head = IA.el('div', { class: 'ia-prompt' }, ['🎨 Build your own simile!']);
+    r.stage.appendChild(head);
+    var modeRow = IA.el('div', { class: 'mode' });
+    var asBtn = IA.el('button', { class: 'ia-btn small', type: 'button' }, ['as ___ as']);
+    var likeBtn = IA.el('button', { class: 'ia-btn small', type: 'button' }, ['___ like ___']);
+    modeRow.appendChild(asBtn); modeRow.appendChild(likeBtn);
+    r.stage.appendChild(modeRow);
+    var builder = IA.el('div', { class: 'builder' });
+    r.stage.appendChild(builder);
+    var bank = IA.el('div', { class: 'bank ia-col', style: { width: '100%' } });
+    r.stage.appendChild(bank);
+    var actions = IA.el('div', { class: 'ia-row' });
+    var readBtn = IA.el('button', { class: 'ia-btn primary', type: 'button', disabled: true }, ['🔊 Read my simile']);
+    var shuffleBtn = IA.el('button', { class: 'ia-btn', type: 'button' }, ['🎲 Surprise me']);
+    var doneBtn = IA.el('button', { class: 'ia-btn', type: 'button', disabled: true }, ['Next ➜']);
+    actions.appendChild(shuffleBtn); actions.appendChild(readBtn); actions.appendChild(doneBtn);
+    r.stage.appendChild(actions);
+    var note = IA.el('div', { class: 'mine' }, ['Tap a word in each row. Silly similes are allowed! 😄']);
+    r.stage.appendChild(note);
+
+    function sentence() {
+      if (!parts.subj || !parts.mid || !parts.thing) return null;
+      return mode === 'as' ? parts.subj[0] + ' is as ' + parts.mid + ' as ' + parts.thing[0] + '.' : parts.subj[0] + ' ' + parts.mid + ' like ' + parts.thing[0] + '.';
+    }
+    function slot(val, label, text) { return IA.el('span', { class: 'bslot' + (val ? ' full' : '') }, [val ? text : label]); }
+    function render() {
+      asBtn.classList.toggle('primary', mode === 'as'); likeBtn.classList.toggle('primary', mode === 'like');
+      IA.clear(builder);
+      builder.appendChild(slot(parts.subj, 'who?', parts.subj && parts.subj[1] + ' ' + parts.subj[0]));
+      if (mode === 'as') {
+        builder.appendChild(IA.el('span', { class: 'fixed' }, ['is as']));
+        builder.appendChild(slot(parts.mid, 'what kind?', parts.mid));
+        builder.appendChild(IA.el('span', { class: 'fixed' }, ['as']));
+      } else {
+        builder.appendChild(slot(parts.mid, 'did what?', parts.mid));
+        builder.appendChild(IA.el('span', { class: 'fixed' }, ['like']));
+      }
+      builder.appendChild(slot(parts.thing, 'like what?', parts.thing && parts.thing[0] + ' ' + parts.thing[1]));
+      IA.clear(bank);
+      row('Who?', SUBJ, 'subj', function (o) { return o[1] + ' ' + o[0]; });
+      row(mode === 'as' ? 'What kind?' : 'Did what?', mode === 'as' ? ADJ : VERB, 'mid', function (o) { return o; });
+      row('Like what?', THING, 'thing', function (o) { return o[1] + ' ' + o[0]; });
+      readBtn.disabled = !sentence();
+    }
+    function row(title, list, key, label) {
+      var rw = IA.el('div', { class: 'ia-row' });
+      list.forEach(function (o) {
+        var b = IA.el('button', { class: 'ia-btn' + (parts[key] === o ? ' primary' : ''), type: 'button', onclick: function () {
+          parts[key] = o; IA.say(typeof o === 'string' ? o : o[0]); render();
+        } }, [label(o)]);
+        rw.appendChild(b);
+      });
+      bank.appendChild(IA.el('div', {}, [IA.el('h3', {}, [title]), rw]));
+    }
+    asBtn.addEventListener('click', function () { if (mode !== 'as') { mode = 'as'; parts.mid = null; render(); } });
+    likeBtn.addEventListener('click', function () { if (mode !== 'like') { mode = 'like'; parts.mid = null; render(); } });
+    shuffleBtn.addEventListener('click', function () {
+      parts.subj = IA.pick(SUBJ); parts.mid = IA.pick(mode === 'as' ? ADJ : VERB); parts.thing = IA.pick(THING); render(); readAloud();
+    });
+    function readAloud() {
+      var s = sentence(); if (!s) return;
+      note.textContent = '“' + s + '”';
+      IA.say(s, { force: true });
+      if (!heard) { heard = true; doneBtn.disabled = false; doneBtn.classList.add('primary'); }
+    }
+    readBtn.addEventListener('click', readAloud);
+    doneBtn.addEventListener('click', function () { r.answer(true, builder, 'What a great simile! 🎨'); });
+    render();
+  }
+
+  IA.game({
+    id: 'g2r-simile-maker',
+    title: 'Simile Maker',
+    emoji: '🌈',
+    back: '../index.html',
+    instructions: 'A simile compares two things using “as … as” or “like”. Pick the best ending!',
+    rounds: 10,
+    delay: 1800,
+    levelTitle: 'Pick a game',
+    levels: [
+      { label: '🐆 as fast as…', value: 'as', desc: 'Finish the “as … as” simile' },
+      { label: '🐟 swims like…', value: 'like', desc: 'Finish the “like a” simile' },
+      { label: '🌈 Mixed', value: 'mix', desc: 'Both kinds' },
+      { label: '🎨 Build your own', value: 'free', desc: 'Make silly similes and hear them' }
+    ],
+    round: function (r) {
+      if (r.level === 'free') return freeRound(r);
+      if (r.level === 'as' || (r.level === 'mix' && r.index % 2 === 0)) asRound(r); else likeRound(r);
+    }
+  });
+</script>
+</body>
+</html>

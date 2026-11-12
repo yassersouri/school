@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Regroup with Ten-Frames — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #2e7d32; --ia-accent-2: #e8f5e9; }
+    .frames { display: flex; gap: clamp(10px, 3vw, 24px); flex-wrap: wrap; justify-content: center; align-items: flex-start; }
+    .fbox { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .fbox .lbl { font-weight: bold; font-size: 20px; color: #555; }
+    .fbox.target .ia-ten-frame { box-shadow: 0 0 0 4px #f0c040; }
+    .fbox.target.full .ia-ten-frame { box-shadow: 0 0 0 4px var(--ia-good); }
+    .ia-ten-frame > span { width: clamp(38px, 8vw, 54px); height: clamp(38px, 8vw, 54px); }
+    .mv { cursor: grab; touch-action: none; transition: transform .15s; }
+    .mv:hover { transform: scale(1.12); }
+    .ghostdot { position: fixed; z-index: 1000; pointer-events: none; width: 40px; height: 40px; margin: -20px 0 0 -20px; border-radius: 50%; background: #1e88e5; box-shadow: 0 6px 14px rgba(0,0,0,.25); }
+    .eq { font-size: clamp(26px, 6vw, 42px); font-weight: bold; text-align: center; }
+    .eq .ten { color: var(--ia-good); }
+    .steps { font-size: 17px; color: #555; text-align: center; min-height: 24px; }
+    @media (max-width: 560px) { .frames { flex-direction: column; align-items: center; gap: 4px; } }
+    .plus { font-size: 36px; font-weight: bold; align-self: center; color: #555; }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  function frame(n, color) {
+    var f = IA.el('div', { class: 'ia-ten-frame' });
+    for (var i = 0; i < 10; i++) f.appendChild(IA.el('span', {}, [i < n ? IA.el('i', { class: 'ia-dot' + (color ? ' ' + color : '') }) : null]));
+    return f;
+  }
+
+  IA.game({
+    id: 'g1m-regroup-ten-frames',
+    title: 'Regroup with Ten-Frames',
+    emoji: '🔟',
+    back: '../index.html',
+    instructions: 'Make a ten! Move blue counters into the first ten-frame until it is full.',
+    rounds: 8,
+    levelTitle: 'Pick a level',
+    levels: [
+      { label: '9 + … and 8 + …', value: { aMin: 8, aMax: 9 }, desc: 'Like 9 + 4, 8 + 5' },
+      { label: 'Any to 18', value: { aMin: 6, aMax: 9 }, desc: 'Like 7 + 6, 6 + 8' }
+    ],
+    round: function (r) {
+      var a = IA.rand(r.level.aMin, r.level.aMax);
+      var b = IA.rand(11 - a, 9);
+      var need = 10 - a, rest = b - need, total = a + b, moved = 0;
+
+      r.stage.appendChild(IA.el('div', { class: 'eq' }, [a + ' + ' + b + ' = ?', ' ', IA.speakButton(a + ' plus ' + b)]));
+      var steps = IA.el('div', { class: 'steps', 'aria-live': 'polite' }, ['Tap or drag a blue counter to the first ten-frame. 👆']);
+      r.stage.appendChild(steps);
+
+      var fA = frame(a), fB = frame(b, 'blue');
+      var boxA = IA.el('div', { class: 'fbox target' }, [fA, IA.el('div', { class: 'lbl' }, [String(a)])]);
+      var lblB = IA.el('div', { class: 'lbl' }, [String(b)]);
+      var boxB = IA.el('div', { class: 'fbox' }, [fB, lblB]);
+      var lblA = boxA.querySelector('.lbl');
+      r.stage.appendChild(IA.el('div', { class: 'frames' }, [boxA, IA.el('div', { class: 'plus' }, ['+']), boxB]));
+      var answerArea = IA.el('div', { class: 'ia-col', style: { width: '100%' } });
+      r.stage.appendChild(answerArea);
+
+      function emptyCell() {
+        var cells = fA.children;
+        for (var i = 0; i < 10; i++) if (!cells[i].firstChild) return cells[i];
+        return null;
+      }
+      function moveDot(dot) {
+        var cell = emptyCell();
+        if (!cell || !dot.parentNode || dot.parentNode.parentNode !== fB) return;
+        cell.appendChild(dot);
+        dot.classList.remove('mv');
+        var left = Array.prototype.slice.call(fB.querySelectorAll('.ia-dot'));
+        left.forEach(function (d, i) { fB.children[i].appendChild(d); });
+        moved++;
+        IA.sfx.tap();
+        lblA.textContent = String(a + moved);
+        lblB.textContent = String(b - moved);
+        IA.say(String(a + moved), { rate: 1.1 });
+        if (moved === need) full();
+      }
+      function full() {
+        boxA.classList.add('full');
+        Array.prototype.forEach.call(fB.querySelectorAll('.mv'), function (d) { d.classList.remove('mv'); });
+        steps.textContent = 'You made a ten! 🎉 ' + a + ' + ' + b + ' is the same as 10 + ' + rest + '.';
+        IA.say('You made a ten! ' + a + ' plus ' + b + ' is the same as 10 plus ' + rest + '.');
+        answerArea.appendChild(IA.el('div', { class: 'eq' }, [IA.el('span', { class: 'ten' }, ['10']), ' + ' + rest + ' = ?']));
+        IA.choices(r, answerArea, IA.numberChoices(total, 4, 3, 2), total, { speak: true });
+      }
+
+      Array.prototype.forEach.call(fB.querySelectorAll('.ia-dot'), function (dot) {
+        dot.classList.add('mv');
+        dot.setAttribute('role', 'button'); dot.setAttribute('tabindex', '0'); dot.setAttribute('aria-label', 'Move counter');
+        var sx, sy, pid = null, dragging = false, ghost = null;
+        dot.addEventListener('pointerdown', function (e) {
+          if (!dot.classList.contains('mv')) return;
+          pid = e.pointerId; sx = e.clientX; sy = e.clientY; dragging = false;
+          try { dot.setPointerCapture(pid); } catch (err) {}
+          e.preventDefault();
+        });
+        dot.addEventListener('pointermove', function (e) {
+          if (pid !== e.pointerId) return;
+          if (!dragging && Math.abs(e.clientX - sx) + Math.abs(e.clientY - sy) > 8) {
+            dragging = true; ghost = IA.el('div', { class: 'ghostdot' }); document.body.appendChild(ghost); dot.style.opacity = '.3';
+          }
+          if (ghost) { ghost.style.left = e.clientX + 'px'; ghost.style.top = e.clientY + 'px'; }
+        });
+        function endDrag() { if (ghost) ghost.remove(); ghost = null; dot.style.opacity = ''; pid = null; }
+        dot.addEventListener('pointerup', function (e) {
+          if (pid !== e.pointerId) return;
+          var wasDrag = dragging; endDrag();
+          if (!wasDrag) { moveDot(dot); return; }
+          var rc = fA.getBoundingClientRect();
+          if (e.clientX >= rc.left - 10 && e.clientX <= rc.right + 10 && e.clientY >= rc.top - 10 && e.clientY <= rc.bottom + 10) moveDot(dot);
+        });
+        dot.addEventListener('pointercancel', endDrag);
+        dot.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); if (dot.classList.contains('mv')) moveDot(dot); } });
+      });
+    }
+  });
+</script>
+</body>
+</html>

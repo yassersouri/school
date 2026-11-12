@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Prefix &amp; Suffix Lab — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #c2185b; --ia-accent-2: #fce4ec; }
+    .goal { font-size: clamp(20px, 4vw, 28px); text-align: center; font-weight: bold; }
+    .goal q { color: var(--ia-accent); }
+    .builder { display: flex; align-items: center; justify-content: center; gap: 8px; flex-wrap: nowrap; }
+    .slot { min-width: 84px; min-height: 64px; border: 3px dashed #f48fb1; border-radius: 14px; background: #fff7fa; display: inline-flex; align-items: center; justify-content: center; color: #c9a3b3; font-size: 15px; padding: 4px; }
+    .root { font-size: clamp(28px, 6vw, 42px); font-weight: bold; background: #fce4ec; border: 3px solid var(--ia-accent); border-radius: 14px; padding: 6px 16px; color: #333; }
+    .plus { font-size: 26px; color: #aaa; }
+    .ia-tile.pre { border-color: #9ec9f0; box-shadow: 0 3px 0 #9ec9f0; background: #eef6ff; }
+    .ia-tile.suf { border-color: #f0c040; box-shadow: 0 3px 0 #f0c040; background: #fffbe6; }
+    .affixes { min-height: 70px; }
+    .result { font-size: clamp(22px, 4.5vw, 32px); text-align: center; min-height: 1.4em; }
+    .result b { color: var(--ia-accent); }
+    .key { font-size: 14px; color: #777; text-align: center; }
+    .qword { font-size: clamp(18px, 3.4vw, 24px); color: #777; }
+    @media (max-width: 480px) { .slot { min-width: 64px; } .root { padding: 6px 10px; } .builder { gap: 4px; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  var AFFIX = {
+    un: { kind: 'pre', text: 'un-', means: 'not / undo' },
+    re: { kind: 'pre', text: 're-', means: 'again' },
+    pre: { kind: 'pre', text: 'pre-', means: 'before' },
+    dis: { kind: 'pre', text: 'dis-', means: 'not / opposite' },
+    ful: { kind: 'suf', text: '-ful', means: 'full of' },
+    less: { kind: 'suf', text: '-less', means: 'without' },
+    er: { kind: 'suf', text: '-er', means: 'a person who / more' },
+    ly: { kind: 'suf', text: '-ly', means: 'in a ___ way' },
+    ness: { kind: 'suf', text: '-ness', means: 'being ___' }
+  };
+  // ok: real, kid-friendly words (no spelling changes) with meanings.
+  // no: affixes that make clearly NOT-real words with this root (safe distractors).
+  var ROOTS = {
+    happy: { ok: { un: 'not happy' }, no: ['re', 'pre', 'dis', 'less'] },
+    kind: { ok: { un: 'not kind', ly: 'in a kind way', ness: 'being kind' }, no: ['re', 'pre', 'dis'] },
+    fair: { ok: { un: 'not fair', ly: 'in a fair way', ness: 'being fair' }, no: ['re', 'pre', 'dis'] },
+    lucky: { ok: { un: 'not lucky' }, no: ['re', 'pre', 'dis', 'ful'] },
+    safe: { ok: { un: 'not safe', ly: 'in a safe way' }, no: ['re', 'dis', 'ful'] },
+    tie: { ok: { un: 'to undo a knot or bow', re: 'to tie again' }, no: ['dis', 'ful', 'ly'] },
+    lock: { ok: { un: 'to open a lock', re: 'to lock again' }, no: ['dis', 'ful', 'ly', 'ness'] },
+    pack: { ok: { un: 'to take things out of a bag', re: 'to pack again' }, no: ['dis', 'ful', 'ly', 'ness'] },
+    read: { ok: { re: 'to read again', er: 'a person who reads' }, no: ['dis', 'ful', 'ly', 'less', 'ness'] },
+    play: { ok: { re: 'to play again', er: 'a person who plays', ful: 'full of play and fun' }, no: ['ly', 'ness'] },
+    paint: { ok: { re: 'to paint again', er: 'a person who paints' }, no: ['ful', 'ly', 'ness', 'dis', 'less'] },
+    fill: { ok: { re: 'to fill again' }, no: ['ful', 'ly', 'ness', 'less', 'dis'] },
+    tell: { ok: { re: 'to tell again' }, no: ['ful', 'ly', 'ness', 'less', 'dis'] },
+    build: { ok: { re: 'to build again', er: 'a person who builds' }, no: ['ful', 'ly', 'ness', 'less', 'dis'] },
+    heat: { ok: { pre: 'to heat before', re: 'to heat again' }, no: ['ful', 'ly', 'ness', 'dis'] },
+    pay: { ok: { pre: 'to pay before', re: 'to pay back' }, no: ['ful', 'ly', 'ness', 'less', 'dis'] },
+    test: { ok: { pre: 'a test before', re: 'to test again' }, no: ['ful', 'ly', 'ness', 'less', 'dis'] },
+    like: { ok: { dis: 'to not like' }, no: ['ful', 'pre', 'less'] },
+    agree: { ok: { dis: 'to not agree' }, no: ['ful', 'less', 'ly', 'pre', 'un'] },
+    obey: { ok: { dis: 'to not obey' }, no: ['ful', 'less', 'ly', 'pre', 'ness'] },
+    honest: { ok: { dis: 'not honest', ly: 'in an honest way' }, no: ['re', 'pre', 'ful', 'less'] },
+    appear: { ok: { dis: 'to go out of sight', re: 'to appear again' }, no: ['ful', 'less', 'ly', 'pre'] },
+    connect: { ok: { dis: 'to undo a connection', re: 'to connect again' }, no: ['ful', 'less', 'ly', 'ness'] },
+    help: { ok: { ful: 'full of help; ready to help', er: 'a person who helps' }, no: ['re', 'dis', 'pre', 'ly', 'ness'] },
+    care: { ok: { ful: 'full of care', less: 'without care' }, no: ['re', 'pre', 'ly', 'ness', 'dis'] },
+    hope: { ok: { ful: 'full of hope', less: 'without hope' }, no: ['re', 'pre', 'dis', 'ly', 'ness'] },
+    joy: { ok: { ful: 'full of joy' }, no: ['re', 'pre', 'dis', 'ly', 'ness', 'er'] },
+    fear: { ok: { ful: 'full of fear', less: 'without fear' }, no: ['re', 'pre', 'dis', 'ly', 'ness', 'er'] },
+    thank: { ok: { ful: 'full of thanks' }, no: ['re', 'pre', 'dis', 'ly', 'ness'] },
+    colour: { ok: { ful: 'full of colour', less: 'without colour' }, no: ['pre', 'ly', 'ness'] },
+    cheer: { ok: { ful: 'full of cheer' }, no: ['pre', 'dis', 'ness'] },
+    pain: { ok: { ful: 'full of pain; it hurts', less: 'without pain' }, no: ['re', 'pre', 'dis', 'ly', 'ness', 'er'] },
+    spot: { ok: { less: 'without a spot; very clean' }, no: ['pre', 'dis', 'ful', 'ly', 'ness'] },
+    sleep: { ok: { less: 'without sleep' }, no: ['re', 'dis', 'ful', 'ness', 'ly'] },
+    end: { ok: { less: 'without an end' }, no: ['pre', 'dis', 'ful', 'ly', 'ness'] },
+    harm: { ok: { less: 'without harm; safe', ful: 'full of harm; can hurt' }, no: ['re', 'pre', 'dis', 'ly', 'ness'] },
+    cloud: { ok: { less: 'without clouds' }, no: ['pre', 'dis', 'ful', 'ly', 'ness'] },
+    teach: { ok: { er: 'a person who teaches' }, no: ['dis', 'ful', 'less', 'ly', 'ness'] },
+    farm: { ok: { er: 'a person who farms' }, no: ['pre', 'dis', 'ful', 'less', 'ly', 'ness'] },
+    sing: { ok: { er: 'a person who sings' }, no: ['pre', 'ful', 'less', 'ness'] },
+    tall: { ok: { er: 'more tall' }, no: ['re', 'pre', 'ful', 'less'] },
+    small: { ok: { er: 'more small' }, no: ['re', 'pre', 'dis', 'ful', 'less', 'ly'] },
+    loud: { ok: { er: 'more loud', ly: 'in a loud way', ness: 'how loud something is' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    soft: { ok: { er: 'more soft', ly: 'in a soft way', ness: 'being soft' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    quick: { ok: { ly: 'in a quick way', er: 'more quick' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    slow: { ok: { ly: 'in a slow way', er: 'more slow' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    sad: { ok: { ly: 'in a sad way', ness: 'being sad' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    brave: { ok: { ly: 'in a brave way' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    neat: { ok: { ly: 'in a neat way', ness: 'being neat', er: 'more neat' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    glad: { ok: { ly: 'in a glad way', ness: 'being glad' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    dark: { ok: { ness: 'being dark; no light', er: 'more dark' }, no: ['re', 'pre', 'dis', 'ful', 'less'] },
+    bright: { ok: { ness: 'being bright', ly: 'in a bright way', er: 'more bright' }, no: ['re', 'pre', 'dis', 'ful', 'less'] }
+  };
+  function makeWord(root, a) { return AFFIX[a].kind === 'pre' ? a + root : root + a; }
+  var ALL = [];
+  Object.keys(ROOTS).forEach(function (root) {
+    Object.keys(ROOTS[root].ok).forEach(function (a) { ALL.push({ root: root, a: a, word: makeWord(root, a), meaning: ROOTS[root].ok[a] }); });
+  });
+  var used = {};
+  function pickTarget(filter) {
+    var pool = ALL.filter(filter).filter(function (x) { return !used[x.word]; });
+    if (pool.length < 2) { used = {}; pool = ALL.filter(filter); }
+    var t = IA.pick(pool); used[t.word] = true; return t;
+  }
+  function meaningSentence(t) { return t.word + ' means ' + t.meaning + '.'; }
+
+  function buildRound(r, filter) {
+    var t = pickTarget(filter);
+    var R = ROOTS[t.root];
+    var others = Object.keys(R.ok).filter(function (a) { return a !== t.a; }).concat(R.no);
+    var opts = IA.shuffle([t.a].concat(IA.sample(others, Math.min(3, others.length))));
+    var goalText = 'Make a word that means “' + t.meaning + '”.';
+    r.stage.appendChild(IA.el('div', { class: 'goal' }, ['Make a word that means ', IA.el('q', {}, [t.meaning]), ' ', IA.speakButton(goalText)]));
+    var preSlot = IA.el('div', { class: 'slot', 'data-kind': 'pre', 'aria-label': 'prefix spot' }, ['prefix']);
+    var sufSlot = IA.el('div', { class: 'slot', 'data-kind': 'suf', 'aria-label': 'suffix spot' }, ['suffix']);
+    r.stage.appendChild(IA.el('div', { class: 'builder' }, [preSlot, IA.el('span', { class: 'plus' }, ['+']),
+      IA.el('span', { class: 'root', onclick: function () { IA.say(t.root); } }, [t.root]), IA.el('span', { class: 'plus' }, ['+']), sufSlot]));
+    var tray = IA.el('div', { class: 'ia-row affixes' });
+    var tiles = opts.map(function (a) {
+      var el = IA.el('div', { class: 'ia-tile ' + AFFIX[a].kind, 'data-a': a, title: AFFIX[a].means }, [AFFIX[a].text]);
+      tray.appendChild(el); return el;
+    });
+    r.stage.appendChild(tray);
+    r.stage.appendChild(IA.el('div', { class: 'key' }, ['🔵 prefixes go at the start · 🟡 suffixes go at the end']));
+    var result = IA.el('div', { class: 'result', 'aria-live': 'polite' });
+    r.stage.appendChild(result);
+    var dd = IA.dragDrop({
+      items: tiles, targets: [preSlot, sufSlot], keepInPlace: true,
+      onPick: function (it) { var a = AFFIX[it.getAttribute('data-a')]; IA.say(a.text.replace(/-/g, '') + ' means ' + a.means.replace(/___/, 'a').replace('/', 'or')); },
+      onDrop: function (it, slot) {
+        var a = it.getAttribute('data-a');
+        if (AFFIX[a].kind !== slot.getAttribute('data-kind')) {
+          IA.bad(it, AFFIX[a].kind === 'pre' ? AFFIX[a].text + ' is a prefix — it goes at the START!' : AFFIX[a].text + ' is a suffix — it goes at the END!');
+          return false;
+        }
+        var w = makeWord(t.root, a);
+        if (a === t.a) {
+          IA.clear(slot).appendChild(IA.el('span', { class: 'ia-tile ' + AFFIX[a].kind }, [AFFIX[a].text]));
+          it.style.visibility = 'hidden';
+          result.innerHTML = '';
+          result.appendChild(IA.el('span', {}, [IA.el('b', {}, [w]), ' = ' + t.meaning + ' ', IA.speakButton(meaningSentence(t))]));
+          IA.say(meaningSentence(t));
+          r.answer(true, result, w + '! 🎉');
+          return true;
+        }
+        if (R.ok[a]) {
+          result.innerHTML = '';
+          result.appendChild(IA.el('span', {}, ['🤔 ', IA.el('b', {}, [w]), ' is a real word, but it means “' + R.ok[a] + '”.']));
+          IA.say(w + ' is a real word, but it means ' + R.ok[a] + '. Try again!');
+          r.answer(false, it, 'Real word — wrong meaning!');
+        } else {
+          result.innerHTML = '';
+          result.appendChild(IA.el('span', {}, ['🙅 ', IA.el('b', {}, [w]), ' is not a real word. ', IA.el('small', {}, ['(' + AFFIX[a].text + ' means “' + AFFIX[a].means + '”)'])]));
+          IA.say(w + ' is not a real word. Try another one!');
+          r.answer(false, it, 'Not a real word!');
+        }
+        it.style.opacity = '.35'; it.classList.add('ia-locked');
+        return false;
+      }
+    });
+    setTimeout(function () { IA.say(goalText); }, 250);
+  }
+
+  function quizRound(r) {
+    var t = pickTarget(function () { return true; });
+    // Distractors: same root with another affix, or same affix with another root — clearly different meanings.
+    var sib = ALL.filter(function (x) { return x.word !== t.word && x.meaning !== t.meaning && (x.root === t.root || x.a === t.a); });
+    var rest = ALL.filter(function (x) { return x.word !== t.word && x.meaning !== t.meaning && sib.indexOf(x) < 0; });
+    var ds = IA.sample(sib, 3);
+    if (ds.length < 3) ds = ds.concat(IA.sample(rest, 3 - ds.length));
+    var q = 'Which word means “' + t.meaning + '”?';
+    r.stage.appendChild(IA.el('div', { class: 'goal' }, ['Which word means ', IA.el('q', {}, [t.meaning]), '? ', IA.speakButton(q)]));
+    var expl = IA.el('div', { class: 'ia-hint', style: { visibility: 'hidden' } }, ['…']);
+    var opts = IA.shuffle([t].concat(ds));
+    var grid = IA.el('div', { class: 'ia-choices wide' });
+    opts.forEach(function (o) {
+      var b = IA.el('button', { class: 'ia-btn ia-choice', type: 'button' }, [o.word]);
+      b.addEventListener('click', function () {
+        if (o === t) { IA.say(meaningSentence(t)); expl.style.visibility = 'visible'; expl.textContent = '✅ ' + t.word + ' = ' + (AFFIX[t.a].kind === 'pre' ? AFFIX[t.a].text + ' + ' + t.root : t.root + ' + ' + AFFIX[t.a].text) + ' → ' + t.meaning; r.answer(true, b); }
+        else { b.disabled = true; expl.style.visibility = 'visible'; expl.textContent = '💡 ' + meaningSentence(o); IA.say(meaningSentence(o)); r.answer(false, b); }
+      });
+      grid.appendChild(b);
+    });
+    r.stage.appendChild(grid);
+    r.stage.appendChild(expl);
+    setTimeout(function () { IA.say(q); }, 250);
+  }
+
+  IA.game({
+    id: 'g2r-prefix-suffix-lab',
+    title: 'Prefix & Suffix Lab',
+    emoji: '🧪',
+    back: '../index.html',
+    instructions: 'Add a prefix or a suffix to the base word to make a word with the right meaning.',
+    rounds: 10,
+    levelTitle: 'Pick your lab',
+    levels: [
+      { label: '🔵 Prefix Lab', value: 'pre', desc: 'un- · re- · pre- · dis-' },
+      { label: '🟡 Suffix Lab', value: 'suf', desc: '-ful · -less · -er · -ly · -ness' },
+      { label: '🧪 Mixed Lab', value: 'mix', desc: 'Prefixes and suffixes' },
+      { label: '❓ Meaning Quiz', value: 'quiz', desc: 'Which word means…?' }
+    ],
+    round: function (r) {
+      if (r.level === 'quiz') return quizRound(r);
+      buildRound(r, function (x) { return r.level === 'mix' || AFFIX[x.a].kind === r.level; });
+    }
+  });
+</script>
+</body>
+</html>

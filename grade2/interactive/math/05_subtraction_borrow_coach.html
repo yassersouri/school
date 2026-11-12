@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Subtraction Borrow Coach — Interactive</title>
+  <link rel="stylesheet" href="../../../assets/interactive/interactive.css">
+  <style>
+    :root { --ia-accent: #5e35b1; --ia-accent-2: #ede7f6; }
+    .work { display: flex; gap: 20px; align-items: flex-start; justify-content: center; flex-wrap: wrap; width: 100%; }
+    .sum { display: grid; grid-template-columns: 44px 72px 72px; gap: 6px 8px; align-items: center; justify-items: center; font-size: 50px; font-weight: bold; line-height: 1; padding-top: 26px; }
+    .sum .hd { font-size: 14px; color: #4527a0; background: var(--ia-accent-2); border-radius: 8px; padding: 4px 6px; width: 100%; text-align: center; }
+    .sum .col-t { color: #1e88e5; } .sum .col-o { color: #43a047; }
+    .dig { position: relative; }
+    .dig.crossed > .v { text-decoration: line-through; text-decoration-color: #c62828; text-decoration-thickness: 4px; opacity: .55; }
+    .dig .nw { position: absolute; left: 50%; top: -30px; transform: translateX(-50%); font-size: 26px; color: #c62828; white-space: nowrap; }
+    .sum .rule { grid-column: 1 / span 3; height: 5px; width: 100%; background: #333; border-radius: 3px; }
+    .box { width: 66px; height: 66px; border: 3px dashed #b39ddb; border-radius: 12px; display: flex; align-items: center; justify-content: center; background: #fbf9ff; color: #333; font-size: 44px; }
+    .box.active { border-style: solid; border-color: var(--ia-accent); box-shadow: 0 0 0 4px #d1c4e9; }
+    .box.ok { border-style: solid; border-color: #2e7d32; background: #e8f5e9; }
+    .mat { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(170px, 1.3fr); gap: 8px; flex: 1; min-width: 300px; max-width: 520px; }
+    @media (max-width: 600px) { .work { flex-direction: column; align-items: center; } .mat { width: 100%; min-width: 0; flex: none; grid-template-columns: 1fr 1.3fr; } }
+    .mcol { border: 3px dashed #b39ddb; border-radius: 14px; background: #fbf9ff; display: flex; flex-direction: column; }
+    .mcol h3 { margin: 0; padding: 5px; text-align: center; font-size: 16px; color: #fff; border-radius: 10px 10px 0 0; }
+    .mcol.t h3 { background: #1e88e5; } .mcol.o h3 { background: #43a047; }
+    .area { display: flex; flex-wrap: wrap; gap: 4px; padding: 6px; justify-content: center; align-content: flex-start; min-height: 130px; }
+    .blk { border: none; background: none; padding: 2px; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; touch-action: manipulation; position: relative; }
+    .blk.r { width: 36px; height: 116px; } .blk.c { width: 44px; height: 44px; }
+    .blk:hover { background: #ede7f6; }
+    .rod { width: 20px; height: 106px; border: 2px solid #1565c0; background-color: #90caf9; background-image: linear-gradient(#1565c066 2px, transparent 2px); background-size: 100% 10.2px; border-radius: 3px; display: block; }
+    .cube { width: 30px; height: 30px; border: 2px solid #2e7d32; background: #a5d6a7; border-radius: 4px; display: block; }
+    .blk.gone { opacity: .3; cursor: default; }
+    .blk.gone::after { content: '✖'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #c62828; font-size: 26px; font-weight: bold; }
+    .blk.new { animation: popin .35s ease both; }
+    .blk.out { animation: popout .35s ease forwards; }
+    @keyframes popin { from { transform: scale(.1) translateX(-40px); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes popout { to { transform: scale(.1); opacity: 0; } }
+    .coach { font-size: clamp(18px, 3.4vw, 23px); text-align: center; font-weight: bold; color: #4527a0; display: flex; gap: 8px; align-items: center; justify-content: center; flex-wrap: wrap; min-height: 2.4em; }
+    .ctrl { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; min-height: 60px; }
+    .pad { display: grid; grid-template-columns: repeat(5, 60px); gap: 8px; justify-content: center; }
+    .pad .ia-btn { min-width: 60px; font-size: 26px; padding: 6px; }
+    @media (max-width: 420px) { .pad { grid-template-columns: repeat(5, 54px); } .pad .ia-btn { min-width: 54px; } .mat { min-width: 0; grid-template-columns: 1fr 1.4fr; } }
+  </style>
+</head>
+<body>
+<div class="ia-app"></div>
+<script src="../../../assets/interactive/engine.js"></script>
+<script>
+  function makeProblem(lv) {
+    for (;;) {
+      var at = IA.rand(2, 9), ao = IA.rand(0, 9), bt = IA.rand(1, 8), bo = IA.rand(1, 9);
+      var regroup = ao < bo;
+      if (lv.always && !regroup) continue;
+      if (at - (regroup ? 1 : 0) - bt < 1) continue;
+      return { at: at, ao: ao, bt: bt, bo: bo, regroup: regroup };
+    }
+  }
+  var keyHandler = null;
+  document.addEventListener('keydown', function (e) { if (keyHandler && /^[0-9]$/.test(e.key)) keyHandler(+e.key); });
+
+  IA.game({
+    id: 'g2m-subtraction-borrow-coach',
+    title: 'Subtraction Borrow Coach',
+    emoji: '➖',
+    back: '../index.html',
+    instructions: 'Start with the ones. Not enough ones? Trade a ten for 10 ones!',
+    rounds: 10,
+    levelTitle: 'Choose a level',
+    levels: [
+      { label: 'Always regroup', value: { always: true }, desc: 'You always need to trade a ten' },
+      { label: 'Mixed', value: { always: false }, desc: 'Do you need to trade? You decide!' }
+    ],
+    round: function (r) {
+      var p = makeProblem(r.level);
+      var a = p.at * 10 + p.ao, b = p.bt * 10 + p.bo, diff = a - b;
+      var tens = p.at, ones = p.ao; // current blocks on the mat
+      var onesAns = (p.regroup ? p.ao + 10 : p.ao) - p.bo, tensAns = (p.regroup ? p.at - 1 : p.at) - p.bt;
+
+      // column problem
+      function dig(v, cls) { return IA.el('div', { class: 'dig ' + cls }, [IA.el('span', { class: 'v' }, [String(v)])]); }
+      var dAt = dig(p.at, 'col-t'), dAo = dig(p.ao, 'col-o');
+      var tensBox = IA.el('div', { class: 'box', 'aria-label': 'tens answer' });
+      var onesBox = IA.el('div', { class: 'box', 'aria-label': 'ones answer' });
+      var sum = IA.el('div', { class: 'sum', 'aria-label': a + ' minus ' + b });
+      [IA.el('div'), IA.el('div', { class: 'hd' }, ['Tens']), IA.el('div', { class: 'hd' }, ['Ones']),
+       IA.el('div'), dAt, dAo,
+       IA.el('div', {}, ['−']), dig(p.bt, 'col-t'), dig(p.bo, 'col-o'),
+       IA.el('div', { class: 'rule' }),
+       IA.el('div'), tensBox, onesBox].forEach(function (c) { sum.appendChild(c); });
+
+      // base-ten mat for the top number
+      var tArea = IA.el('div', { class: 'area' }), oArea = IA.el('div', { class: 'area' });
+      var mat = IA.el('div', { class: 'mat' }, [
+        IA.el('div', { class: 'mcol t' }, [IA.el('h3', {}, ['Tens']), tArea]),
+        IA.el('div', { class: 'mcol o' }, [IA.el('h3', {}, ['Ones']), oArea])
+      ]);
+      function rodBtn() { var b = IA.el('button', { class: 'blk r', type: 'button', 'aria-label': 'ten rod' }, [IA.el('span', { class: 'rod' })]); b.addEventListener('click', function () { tapBlock('t', b); }); return b; }
+      function cubeBtn() { var b = IA.el('button', { class: 'blk c', type: 'button', 'aria-label': 'one cube' }, [IA.el('span', { class: 'cube' })]); b.addEventListener('click', function () { tapBlock('o', b); }); return b; }
+      for (var i = 0; i < p.at; i++) tArea.appendChild(rodBtn());
+      for (var j = 0; j < p.ao; j++) oArea.appendChild(cubeBtn());
+
+      var coach = IA.el('div', { class: 'coach', 'aria-live': 'polite' });
+      var hint = IA.el('div', { class: 'ia-hint', style: { display: 'none' } });
+      var ctrl = IA.el('div', { class: 'ctrl' });
+      r.stage.appendChild(IA.el('div', { class: 'ia-prompt' }, [a + ' − ' + b, IA.speakButton(a + ' minus ' + b)]));
+      r.stage.appendChild(IA.el('div', { class: 'work' }, [sum, mat]));
+      r.stage.appendChild(coach);
+      r.stage.appendChild(hint);
+      r.stage.appendChild(ctrl);
+
+      var step = '', taken = 0;
+      function setCoach(text, speech) {
+        IA.clear(coach); coach.appendChild(document.createTextNode(text)); coach.appendChild(IA.speakButton(speech || text));
+        IA.say(speech || text); hint.style.display = 'none';
+      }
+      function showHint(t) { hint.textContent = '💡 ' + t; hint.style.display = ''; IA.say(t); }
+      function oops(el, t) { showHint(t); r.answer(false, el, 'Not quite — read the hint!'); }
+
+      function askTrade() {
+        step = 'ask';
+        setCoach('Start with the ones. Can you take ' + p.bo + ' ones away from ' + p.ao + ' ones?',
+          'Start with the ones. Can you take ' + p.bo + ' away from ' + p.ao + '?');
+        IA.clear(ctrl);
+        ctrl.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () {
+          if (!p.regroup) { IA.sfx.good(); takeOnes(); }
+          else oops(this, p.ao + ' ones is less than ' + p.bo + ' ones. We need more ones, so trade a ten!');
+        } }, ['✔ Yes, I have enough']));
+        ctrl.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () {
+          if (p.regroup) { IA.sfx.good(); trade(); }
+          else oops(this, p.ao + ' ones is enough to take away ' + p.bo + '. No trade needed!');
+        } }, ['🔁 No, trade a ten']));
+      }
+      function trade() {
+        step = 'trade';
+        IA.clear(ctrl);
+        setCoach('Tap a ten rod to trade it for 10 ones!');
+      }
+      function doTrade(rod) {
+        rod.classList.add('out');
+        setTimeout(function () {
+          rod.remove();
+          for (var k = 0; k < 10; k++) { var c = cubeBtn(); c.classList.add('new'); c.style.animationDelay = (k * 40) + 'ms'; oArea.appendChild(c); }
+          tens--; ones += 10;
+          dAt.classList.add('crossed'); dAt.appendChild(IA.el('span', { class: 'nw' }, [String(tens)]));
+          dAo.classList.add('crossed'); dAo.appendChild(IA.el('span', { class: 'nw' }, [String(ones)]));
+          IA.sfx.good();
+          IA.toast('1 ten = 10 ones! Now you have ' + ones + ' ones.');
+          takeOnes();
+        }, 350);
+      }
+      function takeOnes() {
+        step = 'ones'; taken = 0;
+        setCoach('Take away ' + p.bo + ' ones: tap ' + p.bo + ' ones cubes. (0 of ' + p.bo + ')', 'Take away ' + p.bo + ' ones. Tap them!');
+        IA.clear(ctrl);
+        ctrl.appendChild(IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { takeMany('o', p.bo); } }, ['✂️ Take away ' + p.bo + ' ones for me']));
+      }
+      function takeTens() {
+        step = 'tens'; taken = 0;
+        setCoach('Now the tens. Take away ' + p.bt + ' ten' + (p.bt > 1 ? 's' : '') + ': tap ' + p.bt + ' rod' + (p.bt > 1 ? 's' : '') + '.', 'Now take away ' + p.bt + ' tens. Tap the rods!');
+        IA.clear(ctrl);
+        ctrl.appendChild(IA.el('button', { class: 'ia-btn small', type: 'button', onclick: function () { takeMany('t', p.bt); } }, ['✂️ Take away ' + p.bt + ' tens for me']));
+      }
+      function takeMany(kind, n) {
+        var area = kind === 'o' ? oArea : tArea;
+        var left = Array.prototype.filter.call(area.children, function (x) { return !x.classList.contains('gone'); });
+        for (var k = 0; k < n - taken && k < left.length; k++) left[left.length - 1 - k].classList.add('gone');
+        taken = n; afterTake(kind, n);
+      }
+      function afterTake(kind, n) {
+        if (taken < n) {
+          coach.firstChild.textContent = (kind === 'o' ? 'Take away ' + p.bo + ' ones: tap ' + p.bo + ' ones cubes. (' : 'Take away ' + p.bt + ' tens. (') + taken + ' of ' + n + ')';
+          return;
+        }
+        IA.clear(ctrl);
+        if (kind === 'o') askDigit(onesBox, onesAns, 'How many ones are left? Type the ones digit.',
+          (p.regroup ? ones : p.ao) + ' − ' + p.bo + ' = ' + onesAns + '. Write ' + onesAns + ' in the ones place.', takeTens);
+        else askDigit(tensBox, tensAns, 'How many tens are left? Type the tens digit.',
+          tens + ' − ' + p.bt + ' = ' + tensAns + ' tens. Write ' + tensAns + '.', finish);
+      }
+      function tapBlock(kind, el) {
+        if (el.classList.contains('gone')) return;
+        if (step === 'trade') {
+          if (kind === 't') doTrade(el); else showHint('Tap a blue ten rod to trade it for 10 ones.');
+          step = kind === 't' ? 'busy' : step; return;
+        }
+        if (step === 'ones' || step === 'tens') {
+          var want = step === 'ones' ? 'o' : 't';
+          if (kind !== want) { showHint(want === 'o' ? 'We are taking away ones now — tap the green cubes.' : 'We are taking away tens now — tap the blue rods.'); return; }
+          el.classList.add('gone'); taken++; IA.sfx.tap();
+          afterTake(kind, step === 'ones' ? p.bo : p.bt);
+          return;
+        }
+        if (step === 'ask') IA.toast('First answer the question below 👇');
+      }
+      function askDigit(box, want, prompt, hintText, then) {
+        step = 'digit';
+        box.classList.add('active');
+        setCoach(prompt);
+        var pad = IA.el('div', { class: 'pad', role: 'group', 'aria-label': 'Number pad' });
+        function digit(d) {
+          if (d === want) {
+            box.textContent = String(d); box.classList.remove('active'); box.classList.add('ok');
+            keyHandler = null; IA.sfx.good(); then();
+          } else { box.textContent = String(d); setTimeout(function () { if (!box.classList.contains('ok')) box.textContent = ''; }, 600); oops(box, hintText); }
+        }
+        [1, 2, 3, 4, 5, 6, 7, 8, 9, 0].forEach(function (d) { pad.appendChild(IA.el('button', { class: 'ia-btn', type: 'button', onclick: function () { digit(d); } }, [String(d)])); });
+        keyHandler = digit;
+        IA.clear(ctrl); ctrl.appendChild(pad);
+      }
+      function finish() {
+        step = 'done'; IA.clear(ctrl);
+        IA.clear(coach); coach.appendChild(document.createTextNode(a + ' − ' + b + ' = ' + diff + ' 🎉'));
+        r.answer(true, sum);
+        IA.say(a + ' minus ' + b + ' equals ' + diff);
+      }
+      askTrade();
+    }
+  });
+</script>
+</body>
+</html>
